@@ -9,7 +9,6 @@ lazy-object-proxy==1.4.3
 MarkupSafe==1.1.1
 mccabe==0.6.1
 pep8==1.7.1
-pkg-resources==0.0.0
 pycodestyle==2.5.0
 pylint==2.4.4
 pylint-flask==0.6
