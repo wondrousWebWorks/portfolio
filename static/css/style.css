@@ -37,3 +37,37 @@ nav ul li a {
                  -5px -5px 16px #74c1c3;
 }
 
+/* HEADER */
+
+.header-image {
+    width: 100vw;
+    height: 65vh;
+    background: url("https://res.cloudinary.com/wondrouswebworks/image/upload/v1584828926/wondrousWebWorks/abstract-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.jumbotron {
+    text-align: center;
+}
+
+h1 {
+    color: #fafafa;
+    text-shadow: 4px 4px #333;
+}
+
+.container {
+    margin: 5rem auto;
+    height: 60vh;
+    border-radius: 36px;
+    /* background: #5F9EA0;
+    box-shadow: inset 20px 20px 60px #518688, 
+                inset -20px -20px 60px #6db6b8; */
+}
+
