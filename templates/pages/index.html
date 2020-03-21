@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 {% extends 'layout/base.html' %}
 {% block base_body %}
-    <h1>Extended from base</h1>
+
+{% include 'components/about-summary.html' %}
+{% block about_summary %}{% endblock %}
+
 {% endblock %}
