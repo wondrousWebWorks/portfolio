@@ -15,8 +15,8 @@
 </head>
 
 <body>
-    {% include "components/navbar.html" %}
-    {% block navbar %}
+    {% include 'layout/header.html' %}
+    {% block header %}
     {% endblock %}
     <div class="container">
         {% block base_body %} {% endblock %}
