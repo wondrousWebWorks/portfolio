@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css?family=Baloo+2|Roboto|VT323&display=swap');
+
+body {
+    font-size: 16px;
+    background-color: #1c1c1c;
+    font-family: 'Baloo 2', cursive;
+}
+
+/* NAVBAR */
+.vertical-align {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+nav {
+    height: 10vh;
+    background-color: #5f9ea0;
+}
+
+.brand-logo {
+    height: 40%;
+    margin-left: 3rem;
+}
+
+nav img {
+    height: 100%;
+}
+
+nav ul li a {
+    text-shadow: 2px 2px #333;
+    margin: 0 2rem;
+    font-size: 1.6rem;
+    border-radius: 1.5rem;
+    background: #5f9ea0;
+    box-shadow:  5px 5px 16px #4a7b7d, 
+                 -5px -5px 16px #74c1c3;
+}
+

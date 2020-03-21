@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 {% block navbar %}
+<div class="navbar-fixed">
   <nav>
     <div class="nav-wrapper">
-      <a href="#!" class="brand-logo"><img src="https://res.cloudinary.com/wondrouswebworks/image/upload/c_scale,w_500/v1570699539/mp1-cape-safari/wondrous-large.png" alt="wondrouswebworks logo"></a>
+      <a href="#!" class="brand-logo vertical-align"><img
+          src="https://res.cloudinary.com/wondrouswebworks/image/upload/c_scale,w_500/v1570699539/mp1-cape-safari/wondrous-large.png"
+          alt="wondrouswebworks logo"></a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <li><a href="collapsible.html">Javascript</a></li>
-        <li><a href="mobile.html">Mobile</a></li>
+      <ul class="right hide-on-med-and-down vertical-align">
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="badges.html">About</a></li>
+        <li><a href="collapsible.html">Portfolio</a></li>
+        <li><a href="mobile.html">Contact</a></li>
       </ul>
     </div>
   </nav>
@@ -19,4 +22,5 @@
     <li><a href="collapsible.html">Javascript</a></li>
     <li><a href="mobile.html">Mobile</a></li>
   </ul>
+</div>
 {% endblock %}
