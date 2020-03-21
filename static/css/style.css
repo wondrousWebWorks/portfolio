@@ -71,3 +71,31 @@ h1 {
                 inset -20px -20px 60px #6db6b8; */
 }
 
+/* ABOUT SUMMARY */
+
+#about-summary {
+    font-family: 'VT323', monospace;
+    margin: 2rem auto;
+    width: 80%;
+    padding: 2rem;
+    font-size: 2.3rem;
+    border: 3rem solid #181818;
+    border-radius: 36px;
+    color: #ffbc00;
+    background: linear-gradient(to bottom right, #111, #171717);
+    box-shadow:  15px 15px 30px #111111, 
+                 -15px -15px 30px #1f1f1f;
+}
+
+#about-summary strong {
+    font-weight: bold;
+    color: #cc7a00;
+}
+
+.cursor-rectangle {
+    visibility: visible;
+}
+
+.cursor-hide {
+    visibility: hidden;
+}
