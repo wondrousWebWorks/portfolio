@@ -5,4 +5,27 @@
 {% include 'components/about-summary.html' %}
 {% block about_summary %}{% endblock %}
 
+<div class="row">
+    <div class="col s12">
+        <h2 class="section-heading">Skilzzz</h2>
+    </div>
+</div>
+<div class="row">
+{% for skill in skills %}
+    <div class="col s3">
+        <div class="skill">
+            <div class="skill-info vertical-align">
+                <p class="bright-green skill-name">{{skill.skill_name}}</p>
+                <!-- <p>{{skill.skill_img_url}}</p> -->
+                {% if skill.skill_level == "0" %}
+                    <p class="bright-blue skill-level">Upskilling</p>
+                {% else %}
+                    <p class="bright-blue skill-level">{{skill.skill_level}}%</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endfor %}
+</div>
+
 {% endblock %}
