@@ -19,7 +19,11 @@ def index():
 @app.route('/about')
 def about():
     return render_template('pages/about.html')
-    
+
+@app.route('/portfolio')
+def portfolio():
+    return render_template('pages/portfolio.html')
+
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
