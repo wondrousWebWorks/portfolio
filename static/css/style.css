@@ -6,6 +6,23 @@ body {
     font-family: 'Baloo 2', cursive;
 }
 
+/* FIXED SHORTCUTS */
+.fixed-shortcuts-left {
+    position: fixed;
+    align-items: flex-end;
+    top: 80%;
+}
+
+.fixed-shortcuts-left a {
+    margin-left: .5rem;
+    text-decoration: none;
+    color: #a05f7e;
+}
+
+.fixed-shortcuts-left a span {
+    font-size: 3rem;
+}
+
 /* NAVBAR */
 .vertical-align {
     position: absolute;
@@ -74,8 +91,8 @@ h1 {
     background-color: #a05f7e;
     color: #f7f7f7;
     font-size: 3rem;
-    padding: .5rem;
-    border-radius: 1rem;
+    padding: .5rem 1rem;
+    border-radius: .5rem;
 }
 
 .container {
@@ -85,7 +102,7 @@ h1 {
 
 /* ABOUT SUMMARY */
 
-#about-summary {
+.about-summary {
     font-family: 'VT323', monospace;
     margin: 2rem auto;
     width: 80%;
@@ -100,7 +117,7 @@ h1 {
 
 }
 
-#about-summary-user {
+.about-summary-user {
     font-weight: bold;
     background-color: #00ff66;
     color: #111;
@@ -108,7 +125,7 @@ h1 {
     /* background-color: #009900; */
 }
 
-#about-summary-pwd {
+.about-summary-pwd {
     color: #009900;
 }
 
@@ -183,11 +200,62 @@ h1 {
     align-items: center;
 }
 
+.skill-info-bars {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 85%;
+    width: 85%;
+    background: #181818;
+    border-radius: 50%;
+    box-shadow: inset 5px 5px 6px #0e0e0e, 
+                inset -5px -5px 6px #222222;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    overflow: hidden;
+}
+
+.skill-bar {
+    position: relative;
+    z-index: 2;
+    content: "";
+    height: 8%;
+    width: 100%;
+    background-color: #00ff66;
+    margin-top: 2%;
+}
+
+.skill-bar-half-height {
+    height: 2%;
+}
+
+.skill-bar-red {
+    background-color: #ff0000;
+}
+
+.skill-bar-orange {
+    background-color: #FF7F00;
+}
+
+.skill-bar-yellow {
+    background-color: #FFFF00;
+}
+
+.skill-bar-dark-green {
+    background-color: #009900;
+}
+
+.skill-bar-light-green {
+    background-color: #00FF00;
+}
+
 .section-heading {
     text-align: center;
     font-size: 4rem;
     color: #f7f7f7;
-    text-shadow: 0 0 2px #FFF, 0 0 4px #FFF, 0 0 6px #FFF, 
-                 0 0 8px #a05f7e, 0 0 10px #a05f7e, 0 0 12px #a05f7e, 
-                 0 0 14px #a05f7e,  0 0 16px #a05f7e, 2px 2px 2px rgba(0,153,255,0);
+    text-shadow: 0 0 4px #FFF, 0 0 8px #FFF, 0 0 12px #FFF, 
+                 0 0 16px #a05f7e, 0 0 20px #a05f7e, 0 0 24px #a05f7e, 
+                 0 0 28px #a05f7e,  0 0 32px #a05f7e, 2px 2px 2px rgba(0,153,255,0);
 }
