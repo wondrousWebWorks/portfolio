@@ -18,9 +18,13 @@
     {% include 'layout/header.html' %}
     {% block header %}
     {% endblock %}
+    
     <div class="container">
         {% block base_body %} {% endblock %}
     </div>
+
+    {% include 'components/fixed-shortcuts-left.html' %}
+    {% block fixed_shortcuts_left %}{% endblock %}
 
     {% include 'layout/scripts.html' %}
     {% block scripts %}{% endblock %}
