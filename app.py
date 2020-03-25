@@ -24,6 +24,10 @@ def about():
 def portfolio():
     return render_template('pages/portfolio.html')
 
+@app.route('/contact')
+def contact():
+    return render_template('pages/contact.html')
+
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
