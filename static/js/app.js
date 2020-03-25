@@ -1,4 +1,4 @@
-const cursorRectangle = document.getElementById("cursor-rectangle");
+const cursorRectangle = document.querySelectorAll(".cursor-rectangle");
 
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.sidenav');
@@ -11,7 +11,10 @@ document.addEventListener('DOMContentLoaded', function() {
      */
     function animateCursor() {
         setInterval(function() {
-            cursorRectangle.classList.toggle('cursor-hide');
+            cursorRectangle.forEach(cursor => {
+                cursor.classList.toggle('cursor-hide');
+            });
+            
         }, 800);
     }
 
