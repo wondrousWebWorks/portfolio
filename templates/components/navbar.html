@@ -5,22 +5,25 @@
     <div class="nav-wrapper">
       <a href="#!" class="brand-logo vertical-align"><img
           src="https://res.cloudinary.com/wondrouswebworks/image/upload/c_scale,w_500/v1570699539/mp1-cape-safari/wondrous-large.png"
-          alt="wondrouswebworks logo"></a>
+          alt="wondrouswebworks logo"
+          class="vertical-align"></a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down vertical-align">
+      <ul class="right hide-on-med-and-down vertical-align align-right">
         <li><a href="{{ url_for('index') }}">Home</a></li>
-        <li><a href="badges.html">About</a></li>
-        <li><a href="collapsible.html">Portfolio</a></li>
-        <li><a href="mobile.html">Contact</a></li>
+        <li><a href="{{ url_for('about') }}">About</a></li>
+        <li><a href="{{ url_for('portfolio') }}">Portfolio</a></li>
+        <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        <li><a href="{{ url_for('login') }}">Admin</a></li>
       </ul>
     </div>
   </nav>
 
   <ul class="sidenav" id="mobile-demo">
-    <li><a href="sass.html">Sass</a></li>
-    <li><a href="badges.html">Components</a></li>
-    <li><a href="collapsible.html">Javascript</a></li>
-    <li><a href="mobile.html">Mobile</a></li>
+    <li><a href="{{ url_for('index') }}">Home</a></li>
+    <li><a href="{{ url_for('about') }}">About</a></li>
+    <li><a href="{{ url_for('portfolio') }}">Portfolio</a></li>
+    <li><a href="{{ url_for('contact') }}">Contact</a></li>
+    <li><a href="{{ url_for('login') }}">Admin</a></li>
   </ul>
 </div>
 {% endblock %}
