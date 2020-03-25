@@ -1,7 +1,9 @@
 astroid==2.3.3
 autopep8==1.5
 click==7.1.1
+dnspython==1.16.0
 Flask==1.1.1
+Flask-PyMongo==2.3.0
 isort==4.3.21
 itsdangerous==1.1.0
 Jinja2==2.11.1
@@ -9,6 +11,7 @@ lazy-object-proxy==1.4.3
 MarkupSafe==1.1.1
 mccabe==0.6.1
 pep8==1.7.1
+pkg-resources==0.0.0
 pycodestyle==2.5.0
 pylint==2.4.4
 pylint-flask==0.6
