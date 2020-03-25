@@ -279,3 +279,23 @@ input:focus, textarea:focus {
 input, textarea {
     color: cadetblue;
 }
+
+/* ABOUT */
+.about-section-wrapper img {
+    width: 40%;
+    height: auto;
+    margin: 0 1rem;
+}
+
+.float-img-left {
+    float: left;
+}
+
+.float-img-right {
+    float: right;
+}
+
+.about-section-wrapper p, .about-section-wrapper ul li {
+    font-size: 1.5rem;
+    margin: 0;
+}
