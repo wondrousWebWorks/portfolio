@@ -32,7 +32,14 @@ def contact():
 def admin():
     return render_template('pages/admin.html')
 
+@app.route('/login')
+def login():
+    if 'username' in session:
+        return redirect(url_for('admin'))
+    
+    return render_template('pages/login.html')
 
+    
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=os.environ.get('PORT'),
