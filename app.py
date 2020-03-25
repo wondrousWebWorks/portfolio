@@ -16,6 +16,10 @@ mongo = PyMongo(app)
 def index():
     return render_template('pages/index.html', skills=mongo.db.wondrouswebworks_profile_skills.find())
 
+@app.route('/about')
+def about():
+    return render_template('pages/about.html')
+    
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
