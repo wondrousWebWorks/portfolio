@@ -28,6 +28,10 @@ def portfolio():
 def contact():
     return render_template('pages/contact.html')
 
+@app.route('/admin')
+def admin():
+    return render_template('pages/admin.html')
+
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
