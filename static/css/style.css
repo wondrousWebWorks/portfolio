@@ -307,3 +307,45 @@ input, textarea {
     font-size: 1.8rem;
     margin: 0;
 }
+
+
+/* PROJECTS */
+
+.project-wrapper {
+    width: 85%;
+    min-height: 450px;
+    margin: auto;
+    border: 2rem solid #181818;
+    border-radius: .5rem;
+    background: #1c1c1c;
+    box-shadow:  7px 7px 10px #0e0e0e, 
+                -7px -7px 10px #222222;
+}
+
+.project-wrapper h3 {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.project-wrapper img {
+    width: 100%;
+    height: auto;
+}
+
+.project-wrapper a {
+    font-size: 3rem;
+}
+
+.project-wrapper i {
+    border-radius: 50%;
+    background: #1c1c1c;
+    box-shadow:  5px 5px 12px #161616, 
+                 -5px -5px 12px #222222;    
+}
+
+.project-links-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
