@@ -6,6 +6,15 @@ body {
     font-family: 'Baloo 2', cursive;
 }
 
+/* COLOURS */
+.cadetblue {
+    color: cadetblue;
+}
+
+.magenta {
+    color: #a05f7e;
+}
+
 /* FIXED SHORTCUTS */
 .fixed-shortcuts-left {
     position: fixed;
@@ -101,7 +110,6 @@ h1 {
 }
 
 /* ABOUT SUMMARY */
-
 .about-summary {
     font-family: 'VT323', monospace;
     margin: 2rem auto;
@@ -296,6 +304,6 @@ input, textarea {
 }
 
 .about-section-wrapper p, .about-section-wrapper ul li {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     margin: 0;
 }
