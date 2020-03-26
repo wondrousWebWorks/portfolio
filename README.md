@@ -9,6 +9,8 @@ Thank you for viewing my project. wondrousWebWorks() is a profile for me as a fu
   - [User Experience](#user-experience)
     - [Project Goals](#project-goals)
       - [User Goals](#user-goals)
+  - [Bugs](#bugs)
+    - [Deployment Bugs](#deployment-bugs)
 
 ## User Experience
 
@@ -24,3 +26,9 @@ wondrousWebWorks() is created to be a profile for me as a developer.  It serves 
 - A portfolio showcasing the developer's projects with project information and links to repositories and live sites
 - The ability to contact the developer for queries or for work
 - Easy navigation between all pages of the site
+
+## Bugs
+
+### Deployment Bugs
+
+Initially, there was great difficulty deploying the project to Heroku.  After viewing the project's Heroku log files, it was discovered that the **pkg-resources** package could not be located by Heroku for installation. Modifying the **requirements.txt** file by removing the **pkg-resources** dependancy before pushing to GitHub and subsequently Heroku fixed the bug and allowed succesfull installion of all dependancies.
