@@ -14,7 +14,9 @@ mongo = PyMongo(app)
 
 @app.route('/')
 def index():
-    return render_template('pages/index.html', skills=mongo.db.wondrouswebworks_profile_skills.find())
+    return render_template('pages/index.html', 
+                            skills=mongo.db.wondrouswebworks_profile_skills.find(), 
+                            projects=mongo.db.wondrouswebworks_profile_portfolio.find())
 
 @app.route('/about')
 def about():
@@ -39,7 +41,7 @@ def login():
     
     return render_template('pages/login.html')
 
-    
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=os.environ.get('PORT'),
