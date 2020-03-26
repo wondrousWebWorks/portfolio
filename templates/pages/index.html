@@ -46,5 +46,19 @@
         <h2 class="section-heading">Portfolio</h2>
     </div>
 </div>
+<div class="row">
+    {% for project in projects %}
+        <div class="col s12 m4">
+            <div class="project-wrapper">
+                <img src="{{project.project_img_url}}" alt="responsive project representation">
+                <h3>{{project.project_name}}</h3>
+                <div class="project-links-wrapper">
+                    <a href="{{project.project_github_url}}" target="_blank" class="cadetblue"><i class="fab fa-github"></i></a>
+                    <a href="{{project.project_live_url}}" target="_blank" class="magenta"><i class="fas fa-globe-europe"></i></a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
 
 {% endblock %}
