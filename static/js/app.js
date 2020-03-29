@@ -47,6 +47,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    /**
+     * Loops through Skills and animates each skill bar
+     * so that it does not exceed the set skill level
+     */
     function animateSkillBars() {
         let skillBarRising = true;
         setInterval(function () {
