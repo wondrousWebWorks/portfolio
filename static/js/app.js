@@ -47,6 +47,37 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    function animateSkillBars() {
+        let skillBarRising = true;
+        setInterval(function () {
+            skillBarInfoElements.forEach(skillBarInfoElement => {
+                
+                const skillLevel = parseInt(skillBarInfoElement.getAttribute('data-skill-level'));
+                const skillBarInfoElementChildren = skillBarInfoElement.children;
+
+                for (let i = 0; i < skillBarInfoElementChildren.length; i++) {
+                    let currentSkillBarHeight = parseInt(skillBarInfoElementChildren[i].style.height.replace("%", ""));
+                    let risingOrFalling = skillBarInfoElementChildren[i].getAttribute('data-rising-falling');
+                    
+                    if (risingOrFalling == 'rising') {
+                        if (currentSkillBarHeight + 3 <= skillLevel) {
+                            skillBarInfoElementChildren[i].style.height = `${currentSkillBarHeight + 3}%`;
+                        } else {
+                            skillBarInfoElementChildren[i].setAttribute('data-rising-falling', 'falling');
+                        }
+                    } else if (risingOrFalling == 'falling') {
+                        if (currentSkillBarHeight - 3 >= 0) {
+                            skillBarInfoElementChildren[i].style.height = `${currentSkillBarHeight - 3}%`;
+                        } else {
+                            skillBarInfoElementChildren[i].setAttribute('data-rising-falling', 'rising');
+                        }
+                    }
+                }
+            });
+        }, 60);
+    }
+
     animateCursor();
     randomizeInitialSkillBarHeight();
+    animateSkillBars();
 });
