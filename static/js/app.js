@@ -20,6 +20,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 800);
     }
 
+    /**
+     * Sets a random height in percentage for
+     * each skill bar and also sets an attribute
+     * as either rising or falling
+     */
     function randomizeInitialSkillBarHeight() {
         skillBarInfoElements.forEach(skillBarInfoElement => {
             const skillLevel = parseInt(skillBarInfoElement.getAttribute('data-skill-level'));
