@@ -11,34 +11,22 @@
     </div>
 </div>
 <div class="row">
+
 {% for skill in skills %}
     <div class="col s3">
         <div class="skill">
-            <div class="skill-info vertical-align">
-                <p class="bright-green skill-name">{{skill.skill_name}}</p>
-                <!-- <p>{{skill.skill_img_url}}</p> -->
-                {% if skill.skill_level == "0" %}
-                    <p class="bright-blue skill-level">Upskilling</p>
-                {% else %}
-                    <p class="bright-blue skill-level">{{skill.skill_level}}%</p>
-                {% endif %}
+            <div class="skill-info-bars" data-skill-level="{{skill.skill_level}}">
+                <div class="skill-bar cadetblue-bg" data-skill="skill.skill_name"></div>
+                <div class="skill-bar magenta-bg" data-skill="skill.skill_name"></div>
+                <div class="skill-bar cadetblue-bg" data-skill="skill.skill_name"></div>
+                <div class="skill-bar magenta-bg" data-skill="skill.skill_name"></div>
+                <div class="skill-bar cadetblue-bg" data-skill="skill.skill_name"></div>
+                <div class="skill-bar magenta-bg" data-skill="skill.skill_name"></div>
+                <div class="skill-bar cadetblue-bg" data-skill="skill.skill_name"></div>
             </div>
         </div>
     </div>
 {% endfor %}
-    <div class="col s3">
-        <div class="skill">
-            <div class="skill-info-bars">
-                <div class="skill-bar skill-bar-half-height skill-bar-dark-green"></div>
-                <div class="skill-bar skill-bar-yellow"></div>
-                <div class="skill-bar skill-bar-yellow"></div>
-                <div class="skill-bar skill-bar-orange"></div>
-                <div class="skill-bar skill-bar-orange"></div>
-                <div class="skill-bar skill-bar-red"></div>
-                <div class="skill-bar skill-bar-red"></div>
-            </div>
-        </div>
-    </div>
 </div>
 
 <div class="row">
