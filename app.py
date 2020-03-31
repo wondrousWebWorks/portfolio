@@ -4,6 +4,8 @@ if os.path.exists('env.py'):
 from flask import Flask, render_template, url_for, redirect, request, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from flask_mail import Mail, Message
+
 
 app = Flask(__name__)
 
@@ -11,6 +13,15 @@ app.config['MONGO_DBNAME'] = os.environ.get('MONGO_DBNAME')
 app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
 
 mongo = PyMongo(app)
+
+app.config['MAIL_SERVER']= os.environ.get('MAIL_SERVER')
+app.config['MAIL_PORT'] = os.environ.get('MAIL_PORT')
+app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+
+mail = Mail(app)
 
 @app.route('/')
 def index():
