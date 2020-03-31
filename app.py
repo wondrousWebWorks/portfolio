@@ -45,6 +45,17 @@ def contact():
     return render_template('pages/contact.html')
 
 
+@app.route('/send_mail', methods=['POST'])
+def send_mail():
+    if request.method == 'POST':
+        print(request.form)
+        recipient = os.environ.get('RECIPIENT_ADDRESS')
+        msg = Message('hello', sender = request.form['email'], recipients = [recipient])
+        msg.body = request.form['query']
+        mail.send(msg)
+    return redirect('contact')
+
+
 @app.route('/admin')
 def admin():
     return render_template('pages/admin.html')
