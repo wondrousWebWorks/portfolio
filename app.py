@@ -15,20 +15,24 @@ mongo = PyMongo(app)
 @app.route('/')
 def index():
     return render_template('pages/index.html', 
-                            skills=mongo.db.wondrouswebworks_profile_skills.find(), 
-                            projects=mongo.db.wondrouswebworks_profile_portfolio.find())
+                            skills=mongo.db.skills.find(), 
+                            projects=mongo.db.portfolio.find().limit(3))
+
 
 @app.route('/about')
 def about():
     return render_template('pages/about.html')
 
+
 @app.route('/portfolio')
 def portfolio():
     return render_template('pages/portfolio.html')
 
+
 @app.route('/contact')
 def contact():
     return render_template('pages/contact.html')
+
 
 @app.route('/admin')
 def admin():
