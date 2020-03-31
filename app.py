@@ -45,7 +45,7 @@ def project(project_id):
     project = mongo.db.portfolio.find_one({'_id': ObjectId(project_id)})
     return render_template('pages/project.html', project=project)
 
-    
+
 @app.route('/contact')
 def contact():
     return render_template('pages/contact.html')
@@ -60,6 +60,12 @@ def send_mail():
         msg.body = request.form['query']
         mail.send(msg)
     return redirect('contact')
+
+
+@app.route('/blog')
+def blog():
+    blog_posts = mongo.db.blog_posts.find()
+    return render_template('pages/blog.html', blog_posts=blog_posts)
 
 
 @app.route('/admin')
