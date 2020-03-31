@@ -40,6 +40,12 @@ def portfolio():
     return render_template('pages/portfolio.html')
 
 
+@app.route('/project/<project_id>')
+def project(project_id):
+    project = mongo.db.portfolio.find_one({'_id': ObjectId(project_id)})
+    return render_template('pages/project.html', project=project)
+
+    
 @app.route('/contact')
 def contact():
     return render_template('pages/contact.html')
