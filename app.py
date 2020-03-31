@@ -68,6 +68,12 @@ def blog():
     return render_template('pages/blog.html', blog_posts=blog_posts)
 
 
+@app.route('/blog/<blog_id>')
+def blog_entry(blog_id):
+    blog_entry = mongo.db.blog_posts.find_one({'_id': ObjectId(blog_id)})
+    return render_template('pages/blog_entry.html', blog_entry=blog_entry)
+
+
 @app.route('/admin')
 def admin():
     return render_template('pages/admin.html')
