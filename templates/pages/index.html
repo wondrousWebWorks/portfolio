@@ -10,12 +10,15 @@
         <h2 class="section-heading">Skilzzz</h2>
     </div>
 </div>
-<div class="row">
-
+<div class="row skills-row">
     {% for skill in skills %}
     <div class="col s3">
         <div class="skill">
             <div class="skill-info-bars" data-skill-level="{{skill.skill_level}}">
+                <div class="skill-bar cadetblue-bg" data-skill="skill.skill_name"></div>
+                <div class="skill-bar magenta-bg" data-skill="skill.skill_name"></div>
+                <div class="skill-bar cadetblue-bg" data-skill="skill.skill_name"></div>
+                <div class="skill-bar magenta-bg" data-skill="skill.skill_name"></div>
                 <div class="skill-bar cadetblue-bg" data-skill="skill.skill_name"></div>
                 <div class="skill-bar magenta-bg" data-skill="skill.skill_name"></div>
                 <div class="skill-bar cadetblue-bg" data-skill="skill.skill_name"></div>
