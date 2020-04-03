@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<div class="row">
+    <div class="col s12">
+        <ul class="collapsible education">
+            {% for qualification in qualifications %}
+            <li>
+                <div class="collapsible-header education-header"><i class="fas fa-chevron-down cadetblue"></i>  {{ qualification.qualification_name}}</div>
+                <div class="collapsible-body education-body">
+                    <p><i class="fas fa-university magenta"></i>  Institution: {{ qualification.qualification_from }}</p>
+                    <p><i class="fas fa-calendar-alt magenta"></i>  Issued: {{ qualification.qualification_issue_date }}</p>
+                    <a href="{{ qualification.qualification_link }}" target="_blank" class="qualification-view cadetblue-bg">View</a>
+                </div>
+            </li>
+            {% endfor %}
+          </ul>
+    </div>
+</div>
