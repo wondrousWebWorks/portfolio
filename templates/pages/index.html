@@ -3,61 +3,31 @@
 {% block base_body %}
 
 {% include 'components/about-summary.html' %}
-{% block about_summary %}{% endblock %}
 
 <div class="row">
     <div class="col s12">
-        <h2 class="section-heading">Skilzzz</h2>
+        <h2 class="section-heading"><i class="fas fa-magic"></i>  Skilzzz</h2>
     </div>
 </div>
-<div class="row skills-row">
-    {% for skill in skills %}
-    <div class="col s3">
-        <div class="skill">
-            <div class="skill-info-bars" data-skill-level="{{skill.skill_level}}">
-                <div class="skill-bar cadetblue-bg" data-skill="skill.skill_name"></div>
-                <div class="skill-bar magenta-bg" data-skill="skill.skill_name"></div>
-                <div class="skill-bar cadetblue-bg" data-skill="skill.skill_name"></div>
-                <div class="skill-bar magenta-bg" data-skill="skill.skill_name"></div>
-                <div class="skill-bar cadetblue-bg" data-skill="skill.skill_name"></div>
-                <div class="skill-bar magenta-bg" data-skill="skill.skill_name"></div>
-                <div class="skill-bar cadetblue-bg" data-skill="skill.skill_name"></div>
-                <div class="skill-bar magenta-bg" data-skill="skill.skill_name"></div>
-                <div class="skill-bar cadetblue-bg" data-skill="skill.skill_name"></div>
-                <div class="skill-bar magenta-bg" data-skill="skill.skill_name"></div>
-                <div class="skill-bar cadetblue-bg" data-skill="skill.skill_name"></div>
-            </div>
-        </div>
-    </div>
-    {% endfor %}
-</div>
+{% include 'components/skills.html' %}
 
 <div class="row">
     <div class="col s12">
         <h2 class="section-heading"><i class="fas fa-clipboard-list"></i>  Portfolio</h2>
     </div>
 </div>
-<div class="row profile-row">
-    {% for project in projects %}
-    <div class="col s12 m4">
-        <div class="project-wrapper">
-            <a href="{{ url_for('project', project_id=project._id) }}"><img class="project-img"
-                    src="{{project.project_img_url}}" alt="responsive project representation"></a>
-            <h3>{{project.project_name}}</h3>
-            <div class="project-links-wrapper">
-                <a href="{{project.project_github_url}}" target="_blank" class="cadetblue"><i
-                        class="fab fa-github"></i></a>
-                <a href="{{project.project_live_url}}" target="_blank" class="magenta"><i
-                        class="fas fa-globe-europe"></i></a>
-            </div>
-        </div>
-    </div>
-    {% endfor %}
-</div>
+{% include 'components/projects.html' %}
 <div class="row">
     <div class="col s12 btn-centre">
-        <a href="{{ url_for('portfolio') }}" class="nuo-btn">All Projects</a>
+        <a href="{{ url_for('portfolio') }}" class="nuo-btn magenta">All Projects</a>
     </div>
 </div>
+
+<div class="row">
+    <div class="col s12">
+        <h2 class="section-heading"><i class="fas fa-graduation-cap"></i>  Education</h2>
+    </div>
+</div>
+{% include 'components/qualifications.html' %}
 
 {% endblock %}
