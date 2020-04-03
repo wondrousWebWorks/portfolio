@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<div class="row skills-row">
+    {% for skill in skills %}
+    <div class="col s3">
+        <div class="skill center-align">
+            <div class="skill-info-bars" data-skill-level="{{skill.skill_level}}">
+                <div class="skill-bar cadetblue-bg"></div>
+                <div class="skill-bar magenta-bg"></div>
+                <div class="skill-bar cadetblue-bg"></div>
+                <div class="skill-bar magenta-bg"></div>
+                <div class="skill-bar cadetblue-bg"></div>
+                <div class="skill-bar magenta-bg"></div>
+                <div class="skill-bar cadetblue-bg"></div>
+                <div class="skill-bar magenta-bg"></div>
+                <div class="skill-bar cadetblue-bg"></div>
+                <div class="skill-bar magenta-bg"></div>
+                <div class="skill-bar cadetblue-bg"></div>
+            </div>
+            
+        </div>
+        <h3 class=" skill-name center-align">{{ skill.skill_name }}</h3>
+    </div>
+    {% endfor %}
+</div>
