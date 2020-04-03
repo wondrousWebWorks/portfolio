@@ -27,7 +27,8 @@ mail = Mail(app)
 def index():
     return render_template('pages/index.html', 
                             skills=mongo.db.skills.find(), 
-                            projects=mongo.db.portfolio.find().limit(3))
+                            projects=mongo.db.portfolio.find().limit(3),
+                            qualifications=mongo.db.qualifications.find())
 
 
 @app.route('/about')
@@ -37,7 +38,8 @@ def about():
 
 @app.route('/portfolio')
 def portfolio():
-    return render_template('pages/portfolio.html')
+    projects = mongo.db.portfolio.find()
+    return render_template('pages/portfolio.html', projects=projects)
 
 
 @app.route('/project/<project_id>')
