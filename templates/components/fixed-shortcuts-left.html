@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 {% block fixed_shortcuts_left %}
     <div class="fixed-shortcuts-left">
-        <a href="{{ url_for('contact') }}">
-            <span class="material-icons">
-                email
-            </span>
+        <a href="{{ url_for('contact') }}" class="magenta">
+            <i class="fas fa-envelope"></i>
+        </a>
+        <br>
+        <a href="https://github.com/wondrousWebWorks" target="_blank" class="cadetblue">
+            <i class="fab fa-github"></i>
         </a>
     </div>
 {% endblock %}
