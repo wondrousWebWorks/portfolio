@@ -4,8 +4,22 @@ const skillBars = document.querySelectorAll(".skill-bar");
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems, {});
+    const navElems = document.querySelectorAll('.sidenav');
+    const navInstances = M.Sidenav.init(navElems, {});
+
+    const collapsibleElems = document.querySelectorAll('.collapsible');
+    const collapsibleInstances = M.Collapsible.init(collapsibleElems, {
+        onOpenStart: function(el) {
+            el.querySelector('.education-header').style.backgroundColor = '#333';
+            el.querySelector('.education-body').style.backgroundColor = '#222';
+            el.querySelector('.education-header i').style.transform = 'scaleY(-1)';
+        },
+        onCloseStart: function(el) {
+            el.querySelector('.education-header').style.backgroundColor = '#1f1f1f';
+            el.querySelector('.education-body').style.backgroundColor = '#1f1f1f';
+            el.querySelector('.education-header i').style.transform = 'scaleY(1)';
+        }
+    });
 
     /**
      * Animates the terminal-like cursor in the
@@ -70,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             skillBarInfoElementChildren[i].setAttribute('data-rising-falling', 'falling');
                         }
                     } else if (risingOrFalling == 'falling') {
-                        if (currentSkillBarHeight - 3 >= 0) {
+                        if ((currentSkillBarHeight - 3) >= (skillLevel / 1.5)) {
                             skillBarInfoElementChildren[i].style.height = `${currentSkillBarHeight - 3}%`;
                         } else {
                             skillBarInfoElementChildren[i].setAttribute('data-rising-falling', 'rising');
@@ -78,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 }
             });
-        }, 60);
+        }, 40);
     }
 
     animateCursor();
