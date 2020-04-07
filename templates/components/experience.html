@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<div class="row">
+  {% for job in experience %}
+  <div class="col s4">
+    <div class="card experience-card">
+      <div class="card-content white-text">
+        <span class="card-title"><i class="fas fa-tag magenta"></i>&nbsp;&nbsp;{{ job.job_title }}</span>
+        <p><i class="fas fa-calendar-alt red-gold"></i>&nbsp;&nbsp;{{ job.job_dates }}</p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
