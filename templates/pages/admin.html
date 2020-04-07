@@ -1,2 +1,12 @@
 <!DOCTYPE html>
-<h1>ADMIN</h1>
+{% extends 'layout/admin_base.html' %}
+{% block admin_block %}
+<div class="admin-col">
+    <div class="admin-info center-align">
+        <div class="admin-info-inner">
+            <h3 class="admin-info-value">{{ skill_count }}</h3>
+        </div>
+    </div>
+    <h4 class="admin-info-category red-gold">Skills</h4>
+</div>
+{% endblock %}
