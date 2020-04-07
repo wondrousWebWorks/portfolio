@@ -99,6 +99,10 @@ def admin():
                                                 total_db_count=total_db_count)
 
 
+@app.route('/admin/add_skill')
+def add_skill():
+    return render_template('pages/add_skill.html')
+
 @app.route('/login')
 def login():
     # if 'username' in session:
