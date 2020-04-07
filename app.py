@@ -28,7 +28,8 @@ def index():
     return render_template('pages/index.html', 
                             skills=mongo.db.skills.find(), 
                             projects=mongo.db.portfolio.find().limit(3),
-                            qualifications=mongo.db.qualifications.find())
+                            qualifications=mongo.db.qualifications.find(),
+                            experience=mongo.db.work_experience.find())
 
 
 @app.route('/about')
@@ -58,7 +59,7 @@ def send_mail():
     if request.method == 'POST':
         print(request.form)
         recipient = os.environ.get('RECIPIENT_ADDRESS')
-        msg = Message('hello', sender = request.form['email'], recipients = [recipient])
+        msg = Message(request.form['subject'], sender = request.form['email'], recipients = [recipient])
         msg.body = request.form['query']
         mail.send(msg)
     return redirect('contact')
@@ -78,14 +79,32 @@ def blog_entry(blog_id):
 
 @app.route('/admin')
 def admin():
-    return render_template('pages/admin.html')
+    skill_count = mongo.db.skills.count()
+    project_count = mongo.db.portfolio.count()
+    qualification_count = mongo.db.qualifications.count()
+    experience_count = mongo.db.work_experience.count()
+    blog_posts_count = mongo.db.blog_posts.count()
+    total_db_count = str(int(skill_count) + int(project_count) + int(qualification_count) + int(experience_count) + int(blog_posts_count))
+
+    return render_template('pages/admin.html', skills=mongo.db.skills.find(),
+                                                skill_count=skill_count,
+                                                projects=mongo.db.portfolio.find(),
+                                                project_count=project_count,
+                                                qualifications=mongo.db.qualifications.find(),
+                                                qualification_count=qualification_count,
+                                                experience=mongo.db.work_experience.find(),
+                                                experience_count=experience_count,
+                                                blog_posts=mongo.db.blog_posts.find(),
+                                                blog_posts_count=blog_posts_count,
+                                                total_db_count=total_db_count)
+
 
 @app.route('/login')
 def login():
-    if 'username' in session:
-        return redirect(url_for('admin'))
-    
-    return render_template('pages/login.html')
+    # if 'username' in session:
+    #     return redirect(url_for('admin'))
+    return redirect(url_for('admin'))
+    # return render_template('pages/login.html')
 
 
 if __name__ == '__main__':
