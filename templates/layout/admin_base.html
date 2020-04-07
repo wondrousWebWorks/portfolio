@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include 'layout/head.html' %}
+
+<body>
+    {% include 'components/admin_nav.html' %}
+    <div class="admin-body">
+        {% block admin_block %}{% endblock %}
+    </div>
+    {% include 'layout/scripts.html' %}
+</body>
+
+</html>
