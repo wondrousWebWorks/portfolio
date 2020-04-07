@@ -198,8 +198,8 @@ box-shadow:  5px 5px 6px #0e0e0e,
 
 /* SKILLS */
 .skill {
-    margin: 1rem;
     width: 80%;
+    margin: auto;
     position: relative;
     border-radius: 50%;
     background: linear-gradient(145deg, #161616, #1a1a1a);
@@ -218,45 +218,27 @@ box-shadow:  5px 5px 6px #0e0e0e,
     padding-top: 100%;
 }
 
-.skill-info p {
+h4 {
     margin: 0;
-}
-
-.bright-green {
-    color: #fff;
-    text-shadow: 0 0 2px #FFF, 0 0 4px #FFF, 0 0 6px #FFF, 
-                 0 0 8px #49ff18, 0 0 10px #49FF18, 0 0 12px #49FF18, 
-                 2px 2px 2px rgba(0,255,102,0);
-}
-
-.bright-blue {
-    color: #f7f7f7;
-    text-shadow: 0 0 2px #FFF, 0 0 4px #FFF, 0 0 6px #FFF, 
-                 0 0 8px #a05f7e, 0 0 10px #a05f7e, 0 0 12px #a05f7e, 
-                 2px 2px 2px rgba(0,153,255,0);
+    padding: 0;
+    font-size: 1rem;
+    z-index: 5;
 }
 
 .skill-name {
-    font-size: 2rem;
+    font-size: 1.8rem;
+    margin-top: 1rem;
+    z-index: 2;
+    font-weight: bold;
+    color: #a07f5f;
 }
 
 .skill-level {
-    font-size: 2.5rem;
-}
-
-.skill-info {
-    text-align: center;
-    height: 85%;
-    width: 85%;
-    background: #181818;
-    border-radius: 50%;
-    box-shadow: inset 5px 5px 6px #0e0e0e, 
-                inset -5px -5px 6px #222222;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    font-size: 2.2rem;
+    position: absolute;
+    z-index: 2;
+    margin: 0;
+    line-height: 0;
 }
 
 .skill-info-bars {
@@ -278,10 +260,9 @@ box-shadow:  5px 5px 6px #0e0e0e,
 
 .skill-bar {
     display: inline-block;
-    z-index: 2;
+    z-index: 3;
     content: "";
-    width: 10%;
-    margin: 0 2%;
+    width: 6%;
 }
 
 .section-heading {
