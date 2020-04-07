@@ -106,6 +106,28 @@ nav ul li a {
     }
 }
 
+.header-image:before {
+    position: absolute;
+    content: "";
+    width: 80%;
+    height: 10%;
+    background-color: #1c1c1c;
+    bottom: -5%;
+    left: -20%;
+    border-radius: 50%;
+}
+
+.header-image:after {
+    position: absolute;
+    content: "";
+    width: 110%;
+    height: 15%;
+    background-color: #1c1c1c;
+    bottom: -8%;
+    right: -30%;
+    border-radius: 40%;
+}
+
 .jumbotron {
     display: flex;
     flex-direction: column;
