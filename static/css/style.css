@@ -75,8 +75,8 @@ nav ul li a {
 
 .header-image {
     width: 100vw;
-    height: 65vh;
-    background: url("https://res.cloudinary.com/wondrouswebworks/image/upload/v1584828926/wondrousWebWorks/abstract-bg.jpg");
+    height: 90vh;
+    background: url("https://res.cloudinary.com/wondrouswebworks/image/upload/v1586101487/wondrousWebWorks/wondrous-header.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -85,6 +85,25 @@ nav ul li a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    transform: scaleX(1);
+
+    animation-name: scale-hero-shot;
+    animation-timing-function: linear;
+    animation-duration: 15s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes scale-hero-shot {
+    0%   {
+        transform: scaleX(1);
+    }
+    50%   {
+        transform: scaleX(1.05);
+    }
+    100%   {
+        transform: scaleX(1);
+    }
 }
 
 .jumbotron {
