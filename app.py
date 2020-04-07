@@ -99,10 +99,15 @@ def admin():
                                                 total_db_count=total_db_count)
 
 
-@app.route('/admin/add_skill')
+@app.route('/admin/add_skill', methods=['GET','POST'])
 def add_skill():
+    if request.method == 'POST':
+        skills=mongo.db.skills
+        skills.insert_one(request.form.to_dict())
+        return redirect('add_skill')
     return render_template('pages/add_skill.html')
 
+    
 @app.route('/login')
 def login():
     # if 'username' in session:
