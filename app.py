@@ -107,7 +107,17 @@ def add_skill():
         return redirect('add_skill')
     return render_template('pages/add_skill.html')
 
-    
+
+@app.route('/admin/edit_skill')
+def edit_skill():
+    return render_template('pages/edit_skill.html')
+
+
+@app.route('/admin/delete_skill')
+def delete_skill():
+    return redirect('pages/admin.html')
+
+
 @app.route('/login')
 def login():
     # if 'username' in session:
