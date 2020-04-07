@@ -14,6 +14,16 @@ body {
     margin: 0 auto;
 }
 
+/* SHARED STYLING */
+.section-heading {
+    margin: 3rem 0 1rem;
+    padding: 1.5rem;
+    text-align: center;
+    font-size: 3rem;
+    color: cadetblue;
+    text-shadow: 2px 2px #333;
+}
+
 /* FIXED SHORTCUTS */
 .fixed-shortcuts-left {
     position: fixed;
@@ -263,15 +273,6 @@ h4 {
     z-index: 3;
     content: "";
     width: 6%;
-}
-
-.section-heading {
-    text-align: center;
-    font-size: 4rem;
-    color: #f7f7f7;
-    text-shadow: 0 0 4px #FFF, 0 0 8px #FFF, 0 0 12px #FFF, 
-                 0 0 16px #a05f7e, 0 0 20px #a05f7e, 0 0 24px #a05f7e, 
-                 0 0 28px #a05f7e,  0 0 32px #a05f7e, 2px 2px 2px rgba(0,153,255,0);
 }
 
 /* CONTACT */
