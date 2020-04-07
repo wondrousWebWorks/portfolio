@@ -3,26 +3,37 @@
 body {
     font-size: 16px;
     background-color: #1c1c1c;
-    background-image: url("https://www.transparenttextures.com/patterns/hixs-evolution.png");
+    /* background-image: url("https://www.transparenttextures.com/patterns/random-grey-variations.png"); */
     background-repeat: repeat;
     font-family: 'Baloo 2', cursive;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
 }
 
 /* FIXED SHORTCUTS */
 .fixed-shortcuts-left {
     position: fixed;
     align-items: flex-end;
-    top: 80%;
+    top: 70%;
 }
 
 .fixed-shortcuts-left a {
     margin-left: .5rem;
     text-decoration: none;
-    color: #a05f7e;
 }
 
-.fixed-shortcuts-left a span {
+.fixed-shortcuts-left a i {
     font-size: 3rem;
+    margin-bottom: .7rem;
+    transition: transform .5s ease-in-out;
+}
+
+.fixed-shortcuts-left a i:hover {
+    transform: scale(1.2);
 }
 
 /* NAVBAR */
@@ -87,6 +98,7 @@ h1 {
     color: #f3f3f3;
     text-shadow: 3px 3px #a0905f;
 }
+
 .jumbotron a {
     margin-top: 2rem;
     text-decoration: none;
@@ -277,7 +289,6 @@ input, textarea {
 
 
 /* PROJECTS */
-
 .project-wrapper {
     width: 85%;
     min-height: 450px;
@@ -324,27 +335,4 @@ input, textarea {
 
 .magenta {
     color: #a05f7e;
-}
-
-.cadetblue-bg {
-    background-color: cadetblue;
-}
-
-.magenta-bg {
-    background-color: #a05f7e;
-}
-
-
-.blog-image {
-    width: 85%;
-    height: auto;
-    margin: auto;
-}
-
-.blog-date {
-    font-size: 1.4rem;
-}
-
-.blog-title {
-    font-size: 2rem;
 }
