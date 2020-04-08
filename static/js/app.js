@@ -1,23 +1,27 @@
 const cursorRectangle = document.querySelectorAll(".cursor-rectangle");
-const skillBarInfoElements = document.querySelectorAll(".skill-info-bars");
+const skillBarsWrappers = document.querySelectorAll(".skill-bars-wrapper");
 const skillBars = document.querySelectorAll(".skill-bar");
+const projects = document.querySelectorAll(".project-col");
 
 document.addEventListener('DOMContentLoaded', function () {
 
     const navElems = document.querySelectorAll('.sidenav');
     const navInstances = M.Sidenav.init(navElems, {});
 
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems);
+
     const collapsibleElems = document.querySelectorAll('.collapsible');
     const collapsibleInstances = M.Collapsible.init(collapsibleElems, {
         onOpenStart: function(el) {
-            el.querySelector('.education-header').style.backgroundColor = '#333';
-            el.querySelector('.education-body').style.backgroundColor = '#222';
-            el.querySelector('.education-header i').style.transform = 'scaleY(-1)';
+            el.querySelector('.custom-collapsible-header').style.backgroundColor = '#333';
+            el.querySelector('.custom-collapsible-body').style.backgroundColor = '#222';
+            el.querySelector('.custom-collapsible-header i').style.transform = 'scaleY(-1)';
         },
         onCloseStart: function(el) {
-            el.querySelector('.education-header').style.backgroundColor = '#1f1f1f';
-            el.querySelector('.education-body').style.backgroundColor = '#1f1f1f';
-            el.querySelector('.education-header i').style.transform = 'scaleY(1)';
+            el.querySelector('.custom-collapsible-header').style.backgroundColor = '#1f1f1f';
+            el.querySelector('.custom-collapsible-body').style.backgroundColor = '#1f1f1f';
+            el.querySelector('.custom-collapsible-header i').style.transform = 'scaleY(1)';
         }
     });
 
@@ -40,21 +44,21 @@ document.addEventListener('DOMContentLoaded', function () {
      * as either rising or falling
      */
     function randomizeInitialSkillBarHeight() {
-        skillBarInfoElements.forEach(skillBarInfoElement => {
-            const skillLevel = parseInt(skillBarInfoElement.getAttribute('data-skill-level'));
-            const skillBarInfoElementChildren = skillBarInfoElement.children;
+        skillBarsWrappers.forEach(skillBarsWrapper => {
+            const skillLevel = parseInt(skillBarsWrapper.getAttribute('data-skill-level'));
+            const skillBars = skillBarsWrapper.children;
 
-            for (let i = 0; i < skillBarInfoElementChildren.length; i++) {
+            for (let i = 0; i < skillBars.length; i++) {
                 if (skillLevel == 0) {
                     continue;
                 } else {
                     const skillBarRandomHeight = Math.floor(Math.random() * (skillLevel - 3) + 3);
-                    skillBarInfoElementChildren[i].style.height = `${skillBarRandomHeight}%`;
+                    skillBars[i].style.height = `${skillBarRandomHeight}%`;
                     const skillBarRisingOrFalling = Math.random();
                     if (skillBarRisingOrFalling < 0.5) {
-                        skillBarInfoElementChildren[i].setAttribute('data-rising-falling', 'falling');
+                        skillBars[i].setAttribute('data-rising-falling', 'falling');
                     } else {
-                        skillBarInfoElementChildren[i].setAttribute('data-rising-falling', 'rising');
+                        skillBars[i].setAttribute('data-rising-falling', 'rising');
                     }
                 }
             }
@@ -68,32 +72,49 @@ document.addEventListener('DOMContentLoaded', function () {
     function animateSkillBars() {
         let skillBarRising = true;
         setInterval(function () {
-            skillBarInfoElements.forEach(skillBarInfoElement => {
+            skillBarsWrappers.forEach(skillBarsWrapper => {
                 
-                const skillLevel = parseInt(skillBarInfoElement.getAttribute('data-skill-level'));
-                const skillBarInfoElementChildren = skillBarInfoElement.children;
+                const skillLevel = parseInt(skillBarsWrapper.getAttribute('data-skill-level'));
+                const skillBarsWrapperChildren = skillBarsWrapper.children;
 
-                for (let i = 0; i < skillBarInfoElementChildren.length; i++) {
-                    let currentSkillBarHeight = parseInt(skillBarInfoElementChildren[i].style.height.replace("%", ""));
-                    let risingOrFalling = skillBarInfoElementChildren[i].getAttribute('data-rising-falling');
+                for (let i = 0; i < skillBarsWrapperChildren.length; i++) {
+                    let currentSkillBarHeight = parseInt(skillBarsWrapperChildren[i].style.height.replace("%", ""));
+                    let risingOrFalling = skillBarsWrapperChildren[i].getAttribute('data-rising-falling');
                     
                     if (risingOrFalling == 'rising') {
                         if (currentSkillBarHeight + 3 <= skillLevel) {
-                            skillBarInfoElementChildren[i].style.height = `${currentSkillBarHeight + 3}%`;
+                            skillBarsWrapperChildren[i].style.height = `${currentSkillBarHeight + 3}%`;
                         } else {
-                            skillBarInfoElementChildren[i].setAttribute('data-rising-falling', 'falling');
+                            skillBarsWrapperChildren[i].setAttribute('data-rising-falling', 'falling');
                         }
                     } else if (risingOrFalling == 'falling') {
                         if ((currentSkillBarHeight - 3) >= (skillLevel / 1.5)) {
-                            skillBarInfoElementChildren[i].style.height = `${currentSkillBarHeight - 3}%`;
+                            skillBarsWrapperChildren[i].style.height = `${currentSkillBarHeight - 3}%`;
                         } else {
-                            skillBarInfoElementChildren[i].setAttribute('data-rising-falling', 'rising');
+                            skillBarsWrapperChildren[i].setAttribute('data-rising-falling', 'rising');
                         }
                     }
                 }
             });
         }, 40);
     }
+
+    Array.from(projects).forEach(project => {
+        project.addEventListener("mouseover", function(e) {
+            projects.forEach(project => {
+                project.classList.add('project-scale-smaller-and-opage');
+            });
+            this.classList.remove('project-scale-smaller-and-opage');
+            this.classList.add('project-scale-bigger');
+        });
+
+        project.addEventListener("mouseout", function(e) {
+            projects.forEach(project => {
+                project.classList.remove('project-scale-smaller-and-opage');
+                project.classList.remove('project-scale-bigger');
+            });
+        });
+      });
 
     animateCursor();
     randomizeInitialSkillBarHeight();
