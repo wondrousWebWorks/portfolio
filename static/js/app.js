@@ -99,21 +99,24 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 40);
     }
 
-    Array.from(projects).forEach(project => {
-        project.addEventListener("mouseover", function(e) {
-            projects.forEach(project => {
-                project.classList.add('project-scale-smaller-and-opage');
-            });
-            this.classList.remove('project-scale-smaller-and-opage');
-            this.classList.add('project-scale-bigger');
+    function scaleProject() {
+        projects.forEach(project => {
+            project.classList.add('project-scale-smaller-and-opage');
         });
+        this.classList.remove('project-scale-smaller-and-opage');
+        this.classList.add('project-scale-bigger');
+    }
 
-        project.addEventListener("mouseout", function(e) {
-            projects.forEach(project => {
-                project.classList.remove('project-scale-smaller-and-opage');
-                project.classList.remove('project-scale-bigger');
-            });
+    function shrinkProjects() {
+        projects.forEach(project => {
+            project.classList.remove('project-scale-smaller-and-opage');
+            project.classList.remove('project-scale-bigger');
         });
+    }
+
+    Array.from(projects).forEach(project => {
+        project.addEventListener("mouseover", scaleProject);
+        project.addEventListener("mouseout", shrinkProjects);
       });
 
     animateCursor();
