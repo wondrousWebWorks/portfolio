@@ -99,6 +99,12 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 40);
     }
 
+    /**
+     * Upon hovering over a project,
+     * enlarge the project card whilst
+     * shrinking and increasing the opacity
+     * of other projects
+     */
     function scaleProject() {
         projects.forEach(project => {
             project.classList.add('project-scale-smaller-and-opage');
@@ -107,6 +113,11 @@ document.addEventListener('DOMContentLoaded', function () {
         this.classList.add('project-scale-bigger');
     }
 
+    /**
+     * Upon the mouse leaving a project,
+     * restore project card to normal size
+     * and opacity
+     */
     function shrinkProjects() {
         projects.forEach(project => {
             project.classList.remove('project-scale-smaller-and-opage');
