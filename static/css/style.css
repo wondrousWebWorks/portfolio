@@ -260,10 +260,72 @@ nav ul li a {
 }
 
 .skill-bar {
-    /* display: inline-block; */
     z-index: 3;
     content: "";
     width: 6%;
+}
+
+/* PROJECTS */
+.project-wrapper {
+    width: 85%;
+    min-height: 350px;
+    margin: auto;
+    /* border-left: solid 4px #a07f5f;
+    border-top: solid 4px #a07f5f; */
+    /* border: 4px solid #a07f5f; */
+    border-radius: .3rem;
+    background: #1c1c1c;
+    box-shadow:  7px 7px 10px #0e0e0e,
+                 -7px -7px 10px #0e0e0e;
+}
+
+.project-col {
+    transition: transform .7s ease-in-out, opacity .7s ease-in-out;
+    margin-bottom: 1rem;
+}
+
+.project-scale-bigger {
+    transform: scale(1.1);
+}
+
+.project-scale-smaller-and-opage {
+    transform: scale(.7);
+    opacity: .3;
+}
+
+.project-wrapper h3 {
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.project-wrapper img {
+    width: 100%;
+    height: auto;
+}
+
+.project-wrapper a {
+    font-size: 3rem;
+}
+
+.project-wrapper i {
+    border-radius: 50%;
+    background: #1c1c1c;
+    box-shadow:  5px 5px 12px #161616, 
+                 -5px -5px 12px #222222;    
+}
+
+.project-links-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.all-projects-btn {
+    font-size: 1.5rem;
+    padding: .3rem .5rem;
+    border-radius: .4rem;
 }
 
 /* CONTACT */
@@ -306,47 +368,6 @@ input, textarea {
     margin: 0;
 }
 
-
-/* PROJECTS */
-.project-wrapper {
-    width: 85%;
-    min-height: 450px;
-    margin: auto;
-    border: 2rem solid #181818;
-    border-radius: .5rem;
-    background: #1c1c1c;
-    box-shadow:  7px 7px 10px #0e0e0e, 
-                -7px -7px 10px #222222;
-}
-
-.project-wrapper h3 {
-    font-size: 2rem;
-    text-align: center;
-}
-
-.project-wrapper img {
-    width: 100%;
-    height: auto;
-}
-
-.project-wrapper a {
-    font-size: 3rem;
-}
-
-.project-wrapper i {
-    border-radius: 50%;
-    background: #1c1c1c;
-    box-shadow:  5px 5px 12px #161616, 
-                 -5px -5px 12px #222222;    
-}
-
-.project-links-wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
 /* COLOURS */
 .cadetblue {
     color: cadetblue;
@@ -386,4 +407,12 @@ input, textarea {
 
 .light-blue-bg {
     background-color: #0066ff;
+}
+
+.card-bg {
+    background-color: #1f1f1f;
+}
+
+.off-white {
+    color: #f7f7f7;
 }
