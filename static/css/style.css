@@ -59,6 +59,11 @@ body {
         visibility: hidden;
     }
 
+    .container {
+        margin: 5rem auto;
+        height: 60vh;
+    }
+
 /* FIXED SHORTCUTS */
 .fixed-shortcuts-left {
     position: fixed;
@@ -199,13 +204,8 @@ nav ul li a {
     border-radius: .5rem;
 }
 
-.container {
-    margin: 5rem auto;
-    height: 60vh;
-}
-
 /* SKILLS */
-.skill {
+.skill-wrapper {
     width: 80%;
     margin: auto;
     position: relative;
@@ -220,17 +220,10 @@ nav ul li a {
     align-items: center;
 }
 
-.skill:before {
+.skill-wrapper:before {
     content: "";
     display: block;
     padding-top: 100%;
-}
-
-h4 {
-    margin: 0;
-    padding: 0;
-    font-size: 1rem;
-    z-index: 5;
 }
 
 .skill-name {
@@ -249,7 +242,7 @@ h4 {
     line-height: 0;
 }
 
-.skill-info-bars {
+.skill-bars-wrapper {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -267,7 +260,7 @@ h4 {
 }
 
 .skill-bar {
-    display: inline-block;
+    /* display: inline-block; */
     z-index: 3;
     content: "";
     width: 6%;
@@ -359,6 +352,38 @@ input, textarea {
     color: cadetblue;
 }
 
+.cadetblue-bg {
+    background-color: cadetblue;
+}
+
 .magenta {
     color: #a05f7e;
+}
+
+.magenta-bg {
+    background-color: #a05f7e;
+}
+
+.red-gold {
+    color: #a07f5f;
+}
+
+.red-gold-bg {
+    background-color: #a07f5f;
+}
+
+.crimson {
+    color: crimson;
+}
+
+.crimson-bg {
+    background-color: crimson;
+}
+
+.light-blue {
+    color: #0066ff;
+}
+
+.light-blue-bg {
+    background-color: #0066ff;
 }
