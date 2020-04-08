@@ -378,7 +378,24 @@ nav ul li a {
     border-radius: 3px;
 }
 
-/* CONTACT */
+/* EXPERIENCE */
+.experience-card {
+    background-color: #1f1f1f;
+    box-shadow:  5px 5px 10px #111111,
+                -5px -5px 10px #111111;
+    border-radius: 4px;
+    transition: transform .35s ease-in-out;
+}
+
+.experience-card:hover {
+    transform: scale(1.08);
+}
+
+.experience-card .card-action {
+    border-top: 1px solid #111;
+}
+
+/* FORMS */
 form {
     border-radius: 1.5rem;
     background: linear-gradient(145deg, #111, #161616);
@@ -396,6 +413,16 @@ input:focus, textarea:focus {
 
 input, textarea {
     color: cadetblue;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px #111 inset !important;
+    box-shadow: 0 0 0 30px #111 inset !important;
+    -webkit-text-fill-color: #f7f7f7 !important;
+    color: #f7f7f7 !important;
 }
 
 /* ABOUT */
