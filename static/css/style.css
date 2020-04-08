@@ -24,6 +24,41 @@ body {
     text-shadow: 2px 2px #333;
 }
 
+.tablet-style-container {
+    font-family: "Open Sans", sans-serif;
+    margin: 2rem auto;
+    width: 80%;
+    padding: 2rem;
+    font-size: 2rem;
+    border: 2.5rem solid #181818;
+    border-radius: 36px;
+    color: #f7f7f7;
+    background: linear-gradient(145deg, #111, #161616);
+    box-shadow:  5px 5px 6px #0e0e0e, 
+                -5px -5px 6px #222222;
+    }
+    
+    .tablet-style-user {
+        font-weight: bold;
+        background-color: cadetblue;
+        color: #111;
+        border-radius: 2px;
+        padding: 5px;
+    }
+    
+    .tablet-summary-pwd {
+        color: #a05f7e;
+    }
+    
+    .cursor-rectangle {
+        visibility: visible;
+        color: #a05f7e;
+    }
+    
+    .cursor-hide {
+        visibility: hidden;
+    }
+
 /* FIXED SHORTCUTS */
 .fixed-shortcuts-left {
     position: fixed;
@@ -82,7 +117,6 @@ nav ul li a {
 }
 
 /* HEADER */
-
 .header-image {
     width: 100vw;
     height: 90vh;
@@ -168,42 +202,6 @@ nav ul li a {
 .container {
     margin: 5rem auto;
     height: 60vh;
-}
-
-/* ABOUT SUMMARY */
-.about-summary {
-font-family: "Open Sans", sans-serif;
-margin: 2rem auto;
-width: 80%;
-padding: 2rem;
-font-size: 2rem;
-border: 2.5rem solid #181818;
-border-radius: 36px;
-color: #f7f7f7;
-background: linear-gradient(145deg, #111, #161616);
-box-shadow:  5px 5px 6px #0e0e0e, 
-            -5px -5px 6px #222222;
-}
-
-.about-summary-user {
-    font-weight: bold;
-    background-color: cadetblue;
-    color: #111;
-    border-radius: 2px;
-    padding: 5px;
-}
-
-.about-summary-pwd {
-    color: #a05f7e;
-}
-
-.cursor-rectangle {
-    visibility: visible;
-    color: #a05f7e;
-}
-
-.cursor-hide {
-    visibility: hidden;
 }
 
 /* SKILLS */
