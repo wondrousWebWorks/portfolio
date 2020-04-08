@@ -328,6 +328,56 @@ nav ul li a {
     border-radius: .4rem;
 }
 
+/* EDUCATION */
+.custom-collapsible {
+    width: 80%;
+    margin: auto;
+    border: none;
+    border-radius: .8rem;
+    background: #1c1c1c;
+    box-shadow:  5px 5px 10px #111111,
+                 -5px -5px 10px #111111;
+}
+
+.custom-collapsible-header {
+    background-color: #1d1d1d;
+    color: #f7f7f7;
+    font-size: 1.8rem;
+    border-bottom: 1px solid #111;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.custom-collapsible-header i {
+    line-height: 1.5;
+    transition: transform .5s ease-in-out;
+}
+
+.custom-collapsible-body {
+    padding: .8rem;
+    border-bottom: 1px solid #101010;
+}
+
+.custom-collapsible-body p {
+    font-size: 1.35rem;
+    color: #f7f7f7;
+    margin: 5px;
+}
+
+.custom-collapsible-body li:last-child div {
+    border: none;
+}
+
+.qualification-btn {
+    text-decoration: none;
+    padding: 0 .5rem;
+    margin-right: .5rem;
+    font-size: 1.5rem;
+    border-radius: 3px;
+}
+
 /* CONTACT */
 form {
     border-radius: 1.5rem;
