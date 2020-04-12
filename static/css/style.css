@@ -16,7 +16,7 @@ body {
 
 /* SHARED STYLING */
 .section-heading {
-    margin: 3rem 0 1rem;
+    margin: 1rem 0;
     padding: 1.5rem;
     text-align: center;
     font-size: 3rem;
@@ -289,7 +289,7 @@ nav ul li a {
 }
 
 .project-scale-smaller-and-opage {
-    transform: scale(.7);
+    transform: scale(.85);
     opacity: .3;
 }
 
@@ -423,6 +423,37 @@ input:-webkit-autofill:active  {
     box-shadow: 0 0 0 30px #111 inset !important;
     -webkit-text-fill-color: #f7f7f7 !important;
     color: #f7f7f7 !important;
+}
+
+/* FULL PROJECT INFO PAGE */
+.project-page-image-and-header {
+    width: 100%;
+}
+
+.project-page-img {
+    width: 100%;
+    height: auto;
+    border-radius: 1rem;
+}
+
+.technology-heading {
+    font-size: 2.2rem;
+}
+
+.technology {
+    font-size: 1.8rem;
+}
+
+.technology:nth-child(even) {
+    color: #a05f7e;
+}
+
+.technology:nth-child(odd) {
+    color: cadetblue;
+}
+
+.project-paragraph {
+    font-size: 1.6rem;
 }
 
 /* ABOUT */
