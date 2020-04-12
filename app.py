@@ -126,6 +126,15 @@ def add_qualification():
     return render_template('pages/add_qualification.html')
 
 
+@app.route('/admin/add_blog_post', methods=['GET','POST'])
+def add_blog_post():
+    if request.method == 'POST':
+        blog_posts = mongo.db.blog_posts
+        blog_posts.insert_one(request.form.to_dict())
+        return redirect('add_blog_post')
+    return render_template('pages/add_blog_post.html')
+
+
 @app.route('/admin/edit_skill')
 def edit_skill():
     return render_template('pages/edit_skill.html')
