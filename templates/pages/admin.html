@@ -46,6 +46,15 @@
         <a href="{{ url_for('add_skill') }}" class="admin-add-btn cadetblue-bg"><i class="fas fa-plus-circle"></i>
             ADD</a>
     </div>
-    
+    <div class="col offset-m4 m4 center-align">
+        <div class="admin-info">
+            <div class="admin-info-inner">
+                <h3 class="admin-info-value">{{ experience_count }}</h3>
+            </div>
+        </div>
+        <h4 class="admin-info-category red-gold">Experience</h4>
+        <a href="{{ url_for('add_skill') }}" class="admin-add-btn cadetblue-bg"><i class="fas fa-plus-circle"></i>
+            ADD</a>
+    </div>
 </div>
 {% endblock %}
