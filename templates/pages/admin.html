@@ -23,5 +23,17 @@
             ADD</a>
     </div>
 </div>
+<div class="row admin-dashboard-row">
+    <div class="col offset-m4 m4 center-align">
+        <div class="admin-info">
+            <div class="admin-info-inner">
+                <h3 class="admin-info-value">{{ qualification_count }}</h3>
+            </div>
+        </div>
+        <h4 class="admin-info-category red-gold">Qualifications</h4>
+        <a href="{{ url_for('add_skill') }}" class="admin-add-btn cadetblue-bg"><i class="fas fa-plus-circle"></i>
+            ADD</a>
+    </div>
+</div>
 
 {% endblock %}
