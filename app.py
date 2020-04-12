@@ -102,7 +102,7 @@ def admin():
 @app.route('/admin/add_skill', methods=['GET','POST'])
 def add_skill():
     if request.method == 'POST':
-        skills=mongo.db.skills
+        skills = mongo.db.skills
         skills.insert_one(request.form.to_dict())
         return redirect('add_skill')
     return render_template('pages/add_skill.html')
@@ -111,10 +111,19 @@ def add_skill():
 @app.route('/admin/add_project', methods=['GET','POST'])
 def add_project():
     if request.method == 'POST':
-        projects=mongo.db.portfolio
+        projects = mongo.db.portfolio
         projects.insert_one(request.form.to_dict())
         return redirect('add_project')
     return render_template('pages/add_project.html')
+
+
+@app.route('/admin/add_qualification', methods=['GET','POST'])
+def add_qualification():
+    if request.method == 'POST':
+        qualifications = mongo.db.qualifications
+        qualifications.insert_one(request.form.to_dict())
+        return redirect('add_qualification')
+    return render_template('pages/add_qualification.html')
 
 
 @app.route('/admin/edit_skill')
