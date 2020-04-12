@@ -476,6 +476,27 @@ input:-webkit-autofill:active  {
     margin: 0;
 }
 
+/* BLOG ENTRY */
+
+.blog-entry-image {
+    width: 30%;
+    height: auto;
+    float: left;
+    margin: 1rem 2rem 1rem 0;
+}
+
+.blog-title {
+    font-size: 2.5rem;
+}
+
+.blog-date {
+    font-size: 1.4rem;
+}
+
+.blog-paragraph {
+    font-size: 1.5rem;
+}
+
 /* COLOURS */
 .cadetblue {
     color: cadetblue;
