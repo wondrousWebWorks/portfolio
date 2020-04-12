@@ -5,7 +5,9 @@
 <body>
     {% include 'components/admin_nav.html' %}
     <div class="admin-body">
-        {% block admin_block %}{% endblock %}
+        <div class="container admin-body-container">
+            {% block admin_block %}{% endblock %}
+        </div>
     </div>
     {% include 'layout/scripts.html' %}
 </body>
