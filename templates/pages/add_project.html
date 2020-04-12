@@ -9,7 +9,7 @@
     </div>
 
     <div class="row admin-add">
-        <form class="col s12">
+        <form class="col s12" method="POST" action="{{ url_for('add_project') }}">
             <div class="row">
                 <div class="input-field col s12">
                     <input id="project_name" name="project_name" type="text" class="validate">
