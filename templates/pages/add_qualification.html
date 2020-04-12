@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% extends 'layout/admin_base.html' %}
+{% block admin_block %}
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <h2 class="section-heading"><i class="fas fa-plus-square"></i>  Add Qualification</h2>
+        </div>
+    </div>
+    
+    <div class="row admin-add">
+        <form  class="col s12" method="POST" action="{{ url_for('add_qualification') }}">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="qualification_name" name="qualification_name" type="text" class="validate">
+                    <label for="qualification_name">Qualification Name</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="qualification_from" name="qualification_from" type="text" class="validate">
+                    <label for="qualification_from">Qualification Issue By</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="qualification_issue_date" name="qualification_issue_date" type="text" class="validate">
+                    <label for="qualification_issue_date">Date Obtained</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="qualification_link" name="qualification_view_url" type="text" class="validate">
+                    <label for="qualification_link">Qualification View URL</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="qualification_info" name="qualification_info_url" type="text" class="validate">
+                    <label for="qualification_info">Qualification Info URL</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Add
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
