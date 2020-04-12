@@ -16,10 +16,10 @@
         <h2 class="section-heading"><i class="fas fa-code"></i>  Portfolio</h2>
     </div>
 </div>
-{% include 'components/projects.html' %}
+{% include 'components/project_card.html' %}
 <div class="row">
-    <div class="col s12 btn-centre">
-        <a href="{{ url_for('portfolio') }}" class="nuo-btn magenta">All Projects</a>
+    <div class="col s12 center-align">
+        <a href="{{ url_for('portfolio') }}" class="all-projects-btn off-white magenta-bg">All Projects</a>
     </div>
 </div>
 
@@ -28,13 +28,13 @@
         <h2 class="section-heading"><i class="fas fa-graduation-cap"></i>  Education</h2>
     </div>
 </div>
-{% include 'components/qualifications.html' %}
+{% include 'components/qualification_card.html' %}
 
 <div class="row">
     <div class="col s12">
         <h2 class="section-heading"><i class="fas fa-briefcase"></i>  Experience</h2>
     </div>
 </div>
-{% include 'components/experience.html' %}
+{% include 'components/experience_card.html' %}
 
 {% endblock %}
