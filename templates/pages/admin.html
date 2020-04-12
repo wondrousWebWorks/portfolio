@@ -1,30 +1,17 @@
 <!DOCTYPE html>
 {% extends 'layout/admin_base.html' %}
 {% block admin_block %}
-<div class="admin-col">
-    <div class="admin-info center-align">
-        <div class="admin-info-inner">
-            <h3 class="admin-info-value">{{ skill_count }}</h3>
-        </div>
-    </div>
-    <h4 class="admin-info-category red-gold">Skills</h4>
-    <a href="{{ url_for('add_skill') }}" class="admin-add-btn cadetblue-bg"><i class="fas fa-plus-circle"></i>
-        ADD</a>
-    <ul class="collapsible custom-collapsible admin-list">
-        {% for skill in skills %}
-        <li>
-            <div class="collapsible-header custom-collapsible-header"><i class="fas fa-chevron-down red-gold"></i>
-                {{ skill.skill_name}}</div>
-            <div class="collapsible-body custom-collapsible-body">
-                <div class="admin-list-btn-wrapper">
-                    <a href="{{ url_for('edit_skill') }}" class="admin-list-btn light-blue-bg"><i
-                            class="fas fa-edit"></i> Edit</a>
-                    <a href="{{ url_for('delete_skill') }}" class="admin-list-btn crimson-bg"><i
-                            class="fas fa-trash-alt"></i> Delete</a>
-                </div>
+<div class="row admin-dashboard-row">
+    <div class="col m4 center-align">
+        <div class="admin-info center-align">
+            <div class="admin-info-inner">
+                <h3 class="admin-info-value">{{ skill_count }}</h3>
             </div>
-        </li>
-        {% endfor %}
-    </ul>
+        </div>
+        <h4 class="admin-info-category red-gold">Skills</h4>
+        <a href="{{ url_for('add_skill') }}" class="admin-add-btn cadetblue-bg"><i class="fas fa-plus-circle"></i>
+            ADD</a>
+    </div>
+
 </div>
 {% endblock %}
