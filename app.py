@@ -65,13 +65,13 @@ def send_mail():
     return redirect('contact')
 
 
-@app.route('/blog')
-def blog():
+@app.route('/blogs')
+def blogs():
     blog_posts = mongo.db.blog_posts.find()
-    return render_template('pages/blog.html', blog_posts=blog_posts)
+    return render_template('pages/blogs.html', blog_posts=blog_posts)
 
 
-@app.route('/blog/<blog_id>')
+@app.route('/blogs/<blog_id>')
 def blog_entry(blog_id):
     blog_entry = mongo.db.blog_posts.find_one({'_id': ObjectId(blog_id)})
     return render_template('pages/blog_entry.html', blog_entry=blog_entry)
@@ -106,6 +106,15 @@ def add_skill():
         skills.insert_one(request.form.to_dict())
         return redirect('add_skill')
     return render_template('pages/add_skill.html')
+
+
+@app.route('/admin/add_project', methods=['GET','POST'])
+def add_project():
+    if request.method == 'POST':
+        projects=mongo.db.portfolio
+        projects.insert_one(request.form.to_dict())
+        return redirect('add_project')
+    return render_template('pages/add_project.html')
 
 
 @app.route('/admin/edit_skill')
