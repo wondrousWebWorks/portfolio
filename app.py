@@ -112,7 +112,11 @@ def add_skill():
 def add_project():
     if request.method == 'POST':
         projects = mongo.db.portfolio
-        projects.insert_one(request.form.to_dict())
+        form_body = request.form.to_dict()
+        form_body['project_description'] = request.form.getlist('project_description')
+        form_body['project_technologies'] = request.form.getlist('project_technologies')
+        del form_body['action']
+        projects.insert_one(form_body)
         return redirect('add_project')
     return render_template('pages/add_project.html')
 
