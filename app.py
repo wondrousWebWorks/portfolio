@@ -142,6 +142,16 @@ def add_blog_post():
     return render_template('pages/add_blog_post.html')
 
 
+@app.route('/admin/add_experience', methods=['GET','POST'])
+def add_experience():
+    if request.method == 'POST':
+        experience = mongo.db.work_experience
+        form_body = request.form.to_dict()
+        experience.insert_one(form_body)
+        return redirect('add_experience')
+    return render_template('pages/add_experience.html')
+
+
 @app.route('/admin/edit_skill')
 def edit_skill():
     return render_template('pages/edit_skill.html')
