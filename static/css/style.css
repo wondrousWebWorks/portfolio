@@ -400,11 +400,19 @@ form {
     border-radius: 1.5rem;
     background: linear-gradient(145deg, #111, #161616);
     box-shadow:  9px 9px 10px #0e0e0e, 
-                -9px -9px 10px #222222;
+                -9px -9px 10px #0e0e0e;
 }
 
 form .row {
     padding: 0 1.5rem;
+}
+
+.select-dropdown {
+    background-color: #222;
+}
+
+.select-wrapper svg {
+    display: none;
 }
 
 input:focus, textarea:focus {
@@ -521,8 +529,6 @@ input:-webkit-autofill:active  {
     left: 15vw;
     width: 85vw;
     min-height: 100vh;
-    background-image: url("https://www.transparenttextures.com/patterns/random-grey-variations.png");
-    background-repeat: repeat;
 }
 
 .admin-body-container {
