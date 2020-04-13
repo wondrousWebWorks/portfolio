@@ -130,7 +130,10 @@ def add_qualification():
 def add_blog_post():
     if request.method == 'POST':
         blog_posts = mongo.db.blog_posts
-        blog_posts.insert_one(request.form.to_dict())
+        form_body = request.form.to_dict()
+        form_body['blog_body'] = request.form.getlist('blog_body')
+        del form_body['action']
+        blog_posts.insert_one(form_body)
         return redirect('add_blog_post')
     return render_template('pages/add_blog_post.html')
 
