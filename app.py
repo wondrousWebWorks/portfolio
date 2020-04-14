@@ -214,6 +214,11 @@ def add_experience():
     return render_template('pages/add_experience.html')
 
 
+@app.route('/admin/manage_experience')
+def manage_experience():
+    return render_template('pages/manage_experience.html', experience=mongo.db.work_experience.find())
+
+
 @app.route('/login')
 def login():
     # if 'username' in session:
