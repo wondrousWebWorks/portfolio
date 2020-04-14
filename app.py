@@ -108,6 +108,22 @@ def add_skill():
     return render_template('pages/add_skill.html')
 
 
+@app.route('/admin/manage_skills')
+def manage_skills():
+    return render_template('pages/manage_skills.html', skills=mongo.db.skills.find())
+
+
+@app.route('/admin/edit_skill')
+def edit_skill():
+    return render_template('pages/edit_skill.html')
+
+
+@app.route('/admin/delete_skill/<skill_id>')
+def delete_skill(skill_id):
+    mongo.db.skills.remove({'_id': ObjectId(skill_id)})
+    return redirect(url_for('manage_skills'))
+
+
 @app.route('/admin/add_project', methods=['GET','POST'])
 def add_project():
     if request.method == 'POST':
@@ -118,6 +134,11 @@ def add_project():
         projects.insert_one(form_body)
         return redirect('add_project')
     return render_template('pages/add_project.html')
+
+
+@app.route('/admin/manage_projects')
+def manage_projects():
+    return render_template('pages/manage_projects.html', projects=mongo.db.portfolio.find())
 
 
 @app.route('/admin/add_qualification', methods=['GET','POST'])
@@ -148,21 +169,6 @@ def add_experience():
         experience.insert_one(form_body)
         return redirect('add_experience')
     return render_template('pages/add_experience.html')
-
-
-@app.route('/admin/manage_skills')
-def manage_skills():
-    return render_template('pages/manage_skills.html', skills=mongo.db.skills.find())
-
-@app.route('/admin/edit_skill')
-def edit_skill():
-    return render_template('pages/edit_skill.html')
-
-
-@app.route('/admin/delete_skill/<skill_id>')
-def delete_skill(skill_id):
-    mongo.db.skills.remove({'_id': ObjectId(skill_id)})
-    return redirect(url_for('manage_skills'))
 
 
 @app.route('/login')
