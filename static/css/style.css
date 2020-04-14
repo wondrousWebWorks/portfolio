@@ -519,13 +519,12 @@ input:-webkit-autofill:active  {
 
 .admin-nav-container {
     width: 100%;
-    margin: 0;
+    margin: 3rem 0 0 0; 
     margin-right: 0;
 }
 
 .admin-heading {
-    font-size: 2.5rem;
-    margin-top: 2rem;
+    font-size: 2.2rem;
 }
 
 .admin-link-to-profile {
