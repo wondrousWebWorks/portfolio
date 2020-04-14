@@ -1,15 +1,16 @@
-const cursorRectangle = document.querySelectorAll(".cursor-rectangle");
-const skillBarsWrappers = document.querySelectorAll(".skill-bars-wrapper");
-const skillBars = document.querySelectorAll(".skill-bar");
-const projects = document.querySelectorAll(".project-col");
+const cursorRectangle = document.querySelectorAll('.cursor-rectangle');
+const skillBarsWrappers = document.querySelectorAll('.skill-bars-wrapper');
+const skillBars = document.querySelectorAll('.skill-bar');
+const projects = document.querySelectorAll('.project-col');
+const adminNavDropdowns = document.querySelectorAll('.admin-nav-dropdown-wrapper');
 
 document.addEventListener('DOMContentLoaded', function () {
 
     const navElems = document.querySelectorAll('.sidenav');
     const navInstances = M.Sidenav.init(navElems, {});
 
-    var elems = document.querySelectorAll('select');
-    var instances = M.FormSelect.init(elems);
+    const selectElems = document.querySelectorAll('select');
+    const selectInstances = M.FormSelect.init(selectElems);
 
     const collapsibleElems = document.querySelectorAll('.collapsible');
     const collapsibleInstances = M.Collapsible.init(collapsibleElems, {
@@ -125,10 +126,26 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    /**
+     * Upon click of ADMIN nav dropdown element,
+     * toggle vibility and chevron animation
+     */
+    function toggleDropdown() {
+        this.nextElementSibling.classList.toggle('admin-nav-dropdown-animation');
+        this.children[0].classList.toggle('admin-nav-dropdown-trigger-selected');
+        this.querySelector('.admin-nav-chevron').classList.toggle('admin-nav-chevron-flip');
+    }
+
+
+    /* EVENT LISTENERS */
     Array.from(projects).forEach(project => {
         project.addEventListener("mouseover", scaleProject);
         project.addEventListener("mouseout", shrinkProjects);
       });
+
+    Array.from(adminNavDropdowns).forEach(adminNavDropdown => {
+        adminNavDropdown.addEventListener('click', toggleDropdown);
+    });
 
     animateCursor();
     randomizeInitialSkillBarHeight();
