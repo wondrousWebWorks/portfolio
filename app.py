@@ -193,6 +193,11 @@ def manage_blogs():
     return render_template('pages/manage_blogs.html', blog_posts=mongo.db.blog_posts.find())
 
 
+@app.route('/admin/edit_blog_post')
+def edit_blog_post():
+    return render_template('pages/edit_blog_post.html')
+
+
 @app.route('/admin/add_experience', methods=['GET','POST'])
 def add_experience():
     if request.method == 'POST':
