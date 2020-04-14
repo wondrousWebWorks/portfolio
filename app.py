@@ -146,6 +146,12 @@ def edit_project():
     return render_template('pages/edit_project.html')
 
 
+@app.route('/admin/delete_project/<project_id>')
+def delete_project(project_id):
+    mongo.db.portfolio.remove({'_id': ObjectId(project_id)})
+    return redirect(url_for('manage_projects'))
+
+
 @app.route('/admin/add_qualification', methods=['GET','POST'])
 def add_qualification():
     if request.method == 'POST':
