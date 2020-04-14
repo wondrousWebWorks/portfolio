@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <div class="admin-nav">
-    <div class="admin-logo">
-        <a href="{{ url_for('admin') }}"><img src="https://res.cloudinary.com/wondrouswebworks/image/upload/c_scale,w_500/v1570699539/mp1-cape-safari/wondrous-large.png" alt="wondrouswebworks logo"></a>
+    <div class="container admin-nav-container">
+        <div class="row">
+            <div class="col s12">
+                <h1 class="admin-heading cadetblue center-align"><i class="fas fa-toolbox"></i>&nbsp;MY ADMIN</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <a href="{{ url_for('index') }}" class="admin-link-to-profile off-white"><i class="far fa-compass"></i>&nbsp; BACK TO PROFILE</a>
+            </div>
+        </div>
     </div>
-    
 </div>
