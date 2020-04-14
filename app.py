@@ -161,6 +161,11 @@ def add_qualification():
     return render_template('pages/add_qualification.html')
 
 
+@app.route('/admin/manage_qualifications')
+def manage_qualifications():
+    return render_template('pages/manage_qualifications.html', qualifications=mongo.db.qualifications.find())
+
+
 @app.route('/admin/add_blog_post', methods=['GET','POST'])
 def add_blog_post():
     if request.method == 'POST':
