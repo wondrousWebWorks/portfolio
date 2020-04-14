@@ -6,5 +6,24 @@
         <h2 class="section-heading"><i class="fas fa-tasks"></i>&nbsp;Manage Blogs</h2>
     </div>
 </div>
-
+<div class="row">
+    <div class="col s12">
+        <ul class="collapsible custom-collapsible admin-list">
+            {% for blog_post in blog_posts %}
+            <li>
+                <div class="collapsible-header custom-collapsible-header"><i class="fas fa-chevron-down cadetblue"></i>
+                    {{ blog_post.blog_title}}</div>
+                <div class="collapsible-body custom-collapsible-body">
+                    <div class="admin-list-btn-wrapper">
+                        <a href="{{ url_for('edit_blog_post') }}" class="admin-list-btn light-blue-bg"><i
+                                class="fas fa-edit"></i> Edit</a>
+                        <a href="{{ url_for('delete_blog_post', blog_post_id=blog_post._id) }}" class="admin-list-btn crimson-bg"><i
+                                class="fas fa-trash-alt"></i> Delete</a>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
 {% endblock %}
