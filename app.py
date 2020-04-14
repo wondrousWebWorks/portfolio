@@ -141,6 +141,11 @@ def manage_projects():
     return render_template('pages/manage_projects.html', projects=mongo.db.portfolio.find())
 
 
+@app.route('/admin/edit_project')
+def edit_project():
+    return render_template('pages/edit_project.html')
+
+
 @app.route('/admin/add_qualification', methods=['GET','POST'])
 def add_qualification():
     if request.method == 'POST':
