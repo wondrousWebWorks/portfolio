@@ -11,5 +11,16 @@
                 <a href="{{ url_for('index') }}" class="admin-link-to-profile off-white"><i class="far fa-compass"></i>&nbsp; BACK TO PROFILE</a>
             </div>
         </div>
+        <div class="row">
+            <div class="col s12">
+                <div class="admin-nav-dropdown-wrapper">
+                    <a class="admin-nav-dropdown-trigger off-white" href="#">SKILLS<i class="fas fa-chevron-down admin-nav-chevron cadetblue"></i></a>
+                </div>
+                <ul class="admin-nav-dropdown">
+                    <li><a href="{{ url_for('add_skill') }}" class="off-white"><i class="fas fa-plus-square cadetblue"></i>&nbsp;&nbsp;&nbsp;ADD</a></li>
+                    <li><a href="#!" class="off-white"><i class="fas fa-edit red-gold"></i>&nbsp;&nbsp;MANAGE</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
