@@ -150,14 +150,19 @@ def add_experience():
     return render_template('pages/add_experience.html')
 
 
+@app.route('/admin/manage_skills')
+def manage_skills():
+    return render_template('pages/manage_skills.html', skills=mongo.db.skills.find())
+
 @app.route('/admin/edit_skill')
 def edit_skill():
     return render_template('pages/edit_skill.html')
 
 
-@app.route('/admin/delete_skill')
-def delete_skill():
-    return redirect('pages/admin.html')
+@app.route('/admin/delete_skill/<skill_id>')
+def delete_skill(skill_id):
+    mongo.db.skills.remove({'_id': ObjectId(skill_id)})
+    return redirect(url_for('manage_skills'))
 
 
 @app.route('/login')
