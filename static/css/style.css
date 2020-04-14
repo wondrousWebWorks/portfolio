@@ -665,6 +665,26 @@ input:-webkit-autofill:active  {
     border-radius: 3px;
 }
 
+.admin-list {
+    width: 80%;
+    margin: auto;
+    margin-top: 2.5rem;
+}
+
+.admin-list li .custom-collapsible-header,  .admin-list li .custom-collapsible-header i {
+    font-size: 1.2rem;
+}
+
+.admin-list-btn {
+    padding: 3px .7rem;
+    text-decoration: none;
+    color: #f7f7f7;
+    font-size: 1rem;
+    border-radius: 3px;
+    margin: 0 .5rem;
+    text-shadow: 1px 1px #333;
+}
+
 /* COLOURS */
 .cadetblue {
     color: cadetblue;
