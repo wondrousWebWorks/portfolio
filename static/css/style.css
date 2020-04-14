@@ -7,6 +7,7 @@ body {
     background-repeat: repeat;
     font-family: 'Baloo 2', cursive;
     overflow-x: hidden;
+    box-sizing: border-box;
 }
 
 .container {
@@ -511,17 +512,89 @@ input:-webkit-autofill:active  {
     top: 0;
     height: 100vh;
     width: 15vw;
-    background-color: cadetblue;
+    background-color: #141414;
+    border-right: 3px solid cadetblue;
+    box-shadow: 7px 7px 7px #0e0e0e;
 }
 
-.admin-logo {
-    width: 85%;
-    margin: 2rem auto;
-}
-
-.admin-logo img {
+.admin-nav-container {
     width: 100%;
-    height: auto;
+    margin: 0;
+    margin-right: 0;
+}
+
+.admin-heading {
+    font-size: 2.5rem;
+    margin-top: 2rem;
+}
+
+.admin-link-to-profile {
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+.admin-nav a {
+    width: 90%;
+    display: block;
+    margin: auto;
+    text-shadow: 2px 2px #111;
+}
+
+.admin-nav .admin-nav-dropdown-trigger {
+    display: block;
+    text-decoration: none;
+    padding: 0 1rem;
+    font-size: 1.7rem;
+    border-bottom: 2px solid #a05f7e;
+    border-top: 2px solid transparent;
+    transition: all .3s linear;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-nav .admin-nav-dropdown-trigger:hover {
+    border-bottom: 2px solid #f7f7f7;
+}
+
+.admin-nav-dropdown {
+    z-index: 1;
+    display: none;
+    width: 90%;
+    margin: auto;
+    background-color: #222;
+    border-radius: 4px;
+    transition: opacity 1s ease-in;
+}
+
+.admin-nav-dropdown-animation {
+    display: block; 
+}
+
+.admin-nav-dropdown li {
+    padding: .5rem 0 .5rem 1rem;
+    transition: background-color .5s ease-in-out;
+}
+
+.admin-nav-dropdown li:hover {
+    background-color: #333;
+}
+
+.admin-nav-dropdown li a {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    font-size: 1.4rem;
+}
+
+.admin-nav-chevron {
+    transition: transform .2s linear;
+}
+
+.admin-nav-chevron-flip {
+    transform: scaleY(-1);
 }
 
 .admin-body {
@@ -608,6 +681,10 @@ input:-webkit-autofill:active  {
 
 .magenta-bg {
     background-color: #a05f7e;
+}
+
+.dark-magenta-bg {
+    background-color: #704359;;
 }
 
 .red-gold {
