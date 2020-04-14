@@ -171,6 +171,12 @@ def edit_qualification():
     return render_template('pages/edit_qualification.html')
 
 
+@app.route('/admin/delete_qualification/<qualification_id>')
+def delete_qualification(qualification_id):
+    mongo.db.qualifications.remove({'_id': ObjectId(qualification_id)})
+    return redirect(url_for('manage_qualifications'))
+
+
 @app.route('/admin/add_blog_post', methods=['GET','POST'])
 def add_blog_post():
     if request.method == 'POST':
