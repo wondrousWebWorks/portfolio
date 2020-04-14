@@ -198,6 +198,12 @@ def edit_blog_post():
     return render_template('pages/edit_blog_post.html')
 
 
+@app.route('/admin/delete_blog_post/<blog_post_id>')
+def delete_blog_post(blog_post_id):
+    mongo.db.blog_posts.remove({'_id': ObjectId(blog_post_id)})
+    return redirect(url_for('manage_blogs'))
+
+
 @app.route('/admin/add_experience', methods=['GET','POST'])
 def add_experience():
     if request.method == 'POST':
