@@ -15,7 +15,7 @@
                     {{ blog_post.blog_title}}</div>
                 <div class="collapsible-body custom-collapsible-body">
                     <div class="admin-list-btn-wrapper">
-                        <a href="{{ url_for('edit_blog_post') }}" class="admin-list-btn light-blue-bg"><i
+                        <a href="{{ url_for('edit_blog_post', blog_post_id=blog_post._id) }}" class="admin-list-btn light-blue-bg"><i
                                 class="fas fa-edit"></i> Edit</a>
                         <a href="{{ url_for('delete_blog_post', blog_post_id=blog_post._id) }}" class="admin-list-btn crimson-bg"><i
                                 class="fas fa-trash-alt"></i> Delete</a>
