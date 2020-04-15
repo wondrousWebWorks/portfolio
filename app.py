@@ -258,6 +258,24 @@ def edit_blog_post(blog_post_id):
     return render_template('pages/edit_blog_post.html', blog_post=blog_post)
 
 
+@app.route('/admin/update_blog_post/<blog_post_id>', methods=['POST'])
+def update_blog_post(blog_post_id):
+    if request.method == 'POST':
+        blog_posts = mongo.db.blog_posts
+        blog_posts.update({'_id': ObjectId(blog_post_id)},
+        {
+            'blog_title': request.form.get('blog_title'),
+            'blog_title': request.form.get('blog_title'),
+            'blog_summary': request.form.get('blog_summary'),
+            'blog_date': request.form.get('blog_date'),
+            'blog_body': request.form.getlist('blog_body')
+        })
+
+        return redirect(url_for('admin'))
+    else:
+        return redirect(url_for('edit_blog_post'))
+
+
 @app.route('/admin/delete_blog_post/<blog_post_id>')
 def delete_blog_post(blog_post_id):
     mongo.db.blog_posts.remove({'_id': ObjectId(blog_post_id)})
