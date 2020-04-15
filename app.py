@@ -205,9 +205,10 @@ def manage_qualifications():
     return render_template('pages/manage_qualifications.html', qualifications=mongo.db.qualifications.find())
 
 
-@app.route('/admin/edit_qualification')
-def edit_qualification():
-    return render_template('pages/edit_qualification.html')
+@app.route('/admin/edit_qualification/<qualification_id>')
+def edit_qualification(qualification_id):
+    qualification = mongo.db.qualifications.find_one({'_id': ObjectId(qualification_id)})
+    return render_template('pages/edit_qualification.html', qualification=qualification)
 
 
 @app.route('/admin/delete_qualification/<qualification_id>')
