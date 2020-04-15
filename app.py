@@ -113,9 +113,26 @@ def manage_skills():
     return render_template('pages/manage_skills.html', skills=mongo.db.skills.find())
 
 
-@app.route('/admin/edit_skill')
-def edit_skill():
-    return render_template('pages/edit_skill.html')
+@app.route('/admin/edit_skill/<skill_id>')
+def edit_skill(skill_id):
+    skill = mongo.db.skills.find_one({'_id': ObjectId(skill_id)})
+    return render_template('pages/edit_skill.html', skill=skill)
+
+
+@app.route('/admin/update_skill/<skill_id>', methods=['POST'])
+def update_skill(skill_id):
+    if request.method == 'POST':
+        skills = mongo.db.skills
+        skills.update({'_id': ObjectId(skill_id)},
+        {
+            'skill_name': request.form.get('skill_name'),
+            'skill_img_url': request.form.get('skill_img_url'),
+            'skill_level': request.form.get('skill_level')
+        })
+
+        return redirect(url_for('admin'))
+    else:
+        return redirect(url_for('edit_skill'))
 
 
 @app.route('/admin/delete_skill/<skill_id>')
@@ -222,6 +239,12 @@ def manage_experience():
 @app.route('/admin/edit_experience')
 def edit_experience():
     return render_template('pages/edit_experience.html')
+
+
+@app.route('/admin/delete_experience/<experience_id>')
+def delete_experience(experience_id):
+    mongo.db.work_experience.remove({'_id': ObjectId(experience_id)})
+    return redirect(url_for('manage_experience'))
 
 
 @app.route('/login')
