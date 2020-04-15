@@ -303,6 +303,20 @@ def edit_experience(experience_id):
 
     return render_template('pages/edit_experience.html', experience=experience)
 
+@app.route('/admin/update_experience/<experience_id>', methods=['POST'])
+def update_experience(experience_id):
+    if request.method == 'POST':
+        experience = mongo.db.work_experience
+        experience.update({'_id': ObjectId(experience_id)},
+        {
+            'job_title': request.form.get('job_title'),
+            'job_dates': request.form.get('job_dates')
+        })
+
+        return redirect(url_for('admin'))
+    else:
+        return redirect(url_for('edit_experience'))
+
 
 @app.route('/admin/delete_experience/<experience_id>')
 def delete_experience(experience_id):
