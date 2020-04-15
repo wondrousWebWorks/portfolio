@@ -158,9 +158,12 @@ def manage_projects():
     return render_template('pages/manage_projects.html', projects=mongo.db.portfolio.find())
 
 
-@app.route('/admin/edit_project')
-def edit_project():
-    return render_template('pages/edit_project.html')
+@app.route('/admin/edit_project/<project_id>')
+def edit_project(project_id):
+    project = mongo.db.portfolio.find_one({'_id': ObjectId(project_id)})
+    technologies = mongo.db.technologies.find()
+    technology_list = technologies[0]['technology_name']
+    return render_template('pages/edit_project.html', project=project, technology_list=technology_list)
 
 
 @app.route('/admin/delete_project/<project_id>')
