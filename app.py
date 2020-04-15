@@ -297,9 +297,11 @@ def manage_experience():
     return render_template('pages/manage_experience.html', experience=mongo.db.work_experience.find())
 
 
-@app.route('/admin/edit_experience')
-def edit_experience():
-    return render_template('pages/edit_experience.html')
+@app.route('/admin/edit_experience/<experience_id>')
+def edit_experience(experience_id):
+    experience = mongo.db.work_experience.find_one({'_id': ObjectId(experience_id)})
+
+    return render_template('pages/edit_experience.html', experience=experience)
 
 
 @app.route('/admin/delete_experience/<experience_id>')
