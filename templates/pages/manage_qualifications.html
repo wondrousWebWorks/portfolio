@@ -15,7 +15,7 @@
                     {{ qualification.qualification_name}}</div>
                 <div class="collapsible-body custom-collapsible-body">
                     <div class="admin-list-btn-wrapper">
-                        <a href="{{ url_for('edit_qualification') }}" class="admin-list-btn light-blue-bg"><i
+                        <a href="{{ url_for('edit_qualification', qualification_id=qualification._id) }}" class="admin-list-btn light-blue-bg"><i
                                 class="fas fa-edit"></i> Edit</a>
                         <a href="{{ url_for('delete_qualification', qualification_id=qualification._id) }}" class="admin-list-btn crimson-bg"><i
                                 class="fas fa-trash-alt"></i> Delete</a>
