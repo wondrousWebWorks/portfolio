@@ -252,9 +252,10 @@ def manage_blogs():
     return render_template('pages/manage_blogs.html', blog_posts=mongo.db.blog_posts.find())
 
 
-@app.route('/admin/edit_blog_post')
-def edit_blog_post():
-    return render_template('pages/edit_blog_post.html')
+@app.route('/admin/edit_blog_post/<blog_post_id>')
+def edit_blog_post(blog_post_id):
+    blog_post = mongo.db.blog_posts.find_one({'_id': ObjectId(blog_post_id)})
+    return render_template('pages/edit_blog_post.html', blog_post=blog_post)
 
 
 @app.route('/admin/delete_blog_post/<blog_post_id>')
