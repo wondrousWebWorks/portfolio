@@ -166,6 +166,25 @@ def edit_project(project_id):
     return render_template('pages/edit_project.html', project=project, technology_list=technology_list)
 
 
+@app.route('/admin/update_project/<project_id>', methods=['POST'])
+def update_project(project_id):
+    if request.method == 'POST':
+        portfolio = mongo.db.portfolio
+        portfolio.update({'_id': ObjectId(project_id)},
+        {
+            'project_name': request.form.get('project_name'),
+            'project_img_url': request.form.get('project_img_url'),
+            'project_github_url': request.form.get('project_github_url'),
+            'project_deployed_url': request.form.get('project_deployed_url'),
+            'project_technologies': request.form.getlist('project_technologies'),
+            'project_description': request.form.getlist('project_description')
+        })
+
+        return redirect(url_for('admin'))
+    else:
+        return redirect(url_for('edit_project'))
+
+
 @app.route('/admin/delete_project/<project_id>')
 def delete_project(project_id):
     mongo.db.portfolio.remove({'_id': ObjectId(project_id)})
