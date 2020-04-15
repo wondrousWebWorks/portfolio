@@ -208,7 +208,26 @@ def manage_qualifications():
 @app.route('/admin/edit_qualification/<qualification_id>')
 def edit_qualification(qualification_id):
     qualification = mongo.db.qualifications.find_one({'_id': ObjectId(qualification_id)})
+    
     return render_template('pages/edit_qualification.html', qualification=qualification)
+
+
+@app.route('/admin/update_qualification/<qualification_id>', methods=['POST'])
+def update_qualification(qualification_id):
+    if request.method == 'POST':
+        qualifications = mongo.db.qualifications
+        qualifications.update({'_id': ObjectId(qualification_id)},
+        {
+            'qualification_name': request.form.get('qualification_name'),
+            'qualification_from': request.form.get('qualification_from'),
+            'qualification_issue_date': request.form.get('qualification_issue_date'),
+            'qualification_view_url': request.form.get('qualification_view_url'),
+            'qualification_info_url': request.form.getlist('qualification_info_url')
+        })
+
+        return redirect(url_for('admin'))
+    else:
+        return redirect(url_for('edit_project'))
 
 
 @app.route('/admin/delete_qualification/<qualification_id>')
