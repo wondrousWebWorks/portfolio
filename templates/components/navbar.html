@@ -3,13 +3,13 @@
 <div class="navbar-fixed">
   <nav>
     <div class="nav-wrapper">
-      <a href=" {{url_for('index')}} " class="brand-logo vertical-align"><img
+      <a href=" {{url_for('home')}} " class="brand-logo vertical-align"><img
           src="https://res.cloudinary.com/wondrouswebworks/image/upload/c_scale,w_500/v1570699539/mp1-cape-safari/wondrous-large.png"
           alt="wondrouswebworks logo"
           class="vertical-align"></a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down vertical-align align-right">
-        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('home') }}">Home</a></li>
         <li><a href="{{ url_for('about') }}">About</a></li>
         <li><a href="{{ url_for('portfolio') }}">Portfolio</a></li>
         <li><a href="{{ url_for('blogs') }}">Blog</a></li>
@@ -20,7 +20,7 @@
   </nav>
 
   <ul class="sidenav" id="mobile-demo">
-    <li><a href="{{ url_for('index') }}">Home</a></li>
+    <li><a href="{{ url_for('home') }}">Home</a></li>
     <li><a href="{{ url_for('about') }}">About</a></li>
     <li><a href="{{ url_for('portfolio') }}">Portfolio</a></li>
     <li><a href="{{ url_for('contact') }}">Contact</a></li>
