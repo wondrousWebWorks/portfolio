@@ -86,17 +86,11 @@ def admin():
     blog_posts_count = mongo.db.blog_posts.count()
     total_db_count = str(int(skill_count) + int(project_count) + int(qualification_count) + int(experience_count) + int(blog_posts_count))
 
-    return render_template('pages/admin.html', skills=mongo.db.skills.find(),
-                                                skill_count=skill_count,
-                                                projects=mongo.db.portfolio.find(),
+    return render_template('pages/admin.html', skill_count=skill_count,
                                                 project_count=project_count,
-                                                qualifications=mongo.db.qualifications.find(),
                                                 qualification_count=qualification_count,
-                                                experience=mongo.db.work_experience.find(),
                                                 experience_count=experience_count,
-                                                blog_posts=mongo.db.blog_posts.find(),
-                                                blog_posts_count=blog_posts_count,
-                                                total_db_count=total_db_count)
+                                                blog_posts_count=blog_posts_count)
 
 
 @app.route('/admin/add_skill', methods=['GET','POST'])
