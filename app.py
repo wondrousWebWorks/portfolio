@@ -24,12 +24,22 @@ app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
 
 @app.route('/')
-def index():
+@app.route('/home')
+def home():
+    """
+    Retrieve data from MongoDB Atlas and return a rendered template 
+    which passes the data to the home page
+    """
+    skills = mongo.db.skills.find()
+    projects = mongo.db.portfolio.find().limit(3)
+    qualifications = mongo.db.qualifications.find()
+    experience = mongo.db.work_experience.find()
+
     return render_template('pages/index.html', 
-                            skills=mongo.db.skills.find(), 
-                            projects=mongo.db.portfolio.find().limit(3),
-                            qualifications=mongo.db.qualifications.find(),
-                            experience=mongo.db.work_experience.find())
+                            skills=skills, 
+                            projects=projects,
+                            qualifications=qualifications,
+                            experience=experience)
 
 
 @app.route('/about')
@@ -84,7 +94,6 @@ def admin():
     qualification_count = mongo.db.qualifications.count()
     experience_count = mongo.db.work_experience.count()
     blog_posts_count = mongo.db.blog_posts.count()
-    total_db_count = str(int(skill_count) + int(project_count) + int(qualification_count) + int(experience_count) + int(blog_posts_count))
 
     return render_template('pages/admin.html', skill_count=skill_count,
                                                 project_count=project_count,
@@ -137,6 +146,8 @@ def delete_skill(skill_id):
 
 @app.route('/admin/add_project', methods=['GET','POST'])
 def add_project():
+    technologies = mongo.db.technologies.find()
+    technology_list = technologies[0]['technology_name']
     if request.method == 'POST':
         projects = mongo.db.portfolio
         form_body = request.form.to_dict()
@@ -144,7 +155,7 @@ def add_project():
         form_body['project_technologies'] = request.form.getlist('project_technologies')
         projects.insert_one(form_body)
         return redirect('add_project')
-    return render_template('pages/add_project.html')
+    return render_template('pages/add_project.html', technology_list=technology_list)
 
 
 @app.route('/admin/manage_projects')
