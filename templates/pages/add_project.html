@@ -36,20 +36,9 @@
                 <div class="input-field col s12">
                     <select name="project_technologies" multiple>
                         <option value="" disabled selected>Choose Technologies</option><i class="fas fa-chevron-down magenta"></i>
-                        <option value="Angular">Angular</option>
-                        <option value="C#">C#</option>
-                        <option value="CSS">CSS</option>
-                        <option value="Django">Django</option>
-                        <option value="Flask">Flask</option>
-                        <option value="HTML">HTML</option>
-                        <option value="JavaScript">JavaScript</option>
-                        <option value="MongoDB">MongoDB</option>
-                        <option value="MySQL">MySQL</option>
-                        <option value="NodeJS">NodeJS</option>
-                        <option value="Python">Python</option>
-                        <option value="React">React</option>
-                        <option value="Redux">Redux</option>
-                        <option value="Rust">Rust</option>
+                        {% for technology in technology_list %}
+                            <option value="{{ technology }}">{{ technology }}</option>
+                        {% endfor %}
                     </select>
                     <label>Technologies</label>
                 </div>
