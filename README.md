@@ -16,6 +16,9 @@ Thank you for viewing my project. wondrousWebWorks() is a profile for me as a fu
         - [User Story D](#user-story-d)
         - [User Story E](#user-story-e)
       - [Site Owner Goals](#site-owner-goals)
+  - [Technologies Used](#technologies-used)
+    - [Languages](#languages)
+    - [Libraries, Frameworks & Tools](#libraries-frameworks--tools)
   - [Bugs](#bugs)
     - [Deployment Bugs](#deployment-bugs)
 
@@ -61,7 +64,26 @@ wondrousWebWorks() is created to be a profile for me as a developer.  It serves 
 - Deliver on User Stories as far as possible
 - Gain the interest of prospective employers or customers
 - Create an ADMIN page which allows carrying out CRUD (Create, Read, Update, Delete) operations)
-- Create a site that is future proof and allows for the addition of additional skills, projects and blogs
+- Create a site that is future proof and allows for the addition of additional skills, projects, blog posts and education
+
+## Technologies Used
+
+### Languages
+
+- HTML
+- CSS
+- JavaScript
+- Python
+
+### Libraries, Frameworks & Tools
+
+- Flask
+- MongoDB (Atlas Cloud)
+- Git
+- Materializecss
+- Font Awesome
+- Google Fonts
+- Cloudinary
 
 ## Bugs
 
