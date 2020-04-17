@@ -15,6 +15,7 @@ Thank you for viewing my project. wondrousWebWorks() is a profile for me as a fu
         - [User Story C](#user-story-c)
         - [User Story D](#user-story-d)
         - [User Story E](#user-story-e)
+      - [Site Owner Goals](#site-owner-goals)
   - [Bugs](#bugs)
     - [Deployment Bugs](#deployment-bugs)
 
@@ -54,6 +55,13 @@ wondrousWebWorks() is created to be a profile for me as a developer.  It serves 
 ##### User Story E
 
 *"As a prospective customer, I want to be able to contact the developer so that I can discuss them working on a project for me."*
+
+#### Site Owner Goals
+
+- Deliver on User Stories as far as possible
+- Gain the interest of prospective employers or customers
+- Create an ADMIN page which allows carrying out CRUD (Create, Read, Update, Delete) operations)
+- Create a site that is future proof and allows for the addition of additional skills, projects and blogs
 
 ## Bugs
 
