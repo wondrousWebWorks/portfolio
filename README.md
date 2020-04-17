@@ -122,3 +122,4 @@ Initially, there was great difficulty deploying the project to Heroku.  After vi
 
 - Hero Shot image on in header was taken from [PNGTREE](https://pngtree.com/)
 - Blog images were taken from [Pexels](https://www.pexels.com/)
+- Tranparent chequered background image taken from [TRANSPARENT TEXTURES](https://www.transparenttextures.com/)
