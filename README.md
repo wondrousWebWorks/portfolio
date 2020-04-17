@@ -19,6 +19,7 @@ Thank you for viewing my project. wondrousWebWorks() is a profile for me as a fu
     - [Design Choices](#design-choices)
       - [Fonts](#fonts)
       - [Icons](#icons)
+      - [Images](#images)
   - [Technologies Used](#technologies-used)
     - [Languages](#languages)
     - [Libraries, Frameworks & Tools](#libraries-frameworks--tools)
@@ -88,6 +89,10 @@ In order to fit the fantasy nature of the game, unconventional fonts were select
 #### Icons
 
 At first an effort was made to use Materialize icons only, but it soon became apparent that they were too limited to meet design expectations. As such, all icons were taken from either [Materialize](https://materializecss.com/) or [Font Awesome](https://fontawesome.com/).
+
+#### Images
+
+The image for the **Hero** shot in the site header was taken from [PNGTREE](https://pngtree.com/) and chosen because it complements the site's chosen colour scheme.  Images for **Blog** entries were taken from [Pexels](https://www.pexels.com/) and selected to portray the general topic of each blog. Project images were taken from [Am I Responsive?](http://ami.responsivedesign.is/) to show a responsive layout for each project. The **wondrousWebWorks()** logo was created by me.
 
 ## Technologies Used
 
