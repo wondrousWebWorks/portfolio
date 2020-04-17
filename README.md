@@ -20,6 +20,7 @@ Thank you for viewing my project. wondrousWebWorks() is a profile for me as a fu
       - [Fonts](#fonts)
       - [Icons](#icons)
       - [Images](#images)
+      - [Colours](#colours)
   - [Technologies Used](#technologies-used)
     - [Languages](#languages)
     - [Libraries, Frameworks & Tools](#libraries-frameworks--tools)
@@ -93,6 +94,10 @@ At first an effort was made to use Materialize icons only, but it soon became ap
 #### Images
 
 The image for the **Hero** shot in the site header was taken from [PNGTREE](https://pngtree.com/) and chosen because it complements the site's chosen colour scheme.  Images for **Blog** entries were taken from [Pexels](https://www.pexels.com/) and selected to portray the general topic of each blog. Project images were taken from [Am I Responsive?](http://ami.responsivedesign.is/) to show a responsive layout for each project. The **wondrousWebWorks()** logo was created by me.
+
+#### Colours
+
+I decided on using my favourite colour, called **cadetblue** (*#5f9ea0* in hex) as the primary site colour. A triadic colour scheme was then generated [here](https://www.sessions.edu/color-calculator/).  In addition to this, **eerie black** (*#1c1c1c* in hex) was chosen as background colour for the site body as the site was designed to be displayed in "dark mode". In order to make text legible, **#f7f7f7** was chosen as text colour where required.  See below for more details.  All colours complement each other very well, and provide a good level of contrast to increase legibility and highlight various areas of the page.
 
 ## Technologies Used
 
