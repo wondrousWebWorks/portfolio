@@ -9,6 +9,12 @@ Thank you for viewing my project. wondrousWebWorks() is a profile for me as a fu
   - [User Experience](#user-experience)
     - [Project Goals](#project-goals)
       - [User Goals](#user-goals)
+      - [User Stories](#user-stories)
+        - [User Story A](#user-story-a)
+        - [User Story B](#user-story-b)
+        - [User Story C](#user-story-c)
+        - [User Story D](#user-story-d)
+        - [User Story E](#user-story-e)
   - [Bugs](#bugs)
     - [Deployment Bugs](#deployment-bugs)
 
@@ -26,6 +32,28 @@ wondrousWebWorks() is created to be a profile for me as a developer.  It serves 
 - A portfolio showcasing the developer's projects with project information and links to repositories and live sites
 - The ability to contact the developer for queries or for work
 - Easy navigation between all pages of the site
+
+#### User Stories
+
+##### User Story A
+
+*"As a first-time user of the site, I want the UX to be well designed so that I can navigate the site with ease."*
+
+##### User Story B
+
+*"As someone wishing to see the developer's ability, I want to see good design practices so that I can assess their skill level."*
+
+##### User Story C
+
+*"As an interest party, I want to be able to naviagte to the developer's GitHub repositories and LinkedIn profile so I can get more detailed information about them."*
+
+##### User Story D
+
+*"As a prospective employer, I want to be able to see a portfolio of projects so that I can assess the developer's experience and ability."*
+
+##### User Story E
+
+*"As a prospective customer, I want to be able to contact the developer so that I can discuss them working on a project for me."*
 
 ## Bugs
 
