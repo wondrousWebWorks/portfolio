@@ -19,6 +19,7 @@ Thank you for viewing my project. wondrousWebWorks() is a profile for me as a fu
   - [Technologies Used](#technologies-used)
     - [Languages](#languages)
     - [Libraries, Frameworks & Tools](#libraries-frameworks--tools)
+  - [Wireframes](#wireframes)
   - [Bugs](#bugs)
     - [Deployment Bugs](#deployment-bugs)
 
@@ -84,6 +85,10 @@ wondrousWebWorks() is created to be a profile for me as a developer.  It serves 
 - Font Awesome
 - Google Fonts
 - Cloudinary
+
+## Wireframes
+
+[Balsamiq Mockups 3](https://balsamiq.com/) was used to design all mockups. Wireframes for desktop, mobile and tablet can be viewed [here](https://github.com/wondrousWebWorks/wondrousWebWorks/tree/master/wireframes). There were some minor differences between the wireframes and the end product due to user feedback following testing.  These changes are highlighted below.
 
 ## Bugs
 
