@@ -28,6 +28,7 @@ Thank you for viewing my project. wondrousWebWorks() is a profile for me as a fu
   - [Bugs](#bugs)
     - [Deployment Bugs](#deployment-bugs)
   - [Credits](#credits)
+  - [Disclaimer](#disclaimer)
 
 ## User Experience
 
@@ -128,3 +129,7 @@ Initially, there was great difficulty deploying the project to Heroku.  After vi
 - Hero Shot image on in header was taken from [PNGTREE](https://pngtree.com/)
 - Blog images were taken from [Pexels](https://www.pexels.com/)
 - Tranparent chequered background image taken from [TRANSPARENT TEXTURES](https://www.transparenttextures.com/)
+
+## Disclaimer
+
+This site is intended for **educational purposes** only, and is not intended for use in any other capacity.
