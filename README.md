@@ -16,6 +16,7 @@ Thank you for viewing my project. wondrousWebWorks() is a profile for me as a fu
         - [User Story D](#user-story-d)
         - [User Story E](#user-story-e)
       - [Site Owner Goals](#site-owner-goals)
+    - [Design Choices](#design-choices)
   - [Technologies Used](#technologies-used)
     - [Languages](#languages)
     - [Libraries, Frameworks & Tools](#libraries-frameworks--tools)
@@ -69,6 +70,10 @@ wondrousWebWorks() is created to be a profile for me as a developer.  It serves 
 - Gain the interest of prospective employers or customers
 - Create an ADMIN page which allows carrying out CRUD (Create, Read, Update, Delete) operations)
 - Create a site that is future proof and allows for the addition of additional skills, projects, blog posts and education
+
+### Design Choices
+
+I decided on using a dark theme with a selection of complimentary soft colours to provide good contrast and reduce eye strain for users and the site admin.  Whereas my previous projects were very colourful and with no wasted or empty space on-screen, I opted for a simpler design so that the various sections of the portfolio would stand out and be visualy striking in itself where required.
 
 ## Technologies Used
 
