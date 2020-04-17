@@ -18,6 +18,7 @@ Thank you for viewing my project. wondrousWebWorks() is a profile for me as a fu
       - [Site Owner Goals](#site-owner-goals)
     - [Design Choices](#design-choices)
       - [Fonts](#fonts)
+      - [Icons](#icons)
   - [Technologies Used](#technologies-used)
     - [Languages](#languages)
     - [Libraries, Frameworks & Tools](#libraries-frameworks--tools)
@@ -81,7 +82,11 @@ I decided on using a dark theme with a selection of complimentary soft colours t
 In order to fit the fantasy nature of the game, unconventional fonts were selected from **Google Fonts**.  The selected fonts have to be slighty quirky and more cartoony in design, while still being legible. Sample phrases featured in the game were entered in **Google Fonts** to see how they were displayed. Ultimately, the fonts below were selected to be used in clearly defined areas in the game.
 
 - [Baloo 2](https://fonts.google.com/specimen/Baloo+2?query=Baloo+2) - used for all headings as well as links in the navbar
-- [Roboto Slab](https://fonts.google.com/specimen/Roboto+Slab?query=roboto+slab) - used for all text which is not a heading or a llink in the navbar
+- [Roboto Slab](https://fonts.google.com/specimen/Roboto+Slab?query=roboto+slab) - used for all text which is not a heading or a link in the navbar
+
+#### Icons
+
+At first an effort was made to use Materialize icons only, but it soon became apparent that they were too limited to meet design expectations. As such, all icons were taken from either [Materialize](https://materializecss.com/) or [Font Awesome](https://fontawesome.com/).
 
 ## Technologies Used
 
