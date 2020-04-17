@@ -20,6 +20,8 @@ Thank you for viewing my project. wondrousWebWorks() is a profile for me as a fu
     - [Languages](#languages)
     - [Libraries, Frameworks & Tools](#libraries-frameworks--tools)
   - [Wireframes](#wireframes)
+    - [Differences Between Wireframes and Final Product](#differences-between-wireframes-and-final-product)
+      - [Landing Page (Skills section)](#landing-page-skills-section)
   - [Bugs](#bugs)
     - [Deployment Bugs](#deployment-bugs)
 
@@ -89,6 +91,12 @@ wondrousWebWorks() is created to be a profile for me as a developer.  It serves 
 ## Wireframes
 
 [Balsamiq Mockups 3](https://balsamiq.com/) was used to design all mockups. Wireframes for desktop, mobile and tablet can be viewed [here](https://github.com/wondrousWebWorks/wondrousWebWorks/tree/master/wireframes). There were some minor differences between the wireframes and the end product due to user feedback following testing.  These changes are highlighted below.
+
+### Differences Between Wireframes and Final Product
+
+#### Landing Page (Skills section)
+
+- On mobile devices in portrait orientation, two skills are displayed per row as opposed to a single skill as illustrated in the wireframe
 
 ## Bugs
 
