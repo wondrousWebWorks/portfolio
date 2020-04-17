@@ -17,6 +17,7 @@ Thank you for viewing my project. wondrousWebWorks() is a profile for me as a fu
         - [User Story E](#user-story-e)
       - [Site Owner Goals](#site-owner-goals)
     - [Design Choices](#design-choices)
+      - [Fonts](#fonts)
   - [Technologies Used](#technologies-used)
     - [Languages](#languages)
     - [Libraries, Frameworks & Tools](#libraries-frameworks--tools)
@@ -74,6 +75,13 @@ wondrousWebWorks() is created to be a profile for me as a developer.  It serves 
 ### Design Choices
 
 I decided on using a dark theme with a selection of complimentary soft colours to provide good contrast and reduce eye strain for users and the site admin.  Whereas my previous projects were very colourful and with no wasted or empty space on-screen, I opted for a simpler design so that the various sections of the portfolio would stand out and be visualy striking in itself where required.
+
+#### Fonts
+
+In order to fit the fantasy nature of the game, unconventional fonts were selected from **Google Fonts**.  The selected fonts have to be slighty quirky and more cartoony in design, while still being legible. Sample phrases featured in the game were entered in **Google Fonts** to see how they were displayed. Ultimately, the fonts below were selected to be used in clearly defined areas in the game.
+
+- [Baloo 2](https://fonts.google.com/specimen/Baloo+2?query=Baloo+2) - used for all headings as well as links in the navbar
+- [Roboto Slab](https://fonts.google.com/specimen/Roboto+Slab?query=roboto+slab) - used for all text which is not a heading or a llink in the navbar
 
 ## Technologies Used
 
