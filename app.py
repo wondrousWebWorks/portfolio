@@ -121,6 +121,12 @@ def blog_entry(blog_id):
 
 @app.route('/admin')
 def admin():
+    """Return a rendered template of the ADMIN page and pass data to it
+    
+    Retrieve all documents from the skills, portfolio, qualifications,
+    work_experience and blog_posts collections. Return a rendered template
+    of the ADMIN page and pass all retrieved data to it
+    """
     skill_count = mongo.db.skills.count()
     project_count = mongo.db.portfolio.count()
     qualification_count = mongo.db.qualifications.count()
