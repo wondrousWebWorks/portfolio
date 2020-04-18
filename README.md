@@ -21,6 +21,8 @@ Thank you for viewing my project. wondrousWebWorks() is a profile for me as a fu
       - [Icons](#icons)
       - [Images](#images)
       - [Colours](#colours)
+        - [#1C1C1C (Eerie Black)](#1c1c1c-eerie-black)
+        - [#5F9EA0 (CadetBlue)](#5f9ea0-cadetblue)
   - [Technologies Used](#technologies-used)
     - [Languages](#languages)
     - [Libraries, Frameworks & Tools](#libraries-frameworks--tools)
@@ -98,6 +100,20 @@ The image for the **Hero** shot in the site header was taken from [PNGTREE](http
 #### Colours
 
 I decided on using my favourite colour, called **cadetblue** (*#5f9ea0* in hex) as the primary site colour. A triadic colour scheme was then generated [here](https://www.sessions.edu/color-calculator/).  In addition to this, **eerie black** (*#1c1c1c* in hex) was chosen as background colour for the site body as the site was designed to be displayed in "dark mode". In order to make text legible, **#f7f7f7** was chosen as text colour where required.  See below for more details.  All colours complement each other very well, and provide a good level of contrast to increase legibility and highlight various areas of the page.
+
+##### #1C1C1C (Eerie Black)
+
+- Background colour for site body and admin body
+
+##### #5F9EA0 (CadetBlue)
+
+- Background colour of **navbar**
+- Colour of **section headings**
+- Colour of *down* caret icons in collapsible items
+- Colour of icons where **Technologies Used** are listed in project info
+- Colour of labels in forms once a field has been populated with text
+- Colour of **ADD** buttons on *Admin* page
+- Colour of **SUBMIT** buttons in forms
 
 ## Technologies Used
 
