@@ -97,12 +97,24 @@ def send_mail():
 
 @app.route('/blogs')
 def blogs():
+    """Return a rendered template with all blog data of the BLOGS page
+    
+    Retrieve all blog posts from MongoDB altas blog_posts collection.
+    Return a rendered template of the BLOGS page and send data to it
+    """
     blog_posts = mongo.db.blog_posts.find()
     return render_template('pages/blogs.html', blog_posts=blog_posts)
 
 
 @app.route('/blogs/<blog_id>')
 def blog_entry(blog_id):
+    """Return a rendered template of a spefic BLOG POST based on Id
+    
+    Convert the Id passed here from url_for in a BLOG POST CARD into bson
+    format.  Use the converted Id value to retrieve data for a specific 
+    blog entry from the blog_posts collection in MongoDB Atlas.  Return a 
+    rendered remplate of a specific BLOG POST PAGE and pass data to it 
+    """
     blog_entry = mongo.db.blog_posts.find_one({'_id': ObjectId(blog_id)})
     return render_template('pages/blog_entry.html', blog_entry=blog_entry)
 
