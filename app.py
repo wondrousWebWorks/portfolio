@@ -26,15 +26,16 @@ mail = Mail(app)
 @app.route('/')
 @app.route('/home')
 def home():
-    """
-    Retrieve data from MongoDB Atlas and return a rendered template 
-    which passes the data to the home page
+    """Return a rendered template of the HOME page with data passed to page
+
+    Retrieve data from skills, projects (limited in number), qualifications 
+    and experience collections from MongoDB Atlas.  Return a rendered template 
+    of the home page and pass the retrieved data to it
     """
     skills = mongo.db.skills.find()
     projects = mongo.db.portfolio.find().limit(3)
     qualifications = mongo.db.qualifications.find()
     experience = mongo.db.work_experience.find()
-
     return render_template('pages/index.html', 
                             skills=skills, 
                             projects=projects,
@@ -44,17 +45,30 @@ def home():
 
 @app.route('/about')
 def about():
+    """Return a rendered template of the ABOUT page"""
     return render_template('pages/about.html')
 
 
 @app.route('/portfolio')
 def portfolio():
+    """Return a rendered template of the PROJECTS page with data passed to page
+    
+    Retrieve all projects from the PORTFOLIO collection from MongoDB Atlas.
+    Return a rendered template of the PROJECTS page and pass data to it
+    """
     projects = mongo.db.portfolio.find()
     return render_template('pages/portfolio.html', projects=projects)
 
 
 @app.route('/project/<project_id>')
 def project(project_id):
+    """Return a rendered template of a specific PROJECT PAGE based on Id
+
+    Convert the Id passed here from url_for in a PROJECT CARD into bson
+    format.  Use the converted Id value to retrieve data for a specific 
+    project from MongoDB Atlas.  Return a rendered remplate of a specific
+    PROJECT PAGE and pass data to it 
+    """
     project = mongo.db.portfolio.find_one({'_id': ObjectId(project_id)})
     return render_template('pages/project.html', project=project)
 
