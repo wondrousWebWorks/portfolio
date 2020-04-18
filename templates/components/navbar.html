@@ -1,22 +1,46 @@
 <!DOCTYPE html>
 {% block navbar %}
-<div class="navbar-fixed">
-  <nav>
-    <div class="nav-wrapper">
-      <a href=" {{url_for('home')}} " class="brand-logo vertical-align"><img
-          src="https://res.cloudinary.com/wondrouswebworks/image/upload/c_scale,w_500/v1570699539/mp1-cape-safari/wondrous-large.png"
-          alt="wondrouswebworks logo"
-          class="vertical-align"></a>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down vertical-align align-right">
-        <li><a href="{{ url_for('home') }}">Home</a></li>
-        <li><a href="{{ url_for('about') }}">About</a></li>
-        <li><a href="{{ url_for('portfolio') }}">Portfolio</a></li>
-        <li><a href="{{ url_for('blogs') }}">Blog</a></li>
-        <li><a href="{{ url_for('contact') }}">Contact</a></li>
-        <li><a href="{{ url_for('login') }}">Admin</a></li>
-      </ul>
+  <nav id="fixed-navbar">
+    <div id="logo-wrapper">
+      <a href=" {{url_for('home')}} "  id="brand-logo"><img
+        src="https://res.cloudinary.com/wondrouswebworks/image/upload/c_scale,w_500/v1570699539/mp1-cape-safari/wondrous-large.png"
+        alt="wondrouswebworks logo"></a>
     </div>
+    <ul class="nav-display-row">
+      <li><a href="{{ url_for('home') }}">Home</a></li>
+      <li><a href="{{ url_for('about') }}">About</a></li>
+      <li><a href="{{ url_for('portfolio') }}">Portfolio</a></li>
+      <li><a href="{{ url_for('blogs') }}">Blog</a></li>
+      <li><a href="{{ url_for('contact') }}">Contact</a></li>
+      <li><a href="{{ url_for('login') }}">Admin</a></li>
+    </ul>
+    <a href="#" class="menu-toggle-icon"><i class="fas fa-bars"></i></a>
+    <ul class="nav-display-col">
+      <li class="nav-display-col-item"><a href="{{ url_for('home') }}"><i class="fas fa-home"></i>&nbsp;Home</a></li><hr>
+      <li class="nav-display-col-item"><a href="{{ url_for('about') }}"><i class="fas fa-info"></i>&nbsp;About</a></li><hr>
+      <li class="nav-display-col-item"><a href="{{ url_for('portfolio') }}"><i class="fas fa-th"></i>&nbsp;Portfolio</a></li><hr>
+      <li class="nav-display-col-item"><a href="{{ url_for('blogs') }}"><i class="fas fa-blog"></i>&nbsp;Blog</a></li><hr>
+      <li class="nav-display-col-item"><a href="{{ url_for('contact') }}"><i class="fas fa-envelope"></i>&nbsp;Contact</a></li><hr>
+      <li class="nav-display-col-item"><a href="{{ url_for('login') }}"><i class="fas fa-user-cog"></i>&nbsp;Admin</a></li>
+    </ul>
+
+  </nav>
+  <!-- <nav>
+    <div class="logo-wrapper">
+      <a href=" {{url_for('home')}} " class="brand-logo"><img
+        src="https://res.cloudinary.com/wondrouswebworks/image/upload/c_scale,w_500/v1570699539/mp1-cape-safari/wondrous-large.png"
+        alt="wondrouswebworks logo"></a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  
+    <ul class="right hide-on-med-and-down">
+      <li><a href="{{ url_for('home') }}">Home</a></li>
+      <li><a href="{{ url_for('about') }}">About</a></li>
+      <li><a href="{{ url_for('portfolio') }}">Portfolio</a></li>
+      <li><a href="{{ url_for('blogs') }}">Blog</a></li>
+      <li><a href="{{ url_for('contact') }}">Contact</a></li>
+      <li><a href="{{ url_for('login') }}">Admin</a></li>
+    </ul>
   </nav>
 
   <ul class="sidenav" id="mobile-demo">
@@ -25,6 +49,6 @@
     <li><a href="{{ url_for('portfolio') }}">Portfolio</a></li>
     <li><a href="{{ url_for('contact') }}">Contact</a></li>
     <li><a href="{{ url_for('login') }}">Admin</a></li>
-  </ul>
+  </ul> -->
 </div>
 {% endblock %}
