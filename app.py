@@ -75,13 +75,19 @@ def project(project_id):
 
 @app.route('/contact')
 def contact():
+    """Return a rendered template of the CONTACT page"""
     return render_template('pages/contact.html')
 
 
 @app.route('/send_mail', methods=['POST'])
 def send_mail():
+    """Send an email to site owner using data from CONTACT page form
+    
+    Using data from CONTACT page, set recipient email address, 
+    build email header and body and send email to site owner.
+    Once completed, redirect back to the CONTACT page
+    """
     if request.method == 'POST':
-        print(request.form)
         recipient = os.environ.get('RECIPIENT_ADDRESS')
         msg = Message(request.form['subject'], sender = request.form['email'], recipients = [recipient])
         msg.body = request.form['query']
