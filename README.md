@@ -23,6 +23,7 @@ Thank you for viewing my project. wondrousWebWorks() is a profile for me as a fu
       - [Colours](#colours)
         - [#1C1C1C (Eerie Black)](#1c1c1c-eerie-black)
         - [#5F9EA0 (CadetBlue)](#5f9ea0-cadetblue)
+        - [#A05F7E (Magenta - named by me)](#a05f7e-magenta---named-by-me)
   - [Technologies Used](#technologies-used)
     - [Languages](#languages)
     - [Libraries, Frameworks & Tools](#libraries-frameworks--tools)
@@ -114,6 +115,19 @@ I decided on using my favourite colour, called **cadetblue** (*#5f9ea0* in hex) 
 - Colour of labels in forms once a field has been populated with text
 - Colour of **ADD** buttons on *Admin* page
 - Colour of **SUBMIT** buttons in forms
+- Background colour of half of the skill bars in a skills representation
+
+##### #A05F7E (Magenta - named by me)
+
+- Background colour of half of the skill bars in a skills representation
+- Background colour of the **Get in Touch** button in the page header
+- Colour of **live site** icons in project tiles
+- Background colour of **All Projects** button below project cards on home page
+- Background colour of **More Info** buttons in education dropdowns
+- Colour of **Contact** icon in fixed icons on the left of the screen
+- Colour of tag icon in *job title* headings in **Education** cards
+- Colour of rectangular icon in tablet-style displays for **About Summary** and **About** sections
+- Colour of **Blog Post** dates
 
 ## Technologies Used
 
