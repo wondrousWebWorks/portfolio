@@ -1,7 +1,7 @@
 import os
 if os.path.exists('env.py'):
     import env
-from flask import Flask, render_template, url_for, redirect, request, session
+from flask import Flask, render_template, url_for, redirect, request, session, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from flask_mail import Mail, Message
@@ -11,6 +11,7 @@ app = Flask(__name__)
 
 app.config['MONGO_DBNAME'] = os.environ.get('MONGO_DBNAME')
 app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
 mongo = PyMongo(app)
 
@@ -140,13 +141,24 @@ def admin():
                                                 blog_posts_count=blog_posts_count)
 
 
-@app.route('/admin/add_skill', methods=['GET','POST'])
+@app.route('/admin/add_skill')
 def add_skill():
+    return render_template('pages/add_skill.html')
+
+
+@app.route('/admin/insert_skill', methods=['POST'])
+def insert_skill():
     if request.method == 'POST':
         skills = mongo.db.skills
-        skills.insert_one(request.form.to_dict())
-        return redirect('add_skill')
-    return render_template('pages/add_skill.html')
+        skill_to_insert_dict = request.form.to_dict()
+        skills.insert_one(skill_to_insert_dict)
+        find_inserted_skill = skills.find_one({'skill_name': skill_to_insert_dict['skill_name']})
+        if find_inserted_skill:
+            flash(f'Successfully inserted {skill_to_insert_dict["skill_name"]} into skills collection', 'success')
+        else:
+            flash('Failed to insert skill into skills collection')
+        return redirect(url_for('manage_skills'))
+
 
 
 @app.route('/admin/manage_skills')
