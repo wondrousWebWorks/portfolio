@@ -402,13 +402,23 @@ def add_experience():
 
 @app.route('/admin/manage_experience')
 def manage_experience():
-    return render_template('pages/manage_experience.html', experience=mongo.db.work_experience.find())
+    """Return a rendered template of MANAGE EXPERIENCE page
+    
+    Retrieve all WORK EXPERIENCE documents from the work_experience collection.  Pass retrieved data 
+    to a rendered template of the MANAGE WORK EXPERIENCE page.
+    """
+    experience = mongo.db.work_experience.find()
+    return render_template('pages/manage_experience.html', experience=experience)
 
 
 @app.route('/admin/edit_experience/<experience_id>')
 def edit_experience(experience_id):
+    """Return a rendered template of EDIT EXPERIENCE page populated with data of specific work experience
+    
+    Using the WORK EXPERIENCE ID sent from MANAGE WORK EXPERIENCE, retrieve the document for a specific work experience.
+    Pass work experience data to a rendered template of the EDIT EXPERIENCE page.
+    """
     experience = mongo.db.work_experience.find_one({'_id': ObjectId(experience_id)})
-
     return render_template('pages/edit_experience.html', experience=experience)
 
 @app.route('/admin/update_experience/<experience_id>', methods=['POST'])
