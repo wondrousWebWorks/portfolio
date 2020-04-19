@@ -230,11 +230,23 @@ def add_project():
 
 @app.route('/admin/manage_projects')
 def manage_projects():
-    return render_template('pages/manage_projects.html', projects=mongo.db.portfolio.find())
+    """Return a rendered template of MANAGE PROJECTS page
+    
+    Retrieve all PROJECT documents from the portfolio collection.  Pass retrieved data 
+    to a rendered template of the MANMAGE PROJECTS page.
+    """
+    projects = mongo.db.portfolio.find()
+    return render_template('pages/manage_projects.html', projects=projects)
 
 
 @app.route('/admin/edit_project/<project_id>')
 def edit_project(project_id):
+    """Return a rendered template of EDIT PROJECT page populated with data of a specific project
+    
+    Using the PROJECT ID sent from MANAGE PROJECTS, retrieve the document for a specific project.
+    Retrieve a list of all technologies from the technologies collection. Pass project 
+    and technologies data to a rendered template of the EDIT PROJECT page.
+    """
     project = mongo.db.portfolio.find_one({'_id': ObjectId(project_id)})
     technologies = mongo.db.technologies.find()
     technology_list = technologies[0]['technology_name']
