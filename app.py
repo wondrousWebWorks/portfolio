@@ -143,11 +143,19 @@ def admin():
 
 @app.route('/admin/add_skill')
 def add_skill():
+    """Return a rendered template of the ADD SKILL page"""
     return render_template('pages/add_skill.html')
 
 
 @app.route('/admin/insert_skill', methods=['POST'])
 def insert_skill():
+    """Using data from form on ADD SKILLS page, insert document into skills collection
+    
+    Retrieve documents from skills collection. Convert form data from add_skill
+    page's form to dictionary and insert it into skills collection. Try to find
+    newly inserted document in skills collection and flash either a success or
+    failure message on screen. Finally, redirect to MANAGE SKILLS page
+    """
     if request.method == 'POST':
         skills = mongo.db.skills
         skill_to_insert_dict = request.form.to_dict()
