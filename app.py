@@ -228,7 +228,7 @@ def add_project():
 
 @app.route('/admin/insert_project', methods=['POST'])
 def insert_project():
-    """Using data from form on ADD PROJECTS page, insert document into portfolio collection
+    """Using data from form on ADD PROJECT page, insert document into portfolio collection
     
     Retrieve documents from portfolio collection. Convert form data from add_project
     page's form to dictionary. Change project_description and _project technologies
@@ -303,12 +303,19 @@ def delete_project(project_id):
 
 @app.route('/admin/add_qualification')
 def add_qualification():
-    
+    """Return a rendered template of the ADD QUALIFICATION page"""
     return render_template('pages/add_qualification.html')
 
 
 @app.route('/admin/insert_qualification', methods=['POST'])
 def insert_qualification():
+    """Using data from form on ADD QUALIFICATION page, insert document into qualifications collection
+    
+    Retrieve documents from qualifications collection. Convert form data from add_qualification
+    page's form to dictionary. Insert it into qualifications collection. Try to find 
+    newly inserted document in qualifications collection and flash either a success or
+    failure message on screen. Finally, redirect to MANAGE QUALIFICATIONS page
+    """
     if request.method == 'POST':
         qualifications = mongo.db.qualifications
         qualification_to_insert = request.form.to_dict()
