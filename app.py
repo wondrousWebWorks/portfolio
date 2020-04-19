@@ -375,16 +375,26 @@ def delete_qualification(qualification_id):
     return redirect(url_for('manage_qualifications'))
 
 
-@app.route('/admin/add_blog_post', methods=['GET','POST'])
+@app.route('/admin/add_blog_post')
 def add_blog_post():
+    
+    return render_template('pages/add_blog_post.html')
+
+
+@app.route('/admin/insert_blog_post', methods=['POST'])
+def insert_blog_post():
     if request.method == 'POST':
         blog_posts = mongo.db.blog_posts
         form_body = request.form.to_dict()
         form_body['blog_body'] = request.form.getlist('blog_body')
         blog_posts.insert_one(form_body)
-        return redirect('add_blog_post')
-    return render_template('pages/add_blog_post.html')
+        find_inserted_blog_post = blog_posts.find_one({'blog_title': form_body['blog_title']})
 
+        if find_inserted_blog_post:
+            flash(f'Successfully inserted \"{form_body["blog_title"]}\" into \"blog_posts\" collection', 'success')
+        else:
+            flash('Failed to insert blog post into blog_posts collection', 'failed')
+        return redirect(url_for('manage_blogs'))
 
 @app.route('/admin/manage_blogs')
 def manage_blogs():
