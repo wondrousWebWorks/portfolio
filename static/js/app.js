@@ -3,29 +3,10 @@ const skillBarsWrappers = document.querySelectorAll('.skill-bars-wrapper');
 const skillBars = document.querySelectorAll('.skill-bar');
 const projects = document.querySelectorAll('.project-col');
 const adminNavDropdowns = document.querySelectorAll('.admin-nav-dropdown-wrapper');
+const toggleMenuIcon = document.querySelector('.menu-toggle-icon');
+const verticalNav = document.querySelector('.nav-display-col');
 
 document.addEventListener('DOMContentLoaded', function () {
-
-    const navElems = document.querySelectorAll('.sidenav');
-    const navInstances = M.Sidenav.init(navElems, {});
-
-    const selectElems = document.querySelectorAll('select');
-    const selectInstances = M.FormSelect.init(selectElems);
-
-    const collapsibleElems = document.querySelectorAll('.collapsible');
-    const collapsibleInstances = M.Collapsible.init(collapsibleElems, {
-        onOpenStart: function(el) {
-            el.querySelector('.custom-collapsible-header').style.backgroundColor = '#333';
-            el.querySelector('.custom-collapsible-body').style.backgroundColor = '#222';
-            el.querySelector('.custom-collapsible-header i').style.transform = 'scaleY(-1)';
-        },
-        onCloseStart: function(el) {
-            el.querySelector('.custom-collapsible-header').style.backgroundColor = '#1f1f1f';
-            el.querySelector('.custom-collapsible-body').style.backgroundColor = '#1f1f1f';
-            el.querySelector('.custom-collapsible-header i').style.transform = 'scaleY(1)';
-        }
-    });
-
     /**
      * Animates the terminal-like cursor in the
      * About summary section in index.html
@@ -136,6 +117,11 @@ document.addEventListener('DOMContentLoaded', function () {
         this.querySelector('.admin-nav-chevron').classList.toggle('admin-nav-chevron-flip');
     }
 
+    function toggleVerticalNav() {
+        this.classList.toggle('menu-toggle-icon-expand');
+        verticalNav.classList.toggle('nav-slide');
+    }
+
 
     /* EVENT LISTENERS */
     Array.from(projects).forEach(project => {
@@ -146,6 +132,28 @@ document.addEventListener('DOMContentLoaded', function () {
     Array.from(adminNavDropdowns).forEach(adminNavDropdown => {
         adminNavDropdown.addEventListener('click', toggleDropdown);
     });
+
+    toggleMenuIcon.addEventListener('click', toggleVerticalNav);
+    /* END OF EVENT LISTENERS */
+
+    /* INITIALIZE MATERIALIZE COMPONENTS */
+    const selectElems = document.querySelectorAll('select');
+    const selectInstances = M.FormSelect.init(selectElems);
+
+    const collapsibleElems = document.querySelectorAll('.collapsible');
+    const collapsibleInstances = M.Collapsible.init(collapsibleElems, {
+        onOpenStart: function(el) {
+            el.querySelector('.custom-collapsible-header').style.backgroundColor = '#333';
+            el.querySelector('.custom-collapsible-body').style.backgroundColor = '#222';
+            el.querySelector('.custom-collapsible-header i').style.transform = 'scaleY(-1)';
+        },
+        onCloseStart: function(el) {
+            el.querySelector('.custom-collapsible-header').style.backgroundColor = '#1f1f1f';
+            el.querySelector('.custom-collapsible-body').style.backgroundColor = '#1f1f1f';
+            el.querySelector('.custom-collapsible-header i').style.transform = 'scaleY(1)';
+        }
+    });
+    /* END OF INITIALIZE MATERIALIZE COMPONENTS */
 
     animateCursor();
     randomizeInitialSkillBarHeight();
