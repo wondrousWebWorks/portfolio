@@ -216,6 +216,11 @@ def delete_skill(skill_id):
 
 @app.route('/admin/add_project')
 def add_project():
+    """Return a rendered template of the ADD PROJECT page
+    
+    Retrieve technologies document from technologies collection and store list
+    in variable. Pass list to a rendered template of the ADD PROJECT page 
+    """
     technologies = mongo.db.technologies.find()
     technology_list = technologies[0]['technology_name']
     return render_template('pages/add_project.html', technology_list=technology_list)
@@ -223,12 +228,26 @@ def add_project():
 
 @app.route('/admin/insert_project', methods=['POST'])
 def insert_project():
+    """Using data from form on ADD PROJECTS page, insert document into portfolio collection
+    
+    Retrieve documents from portfolio collection. Convert form data from add_project
+    page's form to dictionary. Change project_description and _project technologies
+    in generated dictionary to use lists instead of single values. Insert it into 
+    portfolio collection. Try to find newly inserted document in portfolio collection and flash either a success or
+    failure message on screen. Finally, redirect to MANAGE PROJECTS page
+    """
     if request.method == 'POST':
         projects = mongo.db.portfolio
         form_body = request.form.to_dict()
         form_body['project_description'] = request.form.getlist('project_description')
         form_body['project_technologies'] = request.form.getlist('project_technologies')
         projects.insert_one(form_body)
+        find_inserted_project = projects.find_one({'project_name': form_body['project_name']})
+        
+        if find_inserted_project:
+            flash(f'Successfully inserted \"{form_body["project_name"]}\" into \"portfolio\" collection', 'success')
+        else:
+            flash('Failed to insert project into portfolio collection', 'failed')
         return redirect(url_for('manage_projects'))
 
 
