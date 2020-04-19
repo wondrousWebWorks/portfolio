@@ -386,7 +386,7 @@ def insert_blog_post():
     """Using data from form on ADD BLOG POST page, insert document into blog_posts collection
     
     Retrieve documents from blog_posts collection. Convert form data from add_blog_post
-    page's form to dictionary. Set blog_body field as list instead of single value. Insert dictionmry 
+    page's form to dictionary. Set blog_body field as list instead of single value. Insert dictionary 
     into blog_posts collection. Try to find newly inserted document in blog_posts collection and flash 
     either a success or failure message on screen. Finally, redirect to MANAGE BLOGS page
     """
@@ -452,12 +452,19 @@ def delete_blog_post(blog_post_id):
 
 @app.route('/admin/add_experience')
 def add_experience():
-    
+    """Return a rendered template of the ADD EXPERIENCE page"""
     return render_template('pages/add_experience.html')
 
 
 @app.route('/admin/insert_experience', methods=['POST'])
 def insert_experience():
+    """Using data from form on ADD EXPERIENCE page, insert document into work_experience collection
+    
+    Retrieve documents from work_experience collection. Convert form data from add_experience
+    page's form to dictionary. Insert dictionary into work_experience collection. Try to find 
+    newly inserted document in work_experience collection and flash either a success or 
+    failure message on screen. Finally, redirect to MANAGE EXPERIENCE page
+    """
     if request.method == 'POST':
         experience = mongo.db.work_experience
         form_body = request.form.to_dict()
