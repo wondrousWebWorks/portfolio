@@ -301,13 +301,25 @@ def delete_project(project_id):
     return redirect(url_for('manage_projects'))
 
 
-@app.route('/admin/add_qualification', methods=['GET','POST'])
+@app.route('/admin/add_qualification')
 def add_qualification():
+    
+    return render_template('pages/add_qualification.html')
+
+
+@app.route('/admin/insert_qualification', methods=['POST'])
+def insert_qualification():
     if request.method == 'POST':
         qualifications = mongo.db.qualifications
-        qualifications.insert_one(request.form.to_dict())
-        return redirect('add_qualification')
-    return render_template('pages/add_qualification.html')
+        qualification_to_insert = request.form.to_dict()
+        qualifications.insert_one(qualification_to_insert)
+        find_inserted_qualification = qualifications.find_one({'qualification_name': qualification_to_insert['qualification_name']})
+    
+        if find_inserted_qualification:
+            flash(f'Successfully inserted \"{qualification_to_insert["qualification_name"]}\" into \"qualifications\" collection', 'success')
+        else:
+            flash('Failed to insert project into portfolio collection', 'failed')
+        return redirect(url_for('manage_qualifications'))
 
 
 @app.route('/admin/manage_qualifications')
