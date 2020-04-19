@@ -214,18 +214,22 @@ def delete_skill(skill_id):
     return redirect(url_for('manage_skills'))
 
 
-@app.route('/admin/add_project', methods=['GET','POST'])
+@app.route('/admin/add_project')
 def add_project():
     technologies = mongo.db.technologies.find()
     technology_list = technologies[0]['technology_name']
+    return render_template('pages/add_project.html', technology_list=technology_list)
+
+
+@app.route('/admin/insert_project', methods=['POST'])
+def insert_project():
     if request.method == 'POST':
         projects = mongo.db.portfolio
         form_body = request.form.to_dict()
         form_body['project_description'] = request.form.getlist('project_description')
         form_body['project_technologies'] = request.form.getlist('project_technologies')
         projects.insert_one(form_body)
-        return redirect('add_project')
-    return render_template('pages/add_project.html', technology_list=technology_list)
+        return redirect(url_for('manage_projects'))
 
 
 @app.route('/admin/manage_projects')
