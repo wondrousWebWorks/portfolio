@@ -377,12 +377,19 @@ def delete_qualification(qualification_id):
 
 @app.route('/admin/add_blog_post')
 def add_blog_post():
-    
+    """Return rendered template of ADD BLOG POST page"""
     return render_template('pages/add_blog_post.html')
 
 
 @app.route('/admin/insert_blog_post', methods=['POST'])
 def insert_blog_post():
+    """Using data from form on ADD BLOG POST page, insert document into blog_posts collection
+    
+    Retrieve documents from blog_posts collection. Convert form data from add_blog_post
+    page's form to dictionary. Set blog_body field as list instead of single value. Insert dictionmry 
+    into blog_posts collection. Try to find newly inserted document in blog_posts collection and flash 
+    either a success or failure message on screen. Finally, redirect to MANAGE BLOGS page
+    """
     if request.method == 'POST':
         blog_posts = mongo.db.blog_posts
         form_body = request.form.to_dict()
@@ -395,6 +402,7 @@ def insert_blog_post():
         else:
             flash('Failed to insert blog post into blog_posts collection', 'failed')
         return redirect(url_for('manage_blogs'))
+        
 
 @app.route('/admin/manage_blogs')
 def manage_blogs():
