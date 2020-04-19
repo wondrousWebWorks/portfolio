@@ -346,11 +346,22 @@ def add_blog_post():
 
 @app.route('/admin/manage_blogs')
 def manage_blogs():
-    return render_template('pages/manage_blogs.html', blog_posts=mongo.db.blog_posts.find())
+    """Return a rendered template of MANAGE BLOGS page
+    
+    Retrieve all BLOG POST documents from the blog_posts collection.  Pass retrieved data 
+    to a rendered template of the MANAGE BLOGS page.
+    """
+    blog_posts = mongo.db.blog_posts.find()
+    return render_template('pages/manage_blogs.html', blog_posts=blog_posts)
 
 
 @app.route('/admin/edit_blog_post/<blog_post_id>')
 def edit_blog_post(blog_post_id):
+    """Return a rendered template of EDIT BLOG POST page populated with data of a specific blog post
+    
+    Using the BLOG POST ID sent from MANAGE BLOGS, retrieve the document for a specific blog post.
+    Pass blog post data to a rendered template of the EDIT BLOG POST page.
+    """
     blog_post = mongo.db.blog_posts.find_one({'_id': ObjectId(blog_post_id)})
     return render_template('pages/edit_blog_post.html', blog_post=blog_post)
 
