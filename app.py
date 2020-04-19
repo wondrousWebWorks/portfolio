@@ -161,21 +161,33 @@ def insert_skill():
         skill_to_insert_dict = request.form.to_dict()
         skills.insert_one(skill_to_insert_dict)
         find_inserted_skill = skills.find_one({'skill_name': skill_to_insert_dict['skill_name']})
+        
         if find_inserted_skill:
-            flash(f'Successfully inserted {skill_to_insert_dict["skill_name"]} into skills collection', 'success')
+            flash(f'Successfully inserted \"{skill_to_insert_dict["skill_name"]}\" into \"skills\" collection', 'success')
         else:
-            flash('Failed to insert skill into skills collection')
+            flash('Failed to insert skill into skills collection', 'failed')
         return redirect(url_for('manage_skills'))
 
 
 
 @app.route('/admin/manage_skills')
 def manage_skills():
-    return render_template('pages/manage_skills.html', skills=mongo.db.skills.find())
+    """Return a rendered template of MANAGE SKILLS page
+    
+    Retrieve all SKILLS documents from the skills collection.  Pass retrieved data 
+    to a rendered template of the MANMAGE SKILLS page.
+    """
+    skills = mongo.db.skills.find()
+    return render_template('pages/manage_skills.html', skills=skills)
 
 
 @app.route('/admin/edit_skill/<skill_id>')
 def edit_skill(skill_id):
+    """Return a rendered template of EDIT SKILL page populated with data of a specific skill
+    
+    Using the SKILL ID sent from MANAGE SKILLS, retrieve the document for a specific skill.
+    Pass this data to a rendered template of the EDIT SKILL page.
+    """
     skill = mongo.db.skills.find_one({'_id': ObjectId(skill_id)})
     return render_template('pages/edit_skill.html', skill=skill)
 
