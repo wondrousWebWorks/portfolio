@@ -289,13 +289,23 @@ def add_qualification():
 
 @app.route('/admin/manage_qualifications')
 def manage_qualifications():
-    return render_template('pages/manage_qualifications.html', qualifications=mongo.db.qualifications.find())
+     """Return a rendered template of MANAGE QUALIFICATIONS page
+    
+    Retrieve all qualification documents from the qualifications collection.  
+    Pass retrieved data to a rendered template of the MANMAGE QUALIFICATIONS page.
+    """
+    qualifications = mongo.db.qualifications.find()
+    return render_template('pages/manage_qualifications.html', qualifications=qualifications)
 
 
 @app.route('/admin/edit_qualification/<qualification_id>')
 def edit_qualification(qualification_id):
-    qualification = mongo.db.qualifications.find_one({'_id': ObjectId(qualification_id)})
+    """Return a rendered template of EDIT QUALIFICATION page populated with data of a specific qualification
     
+    Using the QUALIFICATION ID sent from MANAGE QUALIFICATIONS, retrieve the document for a specific qualification.
+    Pass project data to a rendered template of the EDIT QUALIFICATION page.
+    """
+    qualification = mongo.db.qualifications.find_one({'_id': ObjectId(qualification_id)})
     return render_template('pages/edit_qualification.html', qualification=qualification)
 
 
