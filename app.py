@@ -289,7 +289,7 @@ def add_qualification():
 
 @app.route('/admin/manage_qualifications')
 def manage_qualifications():
-     """Return a rendered template of MANAGE QUALIFICATIONS page
+    """Return a rendered template of MANAGE QUALIFICATIONS page
     
     Retrieve all qualification documents from the qualifications collection.  
     Pass retrieved data to a rendered template of the MANMAGE QUALIFICATIONS page.
@@ -362,7 +362,7 @@ def update_blog_post(blog_post_id):
         blog_posts.update({'_id': ObjectId(blog_post_id)},
         {
             'blog_title': request.form.get('blog_title'),
-            'blog_title': request.form.get('blog_title'),
+            'blog_img_url': request.form.get('blog_img_url'),
             'blog_summary': request.form.get('blog_summary'),
             'blog_date': request.form.get('blog_date'),
             'blog_body': request.form.getlist('blog_body')
