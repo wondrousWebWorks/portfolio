@@ -402,7 +402,7 @@ def insert_blog_post():
         else:
             flash('Failed to insert blog post into blog_posts collection', 'failed')
         return redirect(url_for('manage_blogs'))
-        
+
 
 @app.route('/admin/manage_blogs')
 def manage_blogs():
@@ -450,14 +450,25 @@ def delete_blog_post(blog_post_id):
     return redirect(url_for('manage_blogs'))
 
 
-@app.route('/admin/add_experience', methods=['GET','POST'])
+@app.route('/admin/add_experience')
 def add_experience():
+    
+    return render_template('pages/add_experience.html')
+
+
+@app.route('/admin/insert_experience', methods=['POST'])
+def insert_experience():
     if request.method == 'POST':
         experience = mongo.db.work_experience
         form_body = request.form.to_dict()
         experience.insert_one(form_body)
-        return redirect('add_experience')
-    return render_template('pages/add_experience.html')
+        find_inserted_experience = experience.find_one({'job_title': form_body['job_title']})
+
+        if find_inserted_experience:
+            flash(f'Successfully inserted \"{form_body["job_title"]}\" into \"work_experience\" collection', 'success')
+        else:
+            flash('Failed to insert experience into work_experience collection', 'failed')
+        return redirect(url_for('manage_experience'))
 
 
 @app.route('/admin/manage_experience')
