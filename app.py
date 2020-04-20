@@ -210,6 +210,13 @@ def update_skill(skill_id):
 
 @app.route('/admin/delete_skill/<skill_id>')
 def delete_skill(skill_id):
+    """Remove a skill from skills collection based on Id
+    
+    Retrieve skills collection from DB, then retrieve and store entry to be deleted using its 
+    Id from MANAGE SKILLS page. Remove skill from skills collection using Id. Try to find find
+    skill in skills collection to confirm removal and flash success or failure message based on 
+    result. Finally, redirect to MANAGE SKILLS
+    """
     skills = mongo.db.skills
     skill_to_delete = skills.find_one({'_id': ObjectId(skill_id)})
     skills.remove({'_id': ObjectId(skill_id)})
