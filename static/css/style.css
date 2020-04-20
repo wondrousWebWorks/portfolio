@@ -449,7 +449,6 @@ nav ul li a i {
 /* PROJECTS */
 .project-wrapper {
     width: 85%;
-    /* min-height: 250px; */
     margin: auto;
     border-radius: .5rem;
     background: #1c1c1c;
@@ -504,7 +503,6 @@ nav ul li a i {
 @media(max-width: 576px) {
     .project-wrapper {
         width: 90%;
-        /* min-height: 280px; */
     }
     
     .project-wrapper h3 {
@@ -621,11 +619,15 @@ nav ul li a i {
 
 @media(max-width: 576px) {    
     #experience .card h3 {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
 
     #experience .card p {
-        font-size: 1.1rem;
+        font-size: .95rem;
+    }
+
+    #experience .card .card-content {
+        padding: .5rem .7rem;
     }
 }
 
