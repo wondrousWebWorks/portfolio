@@ -312,7 +312,15 @@ def update_project(project_id):
 
 @app.route('/admin/delete_project/<project_id>')
 def delete_project(project_id):
-    mongo.db.portfolio.remove({'_id': ObjectId(project_id)})
+    projects = mongo.db.portfolio
+    project_to_delete = projects.find_one({'_id': ObjectId(project_id)})
+    projects.remove({'_id': ObjectId(project_id)})
+    project_to_confirm_deleted = projects.find_one({'_id': ObjectId(project_id)})
+
+    if not project_to_confirm_deleted:
+        flash(f'Successfully deleted \"{project_to_delete["project_name"]}\" from \"portfolio\" collection', 'success')
+    else:
+        flash('Failed to delete project from portfolio collection', 'failed')
     return redirect(url_for('manage_projects'))
 
 
