@@ -576,6 +576,13 @@ def update_experience(experience_id):
 
 @app.route('/admin/delete_experience/<experience_id>')
 def delete_experience(experience_id):
+    """Remove a work experience from work_experience collection based on Id
+    
+    Retrieve work_experience collection from DB, then retrieve and store entry to be deleted using its 
+    Id from MANAGE EXPERIENCE page. Remove work experience from work_experience collection using Id. Try to find
+    work_experience in work_experience collection to confirm removal and flash success or failure message based on 
+    result. Finally, redirect to MANAGE EXPERIENCE page
+    """
     experience = mongo.db.work_experience
     experience_to_delete = experience.find_one({'_id': ObjectId(experience_id)})
     experience.remove({'_id': ObjectId(experience_id)})
