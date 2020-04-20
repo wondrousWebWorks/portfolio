@@ -401,6 +401,13 @@ def update_qualification(qualification_id):
 
 @app.route('/admin/delete_qualification/<qualification_id>')
 def delete_qualification(qualification_id):
+    """Remove a qualification from qualifications collection based on Id
+    
+    Retrieve qualifications collection from DB, then retrieve and store entry to be deleted using its 
+    Id from MANAGE QUALIFICATIONS page. Remove qualification from qualifications collection using Id. Try to find
+    qualification in qualifications collection to confirm removal and flash success or failure message based on 
+    result. Finally, redirect to MANAGE QUALIFICATIONS page
+    """
     qualifications = mongo.db.qualifications
     qualification_to_delete = qualifications.find_one({'_id': ObjectId(qualification_id)})
     qualifications.remove({'_id': ObjectId(qualification_id)})
