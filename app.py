@@ -210,7 +210,15 @@ def update_skill(skill_id):
 
 @app.route('/admin/delete_skill/<skill_id>')
 def delete_skill(skill_id):
-    mongo.db.skills.remove({'_id': ObjectId(skill_id)})
+    skills = mongo.db.skills
+    skill_to_delete = skills.find_one({'_id': ObjectId(skill_id)})
+    skills.remove({'_id': ObjectId(skill_id)})
+    skill_to_confirm_deleted = skills.find_one({'_id': ObjectId(skill_id)})
+
+    if not skill_to_confirm_deleted:
+        flash(f'Successfully deleted \"{skill_to_delete["skill_name"]}\" from \"skills\" collection', 'success')
+    else:
+        flash('Failed to delete skill from skills collection', 'failed')
     return redirect(url_for('manage_skills'))
 
 
