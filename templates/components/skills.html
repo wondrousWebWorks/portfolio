@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <div class="row skills-row">
     {% for skill in skills %}
-    <div class="col s3">
+    <div class="col s6 m3">
         <div class="skill-wrapper center-align">
             <div class="skill-bars-wrapper" data-skill-level="{{skill.skill_level}}">
                 <div class="skill-bar cadetblue-bg"></div>
@@ -18,7 +18,7 @@
             </div>
             
         </div>
-        <h3 class=" skill-name center-align">{{ skill.skill_name }}</h3>
+        <h3 class=" skill-name center-align off-white">{{ skill.skill_name }} ({{ skill.skill_level }}%)</h3>
     </div>
     {% endfor %}
 </div>
