@@ -491,6 +491,13 @@ def update_blog_post(blog_post_id):
 
 @app.route('/admin/delete_blog_post/<blog_post_id>')
 def delete_blog_post(blog_post_id):
+     """Remove a blog post from blog_posts collection based on Id
+    
+    Retrieve blog_posts collection from DB, then retrieve and store entry to be deleted using its 
+    Id from MANAGE BLOGS page. Remove blog post from blog_posts collection using Id. Try to find
+    blog_posts in blog_posts collection to confirm removal and flash success or failure message based on 
+    result. Finally, redirect to MANAGE BLOGS page
+    """
     blog_posts = mongo.db.blog_posts
     blog_post_to_delete = blog_posts.find_one({'_id': ObjectId(blog_post_id)})
     blog_posts.remove({'_id': ObjectId(blog_post_id)})
