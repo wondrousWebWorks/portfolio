@@ -312,6 +312,13 @@ def update_project(project_id):
 
 @app.route('/admin/delete_project/<project_id>')
 def delete_project(project_id):
+    """Remove a project from portfolio collection based on Id
+    
+    Retrieve portfolio collection from DB, then retrieve and store entry to be deleted using its 
+    Id from MANAGE PROJECTS page. Remove project from portfolio collection using Id. Try to find
+    skill in portfolio collection to confirm removal and flash success or failure message based on 
+    result. Finally, redirect to MANAGE PROJECTS page
+    """
     projects = mongo.db.portfolio
     project_to_delete = projects.find_one({'_id': ObjectId(project_id)})
     projects.remove({'_id': ObjectId(project_id)})
