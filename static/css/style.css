@@ -15,19 +15,14 @@ h1, h2, h3, h4, nav {
     font-family: "Baloo 2", sans-serif;
 }
 
-.container {
-    width: 80%;
-    margin: 0 auto;
-}
-
 /* SHARED STYLING */
 .section-heading {
-    margin: 1rem 0;
+    margin: 2.5rem 0 1rem;
     padding: 1.5rem;
     text-align: center;
     font-size: 3rem;
     color: cadetblue;
-    text-shadow: 2px 2px #333;
+    text-shadow: 2px 2px #070707;
 }
 
 .tablet-style-container {
@@ -67,18 +62,19 @@ h1, h2, h3, h4, nav {
 
 .container {
     margin: 5rem auto;
+    width: 80%;
 }
 
 @media(max-width: 576px) {
     .section-heading {
         font-size: 1.8rem;
-        margin: .5rem 0;
+        margin: 2rem 0 1rem;
         padding: 0;
     }
     
     .tablet-style-container {
         width: 100%;
-        padding: 1rem;
+        padding: .7rem;
         font-size: 1rem;
         border: 1rem solid #181818;
         border-radius: 1rem;
@@ -290,7 +286,15 @@ nav ul li a i {
     }
 
     #brand-logo {
-        font-size: 1rem;
+        font-size: 1.3rem;
+    }
+
+    .menu-toggle-icon i {
+        font-size: 1.4rem;
+    }
+
+    .menu-toggle-icon-expand {
+        transform: scaleY(1.5);
     }
 }
 
@@ -359,6 +363,7 @@ nav ul li a i {
 
 @media(max-width: 576px) {
     .jumbotron {    
+        width: 80%;
         padding: .7rem 1rem;
         border-radius: .6rem;
     }
@@ -369,10 +374,24 @@ nav ul li a i {
     }
     
     .jumbotron a {
-        margin-top: 2.5rem;
+        margin: 2.5rem 0 1rem;
         font-size: 1.5rem;
         padding: .5rem .8rem;
     }
+}
+
+/* FOOTER */
+footer {
+    height: 7vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+footer .copyright {
+    text-align: center;
+    font-size: 1.2rem;
 }
 
 /* SKILLS */
@@ -441,7 +460,7 @@ nav ul li a i {
     }
     
     .skill-name {
-        font-size: 1.2rem;
+        font-size: 1rem;
         margin-top: .7rem;
     }
 }
@@ -515,6 +534,7 @@ nav ul li a i {
     }
     
     .all-projects-btn {
+        font-size: 1.15rem;
         border-radius: .3rem;
     }
 }
@@ -587,6 +607,7 @@ nav ul li a i {
     
     .qualification-btn {
         font-size: 1rem;
+        padding: 5px 7px;
     }
 }
 
