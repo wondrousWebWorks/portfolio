@@ -401,7 +401,15 @@ def update_qualification(qualification_id):
 
 @app.route('/admin/delete_qualification/<qualification_id>')
 def delete_qualification(qualification_id):
-    mongo.db.qualifications.remove({'_id': ObjectId(qualification_id)})
+    qualifications = mongo.db.qualifications
+    qualification_to_delete = qualifications.find_one({'_id': ObjectId(qualification_id)})
+    qualifications.remove({'_id': ObjectId(qualification_id)})
+    qualification_to_confirm_deleted = qualifications.find_one({'_id': ObjectId(qualification_id)})
+
+    if not qualification_to_confirm_deleted:
+        flash(f'Successfully deleted \"{qualification_to_delete["qualification_name"]}\" from \"qualifications\" collection', 'success')
+    else:
+        flash('Failed to delete qualification from qualifications collection', 'failed')
     return redirect(url_for('manage_qualifications'))
 
 
