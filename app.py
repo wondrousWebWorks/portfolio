@@ -491,7 +491,15 @@ def update_blog_post(blog_post_id):
 
 @app.route('/admin/delete_blog_post/<blog_post_id>')
 def delete_blog_post(blog_post_id):
-    mongo.db.blog_posts.remove({'_id': ObjectId(blog_post_id)})
+    blog_posts = mongo.db.blog_posts
+    blog_post_to_delete = blog_posts.find_one({'_id': ObjectId(blog_post_id)})
+    blog_posts.remove({'_id': ObjectId(blog_post_id)})
+    blog_post_to_confirm_deleted = blog_posts.find_one({'_id': ObjectId(blog_post_id)})
+
+    if not blog_post_to_confirm_deleted:
+        flash(f'Successfully deleted \"{blog_post_to_delete["blog_title"]}\" from \"blog_posts\" collection', 'success')
+    else:
+        flash('Failed to delete blog post from blog_posts collection', 'failed')
     return redirect(url_for('manage_blogs'))
 
 
