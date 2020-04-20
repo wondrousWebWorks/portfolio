@@ -33,7 +33,7 @@ h1, h2, h3, h4, nav {
 .tablet-style-container {
     font-family: "Open Sans", sans-serif;
     margin: 2rem auto;
-    width: 80%;
+    width: 95%;
     padding: 2rem;
     font-size: 2rem;
     border: 2.5rem solid #181818;
@@ -283,12 +283,23 @@ nav ul li a i {
     }
 }
 
+@media(max-width: 576px) {
+    .menu-toggle-icon {
+        display: block;
+        margin-right: 1rem;
+    }
+
+    #brand-logo {
+        font-size: 1rem;
+    }
+}
+
 /* HEADER */
 .header-image {
     position: relative;
     /* z-index: -15; */
     width: 100vw;
-    height: 90vh;
+    height: 100vh;
     background: url("https://res.cloudinary.com/wondrouswebworks/image/upload/v1586101487/wondrousWebWorks/wondrous-header.png");
     background-size: cover;
     background-position: center;
@@ -438,9 +449,9 @@ nav ul li a i {
 /* PROJECTS */
 .project-wrapper {
     width: 85%;
-    min-height: 350px;
+    /* min-height: 250px; */
     margin: auto;
-    border-radius: .3rem;
+    border-radius: .5rem;
     background: #1c1c1c;
     box-shadow:  7px 7px 10px #0e0e0e,
                  -7px -7px 10px #0e0e0e;
@@ -469,6 +480,8 @@ nav ul li a i {
 .project-wrapper img {
     width: 100%;
     height: auto;
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
 }
 
 .project-wrapper a {
@@ -491,12 +504,12 @@ nav ul li a i {
 @media(max-width: 576px) {
     .project-wrapper {
         width: 90%;
-        min-height: 280px;
+        /* min-height: 280px; */
     }
     
     .project-wrapper h3 {
         font-size: 1.4rem;
-        margin-top: .7rem;
+        margin: 0;
     }
     
     .project-wrapper a {
