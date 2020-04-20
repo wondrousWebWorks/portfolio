@@ -9,6 +9,8 @@
     <div class="container">
         {% block base_body %}{% endblock %}
     </div>
+
+    {% include 'layout/footer.html' %}
     
     {% include 'components/fixed-shortcuts-left.html' %}
     {% block fixed_shortcuts_left %}{% endblock %}
