@@ -491,7 +491,7 @@ def update_blog_post(blog_post_id):
 
 @app.route('/admin/delete_blog_post/<blog_post_id>')
 def delete_blog_post(blog_post_id):
-     """Remove a blog post from blog_posts collection based on Id
+    """Remove a blog post from blog_posts collection based on Id
     
     Retrieve blog_posts collection from DB, then retrieve and store entry to be deleted using its 
     Id from MANAGE BLOGS page. Remove blog post from blog_posts collection using Id. Try to find
@@ -576,7 +576,15 @@ def update_experience(experience_id):
 
 @app.route('/admin/delete_experience/<experience_id>')
 def delete_experience(experience_id):
-    mongo.db.work_experience.remove({'_id': ObjectId(experience_id)})
+    experience = mongo.db.work_experience
+    experience_to_delete = experience.find_one({'_id': ObjectId(experience_id)})
+    experience.remove({'_id': ObjectId(experience_id)})
+    experience_to_confirm_deleted = experience.find_one({'_id': ObjectId(experience_id)})
+
+    if not experience_to_confirm_deleted:
+        flash(f'Successfully deleted \"{experience_to_delete["job_title"]}\" from \"work_experience\" collection', 'success')
+    else:
+        flash('Failed to delete experience from work_experience collection', 'failed')
     return redirect(url_for('manage_experience'))
 
 
