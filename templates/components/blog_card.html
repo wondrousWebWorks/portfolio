@@ -2,14 +2,32 @@
 <div class="row">
     {% for blog in blog_posts %}
     <div class="col s12 m6">
-        <a href=" {{url_for('blog_entry', blog_id=blog._id) }} ">
-            <div class="project-wrapper">
-                <img class="blog-image" src="{{blog.blog_img_url}}" alt="blog image">
-                <h3 class="blog-title cadetblue">{{blog.blog_title}}</h3>
-                <h4 class="blog-date magenta"><em>{{blog.blog_date}}</em></h4>
-                <p class="blog-summary">{{blog.blog_summary}}</p>
-            </div>
-        </a>
+        <div class="blog-card-wrapper" style="background: url('{{blog.blog_img_url}}');">
+            <a href=" {{url_for('blog_entry', blog_id=blog._id) }} ">
+                <div class="blog-card-text-wrapper center-align">
+                    <h3 class="blog-title off-white text-shadow-1">{{blog.blog_title}}</h3>
+                    <p class="blog-summary off-white text-shadow-1">{{blog.blog_summary}}</p>
+                    <h4 class="blog-date off-white text-shadow-1"><em>{{blog.blog_date}}</em></h4>
+                </div>
+            </a>
+        </div>
     </div>
     {% endfor %}
 </div>
+
+<!-- <div class="row">
+    {% for blog in blog_posts %}
+    <div class="col s12 m6">
+        <div class="blog-card-wrapper off-white">
+            <a href=" {{url_for('blog_entry', blog_id=blog._id) }} ">
+                <div class="project-wrapper">
+                    <img class="blog-image" src="{{blog.blog_img_url}}" alt="blog image">
+                    <h3 class="blog-title cadetblue">{{blog.blog_title}}</h3>
+                    <h4 class="blog-date magenta"><em>{{blog.blog_date}}</em></h4>
+                    <p class="blog-summary off-white">{{blog.blog_summary}}</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+</div> -->
