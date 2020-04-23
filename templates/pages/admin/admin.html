@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% extends 'layout/admin-base.html' %}
+{% block admin_block %}
+<div class="row">
+    <div class="col s12 m4 center-align">
+        <div class="admin-info center-align">
+            <div class="admin-info-inner">
+                <h3 class="admin-info-value">{{ skill_count }}</h3>
+            </div>
+        </div>
+        <h4 class="admin-info-category red-gold">Skills</h4>
+        <a href="{{ url_for('manage_skills') }}" class="admin-add-btn cadetblue-bg"><i class="fas fa-plus-circle"></i>
+            MANAGE</a>
+    </div>
+    <div class="col s12 m4 center-align">
+        <div class="admin-info">
+            <div class="admin-info-inner">
+                <h3 class="admin-info-value">{{ project_count }}</h3>
+            </div>
+        </div>
+        <h4 class="admin-info-category red-gold">Projects</h4>
+        <a href="{{ url_for('manage_projects') }}" class="admin-add-btn cadetblue-bg"><i class="fas fa-plus-circle"></i>
+            MANAGE</a>
+    </div>
+    <div class="col s12 m4 center-align">
+        <div class="admin-info">
+            <div class="admin-info-inner">
+                <h3 class="admin-info-value">{{ qualification_count }}</h3>
+            </div>
+        </div>
+        <h4 class="admin-info-category red-gold">Qualifications</h4>
+        <a href="{{ url_for('manage_qualifications') }}" class="admin-add-btn cadetblue-bg"><i class="fas fa-plus-circle"></i>
+            MANAGE</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col s12 offset-m2 m4 center-align">
+        <div class="admin-info center-align">
+            <div class="admin-info-inner">
+                <h3 class="admin-info-value">{{ blog_posts_count }}</h3>
+            </div>
+        </div>
+        <h4 class="admin-info-category red-gold">Blogs</h4>
+        <a href="{{ url_for('manage_blogs') }}" class="admin-add-btn cadetblue-bg"><i class="fas fa-plus-circle"></i>
+            MANAGE</a>
+    </div>
+    <div class="col s12 m4 center-align">
+        <div class="admin-info">
+            <div class="admin-info-inner">
+                <h3 class="admin-info-value">{{ experience_count }}</h3>
+            </div>
+        </div>
+        <h4 class="admin-info-category red-gold">Experience</h4>
+        <a href="{{ url_for('manage_experience') }}" class="admin-add-btn cadetblue-bg"><i class="fas fa-plus-circle"></i>
+            MANAGE</a>
+    </div>
+</div>
+{% endblock %}
