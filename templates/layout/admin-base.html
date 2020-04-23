@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include 'layout/head.html' %}
+
+<body>
+    {% with type = 'admin' %}
+        {% include 'components/navbar/navbar.html' %}
+    {% endwith %}
+
+    <div class="container admin-container">
+        {% block admin_block %}{% endblock %}
+    </div>
+
+    {% include 'layout/footer.html' %}
+
+    {% include 'layout/scripts.html' %}
+</body>
+
+</html>
