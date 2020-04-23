@@ -2,9 +2,11 @@
 <html lang="en">
     {% include 'layout/head.html' %}
 <body>
+    {% with type = 'portfolio' %}
+        {% include 'components/navbar/navbar.html' %}
+    {% endwith %}
+
     {% include 'layout/header.html' %}
-    {% block header %}
-    {% endblock %}
     
     <div class="container">
         {% block base_body %}{% endblock %}
@@ -13,9 +15,7 @@
     {% include 'layout/footer.html' %}
     
     {% include 'components/fixed-shortcuts-left.html' %}
-    {% block fixed_shortcuts_left %}{% endblock %}
 
     {% include 'layout/scripts.html' %}
-    {% block scripts %}{% endblock %}
 </body>
 </html>
