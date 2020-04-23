@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% extends 'layout/admin-base.html' %}
+{% block admin_block %}
+<div class="row">
+    <div class="col s12">
+        <h2 class="section-heading"><i class="fas fa-magic"></i>&nbsp; Skills</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col s12 center-align">
+        <a class="add-btn off-white green-bg" href=""><i class="fas fa-plus-square"></i>&nbsp;ADD SKILL</a>
+        <ul class="admin-list eerie-black-bg">
+            {% for skill in skills %}
+            <li class="admin-list-item off-white">{{ skill.skill_name}}<span><a href="{{ url_for('edit_skill', skill_id=skill._id) }}" class="admin-list-btn light-blue-bg"><i
+                class="fas fa-edit"></i> Edit</a><a href="{{ url_for('delete_skill', skill_id=skill._id) }}" class="admin-list-btn crimson-bg"><i
+                    class="fas fa-trash-alt"></i> Delete</a></span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
