@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% extends 'layout/admin-base.html' %}
+{% block admin_block %}
+
+{% with icon = 'briefcase', section_title = 'EXPERIENCE' %}
+    {% include 'components/section-heading.html' %}
+{% endwith %}
+
+<div class="row">
+    <div class="col s12 center-align">
+        <a class="add-btn off-white green-bg modal-trigger" href="#"><i class="fas fa-plus-square"></i>&nbsp;ADD EXPERIENCE</a>
+        <ul class="admin-list eerie-black-bg">
+            {% for job in experience %}
+            <li class="admin-list-item off-white">{{ job.job_title}}
+                <span>
+                    <a href="{{ url_for('edit_experience', experience_id=job._id) }}" class="admin-list-btn light-blue-bg"><i
+                        class="fas fa-edit"></i> Edit</a>
+                    <a href="{{ url_for('delete_experience', experience_id=job._id) }}" class="admin-list-btn crimson-bg"><i
+                        class="fas fa-trash-alt"></i> Delete</a>
+                </span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
