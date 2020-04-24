@@ -37,11 +37,11 @@
       <ul class="nav-display-row">
         <li><a href="{{ url_for('admin') }}"><i class="fas fa-columns"></i>&nbsp;Dashboard</a></li>
         <li><a href="{{ url_for('home') }}"><i class="fas fa-home"></i>&nbsp;Back To Site</a></li>
-        <li><a href="{{ url_for('home') }}"><i class="fas fa-magic"></i>&nbsp;Skills</a></li>
-        <li><a href="{{ url_for('home') }}"><i class="fas fa-code"></i>&nbsp;Projects</a></li>
-        <li><a href="{{ url_for('home') }}"><i class="fas fa-graduation-cap"></i>&nbsp;Qualifications</a></li>
-        <li><a href="{{ url_for('home') }}"><i class="fas fa-blog"></i>&nbsp;Blogs</a></li>
-        <li><a href="{{ url_for('home') }}"><i class="fas fa-chart-line"></i>&nbsp;Experience</a></li>
+        <li><a href="{{ url_for('manage_skills') }}"><i class="fas fa-magic"></i>&nbsp;Skills</a></li>
+        <li><a href="{{ url_for('manage_projects') }}"><i class="fas fa-code"></i>&nbsp;Projects</a></li>
+        <li><a href="{{ url_for('manage_qualifications') }}"><i class="fas fa-graduation-cap"></i>&nbsp;Qualifications</a></li>
+        <li><a href="{{ url_for('manage_blogs') }}"><i class="fas fa-blog"></i>&nbsp;Blogs</a></li>
+        <li><a href="{{ url_for('manage_experience') }}"><i class="fas fa-chart-line"></i>&nbsp;Experience</a></li>
       </ul>
       <div class="menu-toggle-icon-wrapper">
         <a href="#!" class="menu-toggle-icon"><i class="fas fa-bars"></i></a>
@@ -49,11 +49,11 @@
       <ul class="nav-display-col">
         <li class="nav-display-col-item"><a href="{{ url_for('admin') }}"><i class="fas fa-columns"></i>&nbsp;Dashboard</a></li><hr>
         <li class="nav-display-col-item"><a href="{{ url_for('home') }}"><i class="fas fa-home"></i>&nbsp;Back To Site</a></li>
-        <li class="nav-display-col-item"><a href="{{ url_for('home') }}"><i class="fas fa-magic"></i>&nbsp;Skills</a></li><hr>
-        <li class="nav-display-col-item"><a href="{{ url_for('home') }}"><i class="fas fa-code"></i>&nbsp;Projects</a></li><hr>
-        <li class="nav-display-col-item"><a href="{{ url_for('home') }}"><i class="fas fa-graduation-cap"></i>&nbsp;Qualifications</a></li><hr>
-        <li class="nav-display-col-item"><a href="{{ url_for('home') }}"><i class="fas fa-blog"></i>&nbsp;Blogs</a></li><hr>
-        <li class="nav-display-col-item"><a href="{{ url_for('home') }}"><i class="fas fa-chart-line"></i>&nbsp;Experience</a></li>
+        <li class="nav-display-col-item"><a href="{{ url_for('manage_skills') }}"><i class="fas fa-magic"></i>&nbsp;Skills</a></li><hr>
+        <li class="nav-display-col-item"><a href="{{ url_for('manage_projects') }}"><i class="fas fa-code"></i>&nbsp;Projects</a></li><hr>
+        <li class="nav-display-col-item"><a href="{{ url_for('manage_qualifications') }}"><i class="fas fa-graduation-cap"></i>&nbsp;Qualifications</a></li><hr>
+        <li class="nav-display-col-item"><a href="{{ url_for('manage_blogs') }}"><i class="fas fa-blog"></i>&nbsp;Blogs</a></li><hr>
+        <li class="nav-display-col-item"><a href="{{ url_for('manage_experience') }}"><i class="fas fa-chart-line"></i>&nbsp;Experience</a></li>
       </ul>
     {% endif %}
   </nav>
