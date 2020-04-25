@@ -134,7 +134,7 @@ def admin():
     experience_count = mongo.db.work_experience.count()
     blog_posts_count = mongo.db.blog_posts.count()
 
-    return render_template('pages/admin.html', skill_count=skill_count,
+    return render_template('pages/admin/admin.html', skill_count=skill_count,
                                                 project_count=project_count,
                                                 qualification_count=qualification_count,
                                                 experience_count=experience_count,
@@ -170,7 +170,7 @@ def insert_skill():
 
 
 
-@app.route('/admin/manage_skills')
+@app.route('/admin/skills')
 def manage_skills():
     """Return a rendered template of MANAGE SKILLS page
     
@@ -178,7 +178,7 @@ def manage_skills():
     to a rendered template of the MANMAGE SKILLS page.
     """
     skills = mongo.db.skills.find()
-    return render_template('pages/manage_skills.html', skills=skills)
+    return render_template('pages/admin/skills.html', skills=skills, skill='')
 
 
 @app.route('/admin/edit_skill/<skill_id>')
@@ -266,7 +266,7 @@ def insert_project():
         return redirect(url_for('manage_projects'))
 
 
-@app.route('/admin/manage_projects')
+@app.route('/admin/projects')
 def manage_projects():
     """Return a rendered template of MANAGE PROJECTS page
     
@@ -274,7 +274,7 @@ def manage_projects():
     to a rendered template of the MANMAGE PROJECTS page.
     """
     projects = mongo.db.portfolio.find()
-    return render_template('pages/manage_projects.html', projects=projects)
+    return render_template('pages/admin/projects.html', projects=projects)
 
 
 @app.route('/admin/edit_project/<project_id>')
@@ -359,7 +359,7 @@ def insert_qualification():
         return redirect(url_for('manage_qualifications'))
 
 
-@app.route('/admin/manage_qualifications')
+@app.route('/admin/qualifications')
 def manage_qualifications():
     """Return a rendered template of MANAGE QUALIFICATIONS page
     
@@ -367,7 +367,7 @@ def manage_qualifications():
     Pass retrieved data to a rendered template of the MANMAGE QUALIFICATIONS page.
     """
     qualifications = mongo.db.qualifications.find()
-    return render_template('pages/manage_qualifications.html', qualifications=qualifications)
+    return render_template('pages/admin/qualifications.html', qualifications=qualifications)
 
 
 @app.route('/admin/edit_qualification/<qualification_id>')
@@ -449,7 +449,7 @@ def insert_blog_post():
         return redirect(url_for('manage_blogs'))
 
 
-@app.route('/admin/manage_blogs')
+@app.route('/admin/blogs')
 def manage_blogs():
     """Return a rendered template of MANAGE BLOGS page
     
@@ -457,7 +457,7 @@ def manage_blogs():
     to a rendered template of the MANAGE BLOGS page.
     """
     blog_posts = mongo.db.blog_posts.find()
-    return render_template('pages/manage_blogs.html', blog_posts=blog_posts)
+    return render_template('pages/admin/blogs.html', blog_posts=blog_posts)
 
 
 @app.route('/admin/edit_blog_post/<blog_post_id>')
@@ -538,7 +538,7 @@ def insert_experience():
         return redirect(url_for('manage_experience'))
 
 
-@app.route('/admin/manage_experience')
+@app.route('/admin/experience')
 def manage_experience():
     """Return a rendered template of MANAGE EXPERIENCE page
     
@@ -546,7 +546,7 @@ def manage_experience():
     to a rendered template of the MANAGE WORK EXPERIENCE page.
     """
     experience = mongo.db.work_experience.find()
-    return render_template('pages/manage_experience.html', experience=experience)
+    return render_template('pages/admin/experience.html', experience=experience)
 
 
 @app.route('/admin/edit_experience/<experience_id>')
