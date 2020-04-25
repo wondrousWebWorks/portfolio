@@ -24,6 +24,8 @@ app.config['MAIL_USE_SSL'] = True
 
 mail = Mail(app)
 
+bcrypt = Bcrypt(app)
+
 @app.route('/')
 @app.route('/home')
 def home():
@@ -141,21 +143,16 @@ def admin():
                                                 blog_posts_count=blog_posts_count)
 
 
-@app.route('/admin/add_skill')
+@app.route('/admin/skills')
+def manage_skills():
+    """Return a rendered template of SKILLS page with all skills sent to it"""
+    skills = mongo.db.skills.find()
+    return render_template('pages/admin/skills.html', skills=skills, skill='')
+
+
+@app.route('/admin/skill/add', methods=['POST'])
 def add_skill():
-    """Return a rendered template of the ADD SKILL page"""
-    return render_template('pages/add_skill.html')
-
-
-@app.route('/admin/insert_skill', methods=['POST'])
-def insert_skill():
-    """Using data from form on ADD SKILLS page, insert document into skills collection
-    
-    Retrieve documents from skills collection. Convert form data from add_skill
-    page's form to dictionary and insert it into skills collection. Try to find
-    newly inserted document in skills collection and flash either a success or
-    failure message on screen. Finally, redirect to MANAGE SKILLS page
-    """
+    """Insert a new document into skills collection"""
     if request.method == 'POST':
         skills = mongo.db.skills
         skill_to_insert_dict = request.form.to_dict()
@@ -163,22 +160,10 @@ def insert_skill():
         find_inserted_skill = skills.find_one({'skill_name': skill_to_insert_dict['skill_name']})
         
         if find_inserted_skill:
-            flash(f'Successfully inserted \"{skill_to_insert_dict["skill_name"]}\" into \"skills\" collection', 'success')
+            flash(f'Successfully added \"{skill_to_insert_dict["skill_name"]}\"!', 'success')
         else:
             flash('Failed to insert skill into skills collection', 'failed')
         return redirect(url_for('manage_skills'))
-
-
-
-@app.route('/admin/skills')
-def manage_skills():
-    """Return a rendered template of MANAGE SKILLS page
-    
-    Retrieve all SKILLS documents from the skills collection.  Pass retrieved data 
-    to a rendered template of the MANMAGE SKILLS page.
-    """
-    skills = mongo.db.skills.find()
-    return render_template('pages/admin/skills.html', skills=skills, skill='')
 
 
 @app.route('/admin/edit_skill/<skill_id>')
@@ -189,7 +174,7 @@ def edit_skill(skill_id):
     Pass this data to a rendered template of the EDIT SKILL page.
     """
     skill = mongo.db.skills.find_one({'_id': ObjectId(skill_id)})
-    return render_template('pages/edit_skill.html', skill=skill)
+    return render_template('pages/admin/skills.html', skill=skill)
 
 
 @app.route('/admin/update_skill/<skill_id>', methods=['POST'])
@@ -223,7 +208,7 @@ def delete_skill(skill_id):
     skill_to_confirm_deleted = skills.find_one({'_id': ObjectId(skill_id)})
 
     if not skill_to_confirm_deleted:
-        flash(f'Successfully deleted \"{skill_to_delete["skill_name"]}\" from \"skills\" collection', 'success')
+        flash(f'Successfully deleted \"{skill_to_delete["skill_name"]}\"', 'success')
     else:
         flash('Failed to delete skill from skills collection', 'failed')
     return redirect(url_for('manage_skills'))
