@@ -127,24 +127,30 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /**
-     * Upon click of ADMIN nav dropdown element,
-     * toggle vibility and chevron animation
+     * Toggles the side nav visibility on smaller screens
      */
-    function toggleDropdown() {
-        this.nextElementSibling.classList.toggle('admin-nav-dropdown-animation');
-        this.children[0].classList.toggle('admin-nav-dropdown-trigger-selected');
-        this.querySelector('.admin-nav-chevron').classList.toggle('admin-nav-chevron-flip');
-    }
-
     function toggleSideNav() {
         this.classList.toggle('menu-toggle-icon-expand');
         sideNav.classList.toggle('nav-slide');
     }
 
+    /**
+     * Redirects to a given URL based on redirect parameter
+     * @param {string} redirect 
+     */
     function reloadTargetURL(redirect) {
         window.location.replace(`${window.origin}/admin/${redirect}`);
     }
 
+    /**
+     * Briefly displays a success or failure message on screen following
+     * a Create, Update or Delete operation
+     * @param {Node} targetElement - DOM element to target
+     * @param {string} successOrFailure - success or failure string
+     * @param {string} type - skill, project, qualification, blog or experience
+     * @param {string} action - added, updated or deleted
+     * @param {string} redirect - skills, projects, qualifications, blogs or experience
+     */
     function flashAlert(targetElement, successOrFailure, type, action, redirect) {
         targetElement.style.display = 'block';
         if (successOrFailure == "success") {
@@ -161,6 +167,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 2500);
     }
 
+    /**
+     * Resets the Skills-form to its original state
+     */
     function resetSkill() {
         changeFormButton('add', 'skills');
         skillName.value = null;
@@ -173,8 +182,14 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    /**
+     * Changes the button classes and text for any admin form
+     * @param {string} type - add or update
+     * @param {*} formTarget - which form to target
+     */
     function changeFormButton(type, formTarget) {
         let formTargetButton;
+        let formTargetClass = formTarget;
         switch (formTarget) {
             case 'skills': 
                 formTarget = skillFormButton;
@@ -184,12 +199,12 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         if (type === 'add') {
-            formTarget.classList.remove('skills-form-btn-update');
-            formTarget.classList.add('skills-form-btn-add');
+            formTarget.classList.remove(`${formTargetClass}-form-btn-update`);
+            formTarget.classList.add(`${formTargetClass}-form-btn-add`);
             formTargetButton.innerText = 'Add';
         } else if (type === 'update') {
-            formTarget.classList.remove('skills-form-btn-add');
-            formTarget.classList.add('skills-form-btn-update');
+            formTarget.classList.remove(`${formTargetClass}-form-btn-add`);
+            formTarget.classList.add(`${formTargetClass}-form-btn-update`);
             formTargetButton.innerText = 'Update';
         }
     }
