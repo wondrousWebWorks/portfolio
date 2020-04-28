@@ -1,10 +1,29 @@
+/*jshint esversion: 6 */
+/* PORTFOLIO HOME PAGE */
 const cursorRectangle = document.querySelectorAll('.cursor-rectangle');
 const skillBarsWrappers = document.querySelectorAll('.skill-bars-wrapper');
 const skillBars = document.querySelectorAll('.skill-bar');
 const projects = document.querySelectorAll('.project-col');
-const adminNavDropdowns = document.querySelectorAll('.admin-nav-dropdown-wrapper');
+
+/* NAVBAR */
 const toggleMenuIcon = document.querySelector('.menu-toggle-icon');
-const verticalNav = document.querySelector('.nav-display-col');
+const sideNav = document.querySelector('.nav-display-col');
+
+/* ADMIN SHARED */
+
+/* ADMIN SKILLS */
+const skillUpdateButtons = document.querySelectorAll('.update-skill-btn');
+const skillDeleteButtons = document.querySelectorAll('.delete-skill-btn');
+const skillName = document.getElementById('skill-name');
+const skillLevel = document.getElementById('skill-level');
+const skillModal = document.getElementById('skills-form');
+const skillFormLabels = document.querySelectorAll('.skills-form-label');
+const skillFormButton = document.getElementById('skills-form-btn');
+const skillFormButtonText = document.getElementById('skills-form-submit-btn-text');
+const skillDocId = document.getElementById('skill-doc-id');
+const buttons = document.querySelectorAll('button');
+const skillsAlert = document.getElementById('skills-alert');
+
 
 document.addEventListener('DOMContentLoaded', function () {
     /**
@@ -117,9 +136,186 @@ document.addEventListener('DOMContentLoaded', function () {
         this.querySelector('.admin-nav-chevron').classList.toggle('admin-nav-chevron-flip');
     }
 
-    function toggleVerticalNav() {
+    function toggleSideNav() {
         this.classList.toggle('menu-toggle-icon-expand');
-        verticalNav.classList.toggle('nav-slide');
+        sideNav.classList.toggle('nav-slide');
+    }
+
+    function reloadTargetURL(redirect) {
+        window.location.replace(`${window.origin}/admin/${redirect}`);
+    }
+
+    function flashAlert(targetElement, successOrFailure, type, action, redirect) {
+        targetElement.style.display = 'block';
+        if (successOrFailure == "success") {
+            targetElement.classList.add('alert-success');
+            targetElement.children[0].innerText = `${type} successfully ${action} `;
+        } else {
+            targetElement.classList.add('alert-failure');
+            targetElement.children[0].innerText = `${type} failed to be ${action}`;
+        }
+        
+        setTimeout(function() {
+            targetElement.style.display = 'none';
+            reloadTargetURL(redirect); 
+        }, 2500);
+    }
+
+    function resetSkill() {
+        changeFormButton('add', 'skills');
+        skillName.value = null;
+        skillLevel.value = null;
+        skillName.classList.remove('valid');
+        skillLevel.classList.remove('valid');
+
+        Array.from(skillFormLabels).forEach(label => {
+            label.classList.remove('active');
+        });
+    }
+
+    function changeFormButton(type, formTarget) {
+        let formTargetButton;
+        switch (formTarget) {
+            case 'skills': 
+                formTarget = skillFormButton;
+                formTargetButton = skillFormButtonText;
+                break;
+            default: formTarget = formTarget; 
+        }
+
+        if (type === 'add') {
+            formTarget.classList.remove('skills-form-btn-update');
+            formTarget.classList.add('skills-form-btn-add');
+            formTargetButton.innerText = 'Add';
+        } else if (type === 'update') {
+            formTarget.classList.remove('skills-form-btn-add');
+            formTarget.classList.add('skills-form-btn-update');
+            formTargetButton.innerText = 'Update';
+        }
+    }
+
+    function addSkillData() {
+        const skill_entry = {
+            skill_name: skillName.value,
+            skill_level: skillLevel.value
+        };
+
+        fetch(`${window.origin}/admin/skills/add`, {
+            method: 'POST',
+            credentials: 'include',
+            body: JSON.stringify(skill_entry),
+            cache: 'no-cache',
+            headers: new Headers({
+                'content-type': 'application/json'
+            })
+        }).then(response => {
+            if (response.status !== 200) {
+                console.log(`Response status not 200: ${response.status}`);
+                flashAlert(skillsAlert, 'failure', 'skill', 'added', 'skills');
+                return;
+            }
+            response.json().then(data => {
+                console.log(data);
+                flashAlert(skillsAlert, 'success', 'skill', 'added', 'skills');
+            });
+        });   
+    }
+
+    function fetchSkillData() {
+        dataTarget = this.getAttribute('data-id');
+        skillDocId.setAttribute('data-id', dataTarget);
+        changeFormButton('update', 'skills');
+        
+        fetch(`${window.origin}/admin/skills/update/${dataTarget}`)
+        .then(response => {
+            response.json()
+            .then(data => {
+                skillName.value = data.skill_name;
+                skillLevel.value = data.skill_level;
+            });
+            skillModalInstance.open();
+            Array.from(skillFormLabels).forEach(label => {
+                label.classList.add('active');
+            });
+        });
+    }
+
+    function updateSkillData() {
+        dataTarget = skillDocId.getAttribute('data-id');
+        const skill_entry = {
+            skill_id: dataTarget,
+            skill_name: skillName.value,
+            skill_level: skillLevel.value
+        };
+
+        fetch(`${window.origin}/admin/skills/update/${dataTarget}`, {
+            method: 'PUT',
+            credentials: 'include',
+            body: JSON.stringify(skill_entry),
+            cache: 'no-cache',
+            headers: new Headers({
+                'content-type': 'application/json'
+            })
+        }).then(response => {
+            if (response.status !== 200) {
+                console.log(`Response status not 200: ${response.status}`);
+                flashAlert(skillsAlert, 'failure', 'skill', 'updated', 'skills');
+                return;
+            }
+
+            response.json().then(data => {
+                console.log(data);
+                flashAlert(skillsAlert, 'success', 'skill', 'updated', 'skills');
+            });
+        });
+    }
+
+    function deleteDocument(type, event) {
+        const dataTarget = event.target.getAttribute('data-id');
+
+        fetch(`${window.origin}/admin/${type}/delete/${dataTarget}`, {
+            method: 'DELETE',
+            credentials: 'include',
+            headers: new Headers()
+        })
+        .then(response => {
+            if (response.status !== 200) {
+                console.log(`Response status not 200: ${response.status}`);
+                flashAlert(skillsAlert, 'failure', 'skill', 'deleted', 'skills');
+                return;
+            }
+
+            response.json().then(data => {
+                console.log(data);
+                flashAlert(skillsAlert, 'success', 'skill', 'deleted', 'skills');
+            });
+        });
+    }
+
+    function handleElementsNotLoadedGlobally(event) {
+        event = event || window.event;
+        event.target = event.target || event.srcElement;
+
+        let element = event.target;
+        
+        while (element) {
+            if (/add-btn/.test(element.className)) {
+                changeFormButton('add', 'skills');
+                resetSkill();
+                setTimeout(function() {
+                    skillModalInstance.open();               
+                }, 400);
+                break; 
+            } else if (/skills-form-btn-add/.test(element.className)) {
+                addSkillData();
+                break; 
+            } else if (/skills-form-btn-update/.test(element.className)) {
+                updateSkillData();
+                break; 
+            }
+    
+            element = element.parentNode;
+        }
     }
 
 
@@ -129,11 +325,25 @@ document.addEventListener('DOMContentLoaded', function () {
         project.addEventListener("mouseout", shrinkProjects);
       });
 
-    Array.from(adminNavDropdowns).forEach(adminNavDropdown => {
-        adminNavDropdown.addEventListener('click', toggleDropdown);
+    Array.from(skillUpdateButtons).forEach(updateButton => {
+        updateButton.addEventListener('click', fetchSkillData);
     });
 
-    toggleMenuIcon.addEventListener('click', toggleVerticalNav);
+    Array.from(skillDeleteButtons).forEach(deleteButton => {
+        deleteButton.addEventListener('click', function(event) {
+            deleteDocument('skills', event);
+        });
+    });
+
+    Array.from(buttons).forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+        });
+    });
+
+    toggleMenuIcon.addEventListener('click', toggleSideNav);
+
+    document.addEventListener( "click", handleElementsNotLoadedGlobally);
     /* END OF EVENT LISTENERS */
 
     /* INITIALIZE MATERIALIZE COMPONENTS */
@@ -153,6 +363,10 @@ document.addEventListener('DOMContentLoaded', function () {
             el.querySelector('.custom-collapsible-header i').style.transform = 'scaleY(1)';
         }
     });
+
+    const modalElems = document.querySelectorAll('.modal');
+    const modalInstances = M.Modal.init(modalElems);
+    const skillModalInstance = M.Modal.init(skillModal);
     /* END OF INITIALIZE MATERIALIZE COMPONENTS */
 
     animateCursor();
