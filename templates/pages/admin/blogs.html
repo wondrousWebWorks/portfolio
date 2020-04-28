@@ -6,16 +6,20 @@
     {% include 'components/section-heading.html' %}
 {% endwith %}
 
+{% with alert_id = 'blogs-alert' %}
+    {% include 'components/admin/admin-alert.html' %}
+{% endwith %}
+
 <div class="row">
     <div class="col s12 center-align">
-        <a class="add-btn off-white green-bg modal-trigger" href="#"><i class="fas fa-plus-square"></i>&nbsp;ADD BLOG POST</a>
+        <a class="btn-large add-btn add-blog-post-btn green off-white"><i class="fas fa-plus-square"></i>&nbsp;ADD BLOG POST</a>
         <ul class="admin-list eerie-black-bg">
             {% for blog_post in blog_posts %}
             <li class="admin-list-item off-white">{{ blog_post.blog_title}}
                 <span>
-                    <a href="{{ url_for('edit_blog_post', blog_post_id=blog_post._id) }}" class="admin-list-btn light-blue-bg"><i
+                    <a class="update-blog-post-btn btn waves-effect waves-light light-blue darken-2 off-white text-shadow-1px" data-id="{{ blog_post._id }}"><i
                         class="fas fa-edit"></i> Edit</a>
-                    <a href="{{ url_for('delete_blog_post', blog_post_id=blog_post._id) }}" class="admin-list-btn crimson-bg"><i
+                    <a class="delete-blog-post-btn btn waves-effect waves-light red darken-3 off-white text-shadow-1px" data-id="{{ blog_post._id }}"><i
                         class="fas fa-trash-alt"></i> Delete</a>
                 </span>
             </li>
