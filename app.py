@@ -1,7 +1,7 @@
 import os
 if os.path.exists('env.py'):
     import env
-from flask import Flask, render_template, url_for, redirect, request, session, flash
+from flask import Flask, render_template, url_for, redirect, request, session, flash, jsonify, make_response
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from flask_mail import Mail, Message
@@ -23,8 +23,6 @@ app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 
 mail = Mail(app)
-
-bcrypt = Bcrypt(app)
 
 @app.route('/')
 @app.route('/home')
@@ -147,23 +145,23 @@ def admin():
 def manage_skills():
     """Return a rendered template of SKILLS page with all skills sent to it"""
     skills = mongo.db.skills.find()
-    return render_template('pages/admin/skills.html', skills=skills, skill='')
+    return render_template('pages/admin/skills.html', skills=skills)
 
 
-@app.route('/admin/skill/add', methods=['POST'])
+@app.route('/admin/skills/add', methods=['POST'])
 def add_skill():
     """Insert a new document into skills collection"""
     if request.method == 'POST':
         skills = mongo.db.skills
-        skill_to_insert_dict = request.form.to_dict()
+        skill_to_insert_dict = request.get_json()
         skills.insert_one(skill_to_insert_dict)
         find_inserted_skill = skills.find_one({'skill_name': skill_to_insert_dict['skill_name']})
         
         if find_inserted_skill:
-            flash(f'Successfully added \"{skill_to_insert_dict["skill_name"]}\"!', 'success')
+            response = make_response(jsonify({'message': 'success'}), 200)
         else:
-            flash('Failed to insert skill into skills collection', 'failed')
-        return redirect(url_for('manage_skills'))
+            response = make_response(jsonify({'message': 'failed'}), 500)
+    return response
 
 
 @app.route('/admin/edit_skill/<skill_id>')
