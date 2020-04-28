@@ -184,25 +184,20 @@ def update_skill(skill_id):
     return response
 
 
-@app.route('/admin/delete_skill/<skill_id>')
+@app.route('/admin/skills/delete/<skill_id>', methods=['DELETE'])
 def delete_skill(skill_id):
-    """Remove a skill from skills collection based on Id
-    
-    Retrieve skills collection from DB, then retrieve and store entry to be deleted using its 
-    Id from MANAGE SKILLS page. Remove skill from skills collection using Id. Try to find
-    skill in skills collection to confirm removal and flash success or failure message based on 
-    result. Finally, redirect to MANAGE SKILLS page
-    """
-    skills = mongo.db.skills
-    skill_to_delete = skills.find_one({'_id': ObjectId(skill_id)})
-    skills.remove({'_id': ObjectId(skill_id)})
-    skill_to_confirm_deleted = skills.find_one({'_id': ObjectId(skill_id)})
+    """Remove a skill from skills collection based on Id"""
+    print(request.method)
+    if request.method == 'DELETE':
+        skills = mongo.db.skills
+        skills.remove({'_id': ObjectId(skill_id)})
+        skill_to_confirm_deleted = skills.find_one({'_id': ObjectId(skill_id)})
 
-    if not skill_to_confirm_deleted:
-        flash(f'Successfully deleted \"{skill_to_delete["skill_name"]}\"', 'success')
-    else:
-        flash('Failed to delete skill from skills collection', 'failed')
-    return redirect(url_for('manage_skills'))
+        if not skill_to_confirm_deleted:
+            response = make_response(jsonify({'message': 'success'}), 200)
+        else:
+            response = make_response(jsonify({'message': 'failure'}), 500)
+    return response
 
 
 @app.route('/admin/add_project')
