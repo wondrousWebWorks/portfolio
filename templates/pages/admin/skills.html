@@ -12,14 +12,14 @@
 
 <div class="row">
     <div class="col s12 center-align">
-        <a class="btn-large add-btn add-skill-btn green off-white" href="#void"><i class="fas fa-plus-square"></i>&nbsp;ADD SKILL</a>
+        <a class="btn-large add-skill-btn green off-white"><i class="fas fa-plus-square"></i>&nbsp;ADD SKILL</a>
         <ul class="admin-list eerie-black-bg">
             {% for skill in skills %}
             <li class="admin-list-item off-white">{{ skill.skill_name}}
                 <span>
-                    <a href="#void" class="update-skill-btn btn waves-effect waves-light light-blue darken-2 off-white text-shadow-1px" data-id="{{ skill._id }}"><i
+                    <a class="update-skill-btn btn waves-effect waves-light light-blue darken-2 off-white text-shadow-1px" data-id="{{ skill._id }}"><i
                         class="fas fa-edit"></i> Edit</a>
-                    <a href="#void" class="delete-skill-btn btn waves-effect waves-light red darken-3 off-white text-shadow-1px" data-id="{{ skill._id }}"><i
+                    <a class="delete-skill-btn btn waves-effect waves-light red darken-3 off-white text-shadow-1px" data-id="{{ skill._id }}"><i
                         class="fas fa-trash-alt"></i> Delete</a>
                 </span>
             </li>
