@@ -209,6 +209,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    /**
+     * POSTs a skill to backend and flashes a success
+     * or failure alert message
+     */
     function addSkillData() {
         const skill_entry = {
             skill_name: skillName.value,
@@ -236,6 +240,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });   
     }
 
+    /**
+     * Fetches skill data and populates the skills form
+     * fields with it
+     */
     function fetchSkillData() {
         dataTarget = this.getAttribute('data-id');
         skillDocId.setAttribute('data-id', dataTarget);
@@ -255,6 +263,11 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    /**
+     * Gets Skills form data and PUTs it to the
+     * backend. Flash a success or failure alert
+     * depending on response
+     */
     function updateSkillData() {
         dataTarget = skillDocId.getAttribute('data-id');
         const skill_entry = {
@@ -285,6 +298,11 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    /**
+     * Deletes a document by sending a DELETE request to the backend
+     * @param {string} type - skills, projects, qualifications, blogs or experience
+     * @param {event} event - the button click event
+     */
     function deleteDocument(type, event) {
         const dataTarget = event.target.getAttribute('data-id');
 
@@ -307,6 +325,12 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    /**
+     * Handles a document click event and traverses up the
+     * DOM tree until a condition is met upon which an 
+     * appropriate function is called
+     * @param {event} event 
+     */
     function handleElementsNotLoadedGlobally(event) {
         event = event || window.event;
         event.target = event.target || event.srcElement;
