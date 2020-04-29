@@ -328,25 +328,19 @@ def update_qualification(qualification_id):
         return redirect(url_for('edit_project'))
 
 
-@app.route('/admin/delete_qualification/<qualification_id>')
+@app.route('/admin/qualifications/delete/<qualification_id>', methods=['DELETE'])
 def delete_qualification(qualification_id):
-    """Remove a qualification from qualifications collection based on Id
-    
-    Retrieve qualifications collection from DB, then retrieve and store entry to be deleted using its 
-    Id from MANAGE QUALIFICATIONS page. Remove qualification from qualifications collection using Id. Try to find
-    qualification in qualifications collection to confirm removal and flash success or failure message based on 
-    result. Finally, redirect to MANAGE QUALIFICATIONS page
-    """
-    qualifications = mongo.db.qualifications
-    qualification_to_delete = qualifications.find_one({'_id': ObjectId(qualification_id)})
-    qualifications.remove({'_id': ObjectId(qualification_id)})
-    qualification_to_confirm_deleted = qualifications.find_one({'_id': ObjectId(qualification_id)})
+    """Remove a qualification from qualifications collection based on Id"""
+    if request.method == 'DELETE':
+        qualifications = mongo.db.qualifications
+        qualifications.remove({'_id': ObjectId(qualification_id)})
+        qualification_to_confirm_deleted = qualifications.find_one({'_id': ObjectId(qualification_id)})
 
-    if not qualification_to_confirm_deleted:
-        flash(f'Successfully deleted \"{qualification_to_delete["qualification_name"]}\" from \"qualifications\" collection', 'success')
-    else:
-        flash('Failed to delete qualification from qualifications collection', 'failed')
-    return redirect(url_for('manage_qualifications'))
+        if not qualification_to_confirm_deleted:
+            response = make_response(jsonify({'message': 'success'}), 200)
+        else:
+            response = make_response(jsonify({'message': 'failure'}), 500)
+    return response
 
 
 @app.route('/admin/add_blog_post')
