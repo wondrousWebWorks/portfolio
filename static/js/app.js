@@ -452,6 +452,9 @@ document.addEventListener('DOMContentLoaded', function () {
         } else if (type === 'project') {
             alertTarget = projectsAlert;
             redirect = 'projects';
+        } else if (type === 'qualification') {
+            alertTarget = qualificationsAlert;
+            redirect = 'qualifications';
         }
 
         fetch(`${window.origin}/admin/${type}s/delete/${dataTarget}`, {
@@ -543,6 +546,12 @@ document.addEventListener('DOMContentLoaded', function () {
     Array.from(projectDeleteButtons).forEach(deleteButton => {
         deleteButton.addEventListener('click', function(event) {
             deleteDocument('project', event);
+        });
+    });
+
+    Array.from(qualificationDeleteButtons).forEach(deleteButton => {
+        deleteButton.addEventListener('click', function(event) {
+            deleteDocument('qualification', event);
         });
     });
 
