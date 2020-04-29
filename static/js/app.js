@@ -15,19 +15,36 @@ const buttons = document.querySelectorAll('button');
 /* ADMIN SKILLS */
 const skillUpdateButtons = document.querySelectorAll('.update-skill-btn');
 const skillDeleteButtons = document.querySelectorAll('.delete-skill-btn');
-const skillName = document.getElementById('skill-name');
-const skillLevel = document.getElementById('skill-level');
 const skillModal = document.getElementById('skills-form-modal');
 const skillForm = document.getElementById('skills-form');
 const skillFormLabels = document.querySelectorAll('.skills-form-label');
-const skillFormButton = document.getElementById('skills-form-btn');
-const skillFormButtonText = document.getElementById('skills-form-submit-btn-text');
-const skillDocId = document.getElementById('skill-doc-id');
+const skillFormSubmitButton = document.getElementById('skills-form-submit-btn');
+const skillFormSubmitButtonText = document.getElementById('skills-form-submit-btn-text');
+const skillFormDocId = document.getElementById('skill-form-doc-id');
 const skillsAlert = document.getElementById('skills-alert');
 const skillFormInputs = document.querySelectorAll('#skills-form input');
+const skillName = document.getElementById('skill-name');
+const skillLevel = document.getElementById('skill-level');
 
 /* ADMIN PROJECTS */
-const projectModal = document.getElementById('projects-form');
+const projectUpdateButtons = document.querySelectorAll('.update-project-btn');
+const projectDeleteButtons = document.querySelectorAll('.delete-project-btn');
+const projectModal = document.getElementById('projects-form-modal');
+const projectForm = document.getElementById('projects-form');
+const projectFormLabels = document.querySelectorAll('.projects-form-label');
+const projectFormSubmitButton = document.getElementById('projects-form-btn');
+const projectFormSubmitButtonText = document.getElementById('skills-form-submit-btn-text');
+const projectFormDocId = document.getElementById('skill-doc-id');
+const projectsAlert = document.getElementById('skills-alert');
+const projectFormInputs = document.querySelectorAll('#skills-form input');
+const projectName = document.getElementById('project-name');
+const projectImgUrl = document.getElementById('project-img-url');
+const projectGithubUrl = document.getElementById('project-github-url');
+const projectDeployedUrl = document.getElementById('project-deployed-url');
+const projectTechnologies = document.getElementById('project-technologies-url');
+const projectDescriptionParagraphs = document.querySelectorAll('project-description-paragraph');
+
+
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -188,8 +205,15 @@ document.addEventListener('DOMContentLoaded', function () {
                input.value = null;
                input.classList.remove('valid');
            }); 
+        } else if (formTarget === 'projects') {
+            formInputElements = projectFormInputs;
+            formLabels = projectFormLabels;
+            formInputElements.forEach(input => {
+                input.value = null;
+                input.classList.remove('valid');
+            }); 
         }
-
+        
         Array.from(formLabels).forEach(label => {
             label.classList.remove('active');
         });
@@ -205,8 +229,12 @@ document.addEventListener('DOMContentLoaded', function () {
         let formTargetClass = formTarget;
         switch (formTarget) {
             case 'skills': 
-                formTarget = skillFormButton;
-                formTargetButton = skillFormButtonText;
+                formTarget = skillFormSubmitButton;
+                formTargetButton = skillFormSubmitButtonText;
+                break;
+            case 'projects':
+                formTarget = projectFormSubmitButton;
+                formTargetButton = projectFormSubmitButtonText;
                 break;
             default: formTarget = formTarget; 
         }
@@ -259,7 +287,7 @@ document.addEventListener('DOMContentLoaded', function () {
      */
     function fetchSkillData() {
         dataTarget = this.getAttribute('data-id');
-        skillDocId.setAttribute('data-id', dataTarget);
+        skillFormDocId.setAttribute('data-id', dataTarget);
         changeFormButton('update', 'skills');
         
         fetch(`${window.origin}/admin/skills/update/${dataTarget}`)
@@ -282,7 +310,7 @@ document.addEventListener('DOMContentLoaded', function () {
      * depending on response
      */
     function updateSkillData() {
-        dataTarget = skillDocId.getAttribute('data-id');
+        dataTarget = skillFormDocId.getAttribute('data-id');
         const skill_entry = {
             skill_id: dataTarget,
             skill_name: skillName.value,
@@ -365,11 +393,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 updateSkillData();
                 break; 
             } else if (/add-project-btn/.test(element.className)) {
-                // changeFormButton('add', 'projects');
-                // resetSkill();
+                resetForm('projects');
                 setTimeout(function() {
                     projectModalInstance.open();               
                 }, 400);
+                break;
             }
     
             element = element.parentNode;
@@ -401,7 +429,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     toggleMenuIcon.addEventListener('click', toggleSideNav);
     document.addEventListener( "click", handleElementsNotLoadedGlobally);
-    // skillForm.addEventListener('submit', addSkillData);
 
     /* INITIALIZE MATERIALIZE COMPONENTS */
     const selectElems = document.querySelectorAll('select');
