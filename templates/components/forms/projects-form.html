@@ -2,7 +2,7 @@
     <div class="modal-content grey darken-4">
         <h4 class="off-white">Project</h4>
         <form id="projects-form">
-            <input id="project-doc-id" type="hidden">
+            <input id="project-form-doc-id" type="hidden">
             <div class="row">
                 <div class="input-field col s12">
                     <input id="project-name" name="project-name" type="text" class="validate">
@@ -32,7 +32,7 @@
                     <select id="project-technologies" name="project-technologies" multiple>
                         <option value="" disabled selected>Choose Technologies</option><i class="fas fa-chevron-down magenta"></i>
                         {% for technology in technology_list %}
-                            <option>{{ technology }}</option>
+                            <option value="{{ technology }}">{{ technology }}</option>
                         {% endfor %}
                     </select>
                     <label class="projects-form-label">Technologies</label>
