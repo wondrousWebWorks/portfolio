@@ -1,30 +1,30 @@
-<div id="projects-form" class="modal grey darken-4">
+<div id="projects-form-modal" class="modal grey darken-4">
     <div class="modal-content grey darken-4">
         <h4 class="off-white">Project</h4>
-        <form>
+        <form id="projects-form">
             <input id="project-doc-id" type="hidden">
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="project-name" type="text" class="validate">
-                    <label for="project-name">Project Name</label>
+                    <input id="project-name" name="project-name" type="text" class="validate">
+                    <label for="project-name" class="projects-form-label">Project Name</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="project-img-url" type="text" class="validate">
-                    <label for="project-img-url">Project Image URL</label>
+                    <input id="project-img-url" name="project-img-url" type="text" class="validate">
+                    <label for="project-img-url" class="projects-form-label">Project Image URL</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="project-github-url" type="text" class="validate">
-                    <label for="project-github-url">Project GitHub URL</label>
+                    <input id="project-github-url" name="project-github-url" type="text" class="validate">
+                    <label for="project-github-url" class="projects-form-label">Project GitHub URL</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="project-live-url" type="text" class="validate">
-                    <label for="project-live-url">Project Live URL</label>
+                    <input id="project-deployed-url" name="project-deployed-url" type="text" class="validate">
+                    <label for="project-deployed-url" class="projects-form-label">Project Live URL</label>
                 </div>
             </div>
             <div class="row">
@@ -35,15 +35,15 @@
                             <option>{{ technology }}</option>
                         {% endfor %}
                     </select>
-                    <label>Technologies</label>
+                    <label class="projects-form-label">Technologies</label>
                 </div>
             </div>
             {% for id in range(1, 6) %}
             <div class="row">
                 <div class="input-field col s12">
-                    <textarea id="project-description-paragraph-{{ id }}"
-                        class="materialize-textarea"></textarea>
-                    <label for="project-description-paragraph-{{ id }}">Project Description Paragraph {{ id }}</label>
+                    <textarea id="project-description-paragraph-{{ id }}" name="project-description-paragraph-{{ id }}"
+                        class="project-description-paragraph materialize-textarea"></textarea>
+                    <label for="project-description-paragraph-{{ id }}" class="projects-form-label">Project Description Paragraph {{ id }}</label>
                 </div>
             </div>
             {% endfor %}
