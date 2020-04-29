@@ -272,34 +272,6 @@ def delete_project(project_id):
     return response
 
 
-@app.route('/admin/add_qualification')
-def add_qualification():
-    """Return a rendered template of the ADD QUALIFICATION page"""
-    return render_template('pages/add_qualification.html')
-
-
-@app.route('/admin/insert_qualification', methods=['POST'])
-def insert_qualification():
-    """Using data from form on ADD QUALIFICATION page, insert document into qualifications collection
-    
-    Retrieve documents from qualifications collection. Convert form data from add_qualification
-    page's form to dictionary. Insert it into qualifications collection. Try to find 
-    newly inserted document in qualifications collection and flash either a success or
-    failure message on screen. Finally, redirect to MANAGE QUALIFICATIONS page
-    """
-    if request.method == 'POST':
-        qualifications = mongo.db.qualifications
-        qualification_to_insert = request.form.to_dict()
-        qualifications.insert_one(qualification_to_insert)
-        find_inserted_qualification = qualifications.find_one({'qualification_name': qualification_to_insert['qualification_name']})
-    
-        if find_inserted_qualification:
-            flash(f'Successfully inserted \"{qualification_to_insert["qualification_name"]}\" into \"qualifications\" collection', 'success')
-        else:
-            flash('Failed to insert project into portfolio collection', 'failed')
-        return redirect(url_for('manage_qualifications'))
-
-
 @app.route('/admin/qualifications')
 def manage_qualifications():
     """Return a rendered template of MANAGE QUALIFICATIONS page
@@ -309,6 +281,22 @@ def manage_qualifications():
     """
     qualifications = mongo.db.qualifications.find()
     return render_template('pages/admin/qualifications.html', qualifications=qualifications)
+
+
+@app.route('/admin/qualifications/add')
+def add_qualification():
+    """Insert a new document into qualifications collection"""
+    if request.method == 'POST':
+        qualifications = mongo.db.qualifications
+        qualification_to_insert = request.get_json()
+        qualifications.insert_one(qualification_to_insert)
+        find_inserted_qualification = qualifications.find_one({'qualification_name': qualification_to_insert['qualification_name']})
+        
+        if find_inserted_qualification:
+            response = make_response(jsonify({'message': 'success'}), 200)
+        else:
+            response = make_response(jsonify({'message': 'failed'}), 500)
+    return response
 
 
 @app.route('/admin/edit_qualification/<qualification_id>')
