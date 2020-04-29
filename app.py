@@ -187,7 +187,6 @@ def update_skill(skill_id):
 @app.route('/admin/skills/delete/<skill_id>', methods=['DELETE'])
 def delete_skill(skill_id):
     """Remove a skill from skills collection based on Id"""
-    print(request.method)
     if request.method == 'DELETE':
         skills = mongo.db.skills
         skills.remove({'_id': ObjectId(skill_id)})
@@ -258,25 +257,19 @@ def update_project(project_id):
         return redirect(url_for('edit_project'))
 
 
-@app.route('/admin/delete_project/<project_id>')
+@app.route('/admin/projects/delete/<project_id>', methods=['DELETE'])
 def delete_project(project_id):
-    """Remove a project from portfolio collection based on Id
-    
-    Retrieve portfolio collection from DB, then retrieve and store entry to be deleted using its 
-    Id from MANAGE PROJECTS page. Remove project from portfolio collection using Id. Try to find
-    skill in portfolio collection to confirm removal and flash success or failure message based on 
-    result. Finally, redirect to MANAGE PROJECTS page
-    """
-    projects = mongo.db.portfolio
-    project_to_delete = projects.find_one({'_id': ObjectId(project_id)})
-    projects.remove({'_id': ObjectId(project_id)})
-    project_to_confirm_deleted = projects.find_one({'_id': ObjectId(project_id)})
+    """Remove a project from portfolio collection based on Id"""
+    if request.method == 'DELETE':
+        projects = mongo.db.portfolio
+        projects.remove({'_id': ObjectId(project_id)})
+        project_to_confirm_deleted = projects.find_one({'_id': ObjectId(project_id)})
 
-    if not project_to_confirm_deleted:
-        flash(f'Successfully deleted \"{project_to_delete["project_name"]}\" from \"portfolio\" collection', 'success')
-    else:
-        flash('Failed to delete project from portfolio collection', 'failed')
-    return redirect(url_for('manage_projects'))
+        if not project_to_confirm_deleted:
+            response = make_response(jsonify({'message': 'success'}), 200)
+        else:
+            response = make_response(jsonify({'message': 'failure'}), 500)
+    return response
 
 
 @app.route('/admin/add_qualification')
