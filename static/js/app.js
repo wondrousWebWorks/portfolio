@@ -33,17 +33,16 @@ const projectModal = document.getElementById('projects-form-modal');
 const projectForm = document.getElementById('projects-form');
 const projectFormLabels = document.querySelectorAll('.projects-form-label');
 const projectFormSubmitButton = document.getElementById('projects-form-btn');
-const projectFormSubmitButtonText = document.getElementById('skills-form-submit-btn-text');
-const projectFormDocId = document.getElementById('skill-doc-id');
-const projectsAlert = document.getElementById('skills-alert');
-const projectFormInputs = document.querySelectorAll('#skills-form input');
+const projectFormSubmitButtonText = document.getElementById('projects-form-submit-btn-text');
+const projectFormDocId = document.getElementById('project-form-doc-id');
+const projectsAlert = document.getElementById('projects-alert');
+const projectFormInputs = document.querySelectorAll('#projects-form input');
 const projectName = document.getElementById('project-name');
 const projectImgUrl = document.getElementById('project-img-url');
 const projectGithubUrl = document.getElementById('project-github-url');
 const projectDeployedUrl = document.getElementById('project-deployed-url');
-const projectTechnologies = document.getElementById('project-technologies-url');
+const projectTechnologies = document.getElementById('project-technologies');
 const projectDescriptionParagraphs = document.querySelectorAll('project-description-paragraph');
-
 
 
 
@@ -213,7 +212,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 input.classList.remove('valid');
             }); 
         }
-        
+
         Array.from(formLabels).forEach(label => {
             label.classList.remove('active');
         });
@@ -277,6 +276,43 @@ document.addEventListener('DOMContentLoaded', function () {
             response.json().then(data => {
                 console.log(data);
                 flashAlert(skillsAlert, 'success', 'skill', 'added', 'skills');
+            });
+        });   
+    }
+
+    function addProjectData() {
+        const projectTechnologiesValues = M.FormSelect.getInstance(projectTechnologies);
+        const projectDescription = [];
+        projectDescriptionParagraphs.forEach(paragraph => {
+            projectDescription.push(paragraph);
+        });
+
+        const project_entry = {
+            project_name: projectName.value,
+            project_img_url: projectImgUrl.value,
+            project_github_url: projectGithubUrl.value,
+            project_deployed_url: projectDeployedUrl.value,
+            project_technologies: projectTechnologiesValues.getSelectedValues(),
+            project_description: projectDescription
+        };
+
+        fetch(`${window.origin}/admin/projects/add`, {
+            method: 'POST',
+            credentials: 'include',
+            body: JSON.stringify(project_entry),
+            cache: 'no-cache',
+            headers: new Headers({
+                'content-type': 'application/json'
+            })
+        }).then(response => {
+            if (response.status !== 200) {
+                console.log(`Response status not 200: ${response.status}`);
+                flashAlert(projectsAlert, 'failure', 'project', 'added', 'projects');
+                return;
+            }
+            response.json().then(data => {
+                console.log(data);
+                flashAlert(projectsAlert, 'success', 'project', 'added', 'projects');
             });
         });   
     }
@@ -397,6 +433,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 setTimeout(function() {
                     projectModalInstance.open();               
                 }, 400);
+                break;
+            } else if (/projects-form-btn-add/.test(element.className)) {
+                addProjectData();
                 break;
             }
     
