@@ -50,7 +50,7 @@ const qualificationDeleteButtons = document.querySelectorAll('.delete-qualificat
 const qualificationModal = document.getElementById('qualifications-form-modal');
 const qualificationForm = document.getElementById('qualifications-form');
 const qualificationFormLabels = document.querySelectorAll('.qualifications-form-label');
-const qualificationFormSubmitButton = document.getElementById('qualifications-form-btn');
+const qualificationFormSubmitButton = document.getElementById('qualifications-form-submit-btn');
 const qualificationFormSubmitButtonText = document.getElementById('qualifications-form-submit-btn-text');
 const qualificationFormDocId = document.getElementById('qualification-form-doc-id');
 const qualificationsAlert = document.getElementById('qualifications-alert');
@@ -227,6 +227,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 input.value = null;
                 input.classList.remove('valid');
             }); 
+        } else if (formTarget === 'qualifications') {
+            formInputElements = qualificationFormInputs;
+            formLabels = qualificationFormLabels;
+            formInputElements.forEach(input => {
+                input.value = null;
+                input.classList.remove('valid');
+            }); 
         }
 
         Array.from(formLabels).forEach(label => {
@@ -250,6 +257,10 @@ document.addEventListener('DOMContentLoaded', function () {
             case 'projects':
                 formTarget = projectFormSubmitButton;
                 formTargetButton = projectFormSubmitButtonText;
+                break;
+            case 'qualifications':
+                formTarget = qualificationFormSubmitButton;
+                formTargetButton = qualificationFormSubmitButtonText;
                 break;
             default: formTarget = formTarget; 
         }
@@ -296,6 +307,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });   
     }
 
+    /**
+     * POSTs a project to backend and flashes a success
+     * or failure alert message
+     */
     function addProjectData() {
         const projectTechnologiesValues = M.FormSelect.getInstance(projectTechnologies);
         const projectDescription = [];
@@ -329,6 +344,36 @@ document.addEventListener('DOMContentLoaded', function () {
             response.json().then(data => {
                 console.log(data);
                 flashAlert(projectsAlert, 'success', 'project', 'added', 'projects');
+            });
+        });   
+    }
+
+    function addQualificationData() {
+        const qualification_entry = {
+            qualification_name: qualificationName.value,
+            qualification_from: qualificationFrom.value,
+            qualification_issue_date: qualificationIssueDate.value,
+            qualification_view_url: qualificationViewUrl.value,
+            qualification_info_url: qualificationInfoUrl.value
+        };
+
+        fetch(`${window.origin}/admin/qualifications/add`, {
+            method: 'POST',
+            credentials: 'include',
+            body: JSON.stringify(qualification_entry),
+            cache: 'no-cache',
+            headers: new Headers({
+                'content-type': 'application/json'
+            })
+        }).then(response => {
+            if (response.status !== 200) {
+                console.log(`Response status not 200: ${response.status}`);
+                flashAlert(qualificationsAlert, 'failure', 'qualification', 'added', 'qualifications');
+                return;
+            }
+            response.json().then(data => {
+                console.log(data);
+                flashAlert(qualificationsAlert, 'success', 'qualification', 'added', 'qualifications');
             });
         });   
     }
@@ -460,8 +505,17 @@ document.addEventListener('DOMContentLoaded', function () {
                     projectModalInstance.open();               
                 }, 400);
                 break;
+            } else if (/add-qualification-btn/.test(element.className)) {
+                resetForm('qualifications');
+                setTimeout(function() {
+                    qualificationModalInstance.open();               
+                }, 400);
+                break;
             } else if (/projects-form-btn-add/.test(element.className)) {
                 addProjectData();
+                break;
+            } else if(/qualifications-form-btn-add/.test(element.className)) {
+                addQualificationData();
                 break;
             }
     
@@ -523,6 +577,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const modalInstances = M.Modal.init(modalElems);
     const skillModalInstance = M.Modal.init(skillModal);
     const projectModalInstance = M.Modal.init(projectModal);
+    const qualificationModalInstance = M.Modal.init(qualificationModal);
 
     /* FUNCTIONS CALLED ON PAGE LOAD */
     animateCursor();
