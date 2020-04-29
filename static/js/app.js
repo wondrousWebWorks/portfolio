@@ -10,19 +10,24 @@ const toggleMenuIcon = document.querySelector('.menu-toggle-icon');
 const sideNav = document.querySelector('.nav-display-col');
 
 /* ADMIN SHARED */
+const buttons = document.querySelectorAll('button');
 
 /* ADMIN SKILLS */
 const skillUpdateButtons = document.querySelectorAll('.update-skill-btn');
 const skillDeleteButtons = document.querySelectorAll('.delete-skill-btn');
 const skillName = document.getElementById('skill-name');
 const skillLevel = document.getElementById('skill-level');
-const skillModal = document.getElementById('skills-form');
+const skillModal = document.getElementById('skills-form-modal');
+const skillForm = document.getElementById('skills-form');
 const skillFormLabels = document.querySelectorAll('.skills-form-label');
 const skillFormButton = document.getElementById('skills-form-btn');
 const skillFormButtonText = document.getElementById('skills-form-submit-btn-text');
 const skillDocId = document.getElementById('skill-doc-id');
-const buttons = document.querySelectorAll('button');
 const skillsAlert = document.getElementById('skills-alert');
+const skillFormInputs = document.querySelectorAll('#skills-form input');
+
+/* ADMIN PROJECTS */
+const projectModal = document.getElementById('projects-form');
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -168,16 +173,24 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /**
-     * Resets the Skills-form to its original state
+     * Reset any form to its original empty state
+     * @param {string} formTarget 
      */
-    function resetSkill() {
-        changeFormButton('add', 'skills');
-        skillName.value = null;
-        skillLevel.value = null;
-        skillName.classList.remove('valid');
-        skillLevel.classList.remove('valid');
+    function resetForm(formTarget) {
+        let formInputElements;
+        let formLabels;
+        changeFormButton('add', formTarget);
 
-        Array.from(skillFormLabels).forEach(label => {
+        if (formTarget === 'skills') {
+           formInputElements = skillFormInputs;
+           formLabels = skillFormLabels;
+           formInputElements.forEach(input => {
+               input.value = null;
+               input.classList.remove('valid');
+           }); 
+        }
+
+        Array.from(formLabels).forEach(label => {
             label.classList.remove('active');
         });
     }
@@ -185,7 +198,7 @@ document.addEventListener('DOMContentLoaded', function () {
     /**
      * Changes the button classes and text for any admin form
      * @param {string} type - add or update
-     * @param {*} formTarget - which form to target
+     * @param {string} formTarget - which form to target
      */
     function changeFormButton(type, formTarget) {
         let formTargetButton;
@@ -338,9 +351,9 @@ document.addEventListener('DOMContentLoaded', function () {
         let element = event.target;
         
         while (element) {
-            if (/add-btn/.test(element.className)) {
+            if (/add-skill-btn/.test(element.className)) {
                 changeFormButton('add', 'skills');
-                resetSkill();
+                resetForm('skills');
                 setTimeout(function() {
                     skillModalInstance.open();               
                 }, 400);
@@ -351,6 +364,12 @@ document.addEventListener('DOMContentLoaded', function () {
             } else if (/skills-form-btn-update/.test(element.className)) {
                 updateSkillData();
                 break; 
+            } else if (/add-project-btn/.test(element.className)) {
+                // changeFormButton('add', 'projects');
+                // resetSkill();
+                setTimeout(function() {
+                    projectModalInstance.open();               
+                }, 400);
             }
     
             element = element.parentNode;
@@ -381,9 +400,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     toggleMenuIcon.addEventListener('click', toggleSideNav);
-
     document.addEventListener( "click", handleElementsNotLoadedGlobally);
-    /* END OF EVENT LISTENERS */
+    // skillForm.addEventListener('submit', addSkillData);
 
     /* INITIALIZE MATERIALIZE COMPONENTS */
     const selectElems = document.querySelectorAll('select');
@@ -406,8 +424,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const modalElems = document.querySelectorAll('.modal');
     const modalInstances = M.Modal.init(modalElems);
     const skillModalInstance = M.Modal.init(skillModal);
-    /* END OF INITIALIZE MATERIALIZE COMPONENTS */
+    const projectModalInstance = M.Modal.init(projectModal);
 
+    /* FUNCTIONS CALLED ON PAGE LOAD */
     animateCursor();
     randomizeInitialSkillBarHeight();
     animateSkillBars();
