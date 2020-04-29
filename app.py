@@ -200,52 +200,29 @@ def delete_skill(skill_id):
     return response
 
 
-@app.route('/admin/add_project')
-def add_project():
-    """Return a rendered template of the ADD PROJECT page
-    
-    Retrieve technologies document from technologies collection and store list
-    in variable. Pass list to a rendered template of the ADD PROJECT page 
-    """
-    technologies = mongo.db.technologies.find()
-    technology_list = technologies[0]['technology_name']
-    return render_template('pages/add_project.html', technology_list=technology_list)
-
-
-@app.route('/admin/insert_project', methods=['POST'])
-def insert_project():
-    """Using data from form on ADD PROJECT page, insert document into portfolio collection
-    
-    Retrieve documents from portfolio collection. Convert form data from add_project
-    page's form to dictionary. Change project_description and _project technologies
-    in generated dictionary to use lists instead of single values. Insert it into 
-    portfolio collection. Try to find newly inserted document in portfolio collection and flash either a success or
-    failure message on screen. Finally, redirect to MANAGE PROJECTS page
-    """
-    if request.method == 'POST':
-        projects = mongo.db.portfolio
-        form_body = request.form.to_dict()
-        form_body['project_description'] = request.form.getlist('project_description')
-        form_body['project_technologies'] = request.form.getlist('project_technologies')
-        projects.insert_one(form_body)
-        find_inserted_project = projects.find_one({'project_name': form_body['project_name']})
-        
-        if find_inserted_project:
-            flash(f'Successfully inserted \"{form_body["project_name"]}\" into \"portfolio\" collection', 'success')
-        else:
-            flash('Failed to insert project into portfolio collection', 'failed')
-        return redirect(url_for('manage_projects'))
-
-
 @app.route('/admin/projects')
 def manage_projects():
-    """Return a rendered template of MANAGE PROJECTS page
-    
-    Retrieve all PROJECT documents from the portfolio collection.  Pass retrieved data 
-    to a rendered template of the MANMAGE PROJECTS page.
-    """
+    """Return a rendered template of PROJECTS page with all projects sent to it"""
     projects = mongo.db.portfolio.find()
-    return render_template('pages/admin/projects.html', projects=projects)
+    technologies = mongo.db.technologies.find()
+    technology_list = technologies[0]['technology_name']
+    return render_template('pages/admin/projects.html', projects=projects, technology_list=technology_list)
+
+
+@app.route('/admin/projects/add', methods=['POST'])
+def add_project():
+    """Insert a new document into portfolio collection"""
+    if request.method == 'POST':
+        projects = mongo.db.portfolio
+        project_to_insert_dict = request.get_json()
+        projects.insert_one(project_to_insert_dict)
+        find_inserted_project = projects.find_one({'project_name': project_to_insert_dict['project_name']})
+        
+        if find_inserted_project:
+            response = make_response(jsonify({'message': 'success'}), 200)
+        else:
+            response = make_response(jsonify({'message': 'failed'}), 500)
+    return response 
 
 
 @app.route('/admin/edit_project/<project_id>')
