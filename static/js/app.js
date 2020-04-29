@@ -382,8 +382,18 @@ document.addEventListener('DOMContentLoaded', function () {
      */
     function deleteDocument(type, event) {
         const dataTarget = event.target.getAttribute('data-id');
+        let alertTarget;
+        let redirect;
 
-        fetch(`${window.origin}/admin/${type}/delete/${dataTarget}`, {
+        if (type === 'skill') {
+            alertTarget = skillsAlert;
+            redirect = 'skills';
+        } else if (type === 'project') {
+            alertTarget = projectsAlert;
+            redirect = 'projects';
+        }
+
+        fetch(`${window.origin}/admin/${type}s/delete/${dataTarget}`, {
             method: 'DELETE',
             credentials: 'include',
             headers: new Headers()
@@ -391,13 +401,13 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => {
             if (response.status !== 200) {
                 console.log(`Response status not 200: ${response.status}`);
-                flashAlert(skillsAlert, 'failure', 'skill', 'deleted', 'skills');
+                flashAlert(alertTarget, 'failure', type, 'deleted', redirect);
                 return;
             }
 
             response.json().then(data => {
                 console.log(data);
-                flashAlert(skillsAlert, 'success', 'skill', 'deleted', 'skills');
+                flashAlert(alertTarget, 'success', type, 'deleted', redirect);
             });
         });
     }
@@ -456,7 +466,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     Array.from(skillDeleteButtons).forEach(deleteButton => {
         deleteButton.addEventListener('click', function(event) {
-            deleteDocument('skills', event);
+            deleteDocument('skill', event);
+        });
+    });
+
+    Array.from(projectDeleteButtons).forEach(deleteButton => {
+        deleteButton.addEventListener('click', function(event) {
+            deleteDocument('project', event);
         });
     });
 
