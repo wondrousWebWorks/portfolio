@@ -44,6 +44,22 @@ const projectDeployedUrl = document.getElementById('project-deployed-url');
 const projectTechnologies = document.getElementById('project-technologies');
 const projectDescriptionParagraphs = document.querySelectorAll('project-description-paragraph');
 
+/* ADMIN QUALIFICATIONS */
+const qualificationUpdateButtons = document.querySelectorAll('.update-qualification-btn');
+const qualificationDeleteButtons = document.querySelectorAll('.delete-qualification-btn');
+const qualificationModal = document.getElementById('qualifications-form-modal');
+const qualificationForm = document.getElementById('qualifications-form');
+const qualificationFormLabels = document.querySelectorAll('.qualifications-form-label');
+const qualificationFormSubmitButton = document.getElementById('qualifications-form-btn');
+const qualificationFormSubmitButtonText = document.getElementById('qualifications-form-submit-btn-text');
+const qualificationFormDocId = document.getElementById('qualification-form-doc-id');
+const qualificationsAlert = document.getElementById('qualifications-alert');
+const qualificationFormInputs = document.querySelectorAll('#qualifications-form input');
+const qualificationName = document.getElementById('qualification-name');
+const qualificationFrom = document.getElementById('qualification-from');
+const qualificationIssueDate = document.getElementById('qualification-issue-date');
+const qualificationViewUrl = document.getElementById('qualification-view-url');
+const qualificationInfoUrl = document.getElementById('qualification-info-url');
 
 
 document.addEventListener('DOMContentLoaded', function () {
