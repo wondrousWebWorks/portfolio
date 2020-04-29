@@ -283,7 +283,7 @@ def manage_qualifications():
     return render_template('pages/admin/qualifications.html', qualifications=qualifications)
 
 
-@app.route('/admin/qualifications/add')
+@app.route('/admin/qualifications/add', methods=['POST'])
 def add_qualification():
     """Insert a new document into qualifications collection"""
     if request.method == 'POST':
