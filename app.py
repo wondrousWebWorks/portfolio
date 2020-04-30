@@ -350,14 +350,8 @@ def manage_blogs():
     return render_template('pages/admin/blogs.html', blog_posts=blog_posts)
 
 
-# @app.route('/admin/add_blog_post')
-# def add_blog_post():
-#     """Return rendered template of ADD BLOG POST page"""
-#     return render_template('pages/add_blog_post.html')
-
-
 @app.route('/admin/blogs/add', methods=['POST'])
-def insert_blog_post():
+def add_blog_post():
     """Insert a new document into blog_posts collection"""
     if request.method == 'POST':
         blog_posts = mongo.db.blog_posts
@@ -415,44 +409,27 @@ def delete_blog_post(blog_post_id):
             response = make_response(jsonify({'message': 'failure'}), 500)
     return response
 
-
-@app.route('/admin/add_experience')
-def add_experience():
-    """Return a rendered template of the ADD EXPERIENCE page"""
-    return render_template('pages/add_experience.html')
-
-
-@app.route('/admin/insert_experience', methods=['POST'])
-def insert_experience():
-    """Using data from form on ADD EXPERIENCE page, insert document into work_experience collection
-    
-    Retrieve documents from work_experience collection. Convert form data from add_experience
-    page's form to dictionary. Insert dictionary into work_experience collection. Try to find 
-    newly inserted document in work_experience collection and flash either a success or 
-    failure message on screen. Finally, redirect to MANAGE EXPERIENCE page
-    """
-    if request.method == 'POST':
-        experience = mongo.db.work_experience
-        form_body = request.form.to_dict()
-        experience.insert_one(form_body)
-        find_inserted_experience = experience.find_one({'job_title': form_body['job_title']})
-
-        if find_inserted_experience:
-            flash(f'Successfully inserted \"{form_body["job_title"]}\" into \"work_experience\" collection', 'success')
-        else:
-            flash('Failed to insert experience into work_experience collection', 'failed')
-        return redirect(url_for('manage_experience'))
-
-
 @app.route('/admin/experience')
 def manage_experience():
-    """Return a rendered template of MANAGE EXPERIENCE page
-    
-    Retrieve all WORK EXPERIENCE documents from the work_experience collection.  Pass retrieved data 
-    to a rendered template of the MANAGE WORK EXPERIENCE page.
-    """
+    """Return a rendered template of EXPERIENCE page with all work experience sent to it"""
     experience = mongo.db.work_experience.find()
     return render_template('pages/admin/experience.html', experience=experience)
+
+
+@app.route('/admin/experience/add', methods=['POST'])
+def add_experience():
+    """Insert a new document into experience collection"""
+    if request.method == 'POST':
+        experience = mongo.db.work_experience
+        experience_to_insert_dict = request.get_json()
+        experience.insert_one(experience_to_insert_dict)
+        find_inserted_experience = experience.find_one({'job_title': experience_to_insert_dict['job_title']})
+        
+        if find_inserted_experience:
+            response = make_response(jsonify({'message': 'success'}), 200)
+        else:
+            response = make_response(jsonify({'message': 'failed'}), 500)
+    return response
 
 
 @app.route('/admin/edit_experience/<experience_id>')
@@ -480,25 +457,19 @@ def update_experience(experience_id):
         return redirect(url_for('edit_experience'))
 
 
-@app.route('/admin/delete_experience/<experience_id>')
+@app.route('/admin/experience/delete/<experience_id>', methods=['DELETE'])
 def delete_experience(experience_id):
-    """Remove a work experience from work_experience collection based on Id
-    
-    Retrieve work_experience collection from DB, then retrieve and store entry to be deleted using its 
-    Id from MANAGE EXPERIENCE page. Remove work experience from work_experience collection using Id. Try to find
-    work_experience in work_experience collection to confirm removal and flash success or failure message based on 
-    result. Finally, redirect to MANAGE EXPERIENCE page
-    """
-    experience = mongo.db.work_experience
-    experience_to_delete = experience.find_one({'_id': ObjectId(experience_id)})
-    experience.remove({'_id': ObjectId(experience_id)})
-    experience_to_confirm_deleted = experience.find_one({'_id': ObjectId(experience_id)})
+    """Remove a work experience document from work_experience collection based on Id"""
+    if request.method == 'DELETE':
+        experience = mongo.db.work_experience
+        experience.remove({'_id': ObjectId(experience_id)})
+        experience_to_confirm_deleted = experience.find_one({'_id': ObjectId(experience_id)})
 
-    if not experience_to_confirm_deleted:
-        flash(f'Successfully deleted \"{experience_to_delete["job_title"]}\" from \"work_experience\" collection', 'success')
-    else:
-        flash('Failed to delete experience from work_experience collection', 'failed')
-    return redirect(url_for('manage_experience'))
+        if not experience_to_confirm_deleted:
+            response = make_response(jsonify({'message': 'success'}), 200)
+        else:
+            response = make_response(jsonify({'message': 'failure'}), 500)
+    return response
 
 
 @app.route('/login')
