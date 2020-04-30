@@ -42,7 +42,7 @@ const projectImgUrl = document.getElementById('project-img-url');
 const projectGithubUrl = document.getElementById('project-github-url');
 const projectDeployedUrl = document.getElementById('project-deployed-url');
 const projectTechnologies = document.getElementById('project-technologies');
-const projectDescriptionParagraphs = document.querySelectorAll('project-description-paragraph');
+const projectDescriptionParagraphs = document.querySelectorAll('.project-description-paragraph');
 
 /* ADMIN QUALIFICATIONS */
 const qualificationUpdateButtons = document.querySelectorAll('.update-qualification-btn');
@@ -273,6 +273,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 input.value = null;
                 input.classList.remove('valid');
             }); 
+        } else if (formTarget === 'experience') {
+            formInputElements = experienceFormInputs;
+            formLabels = experienceFormLabels;
+            formInputElements.forEach(input => {
+                input.value = null;
+                input.classList.remove('valid');
+            }); 
         }
 
         Array.from(formLabels).forEach(label => {
@@ -304,6 +311,10 @@ document.addEventListener('DOMContentLoaded', function () {
             case 'blogs':
                 formTarget = blogFormSubmitButton;
                 formTargetButton = blogFormSubmitButtonText;
+                break;
+            case 'experience':
+                formTarget = experienceFormSubmitButton;
+                formTargetButton = experienceFormSubmitButtonText;
                 break;
             default: formTarget = formTarget; 
         }
@@ -369,7 +380,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const projectTechnologiesValues = M.FormSelect.getInstance(projectTechnologies);
         const projectDescription = [];
         projectDescriptionParagraphs.forEach(paragraph => {
-            projectDescription.push(paragraph);
+            projectDescription.push(paragraph.value);
         });
 
         const projectEntry = {
@@ -380,6 +391,8 @@ document.addEventListener('DOMContentLoaded', function () {
             project_technologies: projectTechnologiesValues.getSelectedValues(),
             project_description: projectDescription
         };
+
+        console.log(projectEntry);
 
         addData('projects', projectEntry, projectsAlert, 'project');
     }
@@ -419,6 +432,19 @@ document.addEventListener('DOMContentLoaded', function () {
         };
 
         addData('blogs', blogPost, blogAlert, 'blog post');
+    }
+
+        /**
+     * POSTs a blog post to backend and flashes a success
+     * or failure alert message
+     */
+    function addExperienceData() {
+        const experienceEntry = {
+            job_title: experienceJobTitle.value,
+            job_dates: experienceJobDates.value
+        };
+
+        addData('experience', experienceEntry, experienceAlert, 'experience');
     }
 
     /**
@@ -501,9 +527,12 @@ document.addEventListener('DOMContentLoaded', function () {
         } else if (type === 'blog') {
             alertTarget = blogAlert;
             redirect = 'blogs';
+        } else if (type === 'experience') {
+            alertTarget = experienceAlert;
+            redirect = 'experience';
         }
 
-        fetch(`${window.origin}/admin/${type}s/delete/${dataTarget}`, {
+        fetch(`${window.origin}/admin/${redirect}/delete/${dataTarget}`, {
             method: 'DELETE',
             credentials: 'include',
             headers: new Headers()
@@ -545,6 +574,18 @@ document.addEventListener('DOMContentLoaded', function () {
             } else if (/skills-form-btn-add/.test(element.className)) {
                 addSkillData();
                 break; 
+            } else if (/projects-form-btn-add/.test(element.className)) {
+                addProjectData();
+                break;
+            } else if (/blogs-form-btn-add/.test(element.className)) {
+                addBlogPostData();
+                break; 
+            } else if(/qualifications-form-btn-add/.test(element.className)) {
+                addQualificationData();
+                break;
+            } else if(/experience-form-btn-add/.test(element.className)) {
+                addExperienceData();
+                break;
             } else if (/skills-form-btn-update/.test(element.className)) {
                 updateSkillData();
                 break; 
@@ -566,16 +607,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     blogModalInstance.open();               
                 }, 400);
                 break;
-            } else if (/projects-form-btn-add/.test(element.className)) {
-                addProjectData();
+            } else if (/add-experience-btn/.test(element.className)) {
+                resetForm('experience');
+                setTimeout(function() {
+                    experienceModalInstance.open();               
+                }, 400);
                 break;
-            } else if (/blogs-form-btn-add/.test(element.className)) {
-                addBlogPostData();
-                break; 
-            } else if(/qualifications-form-btn-add/.test(element.className)) {
-                addQualificationData();
-                break;
-            }
+            } 
     
             element = element.parentNode;
         }
@@ -616,6 +654,12 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    Array.from(experienceDeleteButtons).forEach(deleteButton => {
+        deleteButton.addEventListener('click', function(event) {
+            deleteDocument('experience', event);
+        });
+    });
+
     Array.from(buttons).forEach(button => {
         button.addEventListener('click', function(event) {
             event.preventDefault();
@@ -649,6 +693,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const projectModalInstance = M.Modal.init(projectModal);
     const qualificationModalInstance = M.Modal.init(qualificationModal);
     const blogModalInstance = M.Modal.init(blogModal);
+    const experienceModalInstance = M.Modal.init(experienceModal);
 
     /* FUNCTIONS CALLED ON PAGE LOAD */
     animateCursor();
