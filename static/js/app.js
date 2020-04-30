@@ -320,19 +320,17 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /**
-     * POSTs a skill to backend and flashes a success
-     * or failure alert message
+     * POSTS data to a specific URL and handles the response
+     * @param {string} urlTarget - which admin page to target
+     * @param {Object} POST body - key:value pairs
+     * @param {Node} alertTargetElement - alert element for specific page
+     * @param {string} typeOfDocument - lets the user know what kind of document was added
      */
-    function addSkillData() {
-        const skill_entry = {
-            skill_name: skillName.value,
-            skill_level: skillLevel.value
-        };
-
-        fetch(`${window.origin}/admin/skills/add`, {
+    function addData(urlTarget, body, alertTargetElement, typeOfDocument) {
+        fetch(`${window.origin}/admin/${urlTarget}/add`, {
             method: 'POST',
             credentials: 'include',
-            body: JSON.stringify(skill_entry),
+            body: JSON.stringify(body),
             cache: 'no-cache',
             headers: new Headers({
                 'content-type': 'application/json'
@@ -340,14 +338,27 @@ document.addEventListener('DOMContentLoaded', function () {
         }).then(response => {
             if (response.status !== 200) {
                 console.log(`Response status not 200: ${response.status}`);
-                flashAlert(skillsAlert, 'failure', 'skill', 'added', 'skills');
+                flashAlert(alertTargetElement, 'failure', typeOfDocument, 'added', urlTarget);
                 return;
             }
             response.json().then(data => {
                 console.log(data);
-                flashAlert(skillsAlert, 'success', 'skill', 'added', 'skills');
+                flashAlert(alertTargetElement, 'success', typeOfDocument, 'added', urlTarget);
             });
         });   
+    }
+
+    /**
+     * POSTs a skill to backend and flashes a success
+     * or failure alert message
+     */
+    function addSkillData() {
+        const skillEntry = {
+            skill_name: skillName.value,
+            skill_level: skillLevel.value
+        };
+
+        addData('skills', skillEntry, skillsAlert, 'skill');
     }
 
     /**
@@ -361,7 +372,7 @@ document.addEventListener('DOMContentLoaded', function () {
             projectDescription.push(paragraph);
         });
 
-        const project_entry = {
+        const projectEntry = {
             project_name: projectName.value,
             project_img_url: projectImgUrl.value,
             project_github_url: projectGithubUrl.value,
@@ -370,25 +381,7 @@ document.addEventListener('DOMContentLoaded', function () {
             project_description: projectDescription
         };
 
-        fetch(`${window.origin}/admin/projects/add`, {
-            method: 'POST',
-            credentials: 'include',
-            body: JSON.stringify(project_entry),
-            cache: 'no-cache',
-            headers: new Headers({
-                'content-type': 'application/json'
-            })
-        }).then(response => {
-            if (response.status !== 200) {
-                console.log(`Response status not 200: ${response.status}`);
-                flashAlert(projectsAlert, 'failure', 'project', 'added', 'projects');
-                return;
-            }
-            response.json().then(data => {
-                console.log(data);
-                flashAlert(projectsAlert, 'success', 'project', 'added', 'projects');
-            });
-        });   
+        addData('projects', projectEntry, projectsAlert, 'project');
     }
 
     /**
@@ -396,7 +389,7 @@ document.addEventListener('DOMContentLoaded', function () {
      * or failure alert message
      */
     function addQualificationData() {
-        const qualification_entry = {
+        const qualificationEntry = {
             qualification_name: qualificationName.value,
             qualification_from: qualificationFrom.value,
             qualification_issue_date: qualificationIssueDate.value,
@@ -404,25 +397,7 @@ document.addEventListener('DOMContentLoaded', function () {
             qualification_info_url: qualificationInfoUrl.value
         };
 
-        fetch(`${window.origin}/admin/qualifications/add`, {
-            method: 'POST',
-            credentials: 'include',
-            body: JSON.stringify(qualification_entry),
-            cache: 'no-cache',
-            headers: new Headers({
-                'content-type': 'application/json'
-            })
-        }).then(response => {
-            if (response.status !== 200) {
-                console.log(`Response status not 200: ${response.status}`);
-                flashAlert(qualificationsAlert, 'failure', 'qualification', 'added', 'qualifications');
-                return;
-            }
-            response.json().then(data => {
-                console.log(data);
-                flashAlert(qualificationsAlert, 'success', 'qualification', 'added', 'qualifications');
-            });
-        });   
+        addData('qualifications', qualificationEntry, qualificationsAlert, 'qualification');
     }
 
     /**
@@ -435,7 +410,7 @@ document.addEventListener('DOMContentLoaded', function () {
             blogPostParagraphs.push(paragraph.value);
         });
 
-        const blog_post = {
+        const blogPost = {
             blog_title: blogTitle.value,
             blog_img_url: blogImgUrl.value,
             blog_summary: blogSummary.value,
@@ -443,25 +418,7 @@ document.addEventListener('DOMContentLoaded', function () {
             blog_body: blogPostParagraphs
         };
 
-        fetch(`${window.origin}/admin/blogs/add`, {
-            method: 'POST',
-            credentials: 'include',
-            body: JSON.stringify(blog_post),
-            cache: 'no-cache',
-            headers: new Headers({
-                'content-type': 'application/json'
-            })
-        }).then(response => {
-            if (response.status !== 200) {
-                console.log(`Response status not 200: ${response.status}`);
-                flashAlert(blogAlert, 'failure', 'blog post', 'added', 'blogs');
-                return;
-            }
-            response.json().then(data => {
-                console.log(data);
-                flashAlert(blogAlert, 'success', 'blog post', 'added', 'blogs');
-            });
-        });   
+        addData('blogs', blogPost, blogAlert, 'blog post');
     }
 
     /**
