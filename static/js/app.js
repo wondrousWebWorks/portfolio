@@ -61,6 +61,24 @@ const qualificationIssueDate = document.getElementById('qualification-issue-date
 const qualificationViewUrl = document.getElementById('qualification-view-url');
 const qualificationInfoUrl = document.getElementById('qualification-info-url');
 
+/* ADMIN BLOGS */
+const blogPostUpdateButtons = document.querySelectorAll('.update-blog-post-btn');
+const blogPostDeleteButtons = document.querySelectorAll('.delete-blog-post-btn');
+const blogModal = document.getElementById('blogs-form-modal');
+const blogForm = document.getElementById('blogs-form');
+const blogFormLabels = document.querySelectorAll('.blogs-form-label');
+const blogFormSubmitButton = document.getElementById('blogs-form-submit-btn');
+const blogFormSubmitButtonText = document.getElementById('blogs-form-submit-btn-text');
+const blogFormDocId = document.getElementById('blogs-form-doc-id');
+const blogAlert = document.getElementById('blogs-alert');
+const blogFormInputs = document.querySelectorAll('#blogs-form input');
+const blogTitle = document.getElementById('blog-title');
+const blogImgUrl = document.getElementById('blog-img-url');
+const blogSummary = document.getElementById('blog-summary');
+const blogDate = document.getElementById('blog-date');
+const blogParagraphs = document.querySelectorAll('.blog-paragraph');
+
+
 
 document.addEventListener('DOMContentLoaded', function () {
     /**
