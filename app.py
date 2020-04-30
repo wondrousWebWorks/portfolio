@@ -343,44 +343,33 @@ def delete_qualification(qualification_id):
     return response
 
 
-@app.route('/admin/add_blog_post')
-def add_blog_post():
-    """Return rendered template of ADD BLOG POST page"""
-    return render_template('pages/add_blog_post.html')
-
-
-@app.route('/admin/insert_blog_post', methods=['POST'])
-def insert_blog_post():
-    """Using data from form on ADD BLOG POST page, insert document into blog_posts collection
-    
-    Retrieve documents from blog_posts collection. Convert form data from add_blog_post
-    page's form to dictionary. Set blog_body field as list instead of single value. Insert dictionary 
-    into blog_posts collection. Try to find newly inserted document in blog_posts collection and flash 
-    either a success or failure message on screen. Finally, redirect to MANAGE BLOGS page
-    """
-    if request.method == 'POST':
-        blog_posts = mongo.db.blog_posts
-        form_body = request.form.to_dict()
-        form_body['blog_body'] = request.form.getlist('blog_body')
-        blog_posts.insert_one(form_body)
-        find_inserted_blog_post = blog_posts.find_one({'blog_title': form_body['blog_title']})
-
-        if find_inserted_blog_post:
-            flash(f'Successfully inserted \"{form_body["blog_title"]}\" into \"blog_posts\" collection', 'success')
-        else:
-            flash('Failed to insert blog post into blog_posts collection', 'failed')
-        return redirect(url_for('manage_blogs'))
-
-
 @app.route('/admin/blogs')
 def manage_blogs():
-    """Return a rendered template of MANAGE BLOGS page
-    
-    Retrieve all BLOG POST documents from the blog_posts collection.  Pass retrieved data 
-    to a rendered template of the MANAGE BLOGS page.
-    """
+    """Return a rendered template of BLOGS page with all blog posts sent to it"""
     blog_posts = mongo.db.blog_posts.find()
     return render_template('pages/admin/blogs.html', blog_posts=blog_posts)
+
+
+# @app.route('/admin/add_blog_post')
+# def add_blog_post():
+#     """Return rendered template of ADD BLOG POST page"""
+#     return render_template('pages/add_blog_post.html')
+
+
+@app.route('/admin/blogs/add', methods=['POST'])
+def insert_blog_post():
+    """Insert a new document into blog_posts collection"""
+    if request.method == 'POST':
+        blog_posts = mongo.db.blog_posts
+        blog_post_to_insert_dict = request.get_json()
+        blog_posts.insert_one(blog_post_to_insert_dict)
+        find_inserted_blog_post = blog_posts.find_one({'blog_title': blog_post_to_insert_dict['blog_title']})
+        
+        if find_inserted_blog_post:
+            response = make_response(jsonify({'message': 'success'}), 200)
+        else:
+            response = make_response(jsonify({'message': 'failed'}), 500)
+    return response
 
 
 @app.route('/admin/edit_blog_post/<blog_post_id>')
@@ -412,25 +401,19 @@ def update_blog_post(blog_post_id):
         return redirect(url_for('edit_blog_post'))
 
 
-@app.route('/admin/delete_blog_post/<blog_post_id>')
+@app.route('/admin/blogs/delete/<blog_post_id>', methods=['DELETE'])
 def delete_blog_post(blog_post_id):
-    """Remove a blog post from blog_posts collection based on Id
-    
-    Retrieve blog_posts collection from DB, then retrieve and store entry to be deleted using its 
-    Id from MANAGE BLOGS page. Remove blog post from blog_posts collection using Id. Try to find
-    blog_posts in blog_posts collection to confirm removal and flash success or failure message based on 
-    result. Finally, redirect to MANAGE BLOGS page
-    """
-    blog_posts = mongo.db.blog_posts
-    blog_post_to_delete = blog_posts.find_one({'_id': ObjectId(blog_post_id)})
-    blog_posts.remove({'_id': ObjectId(blog_post_id)})
-    blog_post_to_confirm_deleted = blog_posts.find_one({'_id': ObjectId(blog_post_id)})
+    """Remove a blog post from blog_posts collection based on Id"""
+    if request.method == 'DELETE':
+        blog_posts = mongo.db.blog_posts
+        blog_posts.remove({'_id': ObjectId(blog_post_id)})
+        blog_post_to_confirm_deleted = blog_posts.find_one({'_id': ObjectId(blog_post_id)})
 
-    if not blog_post_to_confirm_deleted:
-        flash(f'Successfully deleted \"{blog_post_to_delete["blog_title"]}\" from \"blog_posts\" collection', 'success')
-    else:
-        flash('Failed to delete blog post from blog_posts collection', 'failed')
-    return redirect(url_for('manage_blogs'))
+        if not blog_post_to_confirm_deleted:
+            response = make_response(jsonify({'message': 'success'}), 200)
+        else:
+            response = make_response(jsonify({'message': 'failure'}), 500)
+    return response
 
 
 @app.route('/admin/add_experience')
