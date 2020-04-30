@@ -541,7 +541,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } else if (type === 'qualification') {
             alertTarget = qualificationsAlert;
             redirect = 'qualifications';
-        } else if (type === 'blogs') {
+        } else if (type === 'blog') {
             alertTarget = blogAlert;
             redirect = 'blogs';
         }
@@ -650,6 +650,12 @@ document.addEventListener('DOMContentLoaded', function () {
     Array.from(qualificationDeleteButtons).forEach(deleteButton => {
         deleteButton.addEventListener('click', function(event) {
             deleteDocument('qualification', event);
+        });
+    });
+
+    Array.from(blogPostDeleteButtons).forEach(deleteButton => {
+        deleteButton.addEventListener('click', function(event) {
+            deleteDocument('blog', event);
         });
     });
 
