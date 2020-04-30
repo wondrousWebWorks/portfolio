@@ -78,6 +78,20 @@ const blogSummary = document.getElementById('blog-summary');
 const blogDate = document.getElementById('blog-date');
 const blogParagraphs = document.querySelectorAll('.blog-paragraph');
 
+/* ADMIN EXPERIENCE */
+const experienceUpdateButtons = document.querySelectorAll('.update-experience-btn');
+const experienceDeleteButtons = document.querySelectorAll('.delete-experience-btn');
+const experienceModal = document.getElementById('experience-form-modal');
+const experienceForm = document.getElementById('experience-form');
+const experienceFormLabels = document.querySelectorAll('.experience-form-label');
+const experienceFormSubmitButton = document.getElementById('experience-form-submit-btn');
+const experienceFormSubmitButtonText = document.getElementById('experience-form-submit-btn-text');
+const experienceFormDocId = document.getElementById('experience-form-doc-id');
+const experienceAlert = document.getElementById('experience-alert');
+const experienceFormInputs = document.querySelectorAll('#experience-form input');
+const experienceJobTitle = document.getElementById('job-title');
+const experienceJobDates = document.getElementById('job-dates');
+
 
 
 document.addEventListener('DOMContentLoaded', function () {
