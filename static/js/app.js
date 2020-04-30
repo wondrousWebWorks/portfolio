@@ -266,6 +266,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 input.value = null;
                 input.classList.remove('valid');
             }); 
+        } else if (formTarget === 'blogs') {
+            formInputElements = blogFormInputs;
+            formLabels = blogFormLabels;
+            formInputElements.forEach(input => {
+                input.value = null;
+                input.classList.remove('valid');
+            }); 
         }
 
         Array.from(formLabels).forEach(label => {
@@ -293,6 +300,10 @@ document.addEventListener('DOMContentLoaded', function () {
             case 'qualifications':
                 formTarget = qualificationFormSubmitButton;
                 formTargetButton = qualificationFormSubmitButtonText;
+                break;
+            case 'blogs':
+                formTarget = blogFormSubmitButton;
+                formTargetButton = blogFormSubmitButtonText;
                 break;
             default: formTarget = formTarget; 
         }
@@ -380,6 +391,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });   
     }
 
+    /**
+     * POSTs a qualification to backend and flashes a success
+     * or failure alert message
+     */
     function addQualificationData() {
         const qualification_entry = {
             qualification_name: qualificationName.value,
@@ -406,6 +421,45 @@ document.addEventListener('DOMContentLoaded', function () {
             response.json().then(data => {
                 console.log(data);
                 flashAlert(qualificationsAlert, 'success', 'qualification', 'added', 'qualifications');
+            });
+        });   
+    }
+
+    /**
+     * POSTs a blog post to backend and flashes a success
+     * or failure alert message
+     */
+    function addBlogPostData() {
+        const blogPostParagraphs = []
+        blogParagraphs.forEach(paragraph => {
+            blogPostParagraphs.push(paragraph.value);
+        });
+
+        const blog_post = {
+            blog_title: blogTitle.value,
+            blog_img_url: blogImgUrl.value,
+            blog_summary: blogSummary.value,
+            blog_date: blogDate.value,
+            blog_body: blogPostParagraphs
+        };
+
+        fetch(`${window.origin}/admin/blogs/add`, {
+            method: 'POST',
+            credentials: 'include',
+            body: JSON.stringify(blog_post),
+            cache: 'no-cache',
+            headers: new Headers({
+                'content-type': 'application/json'
+            })
+        }).then(response => {
+            if (response.status !== 200) {
+                console.log(`Response status not 200: ${response.status}`);
+                flashAlert(blogAlert, 'failure', 'blog post', 'added', 'blogs');
+                return;
+            }
+            response.json().then(data => {
+                console.log(data);
+                flashAlert(blogAlert, 'success', 'blog post', 'added', 'blogs');
             });
         });   
     }
@@ -487,6 +541,9 @@ document.addEventListener('DOMContentLoaded', function () {
         } else if (type === 'qualification') {
             alertTarget = qualificationsAlert;
             redirect = 'qualifications';
+        } else if (type === 'blogs') {
+            alertTarget = blogAlert;
+            redirect = 'blogs';
         }
 
         fetch(`${window.origin}/admin/${type}s/delete/${dataTarget}`, {
@@ -546,9 +603,18 @@ document.addEventListener('DOMContentLoaded', function () {
                     qualificationModalInstance.open();               
                 }, 400);
                 break;
+            } else if (/add-blog-post-btn/.test(element.className)) {
+                resetForm('blogs');
+                setTimeout(function() {
+                    blogModalInstance.open();               
+                }, 400);
+                break;
             } else if (/projects-form-btn-add/.test(element.className)) {
                 addProjectData();
                 break;
+            } else if (/blogs-form-btn-add/.test(element.className)) {
+                addBlogPostData();
+                break; 
             } else if(/qualifications-form-btn-add/.test(element.className)) {
                 addQualificationData();
                 break;
@@ -619,6 +685,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const skillModalInstance = M.Modal.init(skillModal);
     const projectModalInstance = M.Modal.init(projectModal);
     const qualificationModalInstance = M.Modal.init(qualificationModal);
+    const blogModalInstance = M.Modal.init(blogModal);
 
     /* FUNCTIONS CALLED ON PAGE LOAD */
     animateCursor();
