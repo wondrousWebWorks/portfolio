@@ -524,6 +524,31 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    function getBlogEntryData() {
+        dataTarget = this.getAttribute('data-id');
+        blogFormDocId.setAttribute('data-id', dataTarget);
+        changeFormButton('update', 'blogs');
+        
+        fetch(`${window.origin}/admin/blogs/update/${dataTarget}`)
+        .then(response => {
+            response.json()
+            .then(data => {
+                blogTitle.value = data.blog_title;
+                blogImgUrl.value = data.blog_img_url;
+                blogSummary.value = data.blog_summary;
+                blogDate.value = data.blog_date;
+
+                for (i = 0; i < blogParagraphs.length; i++) {
+                    blogParagraphs[i].value = data.blog_body[i];
+                }
+            });
+            blogModalInstance.open();
+            Array.from(blogFormLabels).forEach(label => {
+                label.classList.add('active');
+            });
+        });
+    }
+
     
     /**
      * Fetches experience data and populates the experience form
@@ -621,7 +646,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /**
-     * Gets Exprerience form data and PUTs it to the
+     * Gets Qualification form data and PUTs it to the
      * backend. Flash a success or failure alert
      * depending on response
      */
@@ -796,6 +821,10 @@ document.addEventListener('DOMContentLoaded', function () {
         deleteButton.addEventListener('click', function(event) {
             deleteDocument('blog', event);
         });
+    });
+
+    Array.from(blogPostUpdateButtons).forEach(updateButton => {
+        updateButton.addEventListener('click', getBlogEntryData);
     });
 
     Array.from(experienceUpdateButtons).forEach(updateButton => {
