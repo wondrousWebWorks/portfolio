@@ -621,6 +621,43 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /**
+     * Gets Exprerience form data and PUTs it to the
+     * backend. Flash a success or failure alert
+     * depending on response
+     */
+    function updateQualificationData() {
+        dataTarget = qualificationFormDocId.getAttribute('data-id');
+        const qualification_entry = {
+            qualification_name: qualificationName.value,
+            qualification_from: qualificationFrom.value,
+            qualification_issue_date: qualificationIssueDate.value,
+            qualification_view_url: qualificationViewUrl.value,
+            qualification_info_url: qualificationInfoUrl.value
+        };
+
+        fetch(`${window.origin}/admin/qualifications/update/${dataTarget}`, {
+            method: 'PUT',
+            credentials: 'include',
+            body: JSON.stringify(qualification_entry),
+            cache: 'no-cache',
+            headers: new Headers({
+                'content-type': 'application/json'
+            })
+        }).then(response => {
+            if (response.status !== 200) {
+                console.log(`Response status not 200: ${response.status}`);
+                flashAlert('qualifications', 'failure', 'updated');
+                return;
+            }
+
+            response.json().then(data => {
+                console.log(data);
+                flashAlert('qualifications', 'success', 'updated');
+            });
+        });
+    }
+
+    /**
      * Deletes a document by sending a DELETE request to the backend
      * @param {string} type - skills, projects, qualifications, blogs or experience
      * @param {event} event - the button click event
@@ -699,6 +736,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 }, 400);
             } else if (/experience-form-btn-update/.test(element.className)) {
                 updateExperienceData(); 
+            } else if (/qualifications-form-btn-update/.test(element.className)) {
+                updateQualificationData(); 
             } else if (/add-qualification-btn/.test(element.className)) {
                 resetForm('qualifications');
                 setTimeout(function() {
