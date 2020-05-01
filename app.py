@@ -170,6 +170,7 @@ def update_skill(skill_id):
     skills = mongo.db.skills
     if request.method == 'GET':
         skill_to_return = skills.find_one({'_id': ObjectId(skill_id)})
+        del skill_to_return['_id']
         response = make_response(jsonify(skill_to_return), 200)
     elif request.method == 'PUT':
         skill_to_update_dict = request.get_json()
@@ -304,6 +305,7 @@ def update_qualification(qualification_id):
     qualifications = mongo.db.qualifications
     if request.method == 'GET':
         qualification_to_return = qualifications.find_one({'_id': ObjectId(qualification_id)})
+        del qualification_to_return['_id']
         response = make_response(jsonify(qualification_to_return), 200)
     elif request.method == 'PUT':
         qualification_to_update_dict = request.get_json()
@@ -358,33 +360,27 @@ def add_blog_post():
     return response
 
 
-@app.route('/admin/edit_blog_post/<blog_post_id>')
-def edit_blog_post(blog_post_id):
-    """Return a rendered template of EDIT BLOG POST page populated with data of a specific blog post
-    
-    Using the BLOG POST ID sent from MANAGE BLOGS, retrieve the document for a specific blog post.
-    Pass blog post data to a rendered template of the EDIT BLOG POST page.
-    """
-    blog_post = mongo.db.blog_posts.find_one({'_id': ObjectId(blog_post_id)})
-    return render_template('pages/edit_blog_post.html', blog_post=blog_post)
-
-
-@app.route('/admin/update_blog_post/<blog_post_id>', methods=['POST'])
+@app.route('/admin/blogs/update/<blog_post_id>', methods=['GET','PUT'])
 def update_blog_post(blog_post_id):
-    if request.method == 'POST':
-        blog_posts = mongo.db.blog_posts
+    """Update a blog post based on its Id"""
+    blog_posts = mongo.db.blog_posts
+    if request.method == 'GET':
+        blog_post_to_return = blog_posts.find_one({'_id': ObjectId(blog_post_id)})
+        del blog_post_to_return['_id']
+        response = make_response(jsonify(blog_post_to_return), 200)
+    elif request.method == 'PUT':
+        blog_post_to_update_dict = request.get_json()
         blog_posts.update({'_id': ObjectId(blog_post_id)},
-        {
-            'blog_title': request.form.get('blog_title'),
-            'blog_img_url': request.form.get('blog_img_url'),
-            'blog_summary': request.form.get('blog_summary'),
-            'blog_date': request.form.get('blog_date'),
-            'blog_body': request.form.getlist('blog_body')
-        })
+            {
+                'blog_title': blog_post_to_update_dict['blog_title'],
+                'blog_img_url': blog_post_to_update_dict['blog_img_url'],
+                'blog_summary': blog_post_to_update_dict['blog_summary'],
+                'blog_date': blog_post_to_update_dict['blog_date'],
+                'blog_body': blog_post_to_update_dict['blog_body']
+            })
 
-        return redirect(url_for('admin'))
-    else:
-        return redirect(url_for('edit_blog_post'))
+        response = make_response(jsonify({'message': 'success'}), 200)
+    return response
 
 
 @app.route('/admin/blogs/delete/<blog_post_id>', methods=['DELETE'])
@@ -430,6 +426,7 @@ def update_experience(experience_id):
     experience = mongo.db.work_experience
     if request.method == 'GET':
         experience_to_return = experience.find_one({'_id': ObjectId(experience_id)})
+        del experience_to_return['_id']
         response = make_response(jsonify(experience_to_return), 200)
     elif request.method == 'PUT':
         experience_to_update_dict = request.get_json()
