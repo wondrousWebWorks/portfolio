@@ -170,7 +170,6 @@ def update_skill(skill_id):
     skills = mongo.db.skills
     if request.method == 'GET':
         skill_to_return = skills.find_one({'_id': ObjectId(skill_id)})
-        del skill_to_return['_id']
         response = make_response(jsonify(skill_to_return), 200)
     elif request.method == 'PUT':
         skill_to_update_dict = request.get_json()
@@ -299,33 +298,26 @@ def add_qualification():
     return response
 
 
-@app.route('/admin/edit_qualification/<qualification_id>')
-def edit_qualification(qualification_id):
-    """Return a rendered template of EDIT QUALIFICATION page populated with data of a specific qualification
-    
-    Using the QUALIFICATION ID sent from MANAGE QUALIFICATIONS, retrieve the document for a specific qualification.
-    Pass project data to a rendered template of the EDIT QUALIFICATION page.
-    """
-    qualification = mongo.db.qualifications.find_one({'_id': ObjectId(qualification_id)})
-    return render_template('pages/edit_qualification.html', qualification=qualification)
-
-
-@app.route('/admin/update_qualification/<qualification_id>', methods=['POST'])
+@app.route('/admin/qualifications/update/<qualification_id>', methods=['GET', 'PUT'])
 def update_qualification(qualification_id):
-    if request.method == 'POST':
-        qualifications = mongo.db.qualifications
+    """Update a qualification based on its Id"""
+    qualifications = mongo.db.qualifications
+    if request.method == 'GET':
+        qualification_to_return = qualifications.find_one({'_id': ObjectId(qualification_id)})
+        response = make_response(jsonify(qualification_to_return), 200)
+    elif request.method == 'PUT':
+        qualification_to_update_dict = request.get_json()
         qualifications.update({'_id': ObjectId(qualification_id)},
-        {
-            'qualification_name': request.form.get('qualification_name'),
-            'qualification_from': request.form.get('qualification_from'),
-            'qualification_issue_date': request.form.get('qualification_issue_date'),
-            'qualification_view_url': request.form.get('qualification_view_url'),
-            'qualification_info_url': request.form.getlist('qualification_info_url')
-        })
+            {
+                'qualification_name': qualification_to_update_dict['qualification_name'],
+                'qualification_from': qualification_to_update_dict['qualification_from'],
+                'qualification_issue_date': qualification_to_update_dict['qualification_issue_date'],
+                'qualification_view_url': qualification_to_update_dict['qualification_view_url'],
+                'qualification_info_url': qualification_to_update_dict['qualification_info_url']
+            })
 
-        return redirect(url_for('admin'))
-    else:
-        return redirect(url_for('edit_project'))
+        response = make_response(jsonify({'message': 'success'}), 200)
+    return response
 
 
 @app.route('/admin/qualifications/delete/<qualification_id>', methods=['DELETE'])
@@ -438,11 +430,10 @@ def update_experience(experience_id):
     experience = mongo.db.work_experience
     if request.method == 'GET':
         experience_to_return = experience.find_one({'_id': ObjectId(experience_id)})
-        del experience_to_return['_id']
         response = make_response(jsonify(experience_to_return), 200)
     elif request.method == 'PUT':
         experience_to_update_dict = request.get_json()
-        experience.update({'_id': ObjectId(experience_to_update_dict['experience_id'])},
+        experience.update({'_id': ObjectId(experience_id)},
         {
             'job_title': experience_to_update_dict['job_title'],
             'job_dates': experience_to_update_dict['job_dates']
