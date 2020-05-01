@@ -441,7 +441,7 @@ document.addEventListener('DOMContentLoaded', function () {
         postData('blogs', blogPost, blogAlert, 'blog post');
     }
 
-        /**
+    /**
      * POSTs a blog post to backend and flashes a success
      * or failure alert message
      */
@@ -536,6 +536,40 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /**
+     * Gets Exprerience form data and PUTs it to the
+     * backend. Flash a success or failure alert
+     * depending on response
+     */
+    function updateExperienceData() {
+        dataTarget = experienceFormDocId.getAttribute('data-id');
+        const experience_entry = {
+            job_title: experienceJobTitle.value,
+            job_dates: experienceJobDates.value
+        };
+
+        fetch(`${window.origin}/admin/experience/update/${dataTarget}`, {
+            method: 'PUT',
+            credentials: 'include',
+            body: JSON.stringify(experience_entry),
+            cache: 'no-cache',
+            headers: new Headers({
+                'content-type': 'application/json'
+            })
+        }).then(response => {
+            if (response.status !== 200) {
+                console.log(`Response status not 200: ${response.status}`);
+                flashAlert(experienceAlert, 'failure', 'experience', 'updated', 'experience');
+                return;
+            }
+
+            response.json().then(data => {
+                console.log(data);
+                flashAlert(experienceAlert, 'success', 'experience', 'updated', 'experience');
+            });
+        });
+    }
+
+    /**
      * Deletes a document by sending a DELETE request to the backend
      * @param {string} type - skills, projects, qualifications, blogs or experience
      * @param {event} event - the button click event
@@ -617,6 +651,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 setTimeout(function() {
                     projectModalInstance.open();               
                 }, 400);
+            } else if (/experience-form-btn-update/.test(element.className)) {
+                updateExperienceData(); 
             } else if (/add-qualification-btn/.test(element.className)) {
                 resetForm('qualifications');
                 setTimeout(function() {
