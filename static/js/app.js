@@ -245,41 +245,48 @@ document.addEventListener('DOMContentLoaded', function () {
         let formLabels;
         changeFormButton('add', formTarget);
 
-        if (formTarget === 'skills') {
-           formInputElements = skillFormInputs;
-           formLabels = skillFormLabels;
-           formInputElements.forEach(input => {
-               input.value = null;
-               input.classList.remove('valid');
-           }); 
-        } else if (formTarget === 'projects') {
-            formInputElements = projectFormInputs;
-            formLabels = projectFormLabels;
-            formInputElements.forEach(input => {
-                input.value = null;
-                input.classList.remove('valid');
-            }); 
-        } else if (formTarget === 'qualifications') {
-            formInputElements = qualificationFormInputs;
-            formLabels = qualificationFormLabels;
-            formInputElements.forEach(input => {
-                input.value = null;
-                input.classList.remove('valid');
-            }); 
-        } else if (formTarget === 'blogs') {
-            formInputElements = blogFormInputs;
-            formLabels = blogFormLabels;
-            formInputElements.forEach(input => {
-                input.value = null;
-                input.classList.remove('valid');
-            }); 
-        } else if (formTarget === 'experience') {
-            formInputElements = experienceFormInputs;
-            formLabels = experienceFormLabels;
-            formInputElements.forEach(input => {
-                input.value = null;
-                input.classList.remove('valid');
-            }); 
+        switch (formTarget) {
+            case 'skills':
+                formInputElements = skillFormInputs;
+                formLabels = skillFormLabels;
+                formInputElements.forEach(input => {
+                    input.value = null;
+                    input.classList.remove('valid');
+                });
+                break;
+            case 'projects':
+                formInputElements = projectFormInputs;
+                formLabels = projectFormLabels;
+                formInputElements.forEach(input => {
+                    input.value = null;
+                    input.classList.remove('valid');
+                });
+                break;
+            case 'qualifications':
+                formInputElements = qualificationFormInputs;
+                formLabels = qualificationFormLabels;
+                formInputElements.forEach(input => {
+                    input.value = null;
+                    input.classList.remove('valid');
+                });
+                break;
+            case 'blogs':
+                formInputElements = blogFormInputs;
+                formLabels = blogFormLabels;
+                formInputElements.forEach(input => {
+                    input.value = null;
+                    input.classList.remove('valid');
+                });
+                break;
+            case 'experience':
+                formInputElements = experienceFormInputs;
+                formLabels = experienceFormLabels;
+                formInputElements.forEach(input => {
+                    input.value = null;
+                    input.classList.remove('valid');
+                });
+                break;
+            default: console.log('Failed to reset form');
         }
 
         Array.from(formLabels).forEach(label => {
@@ -337,7 +344,7 @@ document.addEventListener('DOMContentLoaded', function () {
      * @param {Node} alertTargetElement - alert element for specific page
      * @param {string} typeOfDocument - lets the user know what kind of document was added
      */
-    function addData(urlTarget, body, alertTargetElement, typeOfDocument) {
+    function postData(urlTarget, body, alertTargetElement, typeOfDocument) {
         fetch(`${window.origin}/admin/${urlTarget}/add`, {
             method: 'POST',
             credentials: 'include',
@@ -369,7 +376,7 @@ document.addEventListener('DOMContentLoaded', function () {
             skill_level: skillLevel.value
         };
 
-        addData('skills', skillEntry, skillsAlert, 'skill');
+        postData('skills', skillEntry, skillsAlert, 'skill');
     }
 
     /**
@@ -394,7 +401,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         console.log(projectEntry);
 
-        addData('projects', projectEntry, projectsAlert, 'project');
+        postData('projects', projectEntry, projectsAlert, 'project');
     }
 
     /**
@@ -410,7 +417,7 @@ document.addEventListener('DOMContentLoaded', function () {
             qualification_info_url: qualificationInfoUrl.value
         };
 
-        addData('qualifications', qualificationEntry, qualificationsAlert, 'qualification');
+        postData('qualifications', qualificationEntry, qualificationsAlert, 'qualification');
     }
 
     /**
@@ -418,7 +425,7 @@ document.addEventListener('DOMContentLoaded', function () {
      * or failure alert message
      */
     function addBlogPostData() {
-        const blogPostParagraphs = []
+        const blogPostParagraphs = [];
         blogParagraphs.forEach(paragraph => {
             blogPostParagraphs.push(paragraph.value);
         });
@@ -431,7 +438,7 @@ document.addEventListener('DOMContentLoaded', function () {
             blog_body: blogPostParagraphs
         };
 
-        addData('blogs', blogPost, blogAlert, 'blog post');
+        postData('blogs', blogPost, blogAlert, 'blog post');
     }
 
         /**
@@ -444,14 +451,14 @@ document.addEventListener('DOMContentLoaded', function () {
             job_dates: experienceJobDates.value
         };
 
-        addData('experience', experienceEntry, experienceAlert, 'experience');
+        postData('experience', experienceEntry, experienceAlert, 'experience');
     }
 
     /**
      * Fetches skill data and populates the skills form
      * fields with it
      */
-    function fetchSkillData() {
+    function getSkillData() {
         dataTarget = this.getAttribute('data-id');
         skillFormDocId.setAttribute('data-id', dataTarget);
         changeFormButton('update', 'skills');
@@ -465,6 +472,29 @@ document.addEventListener('DOMContentLoaded', function () {
             });
             skillModalInstance.open();
             Array.from(skillFormLabels).forEach(label => {
+                label.classList.add('active');
+            });
+        });
+    }
+
+    /**
+     * Fetches experience data and populates the experience form
+     * fields with it
+     */
+    function getExperienceData() {
+        dataTarget = this.getAttribute('data-id');
+        experienceFormDocId.setAttribute('data-id', dataTarget);
+        changeFormButton('update', 'experience');
+        
+        fetch(`${window.origin}/admin/experience/update/${dataTarget}`)
+        .then(response => {
+            response.json()
+            .then(data => {
+                experienceJobTitle.value = data.job_title;
+                experienceJobDates.value = data.job_dates;
+            });
+            experienceModalInstance.open();
+            Array.from(experienceFormLabels).forEach(label => {
                 label.classList.add('active');
             });
         });
@@ -569,50 +599,39 @@ document.addEventListener('DOMContentLoaded', function () {
                 resetForm('skills');
                 setTimeout(function() {
                     skillModalInstance.open();               
-                }, 400);
-                break; 
+                }, 400); 
             } else if (/skills-form-btn-add/.test(element.className)) {
-                addSkillData();
-                break; 
+                addSkillData(); 
             } else if (/projects-form-btn-add/.test(element.className)) {
                 addProjectData();
-                break;
             } else if (/blogs-form-btn-add/.test(element.className)) {
-                addBlogPostData();
-                break; 
+                addBlogPostData(); 
             } else if(/qualifications-form-btn-add/.test(element.className)) {
                 addQualificationData();
-                break;
             } else if(/experience-form-btn-add/.test(element.className)) {
                 addExperienceData();
-                break;
             } else if (/skills-form-btn-update/.test(element.className)) {
-                updateSkillData();
-                break; 
+                updateSkillData(); 
             } else if (/add-project-btn/.test(element.className)) {
                 resetForm('projects');
                 setTimeout(function() {
                     projectModalInstance.open();               
                 }, 400);
-                break;
             } else if (/add-qualification-btn/.test(element.className)) {
                 resetForm('qualifications');
                 setTimeout(function() {
                     qualificationModalInstance.open();               
                 }, 400);
-                break;
             } else if (/add-blog-post-btn/.test(element.className)) {
                 resetForm('blogs');
                 setTimeout(function() {
                     blogModalInstance.open();               
                 }, 400);
-                break;
             } else if (/add-experience-btn/.test(element.className)) {
                 resetForm('experience');
                 setTimeout(function() {
                     experienceModalInstance.open();               
                 }, 400);
-                break;
             } 
     
             element = element.parentNode;
@@ -627,7 +646,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
     Array.from(skillUpdateButtons).forEach(updateButton => {
-        updateButton.addEventListener('click', fetchSkillData);
+        updateButton.addEventListener('click', getSkillData);
     });
 
     Array.from(skillDeleteButtons).forEach(deleteButton => {
@@ -652,6 +671,10 @@ document.addEventListener('DOMContentLoaded', function () {
         deleteButton.addEventListener('click', function(event) {
             deleteDocument('blog', event);
         });
+    });
+
+    Array.from(experienceUpdateButtons).forEach(updateButton => {
+        updateButton.addEventListener('click', getExperienceData);
     });
 
     Array.from(experienceDeleteButtons).forEach(deleteButton => {
