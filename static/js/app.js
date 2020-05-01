@@ -212,22 +212,46 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /**
-     * Briefly displays a success or failure message on screen following
-     * a Create, Update or Delete operation
-     * @param {Node} targetElement - DOM element to target
-     * @param {string} successOrFailure - success or failure string
-     * @param {string} type - skill, project, qualification, blog or experience
-     * @param {string} action - added, updated or deleted
-     * @param {string} redirect - skills, projects, qualifications, blogs or experience
+     * 
+     * @param {string} targetDocument - skills, projects, qualifications, blogs, experience
+     * @param {string} successOrFailure - success or failure of CRUD operation
+     * @param {string} whichCrudOperation - added, updated, deleted 
      */
-    function flashAlert(targetElement, successOrFailure, type, action, redirect) {
+    function flashAlert(targetDocument, successOrFailure, whichCrudOperation) {
+        let targetElement;
+        let redirect;
+        switch (targetDocument) {
+            case 'skills':
+                targetElement = skillsAlert;
+                redirect = 'skills';
+                break;
+            case 'projects':
+                targetElement = projectsAlert;
+                redirect = 'projects';
+                break;
+            case 'qualifications':
+                targetElement = qualificationsAlert;
+                redirect = 'qualifications';
+                break;
+            case 'blogs':
+                targetElement = blogAlert;
+                redirect = 'blogs';
+                break;
+            case 'experience':
+                targetElement = experienceAlert;
+                redirect = 'experience';
+                break;
+            default: console.log('Failed to set target document');
+        }
+
         targetElement.style.display = 'block';
+
         if (successOrFailure == "success") {
             targetElement.classList.add('alert-success');
-            targetElement.children[0].innerText = `${type} successfully ${action} `;
-        } else {
+            targetElement.children[0].innerText = `Document successfully ${whichCrudOperation}`;
+        } else if (successOrFailure == "failure") {
             targetElement.classList.add('alert-failure');
-            targetElement.children[0].innerText = `${type} failed to be ${action}`;
+            targetElement.children[0].innerText = `Document failed to be ${whichCrudOperation}`;
         }
         
         setTimeout(function() {
@@ -356,12 +380,12 @@ document.addEventListener('DOMContentLoaded', function () {
         }).then(response => {
             if (response.status !== 200) {
                 console.log(`Response status not 200: ${response.status}`);
-                flashAlert(alertTargetElement, 'failure', typeOfDocument, 'added', urlTarget);
+                flashAlert(urlTarget, 'failure', 'added');
                 return;
             }
             response.json().then(data => {
                 console.log(data);
-                flashAlert(alertTargetElement, 'success', typeOfDocument, 'added', urlTarget);
+                flashAlert(urlTarget, 'success', 'added');
             });
         });   
     }
@@ -500,6 +524,33 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    
+    /**
+     * Fetches experience data and populates the experience form
+     * fields with it
+     */
+    function getQualificationData() {
+        dataTarget = this.getAttribute('data-id');
+        qualificationFormDocId.setAttribute('data-id', dataTarget);
+        changeFormButton('update', 'qualifications');
+        
+        fetch(`${window.origin}/admin/qualifications/update/${dataTarget}`)
+        .then(response => {
+            response.json()
+            .then(data => {
+                qualificationName.value = data.qualification_name;
+                qualificationFrom.value = data.qualification_from;
+                qualificationIssueDate.value = data.qualification_issue_date;
+                qualificationViewUrl.value = data.qualification_view_url;
+                qualificationInfoUrl.value = data.qualification_info_url;
+            });
+            qualificationModalInstance.open();
+            Array.from(qualificationFormLabels).forEach(label => {
+                label.classList.add('active');
+            });
+        });
+    }
+
     /**
      * Gets Skills form data and PUTs it to the
      * backend. Flash a success or failure alert
@@ -524,13 +575,13 @@ document.addEventListener('DOMContentLoaded', function () {
         }).then(response => {
             if (response.status !== 200) {
                 console.log(`Response status not 200: ${response.status}`);
-                flashAlert(skillsAlert, 'failure', 'skill', 'updated', 'skills');
+                flashAlert('skills', 'failure', 'updated');
                 return;
             }
 
             response.json().then(data => {
                 console.log(data);
-                flashAlert(skillsAlert, 'success', 'skill', 'updated', 'skills');
+                flashAlert('skills', 'success', 'updated');
             });
         });
     }
@@ -558,13 +609,13 @@ document.addEventListener('DOMContentLoaded', function () {
         }).then(response => {
             if (response.status !== 200) {
                 console.log(`Response status not 200: ${response.status}`);
-                flashAlert(experienceAlert, 'failure', 'experience', 'updated', 'experience');
+                flashAlert('experience', 'failure', 'updated');
                 return;
             }
 
             response.json().then(data => {
                 console.log(data);
-                flashAlert(experienceAlert, 'success', 'experience', 'updated', 'experience');
+                flashAlert('experience', 'success', 'updated');
             });
         });
     }
@@ -580,19 +631,14 @@ document.addEventListener('DOMContentLoaded', function () {
         let redirect;
 
         if (type === 'skill') {
-            alertTarget = skillsAlert;
             redirect = 'skills';
         } else if (type === 'project') {
-            alertTarget = projectsAlert;
             redirect = 'projects';
         } else if (type === 'qualification') {
-            alertTarget = qualificationsAlert;
             redirect = 'qualifications';
         } else if (type === 'blog') {
-            alertTarget = blogAlert;
             redirect = 'blogs';
         } else if (type === 'experience') {
-            alertTarget = experienceAlert;
             redirect = 'experience';
         }
 
@@ -604,13 +650,13 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => {
             if (response.status !== 200) {
                 console.log(`Response status not 200: ${response.status}`);
-                flashAlert(alertTarget, 'failure', type, 'deleted', redirect);
+                flashAlert(redirect, 'failure', 'deleted');
                 return;
             }
 
             response.json().then(data => {
                 console.log(data);
-                flashAlert(alertTarget, 'success', type, 'deleted', redirect);
+                flashAlert(redirect, 'success', 'deleted');
             });
         });
     }
@@ -701,6 +747,10 @@ document.addEventListener('DOMContentLoaded', function () {
         deleteButton.addEventListener('click', function(event) {
             deleteDocument('qualification', event);
         });
+    });
+
+    Array.from(qualificationUpdateButtons).forEach(updateButton => {
+        updateButton.addEventListener('click', getQualificationData);
     });
 
     Array.from(blogPostDeleteButtons).forEach(deleteButton => {
