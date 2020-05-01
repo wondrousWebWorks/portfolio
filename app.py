@@ -432,29 +432,24 @@ def add_experience():
     return response
 
 
-@app.route('/admin/edit_experience/<experience_id>')
-def edit_experience(experience_id):
-    """Return a rendered template of EDIT EXPERIENCE page populated with data of specific work experience
-    
-    Using the WORK EXPERIENCE ID sent from MANAGE WORK EXPERIENCE, retrieve the document for a specific work experience.
-    Pass work experience data to a rendered template of the EDIT EXPERIENCE page.
-    """
-    experience = mongo.db.work_experience.find_one({'_id': ObjectId(experience_id)})
-    return render_template('pages/edit_experience.html', experience=experience)
-
-@app.route('/admin/update_experience/<experience_id>', methods=['POST'])
+@app.route('/admin/experience/update/<experience_id>', methods=['GET','PUT'])
 def update_experience(experience_id):
-    if request.method == 'POST':
-        experience = mongo.db.work_experience
-        experience.update({'_id': ObjectId(experience_id)},
+    """Update experience document based on its Id"""
+    experience = mongo.db.work_experience
+    if request.method == 'GET':
+        experience_to_return = experience.find_one({'_id': ObjectId(experience_id)})
+        del experience_to_return['_id']
+        response = make_response(jsonify(experience_to_return), 200)
+    elif request.method == 'PUT':
+        experience_to_update_dict = request.get_json()
+        experience.update({'_id': ObjectId(experience_to_update_dict['experience_id'])},
         {
-            'job_title': request.form.get('job_title'),
-            'job_dates': request.form.get('job_dates')
+            'job_title': experience_to_update_dict['job_title'],
+            'job_dates': experience_to_update_dict['job_dates']
         })
 
-        return redirect(url_for('admin'))
-    else:
-        return redirect(url_for('edit_experience'))
+        response = make_response(jsonify({'message': 'success'}), 200)
+    return response
 
 
 @app.route('/admin/experience/delete/<experience_id>', methods=['DELETE'])
