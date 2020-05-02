@@ -117,7 +117,7 @@ def blog_entry(blog_id):
     rendered remplate of a specific BLOG POST PAGE and pass data to it 
     """
     blog_entry = mongo.db.blog_posts.find_one({'_id': ObjectId(blog_id)})
-    return render_template('pages/blog_entry.html', blog_entry=blog_entry)
+    return render_template('pages/blog-entry.html', blog_entry=blog_entry)
 
 
 @app.route('/admin')
