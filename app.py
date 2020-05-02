@@ -233,7 +233,6 @@ def update_project(project_id):
         response = make_response(jsonify(project_to_return), 200)
     elif request.method == 'PUT':
         project_to_update_dict = request.get_json()
-        del project_to_update_dict['_id']
         portfolio.update({'_id': ObjectId(project_id)}, project_to_update_dict)
         response = make_response(jsonify({'message': 'success'}), 200)
     return response
