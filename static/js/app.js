@@ -639,22 +639,27 @@ document.addEventListener('DOMContentLoaded', function () {
         sendData('skills', 'update', skillEntry, dataTarget);
     }
 
-    /**
-     * Gets Exprerience form data and PUTs it to the
-     * backend. Flash a success or failure alert
-     * depending on response
-     */
-    function updateExperienceData() {
-        dataTarget = experienceFormDocId.getAttribute('data-id');
-        const experienceEntry = {
-            job_title: experienceJobTitle.value,
-            job_dates: experienceJobDates.value
+    function updateProjectdata() {
+        dataTarget = projectFormDocId.getAttribute('data-id');
+        const projectTechnologiesValues = M.FormSelect.getInstance(projectTechnologies);
+        const projectDescription = [];
+        projectDescriptionParagraphs.forEach(paragraph => {
+            projectDescription.push(paragraph.value);
+        });
+        
+        const projectEntry = {
+            project_name: projectName.value,
+            project_img_url: projectImgUrl.value,
+            project_github_url: projectGithubUrl.value,
+            project_deployed_url: projectDeployedUrl.value,
+            project_technologies: projectTechnologiesValues.getSelectedValues(),
+            project_description: projectDescription
         };
 
-        sendData('experience', 'update', experienceEntry, dataTarget);
+        sendData('projects', 'update', projectEntry, dataTarget);
     }
 
-    /**
+        /**
      * Gets Qualification form data and PUTs it to the
      * backend. Flash a success or failure alert
      * depending on response
@@ -671,6 +676,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
         sendData('qualifications', 'update', qualificationEntry, dataTarget);
     }
+
+    /**
+     * Gets Exprerience form data and PUTs it to the
+     * backend. Flash a success or failure alert
+     * depending on response
+     */
+    function updateExperienceData() {
+        dataTarget = experienceFormDocId.getAttribute('data-id');
+        const experienceEntry = {
+            job_title: experienceJobTitle.value,
+            job_dates: experienceJobDates.value
+        };
+
+        sendData('experience', 'update', experienceEntry, dataTarget);
+    }
+
 
     /**
      * Deletes a document by sending a DELETE request to the backend
@@ -742,13 +763,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 addQualificationData();
             } else if(/experience-form-btn-add/.test(element.className)) {
                 addExperienceData();
-            } else if (/skills-form-btn-update/.test(element.className)) {
-                updateSkillData(); 
             } else if (/add-project-btn/.test(element.className)) {
                 resetForm('projects');
                 setTimeout(function() {
                     projectModalInstance.open();               
                 }, 400);
+            } else if (/skills-form-btn-update/.test(element.className)) {
+                updateSkillData(); 
+            } else if (/projects-form-btn-update/.test(element.className)) {
+                updateProjectdata(); 
             } else if (/experience-form-btn-update/.test(element.className)) {
                 updateExperienceData(); 
             } else if (/qualifications-form-btn-update/.test(element.className)) {
