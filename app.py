@@ -174,7 +174,7 @@ def update_skill(skill_id):
         response = make_response(jsonify(skill_to_return), 200)
     elif request.method == 'PUT':
         skill_to_update_dict = request.get_json()
-        skills.update({'_id': ObjectId(skill_to_update_dict['skill_id'])},
+        skills.update({'_id': ObjectId(skill_id)},
         {
             'skill_name': skill_to_update_dict['skill_name'],
             'skill_level': skill_to_update_dict['skill_level']
@@ -221,40 +221,22 @@ def add_project():
             response = make_response(jsonify({'message': 'success'}), 200)
         else:
             response = make_response(jsonify({'message': 'failed'}), 500)
-    return response 
+    return response
 
 
-@app.route('/admin/edit_project/<project_id>')
-def edit_project(project_id):
-    """Return a rendered template of EDIT PROJECT page populated with data of a specific project
-    
-    Using the PROJECT ID sent from MANAGE PROJECTS, retrieve the document for a specific project.
-    Retrieve a list of all technologies from the technologies collection. Pass project 
-    and technologies data to a rendered template of the EDIT PROJECT page.
-    """
-    project = mongo.db.portfolio.find_one({'_id': ObjectId(project_id)})
-    technologies = mongo.db.technologies.find()
-    technology_list = technologies[0]['technology_name']
-    return render_template('pages/edit_project.html', project=project, technology_list=technology_list)
-
-
-@app.route('/admin/update_project/<project_id>', methods=['POST'])
+@app.route('/admin/projects/update/<project_id>', methods=['GET', 'PUT'])
 def update_project(project_id):
-    if request.method == 'POST':
-        portfolio = mongo.db.portfolio
-        portfolio.update({'_id': ObjectId(project_id)},
-        {
-            'project_name': request.form.get('project_name'),
-            'project_img_url': request.form.get('project_img_url'),
-            'project_github_url': request.form.get('project_github_url'),
-            'project_deployed_url': request.form.get('project_deployed_url'),
-            'project_technologies': request.form.getlist('project_technologies'),
-            'project_description': request.form.getlist('project_description')
-        })
-
-        return redirect(url_for('admin'))
-    else:
-        return redirect(url_for('edit_project'))
+    portfolio = mongo.db.portfolio
+    if request.method == 'GET':
+        project_to_return = portfolio.find_one({'_id': ObjectId(project_id)})
+        del project_to_return['_id']
+        response = make_response(jsonify(project_to_return), 200)
+    elif request.method == 'PUT':
+        project_to_update_dict = request.get_json()
+        del project_to_update_dict['_id']
+        portfolio.update({'_id': ObjectId(project_id)}, project_to_update_dict)
+        response = make_response(jsonify({'message': 'success'}), 200)
+    return response
 
 
 @app.route('/admin/projects/delete/<project_id>', methods=['DELETE'])
