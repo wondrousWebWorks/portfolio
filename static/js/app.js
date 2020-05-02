@@ -363,17 +363,30 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /**
-     * POSTS data to a specific URL and handles the response
-     * @param {string} urlTarget - which admin page to target
-     * @param {Object} POST body - key:value pairs
-     * @param {Node} alertTargetElement - alert element for specific page
-     * @param {string} typeOfDocument - lets the user know what kind of document was added
+     * 
+     * @param {string} urlTarget - which admin page to target (skills/projects/qualifications/blogs/experience)
+     * @param {string} addOrUpdate - states whether a document is being added or updated (add/update)
+     * @param {Object} requestBody - the request body
+     * @param {string} docId - the document Id
      */
-    function postData(urlTarget, body, alertTargetElement, typeOfDocument) {
-        fetch(`${window.origin}/admin/${urlTarget}/add`, {
-            method: 'POST',
+    function sendData(urlTarget, addOrUpdate, requestBody, docId = '1') {
+        let urlString;
+        let requestMethod;
+        let flashAction;
+        if (addOrUpdate === 'add') {
+            urlString = `${window.origin}/admin/${urlTarget}/add`;
+            requestMethod = 'POST';
+            flashAction = 'added';
+        } else if (addOrUpdate === 'update') {
+            urlString = `${window.origin}/admin/${urlTarget}/update/${docId}`;
+            requestMethod = 'PUT';
+            flashAction = 'updated';
+        }
+
+        fetch(urlString, {
+            method: requestMethod,
             credentials: 'include',
-            body: JSON.stringify(body),
+            body: JSON.stringify(requestBody),
             cache: 'no-cache',
             headers: new Headers({
                 'content-type': 'application/json'
@@ -381,12 +394,12 @@ document.addEventListener('DOMContentLoaded', function () {
         }).then(response => {
             if (response.status !== 200) {
                 console.log(`Response status not 200: ${response.status}`);
-                flashAlert(urlTarget, 'failure', 'added');
+                flashAlert(urlTarget, 'failure', flashAction);
                 return;
             }
             response.json().then(data => {
                 console.log(data);
-                flashAlert(urlTarget, 'success', 'added');
+                flashAlert(urlTarget, 'success', flashAction);
             });
         });   
     }
@@ -401,7 +414,7 @@ document.addEventListener('DOMContentLoaded', function () {
             skill_level: skillLevel.value
         };
 
-        postData('skills', skillEntry, skillsAlert, 'skill');
+        sendData('skills', skillEntry, skillsAlert, 'skill');
     }
 
     /**
@@ -426,7 +439,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         console.log(projectEntry);
 
-        postData('projects', projectEntry, projectsAlert, 'project');
+        sendData('projects', projectEntry, projectsAlert, 'project');
     }
 
     /**
@@ -442,14 +455,14 @@ document.addEventListener('DOMContentLoaded', function () {
             qualification_info_url: qualificationInfoUrl.value
         };
 
-        postData('qualifications', qualificationEntry, qualificationsAlert, 'qualification');
+        sendData('qualifications', qualificationEntry, qualificationsAlert, 'qualification');
     }
 
     /**
      * POSTs a blog post to backend and flashes a success
      * or failure alert message
      */
-    function addBlogPostData() {
+    function addBlogsendData() {
         const blogPostParagraphs = [];
         blogParagraphs.forEach(paragraph => {
             blogPostParagraphs.push(paragraph.value);
@@ -463,7 +476,7 @@ document.addEventListener('DOMContentLoaded', function () {
             blog_body: blogPostParagraphs
         };
 
-        postData('blogs', blogPost, blogAlert, 'blog post');
+        sendData('blogs', blogPost, blogAlert, 'blog post');
     }
 
     /**
@@ -476,7 +489,7 @@ document.addEventListener('DOMContentLoaded', function () {
             job_dates: experienceJobDates.value
         };
 
-        postData('experience', experienceEntry, experienceAlert, 'experience');
+        sendData('experience', experienceEntry, experienceAlert, 'experience');
     }
 
     /**
@@ -621,7 +634,6 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateSkillData() {
         dataTarget = skillFormDocId.getAttribute('data-id');
         const skill_entry = {
-            skill_id: dataTarget,
             skill_name: skillName.value,
             skill_level: skillLevel.value
         };
@@ -784,7 +796,7 @@ document.addEventListener('DOMContentLoaded', function () {
             } else if (/projects-form-btn-add/.test(element.className)) {
                 addProjectData();
             } else if (/blogs-form-btn-add/.test(element.className)) {
-                addBlogPostData(); 
+                addBlogsendData(); 
             } else if(/qualifications-form-btn-add/.test(element.className)) {
                 addQualificationData();
             } else if(/experience-form-btn-add/.test(element.className)) {
