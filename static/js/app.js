@@ -646,7 +646,7 @@ document.addEventListener('DOMContentLoaded', function () {
         projectDescriptionParagraphs.forEach(paragraph => {
             projectDescription.push(paragraph.value);
         });
-        
+
         const projectEntry = {
             project_name: projectName.value,
             project_img_url: projectImgUrl.value,
@@ -659,7 +659,7 @@ document.addEventListener('DOMContentLoaded', function () {
         sendData('projects', 'update', projectEntry, dataTarget);
     }
 
-        /**
+    /**
      * Gets Qualification form data and PUTs it to the
      * backend. Flash a success or failure alert
      * depending on response
@@ -677,8 +677,26 @@ document.addEventListener('DOMContentLoaded', function () {
         sendData('qualifications', 'update', qualificationEntry, dataTarget);
     }
 
+    function updateBlogEntryData() {
+        dataTarget = blogFormDocId.getAttribute('data-id');
+        const blogPostParagraphs = [];
+        blogParagraphs.forEach(paragraph => {
+            blogPostParagraphs.push(paragraph.value);
+        });
+
+        const blogPost = {
+            blog_title: blogTitle.value,
+            blog_img_url: blogImgUrl.value,
+            blog_summary: blogSummary.value,
+            blog_date: blogDate.value,
+            blog_body: blogPostParagraphs
+        };
+
+        sendData('blogs', 'update', blogPost, dataTarget);
+    }
+
     /**
-     * Gets Exprerience form data and PUTs it to the
+     * Gets Experience form data and PUTs it to the
      * backend. Flash a success or failure alert
      * depending on response
      */
@@ -772,8 +790,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 updateSkillData(); 
             } else if (/projects-form-btn-update/.test(element.className)) {
                 updateProjectdata(); 
-            } else if (/experience-form-btn-update/.test(element.className)) {
-                updateExperienceData(); 
+            } else if (/projects-form-btn-update/.test(element.className)) {
+                updateProjectdata(); 
+            } else if (/blogs-form-btn-update/.test(element.className)) {
+                updateBlogEntryData(); 
             } else if (/qualifications-form-btn-update/.test(element.className)) {
                 updateQualificationData(); 
             } else if (/add-qualification-btn/.test(element.className)) {
