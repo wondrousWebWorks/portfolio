@@ -42,6 +42,7 @@ const projectImgUrl = document.getElementById('project-img-url');
 const projectGithubUrl = document.getElementById('project-github-url');
 const projectDeployedUrl = document.getElementById('project-deployed-url');
 const projectTechnologies = document.getElementById('project-technologies');
+const projectTechnologiesSelectOptions = document.querySelectorAll('.project-technology');
 const projectDescriptionParagraphs = document.querySelectorAll('.project-description-paragraph');
 
 /* ADMIN QUALIFICATIONS */
@@ -505,25 +506,65 @@ document.addEventListener('DOMContentLoaded', function () {
      * Fetches experience data and populates the experience form
      * fields with it
      */
-    function getExperienceData() {
+    function getQualificationData() {
         dataTarget = this.getAttribute('data-id');
-        experienceFormDocId.setAttribute('data-id', dataTarget);
-        changeFormButton('update', 'experience');
+        qualificationFormDocId.setAttribute('data-id', dataTarget);
+        changeFormButton('update', 'qualifications');
         
-        fetch(`${window.origin}/admin/experience/update/${dataTarget}`)
+        fetch(`${window.origin}/admin/qualifications/update/${dataTarget}`)
         .then(response => {
             response.json()
             .then(data => {
-                experienceJobTitle.value = data.job_title;
-                experienceJobDates.value = data.job_dates;
+                qualificationName.value = data.qualification_name;
+                qualificationFrom.value = data.qualification_from;
+                qualificationIssueDate.value = data.qualification_issue_date;
+                qualificationViewUrl.value = data.qualification_view_url;
+                qualificationInfoUrl.value = data.qualification_info_url;
             });
-            experienceModalInstance.open();
-            Array.from(experienceFormLabels).forEach(label => {
+            qualificationModalInstance.open();
+            Array.from(qualificationFormLabels).forEach(label => {
                 label.classList.add('active');
             });
         });
     }
 
+    /**
+     * Fetches blog entry data and populates the blogs form
+     * fields with it
+     */
+    function getProjectData() {
+        dataTarget = this.getAttribute('data-id');
+        projectFormDocId.setAttribute('data-id', dataTarget);
+        changeFormButton('update', 'projects');
+        
+        fetch(`${window.origin}/admin/projects/update/${dataTarget}`)
+        .then(response => {
+            response.json()
+            .then(data => {
+                projectName.value = data.project_name;
+                projectImgUrl.value = data.project_img_url;
+                projectGithubUrl.value = data.project_github_url;
+                projectDeployedUrl.value = data.project_deployed_url;
+                projectTechnologiesSelectOptions.forEach(selectOption => {
+                    if (data.project_technologies.includes(selectOption.getAttribute('value'))) {
+                        selectOption.setAttribute('selected', "");
+                    }
+                });
+                for (let i = 0; i < projectDescriptionParagraphs.length; i++) {
+                    projectDescriptionParagraphs[i].value = data.project_description[i];
+                }
+            });
+            projectModalInstance.open();
+            Array.from(projectFormLabels).forEach(label => {
+                label.classList.add('active');
+            });
+        });
+    }
+
+    /**
+     * Fetches blog entry data and populates the blogs form
+     * fields with it
+     */
     function getBlogEntryData() {
         dataTarget = this.getAttribute('data-id');
         blogFormDocId.setAttribute('data-id', dataTarget);
@@ -549,28 +590,24 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    
-    /**
+        /**
      * Fetches experience data and populates the experience form
      * fields with it
      */
-    function getQualificationData() {
+    function getExperienceData() {
         dataTarget = this.getAttribute('data-id');
-        qualificationFormDocId.setAttribute('data-id', dataTarget);
-        changeFormButton('update', 'qualifications');
+        experienceFormDocId.setAttribute('data-id', dataTarget);
+        changeFormButton('update', 'experience');
         
-        fetch(`${window.origin}/admin/qualifications/update/${dataTarget}`)
+        fetch(`${window.origin}/admin/experience/update/${dataTarget}`)
         .then(response => {
             response.json()
             .then(data => {
-                qualificationName.value = data.qualification_name;
-                qualificationFrom.value = data.qualification_from;
-                qualificationIssueDate.value = data.qualification_issue_date;
-                qualificationViewUrl.value = data.qualification_view_url;
-                qualificationInfoUrl.value = data.qualification_info_url;
+                experienceJobTitle.value = data.job_title;
+                experienceJobDates.value = data.job_dates;
             });
-            qualificationModalInstance.open();
-            Array.from(qualificationFormLabels).forEach(label => {
+            experienceModalInstance.open();
+            Array.from(experienceFormLabels).forEach(label => {
                 label.classList.add('active');
             });
         });
@@ -805,6 +842,10 @@ document.addEventListener('DOMContentLoaded', function () {
         deleteButton.addEventListener('click', function(event) {
             deleteDocument('project', event);
         });
+    });
+
+    Array.from(projectUpdateButtons).forEach(updateButton => {
+        updateButton.addEventListener('click', getProjectData);
     });
 
     Array.from(qualificationDeleteButtons).forEach(deleteButton => {
