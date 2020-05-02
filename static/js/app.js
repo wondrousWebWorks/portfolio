@@ -414,7 +414,7 @@ document.addEventListener('DOMContentLoaded', function () {
             skill_level: skillLevel.value
         };
 
-        sendData('skills', skillEntry, skillsAlert, 'skill');
+        sendData('skills', 'add', skillEntry);
     }
 
     /**
@@ -437,9 +437,7 @@ document.addEventListener('DOMContentLoaded', function () {
             project_description: projectDescription
         };
 
-        console.log(projectEntry);
-
-        sendData('projects', projectEntry, projectsAlert, 'project');
+        sendData('projects', 'add', projectEntry);
     }
 
     /**
@@ -455,14 +453,14 @@ document.addEventListener('DOMContentLoaded', function () {
             qualification_info_url: qualificationInfoUrl.value
         };
 
-        sendData('qualifications', qualificationEntry, qualificationsAlert, 'qualification');
+        sendData('qualifications', 'add', qualificationEntry);
     }
 
     /**
      * POSTs a blog post to backend and flashes a success
      * or failure alert message
      */
-    function addBlogsendData() {
+    function addBlogPostData() {
         const blogPostParagraphs = [];
         blogParagraphs.forEach(paragraph => {
             blogPostParagraphs.push(paragraph.value);
@@ -489,7 +487,7 @@ document.addEventListener('DOMContentLoaded', function () {
             job_dates: experienceJobDates.value
         };
 
-        sendData('experience', experienceEntry, experienceAlert, 'experience');
+        sendData('experience', 'add', experienceEntry);
     }
 
     /**
@@ -510,32 +508,6 @@ document.addEventListener('DOMContentLoaded', function () {
             });
             skillModalInstance.open();
             Array.from(skillFormLabels).forEach(label => {
-                label.classList.add('active');
-            });
-        });
-    }
-
-    /**
-     * Fetches experience data and populates the experience form
-     * fields with it
-     */
-    function getQualificationData() {
-        dataTarget = this.getAttribute('data-id');
-        qualificationFormDocId.setAttribute('data-id', dataTarget);
-        changeFormButton('update', 'qualifications');
-        
-        fetch(`${window.origin}/admin/qualifications/update/${dataTarget}`)
-        .then(response => {
-            response.json()
-            .then(data => {
-                qualificationName.value = data.qualification_name;
-                qualificationFrom.value = data.qualification_from;
-                qualificationIssueDate.value = data.qualification_issue_date;
-                qualificationViewUrl.value = data.qualification_view_url;
-                qualificationInfoUrl.value = data.qualification_info_url;
-            });
-            qualificationModalInstance.open();
-            Array.from(qualificationFormLabels).forEach(label => {
                 label.classList.add('active');
             });
         });
@@ -569,6 +541,32 @@ document.addEventListener('DOMContentLoaded', function () {
             });
             projectModalInstance.open();
             Array.from(projectFormLabels).forEach(label => {
+                label.classList.add('active');
+            });
+        });
+    }
+
+    /**
+     * Fetches experience data and populates the experience form
+     * fields with it
+     */
+    function getQualificationData() {
+        dataTarget = this.getAttribute('data-id');
+        qualificationFormDocId.setAttribute('data-id', dataTarget);
+        changeFormButton('update', 'qualifications');
+        
+        fetch(`${window.origin}/admin/qualifications/update/${dataTarget}`)
+        .then(response => {
+            response.json()
+            .then(data => {
+                qualificationName.value = data.qualification_name;
+                qualificationFrom.value = data.qualification_from;
+                qualificationIssueDate.value = data.qualification_issue_date;
+                qualificationViewUrl.value = data.qualification_view_url;
+                qualificationInfoUrl.value = data.qualification_info_url;
+            });
+            qualificationModalInstance.open();
+            Array.from(qualificationFormLabels).forEach(label => {
                 label.classList.add('active');
             });
         });
@@ -633,31 +631,12 @@ document.addEventListener('DOMContentLoaded', function () {
      */
     function updateSkillData() {
         dataTarget = skillFormDocId.getAttribute('data-id');
-        const skill_entry = {
+        const skillEntry = {
             skill_name: skillName.value,
             skill_level: skillLevel.value
         };
 
-        fetch(`${window.origin}/admin/skills/update/${dataTarget}`, {
-            method: 'PUT',
-            credentials: 'include',
-            body: JSON.stringify(skill_entry),
-            cache: 'no-cache',
-            headers: new Headers({
-                'content-type': 'application/json'
-            })
-        }).then(response => {
-            if (response.status !== 200) {
-                console.log(`Response status not 200: ${response.status}`);
-                flashAlert('skills', 'failure', 'updated');
-                return;
-            }
-
-            response.json().then(data => {
-                console.log(data);
-                flashAlert('skills', 'success', 'updated');
-            });
-        });
+        sendData('skills', 'update', skillEntry, dataTarget);
     }
 
     /**
@@ -667,31 +646,12 @@ document.addEventListener('DOMContentLoaded', function () {
      */
     function updateExperienceData() {
         dataTarget = experienceFormDocId.getAttribute('data-id');
-        const experience_entry = {
+        const experienceEntry = {
             job_title: experienceJobTitle.value,
             job_dates: experienceJobDates.value
         };
 
-        fetch(`${window.origin}/admin/experience/update/${dataTarget}`, {
-            method: 'PUT',
-            credentials: 'include',
-            body: JSON.stringify(experience_entry),
-            cache: 'no-cache',
-            headers: new Headers({
-                'content-type': 'application/json'
-            })
-        }).then(response => {
-            if (response.status !== 200) {
-                console.log(`Response status not 200: ${response.status}`);
-                flashAlert('experience', 'failure', 'updated');
-                return;
-            }
-
-            response.json().then(data => {
-                console.log(data);
-                flashAlert('experience', 'success', 'updated');
-            });
-        });
+        sendData('experience', 'update', experienceEntry, dataTarget);
     }
 
     /**
@@ -701,7 +661,7 @@ document.addEventListener('DOMContentLoaded', function () {
      */
     function updateQualificationData() {
         dataTarget = qualificationFormDocId.getAttribute('data-id');
-        const qualification_entry = {
+        const qualificationEntry = {
             qualification_name: qualificationName.value,
             qualification_from: qualificationFrom.value,
             qualification_issue_date: qualificationIssueDate.value,
@@ -709,26 +669,7 @@ document.addEventListener('DOMContentLoaded', function () {
             qualification_info_url: qualificationInfoUrl.value
         };
 
-        fetch(`${window.origin}/admin/qualifications/update/${dataTarget}`, {
-            method: 'PUT',
-            credentials: 'include',
-            body: JSON.stringify(qualification_entry),
-            cache: 'no-cache',
-            headers: new Headers({
-                'content-type': 'application/json'
-            })
-        }).then(response => {
-            if (response.status !== 200) {
-                console.log(`Response status not 200: ${response.status}`);
-                flashAlert('qualifications', 'failure', 'updated');
-                return;
-            }
-
-            response.json().then(data => {
-                console.log(data);
-                flashAlert('qualifications', 'success', 'updated');
-            });
-        });
+        sendData('qualifications', 'update', qualificationEntry, dataTarget);
     }
 
     /**
@@ -796,7 +737,7 @@ document.addEventListener('DOMContentLoaded', function () {
             } else if (/projects-form-btn-add/.test(element.className)) {
                 addProjectData();
             } else if (/blogs-form-btn-add/.test(element.className)) {
-                addBlogsendData(); 
+                addBlogPostData(); 
             } else if(/qualifications-form-btn-add/.test(element.className)) {
                 addQualificationData();
             } else if(/experience-form-btn-add/.test(element.className)) {
