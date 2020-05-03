@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+{% extends 'layout/base.html' %}
+{% block base_body %}
+    {% with icon = 'code', section_title = 'PROJECTS' %}
+        {% include 'components/section-heading.html' %}
+    {% endwith %}
+
+{% include 'components/cards/project-card.html' %}
+
+{% endblock %}
