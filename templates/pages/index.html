@@ -12,21 +12,21 @@
 {% with icon = 'code', section_title = 'PROJECTS' %}
     {% include 'components/section-heading.html' %}
 {% endwith %}
-{% include 'components/project-card.html' %}
+{% include 'components/cards/project-card.html' %}
 <div class="row">
     <div class="col s12 center-align">
-        <a href="{{ url_for('portfolio') }}" class="all-projects-btn off-white magenta-bg">All Projects</a>
+        <a href="{{ url_for('projects') }}" class="btn btn-large all-projects-btn off-white sa-flag-red-bg text-shadow-1px">All Projects</a>
     </div>
 </div>
 
 {% with icon = 'graduation-cap', section_title = 'EDUCATION' %}
     {% include 'components/section-heading.html' %}
 {% endwith %}
-{% include 'components/qualification-card.html' %}
+{% include 'components/cards/qualification-card.html' %}
 
 {% with icon = 'briefcase', section_title = 'EXPERIENCE' %}
     {% include 'components/section-heading.html' %}
 {% endwith %}
-{% include 'components/experience-card.html' %}
+{% include 'components/cards/experience-card.html' %}
 
 {% endblock %}
