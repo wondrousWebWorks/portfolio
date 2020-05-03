@@ -890,13 +890,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const collapsibleElems = document.querySelectorAll('.collapsible');
     const collapsibleInstances = M.Collapsible.init(collapsibleElems, {
         onOpenStart: function(el) {
-            el.querySelector('.custom-collapsible-header').style.backgroundColor = '#333';
-            el.querySelector('.custom-collapsible-body').style.backgroundColor = '#222';
+            el.querySelector('.custom-collapsible-header').classList.add('custom-collapsible-header-hover');
             el.querySelector('.custom-collapsible-header i').style.transform = 'scaleY(-1)';
         },
         onCloseStart: function(el) {
-            el.querySelector('.custom-collapsible-header').style.backgroundColor = '#1f1f1f';
-            el.querySelector('.custom-collapsible-body').style.backgroundColor = '#1f1f1f';
+            el.querySelector('.custom-collapsible-header').classList.remove('custom-collapsible-header-hover');
             el.querySelector('.custom-collapsible-header i').style.transform = 'scaleY(1)';
         }
     });
