@@ -32,7 +32,7 @@
                     <select id="project-technologies" name="project-technologies" multiple>
                         <option value="" disabled selected>Choose Technologies</option><i class="fas fa-chevron-down magenta"></i>
                         {% for technology in technology_list %}
-                            <option value="{{ technology }}">{{ technology }}</option>
+                            <option class="project-technology" value="{{ technology }}">{{ technology }}</option>
                         {% endfor %}
                     </select>
                     <label class="projects-form-label">Technologies</label>
