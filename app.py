@@ -50,15 +50,15 @@ def about():
     return render_template('pages/about.html')
 
 
-@app.route('/portfolio')
-def portfolio():
+@app.route('/projects')
+def projects():
     """Return a rendered template of the PROJECTS page with data passed to page
     
     Retrieve all projects from the PORTFOLIO collection from MongoDB Atlas.
     Return a rendered template of the PROJECTS page and pass data to it
     """
     projects = mongo.db.portfolio.find()
-    return render_template('pages/portfolio.html', projects=projects)
+    return render_template('pages/projects.html', projects=projects)
 
 
 @app.route('/project/<project_id>')
