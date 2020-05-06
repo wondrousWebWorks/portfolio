@@ -12,17 +12,24 @@
 
 <div class="row">
     <div class="col s12 center-align">
-        <a class="btn-large add-btn add-project-btn green off-white"><i class="fas fa-plus-square"></i>&nbsp;ADD PROJECT</a>
+        <a id="add-project-btn" class="add-modal-trigger btn btn-large sa-flag-green-bg off-white"><i class="fas fa-plus-square"></i>&nbsp;ADD PROJECT</a>
         <ul class="admin-list eerie-black-bg">
             {% for project in projects %}
             <li class="admin-list-item off-white">{{ project.project_name}}
                 <span>
-                    <a class="update-project-btn btn waves-effect waves-light light-blue darken-2 off-white text-shadow-1px" data-id="{{ project._id }}"><i class="fas fa-edit"></i> Edit</a>
-                    <a class="delete-project-btn btn waves-effect waves-light red darken-3 off-white text-shadow-1px" data-id="{{ project._id }}"><i class="fas fa-trash-alt"></i> Delete</a>
+                    <a class="update-project-btn update-btn btn waves-effect waves-light sa-flag-blue-bg off-white text-shadow-1px" data-id="{{ project._id }}"><i class="fas fa-edit"></i> Edit</a>
+                    <a class="delete-project-btn delete-btn btn waves-effect waves-light sa-flag-red-bg off-white text-shadow-1px" data-id="{{ project._id }}"><i class="fas fa-trash-alt"></i> Delete</a>
                 </span>
             </li>
             {% endfor %}
         </ul>
     </div>
 </div>
+
+{% include 'components/forms/projects-form.html' %}
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/admin/projects.js') }}"></script>
 {% endblock %}
