@@ -9,14 +9,11 @@
 
     <div class="container">
         {% block admin_block %}{% endblock %}
-        {% include 'components/forms/skills-form.html' %}
-        {% include 'components/forms/projects-form.html' %}
-        {% include 'components/forms/qualifications-form.html' %}
-        {% include 'components/forms/blogs-form.html' %}
-        {% include 'components/forms/experience-form.html' %}
     </div>
 
     {% include 'layout/scripts.html' %}
+    {% block scripts %}{% endblock %}
+
 </body>
 
 </html>
