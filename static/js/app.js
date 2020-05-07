@@ -10,7 +10,7 @@ const toggleMenuIcon = document.querySelector('.menu-toggle-icon');
 const sideNav = document.querySelector('.nav-display-col');
 
 /* ADMIN SHARED */
-const buttons = document.querySelectorAll('button');
+const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
 
     /**
      * Animates the terminal-like cursor in the
@@ -724,7 +724,7 @@ const buttons = document.querySelectorAll('button');
         project.addEventListener("mouseout", restoreProjectCardSize);
       });
 
-    Array.from(buttons).forEach(button => {
+    Array.from(modalSubmitButtons).forEach(button => {
         button.addEventListener('click', e => {
             e.preventDefault();
         });
