@@ -78,27 +78,18 @@ def project(project_id):
     return render_template('pages/project.html', project=project)
 
 
-@app.route('/contact')
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
-    """Return a rendered template of the CONTACT page"""
-    return render_template('pages/contact.html')
-
-
-@app.route('/send_mail', methods=['POST'])
-def send_mail():
-    """Send an email to site owner using data from CONTACT page form
-    
-    Using data from CONTACT page, set recipient email address, 
-    build email header and body and send email to site owner.
-    Once completed, redirect back to the CONTACT page
-    """
-    if request.method == 'POST':
+    """Return a rendered template of the CONTACT page or send email"""
+    if request.method == 'GET':
+        return render_template('pages/contact.html')
+    elif request.method == 'POST':
         recipient = os.environ.get('RECIPIENT_ADDRESS')
         msg = Message(request.form['subject'], sender = request.form['email'], recipients = [recipient])
         msg.body = request.form['query']
         print(request.form)
-        # mail.send(msg)
-    return redirect('contact')
+        mail.send(msg)
+        return redirect('home')
 
 
 @app.route('/blogs')
@@ -547,10 +538,6 @@ class User:
             email: The user's email address
         """
         return self.email
-
-
-password = bcrypt.generate_password_hash('maryhadalittlelamb').decode('utf8')
-print(password)
 
 
 if __name__ == '__main__':
