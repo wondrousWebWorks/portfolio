@@ -5,16 +5,15 @@ from flask import Flask, render_template, url_for, redirect, request, session, f
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from flask_mail import Mail, Message
-
+from flask_bcrypt import Bcrypt
+from flask_login import LoginManager, login_user, logout_user, login_required
 
 app = Flask(__name__)
-
 app.config['MONGO_DBNAME'] = os.environ.get('MONGO_DBNAME')
 app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
 mongo = PyMongo(app)
-
 app.config['MAIL_SERVER']= os.environ.get('MAIL_SERVER')
 app.config['MAIL_PORT'] = os.environ.get('MAIL_PORT')
 app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
@@ -23,6 +22,11 @@ app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 
 mail = Mail(app)
+
+bcrypt = Bcrypt(app)
+
+login_manager = LoginManager(app)
+login_manager.login_view = "login"
 
 @app.route('/')
 @app.route('/home')
@@ -92,7 +96,8 @@ def send_mail():
         recipient = os.environ.get('RECIPIENT_ADDRESS')
         msg = Message(request.form['subject'], sender = request.form['email'], recipients = [recipient])
         msg.body = request.form['query']
-        mail.send(msg)
+        print(request.form)
+        # mail.send(msg)
     return redirect('contact')
 
 
@@ -121,6 +126,7 @@ def blog_entry(blog_id):
 
 
 @app.route('/admin')
+@login_required
 def admin():
     """Return a rendered template of the ADMIN page and pass data to it
     
@@ -142,6 +148,7 @@ def admin():
 
 
 @app.route('/admin/skills')
+@login_required
 def manage_skills():
     """Return a rendered template of SKILLS page with all skills sent to it"""
     skills = mongo.db.skills.find()
@@ -149,6 +156,7 @@ def manage_skills():
 
 
 @app.route('/admin/skills/add', methods=['POST'])
+@login_required
 def add_skill():
     """Insert a new document into skills collection"""
     if request.method == 'POST':
@@ -165,6 +173,7 @@ def add_skill():
 
 
 @app.route('/admin/skills/update/<skill_id>', methods=['GET', 'PUT'])
+@login_required
 def update_skill(skill_id):
     """Update a skill based on its Id"""
     skills = mongo.db.skills
@@ -185,6 +194,7 @@ def update_skill(skill_id):
 
 
 @app.route('/admin/skills/delete/<skill_id>', methods=['DELETE'])
+@login_required
 def delete_skill(skill_id):
     """Remove a skill from skills collection based on Id"""
     if request.method == 'DELETE':
@@ -200,6 +210,7 @@ def delete_skill(skill_id):
 
 
 @app.route('/admin/projects')
+@login_required
 def manage_projects():
     """Return a rendered template of PROJECTS page with all projects sent to it"""
     projects = mongo.db.portfolio.find()
@@ -209,6 +220,7 @@ def manage_projects():
 
 
 @app.route('/admin/projects/add', methods=['POST'])
+@login_required
 def add_project():
     """Insert a new document into portfolio collection"""
     if request.method == 'POST':
@@ -225,6 +237,7 @@ def add_project():
 
 
 @app.route('/admin/projects/update/<project_id>', methods=['GET', 'PUT'])
+@login_required
 def update_project(project_id):
     portfolio = mongo.db.portfolio
     if request.method == 'GET':
@@ -239,6 +252,7 @@ def update_project(project_id):
 
 
 @app.route('/admin/projects/delete/<project_id>', methods=['DELETE'])
+@login_required
 def delete_project(project_id):
     """Remove a project from portfolio collection based on Id"""
     if request.method == 'DELETE':
@@ -254,6 +268,7 @@ def delete_project(project_id):
 
 
 @app.route('/admin/qualifications')
+@login_required
 def manage_qualifications():
     """Return a rendered template of MANAGE QUALIFICATIONS page
     
@@ -265,6 +280,7 @@ def manage_qualifications():
 
 
 @app.route('/admin/qualifications/add', methods=['POST'])
+@login_required
 def add_qualification():
     """Insert a new document into qualifications collection"""
     if request.method == 'POST':
@@ -281,6 +297,7 @@ def add_qualification():
 
 
 @app.route('/admin/qualifications/update/<qualification_id>', methods=['GET', 'PUT'])
+@login_required
 def update_qualification(qualification_id):
     """Update a qualification based on its Id"""
     qualifications = mongo.db.qualifications
@@ -304,6 +321,7 @@ def update_qualification(qualification_id):
 
 
 @app.route('/admin/qualifications/delete/<qualification_id>', methods=['DELETE'])
+@login_required
 def delete_qualification(qualification_id):
     """Remove a qualification from qualifications collection based on Id"""
     if request.method == 'DELETE':
@@ -319,6 +337,7 @@ def delete_qualification(qualification_id):
 
 
 @app.route('/admin/blogs')
+@login_required
 def manage_blogs():
     """Return a rendered template of BLOGS page with all blog posts sent to it"""
     blog_posts = mongo.db.blog_posts.find()
@@ -326,6 +345,7 @@ def manage_blogs():
 
 
 @app.route('/admin/blogs/add', methods=['POST'])
+@login_required
 def add_blog_post():
     """Insert a new document into blog_posts collection"""
     if request.method == 'POST':
@@ -342,6 +362,7 @@ def add_blog_post():
 
 
 @app.route('/admin/blogs/update/<blog_post_id>', methods=['GET','PUT'])
+@login_required
 def update_blog_post(blog_post_id):
     """Update a blog post based on its Id"""
     blog_posts = mongo.db.blog_posts
@@ -365,6 +386,7 @@ def update_blog_post(blog_post_id):
 
 
 @app.route('/admin/blogs/delete/<blog_post_id>', methods=['DELETE'])
+@login_required
 def delete_blog_post(blog_post_id):
     """Remove a blog post from blog_posts collection based on Id"""
     if request.method == 'DELETE':
@@ -379,6 +401,7 @@ def delete_blog_post(blog_post_id):
     return response
 
 @app.route('/admin/experience')
+@login_required
 def manage_experience():
     """Return a rendered template of EXPERIENCE page with all work experience sent to it"""
     experience = mongo.db.work_experience.find()
@@ -386,6 +409,7 @@ def manage_experience():
 
 
 @app.route('/admin/experience/add', methods=['POST'])
+@login_required
 def add_experience():
     """Insert a new document into experience collection"""
     if request.method == 'POST':
@@ -402,6 +426,7 @@ def add_experience():
 
 
 @app.route('/admin/experience/update/<experience_id>', methods=['GET','PUT'])
+@login_required
 def update_experience(experience_id):
     """Update experience document based on its Id"""
     experience = mongo.db.work_experience
@@ -422,6 +447,7 @@ def update_experience(experience_id):
 
 
 @app.route('/admin/experience/delete/<experience_id>', methods=['DELETE'])
+@login_required
 def delete_experience(experience_id):
     """Remove a work experience document from work_experience collection based on Id"""
     if request.method == 'DELETE':
@@ -436,12 +462,95 @@ def delete_experience(experience_id):
     return response
 
 
-@app.route('/login')
+@login_manager.user_loader
+def load_user(email):
+    users = mongo.db.users
+    user = users.find_one({'email': email})
+    if not user:
+        return None
+    else:
+        return User(email=user['email'], password=user['password'])
+
+
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    # if 'username' in session:
-    #     return redirect(url_for('admin'))
-    return redirect(url_for('admin'))
-    # return render_template('pages/login.html')
+    """Verifies login form information and logs a user in if valid ceredntials are provided"""
+    if request.method == 'POST':
+        users = mongo.db.users
+        find_user = users.find_one({'email': request.form['email']})
+        if find_user and bcrypt.check_password_hash(find_user['password'], request.form['password']):
+            user = User(find_user['email'], find_user['password'])
+            login_user(user)
+            return redirect(url_for('admin'))
+    return render_template('pages/login.html')
+
+
+@app.route("/logout")
+@login_required
+def logout():
+    """Logs a user out and destroys session data"""
+    logout_user()
+    return redirect(url_for('home'))
+
+
+class User:
+    """ 
+    This is a class for creating user instances to allow authentication. 
+      
+    Attributes: 
+        email (string): The user's email address. 
+        password (string): The user's hashed password. 
+    """
+    def __init__(self, email, password):
+        """ 
+        The constructor for User class. 
+  
+        Parameters: 
+            email (string): The user's email address. 
+            password (string): The user's hashed password.    
+        """
+        self.email = email
+        self.password = password
+
+    def is_authenticated(self):
+        """
+        States whether a user is authenticated
+
+        Returns:
+            Boolean: True or False
+        """
+        return True
+
+    def is_active(self):
+        """
+        States whether a user is active
+
+        Returns:
+            Boolean: True or False
+        """
+        return True
+
+    def is_anonymous(self):
+        """
+        States whether a user is anonymous
+
+        Returns:
+            Boolean: True or False
+        """
+        return False
+
+    def get_id(self):
+        """
+        Returns the user's ID
+
+        Returns:
+            email: The user's email address
+        """
+        return self.email
+
+
+password = bcrypt.generate_password_hash('maryhadalittlelamb').decode('utf8')
+print(password)
 
 
 if __name__ == '__main__':
