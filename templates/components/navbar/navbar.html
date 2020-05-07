@@ -14,7 +14,12 @@
         <li><a class="horizontal-nav-item" href="{{ url_for('projects') }}"><i class="fas fa-th"></i>&nbsp;Projects</a></li>
         <li><a class="horizontal-nav-item" href="{{ url_for('blogs') }}"><i class="fas fa-blog"></i>&nbsp;Blog</a></li>
         <li><a class="horizontal-nav-item" href="{{ url_for('contact') }}"><i class="fas fa-envelope"></i>&nbsp;Contact</a></li>
-        <li><a class="horizontal-nav-item" href="{{ url_for('login') }}"><i class="fas fa-user-cog"></i>&nbsp;Admin</a></li>
+        {% if current_user.is_authenticated %}
+          <li><a class="horizontal-nav-item" href="{{ url_for('admin') }}"><i class="fas fa-sign-out-alt"></i>&nbsp;Admin</a></li>
+          <li><a class="horizontal-nav-item" href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i>&nbsp;Log Out</a></li>
+        {% else %}
+          <li><a class="horizontal-nav-item" href="{{ url_for('login') }}"><i class="fas fa-sign-in-alt"></i>&nbsp;Log In</a></li>
+        {% endif %}
       </ul>
       <div class="menu-toggle-icon-wrapper">
         <a href="#!" class="menu-toggle-icon"><i class="fas fa-bars"></i></a>
@@ -25,14 +30,18 @@
         <li class="nav-display-col-item"><a href="{{ url_for('projects') }}"><i class="fas fa-th"></i>&nbsp;Projects</a></li><hr>
         <li class="nav-display-col-item"><a href="{{ url_for('blogs') }}"><i class="fas fa-blog"></i>&nbsp;Blog</a></li><hr>
         <li class="nav-display-col-item"><a href="{{ url_for('contact') }}"><i class="fas fa-envelope"></i>&nbsp;Contact</a></li><hr>
-        <li class="nav-display-col-item"><a href="{{ url_for('login') }}"><i class="fas fa-user-cog"></i>&nbsp;Admin</a></li>
+        {% if current_user.is_authenticated %}
+          <li class="nav-display-col-item"><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i>&nbsp;Log Out</a></li>
+        {% else %}
+          <li class="nav-display-col-item"><a href="{{ url_for('login') }}"><i class="fas fa-sign-in-alt"></i>&nbsp;Log In</a></li>
+        {% endif %}
       </ul>
     {% elif type == 'admin' %}
       <div id="logo-wrapper">
         <a href=" {{url_for('admin')}} " id="brand-logo-image-link"><img
           src="https://res.cloudinary.com/wondrouswebworks/image/upload/v1587417141/wondrousWebWorks/wondrous-logo-125-by-125_q3xkm2.png"
           alt="wondrouswebworks logo"></a>
-          <a href=" {{url_for('admin')}} " id="brand-logo">&nbsp;wondrousWebWorks( )</a>
+        <a href=" {{url_for('admin')}} " id="brand-logo">&nbsp;wondrousWebWorks( )</a>
       </div>
       <ul class="nav-display-row">
         <li><a class="horizontal-nav-item" href="{{ url_for('admin') }}"><i class="fas fa-columns"></i>&nbsp;Dashboard</a></li>
@@ -42,6 +51,9 @@
         <li><a class="horizontal-nav-item" href="{{ url_for('manage_qualifications') }}"><i class="fas fa-graduation-cap"></i>&nbsp;Qualifications</a></li>
         <li><a class="horizontal-nav-item" href="{{ url_for('manage_blogs') }}"><i class="fas fa-blog"></i>&nbsp;Blogs</a></li>
         <li><a class="horizontal-nav-item" href="{{ url_for('manage_experience') }}"><i class="fas fa-chart-line"></i>&nbsp;Experience</a></li>
+        {% if current_user.is_authenticated %}
+          <li><a class="horizontal-nav-item" href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i>&nbsp;Log Out</a></li>
+        {% endif %}
       </ul>
       <div class="menu-toggle-icon-wrapper">
         <a href="#!" class="menu-toggle-icon"><i class="fas fa-bars"></i></a>
