@@ -15,13 +15,16 @@
         <a id="add-qualification-btn" class="add-modal-trigger btn btn-large sa-flag-green-bg off-white text-shadow-1px"><i class="fas fa-plus-square"></i>&nbsp;ADD QUALIFICATION</a>
         <ul class="admin-list eerie-black-bg">
             {% for qualification in qualifications %}
-            <li class="admin-list-item off-white">{{ qualification.qualification_name}}
-                <span>
+            <li class="admin-list-item off-white">
+                <div class="admin-list-item-text">
+                    {{ qualification.qualification_name}}
+                </div>
+                <div class="admin-list-item-btn-wrapper">
                     <a class="update-qualification-btn update-btn btn waves-effect waves-light sa-flag-blue-bg off-white text-shadow-1px" data-id="{{ qualification._id }}"><i
-                                class="fas fa-edit"></i> Edit</a>
+                        class="fas fa-edit"></i> Edit</a>
                     <a class="delete-qualification-btn delete-btn btn waves-effect waves-light sa-flag-red-bg off-white text-shadow-1px" data-id="{{ qualification._id }}"><i
-                                class="fas fa-trash-alt"></i> Delete</a>
-                </span>
+                        class="fas fa-trash-alt"></i> Delete</a>
+                </div>
             </li>
             {% endfor %}
         </ul>

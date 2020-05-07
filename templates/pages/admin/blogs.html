@@ -15,13 +15,16 @@
         <a id="add-blog-post-btn" class="add-modal-trigger btn btn-large sa-flag-green-bg off-white"><i class="fas fa-plus-square"></i>&nbsp;ADD BLOG POST</a>
         <ul class="admin-list eerie-black-bg">
             {% for blog_post in blog_posts %}
-            <li class="admin-list-item off-white">{{ blog_post.blog_title}}
-                <span>
+            <li class="admin-list-item off-white">
+                <div class="admin-list-item-text">
+                    {{ blog_post.blog_title}}
+                </div>
+                <div class="admin-list-item-btn-wrapper">
                     <a class="update-blog-post-btn update-btn btn waves-effect waves-light sa-flag-blue-bg off-white text-shadow-1px" data-id="{{ blog_post._id }}"><i
                         class="fas fa-edit"></i> Edit</a>
                     <a class="delete-blog-post-btn delete-btn btn waves-effect waves-light sa-flag-red-bg off-white text-shadow-1px" data-id="{{ blog_post._id }}"><i
                         class="fas fa-trash-alt"></i> Delete</a>
-                </span>
+                </div>
             </li>
             {% endfor %}
         </ul>

@@ -15,11 +15,14 @@
         <a id="add-project-btn" class="add-modal-trigger btn btn-large sa-flag-green-bg off-white"><i class="fas fa-plus-square"></i>&nbsp;ADD PROJECT</a>
         <ul class="admin-list eerie-black-bg">
             {% for project in projects %}
-            <li class="admin-list-item off-white">{{ project.project_name}}
-                <span>
+            <li class="admin-list-item off-white">
+                <div class="admin-list-item-text">
+                    {{ project.project_name}}
+                </div>
+                <div class="admin-list-item-btn-wrapper">
                     <a class="update-project-btn update-btn btn waves-effect waves-light sa-flag-blue-bg off-white text-shadow-1px" data-id="{{ project._id }}"><i class="fas fa-edit"></i> Edit</a>
                     <a class="delete-project-btn delete-btn btn waves-effect waves-light sa-flag-red-bg off-white text-shadow-1px" data-id="{{ project._id }}"><i class="fas fa-trash-alt"></i> Delete</a>
-                </span>
+                </div>
             </li>
             {% endfor %}
         </ul>

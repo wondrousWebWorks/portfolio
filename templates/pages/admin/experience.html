@@ -15,13 +15,16 @@
         <a id="add-experience-btn" class="add-modal-trigger btn btn-large sa-flag-green-bg off-white"><i class="fas fa-plus-square"></i>&nbsp;ADD EXPERIENCE</a>
         <ul class="admin-list eerie-black-bg">
             {% for job in experience %}
-            <li class="admin-list-item off-white">{{ job.job_title}}
-                <span>
+            <li class="admin-list-item off-white">
+                <div class="admin-list-item-text">
+                    {{ job.job_title}}
+                </div>
+                <div class="admin-list-item-btn-wrapper">
                     <a class="update-experience-btn update-btn btn waves-effect waves-light sa-flag-blue-bg off-white text-shadow-1px" data-id="{{ job._id }}"><i
                         class="fas fa-edit"></i> Edit</a>
                     <a class="delete-experience-btn delete-btn btn waves-effect waves-light sa-flag-red-bg off-white text-shadow-1px" data-id="{{ job._id }}"><i
                         class="fas fa-trash-alt"></i> Delete</a>
-                </span>
+                </div>
             </li>
             {% endfor %}
         </ul>
