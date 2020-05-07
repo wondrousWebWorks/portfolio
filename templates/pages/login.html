@@ -1,28 +1,26 @@
 <!DOCTYPE html>
 {% extends 'layout/base.html' %}
 {% block base_body %}
+
+{% with icon = 'sign-in-alt', section_title = 'LOGIN' %}
+    {% include 'components/section-heading.html' %}
+{% endwith %}
+
 <div class="row">
-    <div class="col s12">
-        <h2 class="section-heading">Login</h2>
-    </div>
-</div>
-<div class="row">
-    <form class="col s12">
+    <form class="col s12" method="POST" action="{{ url_for('login') }}">
         <div class="row">
             <div class="input-field col s12">
-                <input id="username" type="text" class="validate">
-                <label for="username">Username</label>
+                <input id="email" type="email" name="email" class="validate">
+                <label for="email">Email</label>
             </div>
             <div class="input-field col s12">
-                <input id="password" type="password" class="validate">
+                <input id="password" type="password" name="password" class="validate">
                 <label for="password">Password</label>
             </div>
         </div>
         <div class="row">
             <div class="co s12">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Sign In
-                    <i class="material-icons right">send</i>
-                </button>
+                <button id="login-btn" class="btn sa-flag-blue-bg off-white waves-effect waves-light"><i class="fas fa-sign-in-alt"></i>&nbsp;Sign In</button>
             </div>
         </div>
     </form>
