@@ -12,96 +12,13 @@ const sideNav = document.querySelector('.nav-display-col');
 /* ADMIN SHARED */
 const buttons = document.querySelectorAll('button');
 
-/* ADMIN SKILLS */
-const skillUpdateButtons = document.querySelectorAll('.update-skill-btn');
-const skillDeleteButtons = document.querySelectorAll('.delete-skill-btn');
-const skillModal = document.querySelector('skills-form-modal');
-const skillForm = document.querySelector('skills-form');
-const skillFormLabels = document.querySelectorAll('.skills-form-label');
-const skillFormSubmitButton = document.querySelector('skills-form-submit-btn');
-const skillFormSubmitButtonText = document.querySelector('skills-form-submit-btn-text');
-const skillFormDocId = document.querySelector('skill-form-doc-id');
-const skillsAlert = document.querySelector('skills-alert');
-const skillFormInputs = document.querySelectorAll('#skills-form input');
-const skillName = document.querySelector('skill-name');
-const skillLevel = document.querySelector('skill-level');
-
-/* ADMIN PROJECTS */
-const projectUpdateButtons = document.querySelectorAll('.update-project-btn');
-const projectDeleteButtons = document.querySelectorAll('.delete-project-btn');
-const projectModal = document.querySelector('projects-form-modal');
-const projectForm = document.querySelector('projects-form');
-const projectFormLabels = document.querySelectorAll('.projects-form-label');
-const projectFormSubmitButton = document.querySelector('projects-form-btn');
-const projectFormSubmitButtonText = document.querySelector('projects-form-submit-btn-text');
-const projectFormDocId = document.querySelector('project-form-doc-id');
-const projectsAlert = document.querySelector('projects-alert');
-const projectFormInputs = document.querySelectorAll('#projects-form input');
-const projectName = document.querySelector('project-name');
-const projectImgUrl = document.querySelector('project-img-url');
-const projectGithubUrl = document.querySelector('project-github-url');
-const projectDeployedUrl = document.querySelector('project-deployed-url');
-const projectTechnologies = document.querySelector('project-technologies');
-const projectTechnologiesSelectOptions = document.querySelectorAll('.project-technology');
-const projectDescriptionParagraphs = document.querySelectorAll('.project-description-paragraph');
-
-/* ADMIN QUALIFICATIONS */
-const qualificationUpdateButtons = document.querySelectorAll('.update-qualification-btn');
-const qualificationDeleteButtons = document.querySelectorAll('.delete-qualification-btn');
-const qualificationModal = document.querySelector('qualifications-form-modal');
-const qualificationForm = document.querySelector('qualifications-form');
-const qualificationFormLabels = document.querySelectorAll('.qualifications-form-label');
-const qualificationFormSubmitButton = document.querySelector('qualifications-form-submit-btn');
-const qualificationFormSubmitButtonText = document.querySelector('qualifications-form-submit-btn-text');
-const qualificationFormDocId = document.querySelector('qualification-form-doc-id');
-const qualificationsAlert = document.querySelector('qualifications-alert');
-const qualificationFormInputs = document.querySelectorAll('#qualifications-form input');
-const qualificationName = document.querySelector('qualification-name');
-const qualificationFrom = document.querySelector('qualification-from');
-const qualificationIssueDate = document.querySelector('qualification-issue-date');
-const qualificationViewUrl = document.querySelector('qualification-view-url');
-const qualificationInfoUrl = document.querySelector('qualification-info-url');
-
-/* ADMIN BLOGS */
-const blogPostUpdateButtons = document.querySelectorAll('.update-blog-post-btn');
-const blogPostDeleteButtons = document.querySelectorAll('.delete-blog-post-btn');
-const blogModal = document.querySelector('blogs-form-modal');
-const blogForm = document.querySelector('blogs-form');
-const blogFormLabels = document.querySelectorAll('.blogs-form-label');
-const blogFormSubmitButton = document.querySelector('blogs-form-submit-btn');
-const blogFormSubmitButtonText = document.querySelector('blogs-form-submit-btn-text');
-const blogFormDocId = document.querySelector('blogs-form-doc-id');
-const blogAlert = document.querySelector('blogs-alert');
-const blogFormInputs = document.querySelectorAll('#blogs-form input');
-const blogTitle = document.querySelector('blog-title');
-const blogImgUrl = document.querySelector('blog-img-url');
-const blogSummary = document.querySelector('blog-summary');
-const blogDate = document.querySelector('blog-date');
-const blogParagraphs = document.querySelectorAll('.blog-paragraph');
-
-/* ADMIN EXPERIENCE */
-const experienceUpdateButtons = document.querySelectorAll('.update-experience-btn');
-const experienceDeleteButtons = document.querySelectorAll('.delete-experience-btn');
-const experienceModal = document.querySelector('experience-form-modal');
-const experienceForm = document.querySelector('experience-form');
-const experienceFormLabels = document.querySelectorAll('.experience-form-label');
-const experienceFormSubmitButton = document.querySelector('experience-form-submit-btn');
-const experienceFormSubmitButtonText = document.querySelector('experience-form-submit-btn-text');
-const experienceFormDocId = document.querySelector('experience-form-doc-id');
-const experienceAlert = document.querySelector('experience-alert');
-const experienceFormInputs = document.querySelectorAll('#experience-form input');
-const experienceJobTitle = document.querySelector('job-title');
-const experienceJobDates = document.querySelector('job-dates');
-
-
-
-document.addEventListener('DOMContentLoaded', function () {
     /**
      * Animates the terminal-like cursor in the
-     * About summary section in index.html
+     * About Summary section in index.html and the
+     * about.html pages
      */
     function animateCursor() {
-        setInterval(function () {
+        setInterval(() => {
             cursorRectangle.forEach(cursor => {
                 cursor.classList.toggle('cursor-hide');
             });
@@ -142,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
      */
     function animateSkillBars() {
         let skillBarRising = true;
-        setInterval(function () {
+        setInterval(() => {
             skillBarsWrappers.forEach(skillBarsWrapper => {
                 
                 const skillLevel = parseInt(skillBarsWrapper.getAttribute('data-skill-level'));
@@ -189,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
      * restore project card to normal size
      * and opacity
      */
-    function shrinkProjects() {
+    function restoreProjectCardSize() {
         projects.forEach(project => {
             project.classList.remove('project-scale-smaller-and-opage');
             project.classList.remove('project-scale-bigger');
@@ -205,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /**
-     * Redirects to a given URL based on redirect parameter
+     * Redirects to a given Admin URL based on the redirect parameter
      * @param {string} redirect 
      */
     function reloadTargetURL(redirect) {
@@ -213,8 +130,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /**
-     * 
-     * @param {string} targetDocument - skills, projects, qualifications, blogs, experience
+     * Flashes a success or failure message for CRUD operations on relevant Admin screens
+     * @param {string} targetDocument - skills/projects/qualifications/blogs/experience
      * @param {string} successOrFailure - success or failure of CRUD operation
      * @param {string} whichCrudOperation - added, updated, deleted 
      */
@@ -245,20 +162,20 @@ document.addEventListener('DOMContentLoaded', function () {
             default: console.log('Failed to set target document');
         }
 
-        targetElement.style.display = 'block';
-
-        if (successOrFailure == "success") {
+        if (successOrFailure === "success") {
             targetElement.classList.add('alert-success');
             targetElement.children[0].innerText = `Document successfully ${whichCrudOperation}`;
-        } else if (successOrFailure == "failure") {
+        } else if (successOrFailure === "failure") {
             targetElement.classList.add('alert-failure');
             targetElement.children[0].innerText = `Document failed to be ${whichCrudOperation}`;
         }
         
-        setTimeout(function() {
+        setTimeout(() => {
             targetElement.style.display = 'none';
             reloadTargetURL(redirect); 
-        }, 2500);
+        }, 1500);
+
+        targetElement.style.display = 'block';
     }
 
     /**
@@ -272,41 +189,44 @@ document.addEventListener('DOMContentLoaded', function () {
 
         switch (formTarget) {
             case 'skills':
-                formInputElements = skillFormInputs;
                 formLabels = skillFormLabels;
-                formInputElements.forEach(input => {
+                skillFormInputs.forEach(input => {
                     input.value = null;
                     input.classList.remove('valid');
                 });
                 break;
             case 'projects':
-                formInputElements = projectFormInputs;
                 formLabels = projectFormLabels;
-                formInputElements.forEach(input => {
+                projectFormInputs.forEach(input => {
+                    input.value = null;
+                    input.classList.remove('valid');
+                });
+                projectDescriptionParagraphs.forEach(input => {
                     input.value = null;
                     input.classList.remove('valid');
                 });
                 break;
             case 'qualifications':
-                formInputElements = qualificationFormInputs;
                 formLabels = qualificationFormLabels;
-                formInputElements.forEach(input => {
+                qualificationFormInputs.forEach(input => {
                     input.value = null;
                     input.classList.remove('valid');
                 });
                 break;
             case 'blogs':
-                formInputElements = blogFormInputs;
                 formLabels = blogFormLabels;
-                formInputElements.forEach(input => {
+                blogFormInputs.forEach(input => {
                     input.value = null;
                     input.classList.remove('valid');
                 });
+                blogParagraphs.forEach(input => {
+                    input.value = null;
+                    input.classList.remove('valid');
+                })
                 break;
             case 'experience':
-                formInputElements = experienceFormInputs;
                 formLabels = experienceFormLabels;
-                formInputElements.forEach(input => {
+                experienceFormInputs.forEach(input => {
                     input.value = null;
                     input.classList.remove('valid');
                 });
@@ -321,8 +241,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     /**
      * Changes the button classes and text for any admin form
-     * @param {string} type - add or update
-     * @param {string} formTarget - which form to target
+     * @param {string} type - add/update
+     * @param {string} formTarget - skills/projects/qualifications.blogs/experience
      */
     function changeFormButton(type, formTarget) {
         let formTargetButton;
@@ -364,7 +284,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     /**
      * 
-     * @param {string} urlTarget - which admin page to target (skills/projects/qualifications/blogs/experience)
+     * @param {string} urlTarget - skills/projects/qualifications/blogs/experience
      * @param {string} addOrUpdate - states whether a document is being added or updated (add/update)
      * @param {Object} requestBody - the request body
      * @param {string} docId - the document Id
@@ -405,8 +325,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /**
-     * POSTs a skill to backend and flashes a success
-     * or failure alert message
+     * POSTs Skill form data to backend
      */
     function addSkillData() {
         const skillEntry = {
@@ -418,16 +337,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /**
-     * POSTs a project to backend and flashes a success
-     * or failure alert message
+     * POSTs Project form data to backend
      */
     function addProjectData() {
         const projectTechnologiesValues = M.FormSelect.getInstance(projectTechnologies);
-        const projectDescription = [];
-        projectDescriptionParagraphs.forEach(paragraph => {
-            projectDescription.push(paragraph.value);
-        });
-
+        const projectDescription = Array.from(projectDescriptionParagraphs).map(paragraph => paragraph.value);
         const projectEntry = {
             project_name: projectName.value,
             project_img_url: projectImgUrl.value,
@@ -441,8 +355,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /**
-     * POSTs a qualification to backend and flashes a success
-     * or failure alert message
+     * POSTs Qualification form data to backend
      */
     function addQualificationData() {
         const qualificationEntry = {
@@ -457,8 +370,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /**
-     * POSTs a blog post to backend and flashes a success
-     * or failure alert message
+     * POSTs Blog Post form data to backend
      */
     function addBlogPostData() {
         const blogPostParagraphs = [];
@@ -474,12 +386,11 @@ document.addEventListener('DOMContentLoaded', function () {
             blog_body: blogPostParagraphs
         };
 
-        sendData('blogs', blogPost, blogAlert, 'blog post');
+        sendData('blogs', 'add', blogPost);
     }
 
     /**
-     * POSTs a blog post to backend and flashes a success
-     * or failure alert message
+     * POSTs Experience form data to backend
      */
     function addExperienceData() {
         const experienceEntry = {
@@ -491,8 +402,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /**
-     * Fetches skill data and populates the skills form
-     * fields with it
+     * Fetches a specific Skill's data and populates 
+     * the Skills form fields with it
      */
     function getSkillData() {
         dataTarget = this.getAttribute('data-id');
@@ -514,8 +425,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /**
-     * Fetches blog entry data and populates the blogs form
-     * fields with it
+     * Fetches a specific Project's data and populates 
+     * the Projects form fields with it
      */
     function getProjectData() {
         dataTarget = this.getAttribute('data-id');
@@ -547,8 +458,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /**
-     * Fetches experience data and populates the experience form
-     * fields with it
+     * Fetches a specific Qualification's data and populates 
+     * the Qualifications form fields with it
      */
     function getQualificationData() {
         dataTarget = this.getAttribute('data-id');
@@ -573,10 +484,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /**
-     * Fetches blog entry data and populates the blogs form
-     * fields with it
+     * Fetches a specific Blog Post's data and populates 
+     * the Blogs form fields with it
      */
-    function getBlogEntryData() {
+    function getBlogPostData() {
         dataTarget = this.getAttribute('data-id');
         blogFormDocId.setAttribute('data-id', dataTarget);
         changeFormButton('update', 'blogs');
@@ -601,9 +512,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-        /**
-     * Fetches experience data and populates the experience form
-     * fields with it
+    /**
+     * Fetches specific Experience data and populates 
+     * the Experience form fields with it
      */
     function getExperienceData() {
         dataTarget = this.getAttribute('data-id');
@@ -625,9 +536,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /**
-     * Gets Skills form data and PUTs it to the
-     * backend. Flash a success or failure alert
-     * depending on response
+     * Gets Skills form data and PUTs it to the backend. 
      */
     function updateSkillData() {
         dataTarget = skillFormDocId.getAttribute('data-id');
@@ -639,7 +548,10 @@ document.addEventListener('DOMContentLoaded', function () {
         sendData('skills', 'update', skillEntry, dataTarget);
     }
 
-    function updateProjectdata() {
+    /**
+     * Gets Projects form data and PUTs it to the backend. 
+     */
+    function updateProjectData() {
         dataTarget = projectFormDocId.getAttribute('data-id');
         const projectTechnologiesValues = M.FormSelect.getInstance(projectTechnologies);
         const projectDescription = [];
@@ -660,9 +572,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /**
-     * Gets Qualification form data and PUTs it to the
-     * backend. Flash a success or failure alert
-     * depending on response
+     * Gets Qualifications form data and PUTs it to the backend. 
      */
     function updateQualificationData() {
         dataTarget = qualificationFormDocId.getAttribute('data-id');
@@ -677,7 +587,10 @@ document.addEventListener('DOMContentLoaded', function () {
         sendData('qualifications', 'update', qualificationEntry, dataTarget);
     }
 
-    function updateBlogEntryData() {
+    /**
+     * Gets Blogs form data and PUTs it to the backend. 
+     */
+    function updateBlogPostData() {
         dataTarget = blogFormDocId.getAttribute('data-id');
         const blogPostParagraphs = [];
         blogParagraphs.forEach(paragraph => {
@@ -696,9 +609,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /**
-     * Gets Experience form data and PUTs it to the
-     * backend. Flash a success or failure alert
-     * depending on response
+     * Gets Experience form data and PUTs it to the backend. 
      */
     function updateExperienceData() {
         dataTarget = experienceFormDocId.getAttribute('data-id');
@@ -712,24 +623,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     /**
-     * Deletes a document by sending a DELETE request to the backend
-     * @param {string} type - skills, projects, qualifications, blogs or experience
-     * @param {event} event - the button click event
+     * Deletes a document by ID by sending a DELETE request to the backend
+     * @param {HTMLElement} target - the Delete button which was clicked on 
      */
-    function deleteDocument(type, event) {
-        const dataTarget = event.target.getAttribute('data-id');
-        let alertTarget;
+    function deleteDocument(target) {
+        const dataTarget = target.getAttribute('data-id');
         let redirect;
 
-        if (type === 'skill') {
+        if (target.classList.contains('delete-skill-btn')) {
             redirect = 'skills';
-        } else if (type === 'project') {
+        } else if (target.classList.contains('delete-project-btn')) {
             redirect = 'projects';
-        } else if (type === 'qualification') {
+        } else if (target.classList.contains('delete-qualification-btn')) {
             redirect = 'qualifications';
-        } else if (type === 'blog') {
+        } else if (target.classList.contains('delete-blog-post-btn')) {
             redirect = 'blogs';
-        } else if (type === 'experience') {
+        } else if (target.classList.contains('delete-experience-btn')) {
             redirect = 'experience';
         }
 
@@ -753,135 +662,75 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /**
-     * Handles a document click event and traverses up the
-     * DOM tree until a condition is met upon which an 
-     * appropriate function is called
-     * @param {event} event 
+     * Resets and toggles any of the Admin forms
+     * @param {string} formTarget - skills/projects/qualifications/blogs/experience
      */
-    function handleElementsNotLoadedGlobally(event) {
-        event = event || window.event;
-        event.target = event.target || event.srcElement;
-
-        let element = event.target;
-        
-        while (element) {
-            if (/add-skill-btn/.test(element.className)) {
-                changeFormButton('add', 'skills');
-                resetForm('skills');
-                setTimeout(function() {
-                    skillModalInstance.open();               
-                }, 400); 
-            } else if (/skills-form-btn-add/.test(element.className)) {
-                addSkillData(); 
-            } else if (/projects-form-btn-add/.test(element.className)) {
-                addProjectData();
-            } else if (/blogs-form-btn-add/.test(element.className)) {
-                addBlogPostData(); 
-            } else if(/qualifications-form-btn-add/.test(element.className)) {
-                addQualificationData();
-            } else if(/experience-form-btn-add/.test(element.className)) {
-                addExperienceData();
-            } else if (/add-project-btn/.test(element.className)) {
-                resetForm('projects');
-                setTimeout(function() {
-                    projectModalInstance.open();               
-                }, 400);
-            } else if (/skills-form-btn-update/.test(element.className)) {
-                updateSkillData(); 
-            } else if (/projects-form-btn-update/.test(element.className)) {
-                updateProjectdata(); 
-            } else if (/projects-form-btn-update/.test(element.className)) {
-                updateProjectdata(); 
-            } else if (/blogs-form-btn-update/.test(element.className)) {
-                updateBlogEntryData(); 
-            } else if (/qualifications-form-btn-update/.test(element.className)) {
-                updateQualificationData(); 
-            } else if (/add-qualification-btn/.test(element.className)) {
-                resetForm('qualifications');
-                setTimeout(function() {
-                    qualificationModalInstance.open();               
-                }, 400);
-            } else if (/add-blog-post-btn/.test(element.className)) {
-                resetForm('blogs');
-                setTimeout(function() {
-                    blogModalInstance.open();               
-                }, 400);
-            } else if (/add-experience-btn/.test(element.className)) {
-                resetForm('experience');
-                setTimeout(function() {
-                    experienceModalInstance.open();               
-                }, 400);
-            } 
-    
-            element = element.parentNode;
-        }
+    function toggleAddModal(formTarget) {
+        changeFormButton('add', formTarget);
+        resetForm(formTarget);
+        setTimeout(() => {
+            switch (formTarget) {
+                case 'skills':
+                    skillModalInstance.open();
+                    break;
+                case 'projects':
+                    projectModalInstance.open();
+                    break;
+                case 'qualifications':
+                    qualificationModalInstance.open();
+                    break;
+                case 'blogs':
+                    blogModalInstance.open();
+                    break;
+                case 'experience':
+                    experienceModalInstance.open();
+                    break;
+                default: console.log('Failed to open modal.');
+            }     
+        }, 400); 
     }
 
+    /**
+     * Calls either an Add op Update function for all Admin forms
+     * @param {HTMLElement} target - The form submit button which was clicked
+     */
+    function addOrUpdateFormData(target) {
+        if (target.classList.contains('skills-form-btn-add')) {
+            addSkillData();
+        } else if (target.classList.contains('skills-form-btn-update')) {
+            updateSkillData();
+        } else if (target.classList.contains('projects-form-btn-add')) {
+            addProjectData();
+        } else if (target.classList.contains('projects-form-btn-update')) {
+            updateProjectData();
+        } else if (target.classList.contains('qualifications-form-btn-add')) {
+            addQualificationData();
+        } else if (target.classList.contains('qualifications-form-btn-update')) {
+            updateQualificationData();
+        } else if (target.classList.contains('blogs-form-btn-add')) {
+            addBlogPostData();
+        } else if (target.classList.contains('blogs-form-btn-update')) {
+            updateBlogPostData();
+        } else if (target.classList.contains('experience-form-btn-add')) {
+            addExperienceData();
+        } else if (target.classList.contains('experience-form-btn-update')) {
+            updateExperienceData();
+        }
+    }
 
     /* EVENT LISTENERS */
     Array.from(projects).forEach(project => {
         project.addEventListener("mouseover", scaleProject);
-        project.addEventListener("mouseout", shrinkProjects);
+        project.addEventListener("mouseout", restoreProjectCardSize);
       });
 
-    Array.from(skillUpdateButtons).forEach(updateButton => {
-        updateButton.addEventListener('click', getSkillData);
-    });
-
-    Array.from(skillDeleteButtons).forEach(deleteButton => {
-        deleteButton.addEventListener('click', function(event) {
-            deleteDocument('skill', event);
-        });
-    });
-
-    Array.from(projectDeleteButtons).forEach(deleteButton => {
-        deleteButton.addEventListener('click', function(event) {
-            deleteDocument('project', event);
-        });
-    });
-
-    Array.from(projectUpdateButtons).forEach(updateButton => {
-        updateButton.addEventListener('click', getProjectData);
-    });
-
-    Array.from(qualificationDeleteButtons).forEach(deleteButton => {
-        deleteButton.addEventListener('click', function(event) {
-            deleteDocument('qualification', event);
-        });
-    });
-
-    Array.from(qualificationUpdateButtons).forEach(updateButton => {
-        updateButton.addEventListener('click', getQualificationData);
-    });
-
-    Array.from(blogPostDeleteButtons).forEach(deleteButton => {
-        deleteButton.addEventListener('click', function(event) {
-            deleteDocument('blog', event);
-        });
-    });
-
-    Array.from(blogPostUpdateButtons).forEach(updateButton => {
-        updateButton.addEventListener('click', getBlogEntryData);
-    });
-
-    Array.from(experienceUpdateButtons).forEach(updateButton => {
-        updateButton.addEventListener('click', getExperienceData);
-    });
-
-    Array.from(experienceDeleteButtons).forEach(deleteButton => {
-        deleteButton.addEventListener('click', function(event) {
-            deleteDocument('experience', event);
-        });
-    });
-
     Array.from(buttons).forEach(button => {
-        button.addEventListener('click', function(event) {
-            event.preventDefault();
+        button.addEventListener('click', e => {
+            e.preventDefault();
         });
     });
 
     toggleMenuIcon.addEventListener('click', toggleSideNav);
-    document.addEventListener( "click", handleElementsNotLoadedGlobally);
 
     /* INITIALIZE MATERIALIZE COMPONENTS */
     const selectElems = document.querySelectorAll('select');
@@ -889,26 +738,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const collapsibleElems = document.querySelectorAll('.collapsible');
     const collapsibleInstances = M.Collapsible.init(collapsibleElems, {
-        onOpenStart: function(el) {
+        onOpenStart: el => {
             el.querySelector('.custom-collapsible-header').classList.add('custom-collapsible-header-hover');
             el.querySelector('.custom-collapsible-header i').style.transform = 'scaleY(-1)';
         },
-        onCloseStart: function(el) {
+        onCloseStart: el => {
             el.querySelector('.custom-collapsible-header').classList.remove('custom-collapsible-header-hover');
             el.querySelector('.custom-collapsible-header i').style.transform = 'scaleY(1)';
         }
     });
 
-    const modalElems = document.querySelectorAll('.modal');
-    const modalInstances = M.Modal.init(modalElems);
-    const skillModalInstance = M.Modal.init(skillModal);
-    const projectModalInstance = M.Modal.init(projectModal);
-    const qualificationModalInstance = M.Modal.init(qualificationModal);
-    const blogModalInstance = M.Modal.init(blogModal);
-    const experienceModalInstance = M.Modal.init(experienceModal);
-
     /* FUNCTIONS CALLED ON PAGE LOAD */
     animateCursor();
     randomizeInitialSkillBarHeight();
     animateSkillBars();
-});
