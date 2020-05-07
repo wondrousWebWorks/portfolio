@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     Array.from(blogPostUpdateButtons).forEach(updateButton => {
-        updateButton.addEventListener('click', getBlogEntryData);
+        updateButton.addEventListener('click', getBlogPostData);
     });
 
     Array.from(blogPostDeleteButtons).forEach(deleteButton => {
