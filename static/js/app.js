@@ -156,6 +156,9 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
                     input.value = null;
                     input.classList.remove('valid');
                 });
+                projectTechnologiesSelectOptions.forEach(selectOption => {
+                    selectOption.removeAttribute('selected');
+                });
                 break;
             case 'qualifications':
                 formLabels = qualificationFormLabels;
@@ -357,6 +360,7 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
      * the Skills form fields with it
      */
     function getSkillData() {
+        resetForm('skills');
         dataTarget = this.getAttribute('data-id');
         skillFormDocId.setAttribute('data-id', dataTarget);
         changeFormButton('update', 'skills');
@@ -380,6 +384,7 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
      * the Projects form fields with it
      */
     function getProjectData() {
+        resetForm('projects');
         dataTarget = this.getAttribute('data-id');
         projectFormDocId.setAttribute('data-id', dataTarget);
         changeFormButton('update', 'projects');
@@ -413,6 +418,7 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
      * the Qualifications form fields with it
      */
     function getQualificationData() {
+        resetForm('qualifications');
         dataTarget = this.getAttribute('data-id');
         qualificationFormDocId.setAttribute('data-id', dataTarget);
         changeFormButton('update', 'qualifications');
@@ -439,6 +445,7 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
      * the Blogs form fields with it
      */
     function getBlogPostData() {
+        resetForm('blogs');
         dataTarget = this.getAttribute('data-id');
         blogFormDocId.setAttribute('data-id', dataTarget);
         changeFormButton('update', 'blogs');
@@ -468,6 +475,7 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
      * the Experience form fields with it
      */
     function getExperienceData() {
+        resetForm('experience');
         dataTarget = this.getAttribute('data-id');
         experienceFormDocId.setAttribute('data-id', dataTarget);
         changeFormButton('update', 'experience');
