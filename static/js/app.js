@@ -130,55 +130,6 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
     }
 
     /**
-     * Flashes a success or failure message for CRUD operations on relevant Admin screens
-     * @param {string} targetDocument - skills/projects/qualifications/blogs/experience
-     * @param {string} successOrFailure - success or failure of CRUD operation
-     * @param {string} whichCrudOperation - added, updated, deleted 
-     */
-    function flashAlert(targetDocument, successOrFailure, whichCrudOperation) {
-        let targetElement;
-        let redirect;
-        switch (targetDocument) {
-            case 'skills':
-                targetElement = skillsAlert;
-                redirect = 'skills';
-                break;
-            case 'projects':
-                targetElement = projectsAlert;
-                redirect = 'projects';
-                break;
-            case 'qualifications':
-                targetElement = qualificationsAlert;
-                redirect = 'qualifications';
-                break;
-            case 'blogs':
-                targetElement = blogAlert;
-                redirect = 'blogs';
-                break;
-            case 'experience':
-                targetElement = experienceAlert;
-                redirect = 'experience';
-                break;
-            default: console.log('Failed to set target document');
-        }
-
-        if (successOrFailure === "success") {
-            targetElement.classList.add('alert-success');
-            targetElement.children[0].innerText = `Document successfully ${whichCrudOperation}`;
-        } else if (successOrFailure === "failure") {
-            targetElement.classList.add('alert-failure');
-            targetElement.children[0].innerText = `Document failed to be ${whichCrudOperation}`;
-        }
-        
-        setTimeout(() => {
-            targetElement.style.display = 'none';
-            reloadTargetURL(redirect); 
-        }, 1500);
-
-        targetElement.style.display = 'block';
-    }
-
-    /**
      * Reset any form to its original empty state
      * @param {string} formTarget 
      */
@@ -222,7 +173,7 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
                 blogParagraphs.forEach(input => {
                     input.value = null;
                     input.classList.remove('valid');
-                })
+                });
                 break;
             case 'experience':
                 formLabels = experienceFormLabels;
@@ -314,12 +265,12 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
         }).then(response => {
             if (response.status !== 200) {
                 console.log(`Response status not 200: ${response.status}`);
-                flashAlert(urlTarget, 'failure', flashAction);
+                location.reload();
                 return;
             }
             response.json().then(data => {
                 console.log(data);
-                flashAlert(urlTarget, 'success', flashAction);
+                location.reload();
             });
         });   
     }
@@ -650,13 +601,13 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
         .then(response => {
             if (response.status !== 200) {
                 console.log(`Response status not 200: ${response.status}`);
-                flashAlert(redirect, 'failure', 'deleted');
+                location.reload();
                 return;
             }
 
             response.json().then(data => {
                 console.log(data);
-                flashAlert(redirect, 'success', 'deleted');
+                location.reload();
             });
         });
     }
