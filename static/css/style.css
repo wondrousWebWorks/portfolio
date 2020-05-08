@@ -69,6 +69,12 @@ h1, h2, h3, h4, nav {
     min-height: 100%;
 }
 
+.multi-paragraphs {
+    padding-left: 2rem;
+    border-left: 2px solid #E03C31;
+    font-size: 1.2rem;
+}
+
 .text-shadow-2px {
     text-shadow: 2px 2px #101010;
 }
@@ -119,10 +125,15 @@ body::-webkit-scrollbar-thumb, .modal::-webkit-scrollbar-thumb, ul::-webkit-scro
         border-radius: 1rem;
         box-shadow:  5px 5px 6px #0e0e0e, 
                     -5px -5px 6px #222222;
-        }
+    }
         
     .tablet-style-user {
         padding: 3px;
+    }
+
+    .multi-paragraphs {
+        padding-left: 1rem;
+        font-size: 1rem;
     }
 }
 
@@ -338,7 +349,6 @@ nav ul li a i {
 /* HEADER */
 .header-image {
     position: relative;
-    /* z-index: -15; */
     width: 100vw;
     height: 100vh;
     background: url("https://res.cloudinary.com/wondrouswebworks/image/upload/v1588539782/wondrousWebWorks/wondrous-header-green.png");
@@ -358,6 +368,10 @@ nav ul li a i {
     animation-timing-function: linear;
     animation-duration: 15s;
     animation-iteration-count: infinite;
+}
+
+.header-image-shorter {
+    height: 80vh;
 }
 
 @keyframes scale-hero-shot {
@@ -811,16 +825,16 @@ input:-webkit-autofill:active  {
 }
 
 .technology:nth-child(even) {
-    color: #a05f7e;
+    color: #E03C31;
 }
 
 .technology:nth-child(odd) {
-    color: cadetblue;
+    color: #FFB81C;
 }
 
-.project-paragraph {
+/* .project-paragraph {
     font-size: 1.6rem;
-}
+} */
 
 /* ABOUT */
 .about-section-wrapper img {
@@ -901,11 +915,6 @@ input:-webkit-autofill:active  {
     display: none;
 }
 
-.blog-paragraphs {
-    padding-left: 2rem;
-    border-left: 2px solid #E03C31;
-}
-
 .blog-paragraph {
     font-size: 1.2rem;
 }
@@ -919,9 +928,9 @@ input:-webkit-autofill:active  {
         min-height: 250px;
     }
 
-    .blog-paragraph {
-        font-size: 1rem;
-    }
+    /* .blog-paragraph {
+        
+    } */
 
     .blog-entry-image {
         width: 85%;
@@ -1165,9 +1174,8 @@ li.admin-list-item {
 
 /* ALERT MESSAGES */
 .alert-wrapper {
-    display: none;
     width: 80%;
-    margin: 0 auto 2rem;
+    margin: 15vh auto 2rem;
     border-radius: 4px;
 }
 
@@ -1176,6 +1184,7 @@ li.admin-list-item {
     font-size: 1.3rem;
     margin: 0;
     padding: .5rem;
+    border-radius: 4px;
 }
 
 .alert-success {
@@ -1186,4 +1195,9 @@ li.admin-list-item {
 .alert-failure {
     background-color: rgba(255, 77, 77, .6);
     color: #800000;
+}
+
+.alert-info {
+    background-color: 	rgba(204, 230, 255, .6);
+    color: #003566;
 }
