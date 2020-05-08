@@ -157,8 +157,10 @@ def add_skill():
         find_inserted_skill = skills.find_one({'skill_name': skill_to_insert_dict['skill_name']})
         
         if find_inserted_skill:
+            flash('Skill added successfully!', 'success')
             response = make_response(jsonify({'message': 'success'}), 200)
         else:
+            flash('Failed to add skill.', 'failure')
             response = make_response(jsonify({'message': 'failed'}), 500)
     return response
 
@@ -180,6 +182,7 @@ def update_skill(skill_id):
             'skill_level': skill_to_update_dict['skill_level']
         })
 
+        flash('Skill updated successfully!', 'success')
         response = make_response(jsonify({'message': 'success'}), 200)
     return response
 
@@ -194,8 +197,10 @@ def delete_skill(skill_id):
         skill_to_confirm_deleted = skills.find_one({'_id': ObjectId(skill_id)})
 
         if not skill_to_confirm_deleted:
+            flash('Skill deleted successfully!', 'success')
             response = make_response(jsonify({'message': 'success'}), 200)
         else:
+            flash('Failed to delete skill.', 'failure')
             response = make_response(jsonify({'message': 'failure'}), 500)
     return response
 
@@ -221,8 +226,10 @@ def add_project():
         find_inserted_project = projects.find_one({'project_name': project_to_insert_dict['project_name']})
         
         if find_inserted_project:
+            flash('Project added successfully!', 'success')
             response = make_response(jsonify({'message': 'success'}), 200)
         else:
+            flash('Failed to add project.', 'failure')
             response = make_response(jsonify({'message': 'failed'}), 500)
     return response
 
@@ -238,6 +245,7 @@ def update_project(project_id):
     elif request.method == 'PUT':
         project_to_update_dict = request.get_json()
         portfolio.update({'_id': ObjectId(project_id)}, project_to_update_dict)
+        flash('Project updated successfully!', 'success')
         response = make_response(jsonify({'message': 'success'}), 200)
     return response
 
@@ -252,8 +260,10 @@ def delete_project(project_id):
         project_to_confirm_deleted = projects.find_one({'_id': ObjectId(project_id)})
 
         if not project_to_confirm_deleted:
+            flash('Project deleted successfully!', 'success')
             response = make_response(jsonify({'message': 'success'}), 200)
         else:
+            flash('Failed to delete project.', 'failure')
             response = make_response(jsonify({'message': 'failure'}), 500)
     return response
 
@@ -281,8 +291,10 @@ def add_qualification():
         find_inserted_qualification = qualifications.find_one({'qualification_name': qualification_to_insert['qualification_name']})
         
         if find_inserted_qualification:
+            flash('Qualification added successfully!', 'success')
             response = make_response(jsonify({'message': 'success'}), 200)
         else:
+            flash('Failed to delete qualification.', 'failure')
             response = make_response(jsonify({'message': 'failed'}), 500)
     return response
 
@@ -306,7 +318,7 @@ def update_qualification(qualification_id):
                 'qualification_view_url': qualification_to_update_dict['qualification_view_url'],
                 'qualification_info_url': qualification_to_update_dict['qualification_info_url']
             })
-
+        flash('Qualification updated successfully!', 'success')
         response = make_response(jsonify({'message': 'success'}), 200)
     return response
 
@@ -321,8 +333,10 @@ def delete_qualification(qualification_id):
         qualification_to_confirm_deleted = qualifications.find_one({'_id': ObjectId(qualification_id)})
 
         if not qualification_to_confirm_deleted:
+            flash('Qualification deleted successfully!', 'success')
             response = make_response(jsonify({'message': 'success'}), 200)
         else:
+            flash('Failed to delete qualification.', 'failure')
             response = make_response(jsonify({'message': 'failure'}), 500)
     return response
 
@@ -346,8 +360,10 @@ def add_blog_post():
         find_inserted_blog_post = blog_posts.find_one({'blog_title': blog_post_to_insert_dict['blog_title']})
         
         if find_inserted_blog_post:
+            flash('Blog post added successfully!', 'success')
             response = make_response(jsonify({'message': 'success'}), 200)
         else:
+            flash('Failed to add blog post', 'failure')
             response = make_response(jsonify({'message': 'failed'}), 500)
     return response
 
@@ -371,7 +387,7 @@ def update_blog_post(blog_post_id):
                 'blog_date': blog_post_to_update_dict['blog_date'],
                 'blog_body': blog_post_to_update_dict['blog_body']
             })
-
+        flash('Blog post successfully updated!', 'success')
         response = make_response(jsonify({'message': 'success'}), 200)
     return response
 
@@ -386,8 +402,10 @@ def delete_blog_post(blog_post_id):
         blog_post_to_confirm_deleted = blog_posts.find_one({'_id': ObjectId(blog_post_id)})
 
         if not blog_post_to_confirm_deleted:
+            flash('Blog post deleted successfully!', 'success')
             response = make_response(jsonify({'message': 'success'}), 200)
         else:
+            flash('Failed to delete blog post', 'failure')
             response = make_response(jsonify({'message': 'failure'}), 500)
     return response
 
@@ -410,8 +428,10 @@ def add_experience():
         find_inserted_experience = experience.find_one({'job_title': experience_to_insert_dict['job_title']})
         
         if find_inserted_experience:
+            flash('Experience added successfully!', 'success')
             response = make_response(jsonify({'message': 'success'}), 200)
         else:
+            flash('Failed to add experience.', 'failure')
             response = make_response(jsonify({'message': 'failed'}), 500)
     return response
 
@@ -432,7 +452,7 @@ def update_experience(experience_id):
             'job_title': experience_to_update_dict['job_title'],
             'job_dates': experience_to_update_dict['job_dates']
         })
-
+        flash('Experience updated successfully!', 'success')
         response = make_response(jsonify({'message': 'success'}), 200)
     return response
 
@@ -447,8 +467,10 @@ def delete_experience(experience_id):
         experience_to_confirm_deleted = experience.find_one({'_id': ObjectId(experience_id)})
 
         if not experience_to_confirm_deleted:
+            flash('Experience deleted successfully!', 'success')
             response = make_response(jsonify({'message': 'success'}), 200)
         else:
+            flash('Failed to delete experience', 'failure')
             response = make_response(jsonify({'message': 'failure'}), 500)
     return response
 
@@ -481,6 +503,7 @@ def login():
 def logout():
     """Logs a user out and destroys session data"""
     logout_user()
+    flash('You have been logged out.', 'info')
     return redirect(url_for('home'))
 
 
