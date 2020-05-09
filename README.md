@@ -22,8 +22,11 @@ Thank you for viewing my project. wondrousWebWorks() is a profile for me as a fu
       - [Images](#images)
       - [Colours](#colours)
         - [#1C1C1C (Eerie Black)](#1c1c1c-eerie-black)
-        - [#5F9EA0 (CadetBlue)](#5f9ea0-cadetblue)
-        - [#A05F7E (Magenta - named by me)](#a05f7e-magenta---named-by-me)
+        - [#F7F7F7 (off-white)](#f7f7f7-off-white)
+        - [#007749 (sa-flag-green)](#007749-sa-flag-green)
+        - [#E03C31 (sa-flag-red)](#e03c31-sa-flag-red)
+        - [#FFB81C (sa-flag-gold)](#ffb81c-sa-flag-gold)
+        - [#0080ff (sa-flag-blue)](#0080ff-sa-flag-blue)
   - [Technologies Used](#technologies-used)
     - [Languages](#languages)
     - [Libraries, Frameworks & Tools](#libraries-frameworks--tools)
@@ -31,6 +34,7 @@ Thank you for viewing my project. wondrousWebWorks() is a profile for me as a fu
     - [Differences Between Wireframes and Final Product](#differences-between-wireframes-and-final-product)
       - [Landing Page (Skills section)](#landing-page-skills-section)
   - [Bugs](#bugs)
+    - [Development Bugs](#development-bugs)
     - [Deployment Bugs](#deployment-bugs)
   - [Credits](#credits)
   - [Disclaimer](#disclaimer)
@@ -100,34 +104,60 @@ The image for the **Hero** shot in the site header was taken from [PNGTREE](http
 
 #### Colours
 
-I decided on using my favourite colour, called **cadetblue** (*#5f9ea0* in hex) as the primary site colour. A triadic colour scheme was then generated [here](https://www.sessions.edu/color-calculator/).  In addition to this, **eerie black** (*#1c1c1c* in hex) was chosen as background colour for the site body as the site was designed to be displayed in "dark mode". In order to make text legible, **#f7f7f7** was chosen as text colour where required.  See below for more details.  All colours complement each other very well, and provide a good level of contrast to increase legibility and highlight various areas of the page.
+ **Eerie black** (*#1c1c1c* in hex) was chosen as background colour for the site body as the site was designed to be displayed in "dark mode". In order to make text legible, **#f7f7f7** was chosen as text colour. All other colours were taken from the South African flag and named by me; a subtle homage to my origin. See below for more details.  All colours complement each other very well, and provide a good level of contrast to increase legibility and highlight various areas of the page.
 
 ##### #1C1C1C (Eerie Black)
 
-- Background colour for site body and admin body
+- Background colour for main site body and admin body
 
-##### #5F9EA0 (CadetBlue)
+##### #F7F7F7 (off-white)
+
+- Used for all text
+
+##### #007749 (sa-flag-green)
 
 - Background colour of **navbar**
-- Colour of **section headings**
+- Colour of the *LinkedIn* icon in the fixed navigation shortcuts on the left of the screen
+- Background colour of the 'user and host' name in the **About** and **About Summary** sections
+- Colour of the bottom border below section headings
+- One of three background colours of bars in **Skills** displays
+- Colour of the *deployed site* icon in **Project cards**
+- Background colour of the *view* buttons in the **Education** section
+- Colour of the *calendar* icons in **Experience cards**
+- Colour of even-numbered *technologies* of the **Project** page
+- Background colour of the *blog summary* on **Blog cards**
+- Background colour of the **Add** buttons on Admin management pages
+- Background colour of the form *submit* buttons in form modals
+
+##### #E03C31 (sa-flag-red)
+
+- Background colour of the *call-to-action* button in the page header
+- Colour of the *Contact* icon in the fixed navigation shortcuts on the left of the screen
+- Colour of the $ symbol in the **About** and **About Summary** sections
+- One of three background colours of bars in **Skills** displays
+- Background colour of the **All Projects** button on the home page
+- Colour of the *university* and *calendar* icons in the **Education** section
+- Colour of the left text border on the **Project** page
+- Colour of the left text border on the **Blog Post** page
+- Background colour of the *Delete* buttons on Admin management pages
+
+##### #FFB81C (sa-flag-gold)
+
+- Colour of the *GitHub* icon in the fixed navigation shortcuts on the left of the screen
+- Colour of the ;present working directory' in the **About** and **About Summary** sections
+- Colour of the flashing rectangular icon in the **About** and **About Summary** sections
+- One of three background colours of bars in **Skills** displays
+- Colour of the *GitHub* icon in **Project cards**
 - Colour of *down* caret icons in collapsible items
-- Colour of icons where **Technologies Used** are listed in project info
-- Colour of labels in forms once a field has been populated with text
-- Colour of **ADD** buttons on *Admin* page
-- Colour of **SUBMIT** buttons in forms
-- Background colour of half of the skill bars in a skills representation
+- Colour of the *tag* icons in **Experience cards**
+- Colour of odd-numbered *technologies* of the **Project** page
+- Colour of the *blog date* on the **Blog Post** page
 
-##### #A05F7E (Magenta - named by me)
+##### #0080ff (sa-flag-blue)
 
-- Background colour of half of the skill bars in a skills representation
-- Background colour of the **Get in Touch** button in the page header
-- Colour of **live site** icons in project tiles
-- Background colour of **All Projects** button below project cards on home page
-- Background colour of **More Info** buttons in education dropdowns
-- Colour of **Contact** icon in fixed icons on the left of the screen
-- Colour of tag icon in *job title* headings in **Education** cards
-- Colour of rectangular icon in tablet-style displays for **About Summary** and **About** sections
-- Colour of **Blog Post** dates
+- Background colour of the *more info* buttons in the **Education** section
+- Background-colour of all modal *close* buttons
+- Background colour of all **Manage** buttons on the Admin dashboard
 
 ## Technologies Used
 
@@ -154,11 +184,19 @@ I decided on using my favourite colour, called **cadetblue** (*#5f9ea0* in hex) 
 
 ### Differences Between Wireframes and Final Product
 
+Some changes had to be made based on tester feedback to improve User Experience (UX).  These changes are listed below.
+
 #### Landing Page (Skills section)
 
 - On mobile devices in portrait orientation, two skills are displayed per row as opposed to a single skill as illustrated in the wireframe
 
 ## Bugs
+
+### Development Bugs
+
+At one stage, I couldn't get flashed messages to display on my Admin page, and decided to replicate the same functionality in Javascript as best I could only to realise that I'd forgotten to add the flash messages functionality to both the base.html **and** admin-base.html files.  Upon discovery of this oversight, I implemented Flask's messaging system and removed the unnecessary JavaScript function which mimicked the same functionality.
+
+Another niggle was when I prevented the default behaviour of all buttons, only to realise that it affected my contact and login forms where the default behaviour was required.  Unfortunately, it took quite a bit of time to discover the issue.
 
 ### Deployment Bugs
 
