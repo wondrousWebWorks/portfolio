@@ -8,6 +8,17 @@
     {% endwith %}
 
     <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <ul class="alert-wrapper">
+                {% for category, message in messages %}
+                    <li class="alert-message alert-{{category}}">
+                        {{message}}
+                    </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        {% endwith %}
         {% block admin_block %}{% endblock %}
     </div>
 
