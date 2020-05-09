@@ -3,10 +3,10 @@
 {% block base_body %}
     <div class="row">
         <div class="col s12">
-            <img class="blog-entry-image" src="{{blog_entry.blog_img_url}}" alt="blog image">
             <h3 class="blog-title off-white">{{blog_entry.blog_title}}</h3>
             <h4 class="blog-date sa-flag-gold"><em>{{blog_entry.blog_date}}</em></h4>
-            <div class="blog-paragraphs">
+            <div class="multi-paragraphs">
+                <img class="blog-entry-image" src="{{blog_entry.blog_img_url}}" alt="blog image">
                 {% for paragraph in blog_entry.blog_body %}
                     <p class="project-paragraph off-white blog-paragraph">{{ paragraph }}
                     </p>
