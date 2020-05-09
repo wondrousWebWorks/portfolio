@@ -9,6 +9,16 @@
     {% include 'layout/header.html' %}
     
     <div class="container">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert-message alert-info">
+                        {{message}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
         {% block base_body %}{% endblock %}
     </div>
 
