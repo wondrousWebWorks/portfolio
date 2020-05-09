@@ -45,13 +45,14 @@ def home():
                             skills=skills, 
                             projects=projects,
                             qualifications=qualifications,
-                            experience=experience)
+                            experience=experience,
+                            image_height='full-screen')
 
 
 @app.route('/about')
 def about():
     """Return a rendered template of the ABOUT page"""
-    return render_template('pages/about.html')
+    return render_template('pages/about.html', view='about')
 
 
 @app.route('/projects')
@@ -62,7 +63,7 @@ def projects():
     Return a rendered template of the PROJECTS page and pass data to it
     """
     projects = mongo.db.portfolio.find()
-    return render_template('pages/projects.html', projects=projects)
+    return render_template('pages/projects.html', projects=projects, view='projects')
 
 
 @app.route('/project/<project_id>')
@@ -82,7 +83,7 @@ def project(project_id):
 def contact():
     """Return a rendered template of the CONTACT page or send email"""
     if request.method == 'GET':
-        return render_template('pages/contact.html')
+        return render_template('pages/contact.html', view='contact')
     elif request.method == 'POST':
         recipient = os.environ.get('RECIPIENT_ADDRESS')
         msg = Message(request.form['subject'], sender = request.form['email'], recipients = [recipient])
@@ -100,7 +101,7 @@ def blogs():
     Return a rendered template of the BLOGS page and send data to it
     """
     blog_posts = mongo.db.blog_posts.find()
-    return render_template('pages/blogs.html', blog_posts=blog_posts)
+    return render_template('pages/blogs.html', blog_posts=blog_posts, view='blogs')
 
 
 @app.route('/blogs/<blog_id>')
@@ -495,7 +496,7 @@ def login():
             user = User(find_user['email'], find_user['password'])
             login_user(user)
             return redirect(url_for('admin'))
-    return render_template('pages/login.html')
+    return render_template('pages/login.html', view='login')
 
 
 @app.route("/logout")
