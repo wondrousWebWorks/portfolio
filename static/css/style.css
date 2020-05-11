@@ -4,7 +4,6 @@ body {
     position: relative;
     font-size: 16px;
     background-color: #1c1c1c;
-    /* background-image: url("https://res.cloudinary.com/wondrouswebworks/image/upload/v1587062545/wondrousWebWorks/grey-squares-background.png"); */
     background-repeat: repeat;
     font-family: 'Roboto Slab', sans-serif;
     overflow-x: hidden;
@@ -146,31 +145,19 @@ body::-webkit-scrollbar-thumb, .modal::-webkit-scrollbar-thumb, ul::-webkit-scro
     }
 }
 
-/* BUTTONS */
+/* BUTTONS COLOUR TRANSITIONS*/
 
-button.modal-close {
-    background-color: #007749;
-    color: #f7f7f7;
-    transition: all .5s ease-in-out;
+button.sa-flag-green-bg:hover, a.sa-flag-green-bg:hover {
+    background-color: #004d2f;
 }
 
-button.modal-close:hover {
-    background-color: #f7f7f7;
-    color: #007749;
+button.sa-flag-blue-bg:hover, a.sa-flag-blue-bg:hover {
+    background-color: #0059b3;
 }
 
-a.modal-close {
-    background-color: #0080ff;
-    color: #f7f7f7;
-    transition: all .5s ease-in-out;
+a.sa-flag-red-bg:hover {
+    background-color: #b1251b;
 }
-
-a.modal-close:hover {
-    background-color: #f7f7f7;
-    color: #0080ff;
-}
-
-
 
 /* FIXED SHORTCUTS */
 .fixed-shortcuts-left {
@@ -270,6 +257,12 @@ a.modal-close:hover {
 
 .nav-display-col-item a, .nav-display-col-item a i {
     font-size: 1rem;
+    transition: all .5s ease-in-out;
+}
+
+.nav-display-col-item a:hover {
+    transform: scale(1.3);
+    background-color: transparent;
 }
 
 
@@ -309,11 +302,6 @@ a.horizontal-nav-item {
 
 a.horizontal-nav-item:hover {
     transform: scale(1.1) translateY(-.5rem);
-    background-color: transparent;
-}
-
-.nav-display-col-item a:hover {
-    transform: scale(1.3);
     background-color: transparent;
 }
 
@@ -453,11 +441,6 @@ a.call-to-action-btn {
     background-color: #E03C31;
     color: #f7f7f7;
     transition: all .5s ease-in-out;
-}
-
-a.call-to-action-btn:hover {
-    background-color: #f7f7f7;
-    color: #E03C31;
 }
 
 @media(max-width: 576px) {
@@ -623,8 +606,10 @@ footer .copyright {
     align-items: center;
 }
 
-.all-projects-btn {
+a.all-projects-btn {
     font-size: 1.5rem;
+    background-color: #E03C31;
+    transition: all .5s ease-in-out;
 }
 
 @media(max-width: 991px) {
@@ -715,6 +700,7 @@ footer .copyright {
 .qualification-btn {
     text-decoration: none;
     font-size: 1.5rem;
+    transition: all .5s ease-in-out;
 }
 
 @media(max-width: 991px) {
@@ -1098,29 +1084,11 @@ input:-webkit-autofill:active  {
 a.dashboard-btn {
     font-size: 1.4rem;
     margin-bottom: 4rem;
-}
-
-a.dashboard-btn:hover {
-    background-color: #F25F5C;
+    transition: all .5s ease-in-out;
 }
 
 a.add-modal-trigger {
     font-size: 1.6rem;
-}
-
-a.add-modal-trigger:hover  {
-    background-color: #f7f7f7;
-    color: #007749;
-}
-
-a.update-btn:hover {
-    background-color: #f7f7f7;
-    color: #0080ff;
-}
-
-a.delete-btn:hover {
-    background-color: #f7f7f7;
-    color: #E03C31;
 }
 
 li.admin-list-item {
