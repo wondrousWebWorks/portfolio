@@ -144,7 +144,7 @@ def admin():
 def manage_skills():
     """Return a rendered template of SKILLS page with all skills sent to it"""
     skills = mongo.db.skills.find()
-    return render_template('pages/admin/skills.html', skills=skills)
+    return render_template('pages/admin/skills.html', skills=skills, view='admin')
 
 
 @app.route('/admin/skills/add', methods=['POST'])
@@ -213,7 +213,9 @@ def manage_projects():
     projects = mongo.db.portfolio.find()
     technologies = mongo.db.technologies.find()
     technology_list = technologies[0]['technology_name']
-    return render_template('pages/admin/projects.html', projects=projects, technology_list=technology_list)
+    return render_template('pages/admin/projects.html', projects=projects, 
+                                                        technology_list=technology_list,
+                                                        view='admin')
 
 
 @app.route('/admin/projects/add', methods=['POST'])
@@ -278,7 +280,8 @@ def manage_qualifications():
     Pass retrieved data to a rendered template of the MANMAGE QUALIFICATIONS page.
     """
     qualifications = mongo.db.qualifications.find()
-    return render_template('pages/admin/qualifications.html', qualifications=qualifications)
+    return render_template('pages/admin/qualifications.html', qualifications=qualifications,
+                                                              view='admin')
 
 
 @app.route('/admin/qualifications/add', methods=['POST'])
@@ -347,7 +350,8 @@ def delete_qualification(qualification_id):
 def manage_blogs():
     """Return a rendered template of BLOGS page with all blog posts sent to it"""
     blog_posts = mongo.db.blog_posts.find()
-    return render_template('pages/admin/blogs.html', blog_posts=blog_posts)
+    return render_template('pages/admin/blogs.html', blog_posts=blog_posts,
+                                                     view='admin')
 
 
 @app.route('/admin/blogs/add', methods=['POST'])
@@ -415,7 +419,8 @@ def delete_blog_post(blog_post_id):
 def manage_experience():
     """Return a rendered template of EXPERIENCE page with all work experience sent to it"""
     experience = mongo.db.work_experience.find()
-    return render_template('pages/admin/experience.html', experience=experience)
+    return render_template('pages/admin/experience.html', experience=experience,
+                                                          view='admin')
 
 
 @app.route('/admin/experience/add', methods=['POST'])
