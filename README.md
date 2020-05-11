@@ -1,11 +1,11 @@
 # wondrousWebWorks()
 
-Thank you for viewing my project. wondrousWebWorks() is a profile for me as a full stack developer, including some information about me, skills, experience, acontact section and a portfolio. It also includes an admin page, where the site owner can manage the site and perform CRUD (Create, Read, Update and Delete) operations.
+Thank you for viewing my project. wondrousWebWorks() is a portfolio for me as a full stack developer, including some information about me, skills, experience, a contact section, a blog and project information. It also includes an admin page, where the site owner can manage the site and perform CRUD (Create, Read, Update and Delete) operations.
 
-## Contents
+## Content
 
 - [wondrousWebWorks()](#wondrouswebworks)
-  - [Contents](#contents)
+  - [Content](#content)
   - [User Experience](#user-experience)
     - [Project Goals](#project-goals)
       - [User Goals](#user-goals)
@@ -85,7 +85,7 @@ wondrousWebWorks() is created to be a profile for me as a developer.  It serves 
 
 ### Design Choices
 
-I decided on using a dark theme with a selection of complimentary soft colours to provide good contrast and reduce eye strain for users and the site admin.  Whereas my previous projects were very colourful and with no wasted or empty space on-screen, I opted for a simpler design so that the various sections of the portfolio would stand out and be visualy striking in itself where required.
+I decided on using a dark theme with a selection of bright colours to provide good contrast and reduce eye strain for users and the site admin. The design is simple with good spacing so that the various sections of the portfolio would stand out and be visualy striking in itself where required.
 
 #### Fonts
 
@@ -204,9 +204,10 @@ Initially, there was great difficulty deploying the project to Heroku.  After vi
 
 ## Credits
 
+- Image for README.md responsive layouts taken from [Am I Responsive?](http://ami.responsivedesign.is/)
 - Hero Shot image on in header was taken from [PNGTREE](https://pngtree.com/)
 - Blog images were taken from [Pexels](https://www.pexels.com/)
-- Tranparent chequered background image taken from [TRANSPARENT TEXTURES](https://www.transparenttextures.com/)
+- Project images were generated using [mockDrop](https://mockdrop.io/)
 
 ## Disclaimer
 
