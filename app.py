@@ -63,7 +63,8 @@ def projects():
     Return a rendered template of the PROJECTS page and pass data to it
     """
     projects = mongo.db.portfolio.find()
-    return render_template('pages/projects.html', projects=projects, view='projects')
+    return render_template('pages/projects.html', projects=projects, 
+                                                  view='projects')
 
 
 @app.route('/project/<project_id>')
@@ -76,7 +77,8 @@ def project(project_id):
     PROJECT PAGE and pass data to it 
     """
     project = mongo.db.portfolio.find_one({'_id': ObjectId(project_id)})
-    return render_template('pages/project.html', project=project)
+    return render_template('pages/project.html', project=project, 
+                                                 view='project')
 
 
 @app.route('/contact', methods=['GET', 'POST'])
@@ -86,7 +88,9 @@ def contact():
         return render_template('pages/contact.html', view='contact')
     elif request.method == 'POST':
         recipient = os.environ.get('RECIPIENT_ADDRESS')
-        msg = Message(request.form['subject'], sender = request.form['email'], recipients = [recipient])
+        msg = Message(request.form['subject'], 
+                      sender = request.form['email'], 
+                      recipients = [recipient])
         msg.body = request.form['query']
         print(request.form)
         mail.send(msg)
@@ -101,7 +105,8 @@ def blogs():
     Return a rendered template of the BLOGS page and send data to it
     """
     blog_posts = mongo.db.blog_posts.find()
-    return render_template('pages/blogs.html', blog_posts=blog_posts, view='blogs')
+    return render_template('pages/blogs.html', blog_posts=blog_posts, 
+                                               view='blogs')
 
 
 @app.route('/blogs/<blog_id>')
@@ -114,7 +119,8 @@ def blog_entry(blog_id):
     rendered remplate of a specific BLOG POST PAGE and pass data to it 
     """
     blog_entry = mongo.db.blog_posts.find_one({'_id': ObjectId(blog_id)})
-    return render_template('pages/blog-entry.html', blog_entry=blog_entry)
+    return render_template('pages/blog-entry.html', blog_entry=blog_entry, 
+                                                    view='blog post')
 
 
 @app.route('/admin')
@@ -133,10 +139,10 @@ def admin():
     blog_posts_count = mongo.db.blog_posts.count()
 
     return render_template('pages/admin/admin.html', skill_count=skill_count,
-                                                project_count=project_count,
-                                                qualification_count=qualification_count,
-                                                experience_count=experience_count,
-                                                blog_posts_count=blog_posts_count)
+                                                     project_count=project_count,
+                                                     qualification_count=qualification_count,
+                                                     experience_count=experience_count,
+                                                     blog_posts_count=blog_posts_count)
 
 
 @app.route('/admin/skills')
@@ -144,7 +150,8 @@ def admin():
 def manage_skills():
     """Return a rendered template of SKILLS page with all skills sent to it"""
     skills = mongo.db.skills.find()
-    return render_template('pages/admin/skills.html', skills=skills, view='admin')
+    return render_template('pages/admin/skills.html', skills=skills, 
+                                                      view='admin')
 
 
 @app.route('/admin/skills/add', methods=['POST'])
