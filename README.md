@@ -1,6 +1,6 @@
 # wondrousWebWorks()
 
-Thank you for viewing my project. wondrousWebWorks() is a portfolio for me as a full stack developer, including some information about me, skills, experience, a contact section, a blog and project information. It also includes an admin page, where the site owner can manage the site and perform CRUD (Create, Read, Update and Delete) operations.
+Thank you for viewing my project. wondrousWebWorks() is a portfolio for me as a full stack developer, including some information about me, my skills, experience, a contact section, a blog and project information. It also includes an admin page, where the site owner can manage the site and perform CRUD (Create, Read, Update and Delete) operations.
 
 ## Content
 
@@ -36,6 +36,7 @@ Thank you for viewing my project. wondrousWebWorks() is a portfolio for me as a 
   - [Bugs](#bugs)
     - [Development Bugs](#development-bugs)
     - [Deployment Bugs](#deployment-bugs)
+  - [Local Installation](#local-installation)
   - [Credits](#credits)
   - [Disclaimer](#disclaimer)
 
@@ -201,6 +202,22 @@ Another niggle was when I prevented the default behaviour of all buttons, only t
 ### Deployment Bugs
 
 Initially, there was great difficulty deploying the project to Heroku.  After viewing the project's Heroku log files, it was discovered that the **pkg-resources** package could not be located by Heroku for installation. Modifying the **requirements.txt** file by removing the **pkg-resources** dependancy before pushing to GitHub and subsequently Heroku fixed the bug and allowed succesfull installion of all dependancies.
+
+## Local Installation
+
+If you want to download the project to view or modify the code locally on your machine, follow the following instructions. Please note that your local changes can't be pushed to the GitHub repository, and that the values of environment variables are not provided as they contain sensitive information.
+
+1. Ensure Git is installed on your local machine (installation instructions can be found [here](https://git-scm.com/downloads))
+2. Using your browser of choice, navigate to the [wondrousWebWorks repository](https://github.com/wondrousWebWorks/wondrousWebWorks) in GitHub
+3. Click on the green **Clone or download** button on the right of the screen (on personal computers) which will trigger a dropdown menu
+4. Copy the URL provided
+5. Using your terminal of choice, create or navigate to the directory or folder where you'd like to install the wondrousWebWorks project directory
+6. Enter the following command and paste the URL copied, or just copy the command from here, paste it in the terminal enter press Enter
+    1. `git clone https://github.com/wondrousWebWorks/wondrousWebWorks.git`
+7. Wait for the the repository to be cloned
+8. Open the newly cloned wondrousWebWorks folder in your favourite IDE or text editor
+
+Note that in step 4 above, a ZIP file can be downloaded instead of copying the provided URL. Should you choose to download the ZIP file, use whatever software is available on your computer to unzip the file and proceed to step 8 above.
 
 ## Credits
 
