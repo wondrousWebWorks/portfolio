@@ -12,8 +12,15 @@
             {% elif view == 'projects' %}
                 <h1>A full list of my projects for your viewing pleasure</h1>
                 <a class="call-to-action-btn btn btn-large sa-flag-red-bg off-white text-shadow-2px" href="#view">View Now!</a>
+            {% elif view == 'project' %}
+                <h1>View some more information about {{ project.project_name }}</h1>
+                <a class="call-to-action-btn btn btn-large sa-flag-red-bg off-white text-shadow-2px" href="#view">Read Now!</a>
             {% elif view == 'blogs' %}
                 <h1>A selection of blogs about full stack software development</h1>
+                <a class="call-to-action-btn btn btn-large sa-flag-red-bg off-white text-shadow-2px" href="#view">Read Now!</a>
+            {% elif view == 'blog post' %}
+                <h1>{{ blog_entry.blog_title }}</h1>
+                <h2 class="header-summary off-white">{{ blog_entry.blog_summary }}</h2>
                 <a class="call-to-action-btn btn btn-large sa-flag-red-bg off-white text-shadow-2px" href="#view">Read Now!</a>
             {% elif view == 'contact' %}
                 <h1>Feel free to contact me should you have any queries</h1>
