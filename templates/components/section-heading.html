@@ -1,5 +1,9 @@
 <div class="row">
     <div class="col s12 center-align">
-        <h2 class="section-heading off-white text-shadow-2px"><i class="fas fa-{{ icon }}"></i>&nbsp;&nbsp;{{ section_title }}</h2>
+        {% if view == 'admin' %}
+            <h2 class="section-heading admin-heading-margin off-white text-shadow-2px"><i class="fas fa-{{ icon }}"></i>&nbsp;&nbsp;{{ section_title }}</h2>
+        {% else %}
+            <h2 class="section-heading off-white text-shadow-2px"><i class="fas fa-{{ icon }}"></i>&nbsp;&nbsp;{{ section_title }}</h2>
+        {% endif %}
     </div>
 </div>
