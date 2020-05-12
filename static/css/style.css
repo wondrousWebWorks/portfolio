@@ -22,6 +22,7 @@ h1, h2, h3, h4, nav {
     height: 8vh;
     background-color: transparent;
 }
+
 .section-heading {
     display: inline-block;
     margin: 2.5rem auto 1rem;
@@ -105,7 +106,7 @@ body::-webkit-scrollbar-thumb, .modal::-webkit-scrollbar-thumb, ul::-webkit-scro
     border-radius: 4px;
 }
 
-@media(max-width: 991px) {
+/* @media only screen and (max-width: 991px) {
     .tablet-style-container {
         padding: 1.5rem;
         font-size: 1.5rem;
@@ -116,9 +117,38 @@ body::-webkit-scrollbar-thumb, .modal::-webkit-scrollbar-thumb, ul::-webkit-scro
         margin: 2.5rem 0 1rem;
         font-size: 2.2rem;
     }
+} */
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+    .section-heading {
+        font-size: 2rem;
+    }
+    
+    .tablet-style-container {
+        font-size: 1.4rem;
+    }
+    
+    /* .tablet-style-container p {
+        padding: 0 .5rem;
+        margin: 0;
+    }    */
+    
+    .container {
+        margin: 1rem auto;
+        width: 90%;
+        min-height: 100%;
+    }
+    
+    .multi-paragraphs {
+        padding: 1rem 2rem;
+        border-left: 2px solid #E03C31;
+        font-size: 1.2rem;
+        background: #1a1a1a;
+        border-radius: 4px;
+    }
 }
 
-@media(max-width: 576px) {
+@media only screen and (max-width: 576px) {
     .section-heading {
         font-size: 1.7rem;
         margin: 2rem 0 1rem;
@@ -181,7 +211,7 @@ a.sa-flag-red-bg:hover {
     transform: rotateZ(360deg);
 }
 
-@media(max-width: 576px) {
+@media only screen and (max-width: 576px) {
     .fixed-shortcuts-left a i {
         font-size: 2.1rem;
         margin-bottom: .6rem;
@@ -313,7 +343,7 @@ nav i.fas {
     line-height: 8vh;
 }
 
-@media(max-width: 1200px) {
+@media only screen and (max-width: 1200px) {
     .nav-display-row {
         margin-right: 0;
     }
@@ -335,7 +365,7 @@ nav i.fas {
     }
 }
 
-@media(max-width: 991px) {
+@media only screen and (max-width: 991px) {
     .nav-display-row {
         display: none;
     }
@@ -351,7 +381,7 @@ nav i.fas {
     }
 }
 
-@media(max-width: 576px) {
+@media only screen and (max-width: 576px) {
     .menu-toggle-icon {
         display: block;
         margin-right: 1rem;
@@ -446,7 +476,19 @@ a.call-to-action-btn {
     transition: all .5s ease-in-out;
 }
 
-@media(max-width: 576px) {
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+    .jumbotron {
+        left: 50%;
+        margin-left: -40%;
+        width: 80%;
+    }
+
+    .jumbotron h2 {
+        font-size: 2rem;
+    }
+}
+
+@media only screen and (max-width: 576px) {
     .header-image {
         background-size: auto 100%;
     }
@@ -556,13 +598,21 @@ footer .copyright {
     width: 6%;
 }
 
-@media(max-width: 991px) {
+@media only screen and (max-width: 991px) {
     .skill-name {
         font-size: 1.2rem;
     }
 }
 
-@media(max-width: 576px) {
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+    .skill-wrapper {
+        width: 100%;
+        box-shadow:  5px 5px 6px #0e0e0e, 
+                     -5px -5px 6px #222222; 
+    }
+}
+
+@media only screen and (max-width: 576px) {
     .skill-wrapper {
         width: 90%;
     }
@@ -627,7 +677,7 @@ a.all-projects-btn {
     transition: all .5s ease-in-out;
 }
 
-@media(max-width: 991px) {
+/* @media only screen and (max-width: 991px) {
     .project-wrapper {
         width: 95%;
     }
@@ -639,9 +689,24 @@ a.all-projects-btn {
     .project-links-wrapper a {
         font-size: 2rem;
     }
+} */
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+    .project-wrapper {
+        width: 95%;
+        margin-bottom: 1rem;
+    }
+
+    .project-wrapper h3 {
+        font-size: 1.5rem;
+    }
+
+    .project-links-wrapper a {
+        font-size: 2.5rem;
+    }
 }
 
-@media(max-width: 576px) {
+@media only screen and (max-width: 576px) {
     .project-wrapper {
         width: 90%;
         margin-bottom: 1rem;
@@ -714,27 +779,21 @@ a.all-projects-btn {
 }
 
 .qualification-btn {
-    text-decoration: none;
+    margin-top: .5rem;
     font-size: 1.5rem;
-    transition: all .5s ease-in-out;
 }
 
-@media(max-width: 991px) {
-    .custom-collapsible {
-        width: 88%;
-    }
-
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
     .custom-collapsible-header {
-        font-size: 1.3rem;
-
+        font-size: 1.5rem;
     }
     
-    .custom-collapsible-body p {
-        font-size: 1.1rem;
+    .qualification-btn {
+        font-size: 1.35rem;
     }
 }
 
-@media(max-width: 576px) {
+@media only screen and (max-width: 576px) {
     .custom-collapsible {
         width: 100%;
     }
@@ -783,26 +842,23 @@ a.all-projects-btn {
     font-size: 1.5rem;
 }
 
-@media(max-width: 991px) {
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
     .experience-card {
-        padding: 0 .5rem;
+        width: 95%;
+        margin: 0 auto 2rem;
     }
-
-    .experience-card .card-content {
-        padding: .8rem .5rem;
-    }
-
+    
     #experience .card h3 {
-        font-size: 1.3rem;
-        margin: 0;
+        font-weight: bold;
+        font-size: 1.6rem;
     }
     
     #experience .card p {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
     }
 }
 
-@media(max-width: 576px) {    
+@media only screen and (max-width: 576px) {    
     #experience .card h3 {
         font-size: 1.2rem;
     }
@@ -885,7 +941,18 @@ input:-webkit-autofill:active  {
     color: #FFB81C;
 }
 
-@media(max-width: 576px) {
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+    .technology-heading {
+        font-weight: bold;
+        font-size: 1.7rem;
+    }
+    
+    .technology {
+        font-size: 1.4rem;
+    }
+}
+
+@media only screen and (max-width: 576px) {
     .technology-heading {
         font-size: 1.5rem;
     }
@@ -901,6 +968,7 @@ input:-webkit-autofill:active  {
 
 /* ABOUT */
 .tablet-style-container img {
+    display: block;
     width: 85%;
     height: auto;
     margin: 2rem auto;
@@ -916,7 +984,7 @@ p.tablet-style-container, li.tablet-style-container  {
     margin-left: 3rem;
 }
 
-@media(max-width: 576px) {
+@media only screen and (max-width: 576px) {
     .tablet-style-container img {
         width: 100%;
         height: auto;
@@ -991,7 +1059,13 @@ p.tablet-style-container, li.tablet-style-container  {
     font-size: 1.2rem;
 }
 
-@media(max-width: 576px) {
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+    .blog-card-text-wrapper .blog-title {
+        font-size: 1.85rem;
+    }
+}
+
+@media only screen and (max-width: 576px) {
     .blog-card-wrapper {
         min-height: 250px;
     }
@@ -1174,7 +1248,22 @@ li.admin-list-item {
     align-items: center;
 }
 
-@media(max-width: 576px) {
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+    .admin-info {
+        width: 90%;
+        padding-top: 90%;
+    }
+
+    a.dashboard-btn {
+        font-size: 1.4rem;
+    }
+
+    a.update-btn, a.delete-btn {
+        font-size: 1.4rem;
+    }
+}
+
+@media only screen and (max-width: 576px) {
     .admin-info {
         width: 90%;
         padding-top: 85%;
