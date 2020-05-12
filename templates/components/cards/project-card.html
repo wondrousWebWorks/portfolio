@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <div class="row profile-row">
     {% for project in projects %}
-    <div class="col s12 m4 project-col">
+        {% if loop.last and loop.length %2 != 0 %}
+            <div class="col s12 m6 offset-m3 l4 project-col">
+        {% else %}
+            <div class="col s12 m6 l4 project-col">
+        {% endif %}
         <div class="project-wrapper card-bg">
             <a href="{{ url_for('project', project_id=project._id) }}"><img class="project-img"
                     src="{{project.project_img_url}}" alt="responsive project representation"></a>
-            <h3 class="off-white">{{project.project_name}}</h3>
+            <h3 class="off-white">{{ project.project_name }}</h3>
             <div class="project-links-wrapper">
                 <a href="{{project.project_github_url}}" target="_blank" class="sa-flag-gold"><i
                         class="fab fa-github"></i></a>
