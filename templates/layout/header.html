@@ -1,10 +1,11 @@
 {% block navbar %}{% endblock %}
 <div class="row">
     {% if image_height == 'full-screen' %}
-        <div class="col s12 header-image">
+        <div class="col s12 header-image-wrapper">
     {% else %}
-        <div class="col s12 header-image header-image-shorter">
+        <div class="col s12 header-image-wrapper header-image-wrapper-shorter">
     {% endif %}
+        <div class="header-image"></div>
         <div class="jumbotron">
             {% if view == 'about' %}
                 <h1>Find out more about me &#128526;</h1>
