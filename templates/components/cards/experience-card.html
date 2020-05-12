@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <div id="experience" class="row">
   {% for job in experience %}
-  <div class="col s12 m4">
+    {% if loop.last and loop.length %2 != 0 %}
+      <div class="col s12 m6  offset-m3 l4">
+    {% else %}
+      <div class="col s12 m6 l4">
+    {% endif %}
     <div class="card experience-card">
       <div class="card-content off-white">
         <h3 class="card-title"><i class="fas fa-tag sa-flag-gold"></i>&nbsp;{{ job.job_title }}</h3>
