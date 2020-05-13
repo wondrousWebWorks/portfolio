@@ -272,7 +272,7 @@ It is assumed that the required database and collections have been created in yo
 
     NOTE: Wherever text is surrounded by <> (angle brackets), you will need to provide your own values without the angle brackets as determined by your MonogoDB account, mail server and secret key. Remember to change the *username*, *password* and *cluster_name* in your MongoDB Atlas connection string. This assumes you are using a Gmail account to send emails. If you wish to use a different mail server, use the appropriate values for MAIL_SERVER and MAIL_PORT instead. Information on generating a good secret key can be found [here](https://blog.miguelgrinberg.com/post/the-new-way-to-generate-secure-tokens-in-python). Information on getting your **MongoDB Atlas connection string** can be found [here](https://docs.atlas.mongodb.com/tutorial/connect-to-your-cluster/).
 
-14. If all the steps above have been completed successfully, you can launch the application with the following command and view the site [here](http://127.0.0.1:5000)
+14. If all the steps above have been completed successfully, you can launch the application with the following command and view the site at ```http://127.0.0.1:5000```
 
         python3 app.py
 
