@@ -292,34 +292,29 @@ NOTE: MongoDB automatically generates a unique ID for each document.  It is part
     <td>ObjectId</td>
   </tr>
   <tr>
-    <td>The name of the project</td>
-    <td>project_name</td>
+    <td>The name of the qualification</td>
+    <td>qualification_name</td>
     <td>string</td>
   </tr>
   <tr>
-    <td>The URL of where the project is hosted or located</td>
-    <td>project_img_url</td>
+    <td>The name of the institute which issued the qualification</td>
+    <td>qualification_from</td>
     <td>string</td>
   </tr>
   <tr>
-    <td>The GitHub URL of the project's repository</td>
-    <td>project_github_url</td>
+    <td>The date the qualification was obtained / issued e.g 2017 or Feb 2017</td>
+    <td>qualification_issue_date</td>
     <td>string</td>
   </tr>
   <tr>
-    <td>The URL of where the project is deployed</td>
-    <td>project_deployed_url</td>
+    <td>The URL where the qualification can be viewed</td>
+    <td>qualification_view_url</td>
     <td>string</td>
   </tr>
   <tr>
-    <td>A list of all the technologies used in the project</td>
-    <td>project_technologies</td>
-    <td>Array</td>
-  </tr>
-  <tr>
-    <td>A list of all the paragraphs describing the project</td>
-    <td>project_description</td>
-    <td>Array</td>
+    <td>A URL where more information about the qualification can be found </td>
+    <td>qualification_info_url</td>
+    <td>string</td>
   </tr>
 </tbody>
 </table>
@@ -341,34 +336,14 @@ NOTE: MongoDB automatically generates a unique ID for each document.  It is part
     <td>ObjectId</td>
   </tr>
   <tr>
-    <td>The name of the project</td>
-    <td>project_name</td>
+    <td>The name of the skill</td>
+    <td>skill_name</td>
     <td>string</td>
   </tr>
   <tr>
-    <td>The URL of where the project is hosted or located</td>
-    <td>project_img_url</td>
+    <td>The developer's skill level expressed as a percentage (maximum 100)</td>
+    <td>skill_level</td>
     <td>string</td>
-  </tr>
-  <tr>
-    <td>The GitHub URL of the project's repository</td>
-    <td>project_github_url</td>
-    <td>string</td>
-  </tr>
-  <tr>
-    <td>The URL of where the project is deployed</td>
-    <td>project_deployed_url</td>
-    <td>string</td>
-  </tr>
-  <tr>
-    <td>A list of all the technologies used in the project</td>
-    <td>project_technologies</td>
-    <td>Array</td>
-  </tr>
-  <tr>
-    <td>A list of all the paragraphs describing the project</td>
-    <td>project_description</td>
-    <td>Array</td>
   </tr>
 </tbody>
 </table>
@@ -390,33 +365,8 @@ NOTE: MongoDB automatically generates a unique ID for each document.  It is part
     <td>ObjectId</td>
   </tr>
   <tr>
-    <td>The name of the project</td>
-    <td>project_name</td>
-    <td>string</td>
-  </tr>
-  <tr>
-    <td>The URL of where the project is hosted or located</td>
-    <td>project_img_url</td>
-    <td>string</td>
-  </tr>
-  <tr>
-    <td>The GitHub URL of the project's repository</td>
-    <td>project_github_url</td>
-    <td>string</td>
-  </tr>
-  <tr>
-    <td>The URL of where the project is deployed</td>
-    <td>project_deployed_url</td>
-    <td>string</td>
-  </tr>
-  <tr>
-    <td>A list of all the technologies used in the project</td>
-    <td>project_technologies</td>
-    <td>Array</td>
-  </tr>
-  <tr>
-    <td>A list of all the paragraphs describing the project</td>
-    <td>project_description</td>
+    <td>A list of technologies in the developer's arsenal. As more are mastered, the can be added to this list</td>
+    <td>technology_name</td>
     <td>Array</td>
   </tr>
 </tbody>
