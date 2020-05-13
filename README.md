@@ -39,6 +39,7 @@ Thank you for viewing my project. wondrousWebWorks() is a portfolio for me as a 
   - [Deployment](#deployment)
     - [Local Installation](#local-installation)
       - [Requirements](#requirements)
+      - [Installation Instructions](#installation-instructions)
   - [Credits](#credits)
   - [Disclaimer](#disclaimer)
 
@@ -220,23 +221,27 @@ The project can be run either locally or deployed on Heroku.  Instructions for e
 - [pip](https://pypi.org/project/pip/) - includes installation instructions
 - An email acount for which you can find server details - [Gmail](https://www.google.com/gmail/about/#) works very well for this
 
+#### Installation Instructions
+
 1. Using your browser of choice, navigate to the [wondrousWebWorks repository](https://github.com/wondrousWebWorks/wondrousWebWorks) in GitHub
 2. Click on the green **Clone or download** button on the right of the screen (on personal computers) which will trigger a dropdown menu
 3. Copy the URL provided
 4. Using your terminal of choice, create or navigate to the directory or folder where you'd like to install the wondrousWebWorks project directory
 5. Enter the command `git clone` followed by the URL copied in step 3, or just copy the command from here, paste it in the terminal enter press Enter
-```git clone https://github.com/wondrousWebWorks/wondrousWebWorks.git```
+
+        git clone https://github.com/wondrousWebWorks/wondrousWebWorks.git
+
 6. Wait for the the repository to be cloned
 
    It considered good practice to contain each product in each own virtual environment as any dependancies for each project can be installed locally in each project's virtual environment. Several virtual environments exist and since Python 3.3, a subset of the popular [virtualenv](https://virtualenv.pypa.io/en/latest/) comes as standard with all Python 3 installations. This subset does not offer the full fetaure set of the full **virtualenv** package, and as such is recommended to install it using **pip**.
 
 7. Install the virtualenv package using pip by using the following command
 
-   ```pip3 install virtualenv```
+        pip3 install virtualenv
 
 8. Once **virtualenv** is successfully installed, ensure that you are in the project's root directory and create a virtual environment named *venv* using the following command
 
-   ```virtualenv venv```
+        virtualenv venv
 
 ## Credits
 
