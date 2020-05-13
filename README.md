@@ -36,7 +36,9 @@ Thank you for viewing my project. wondrousWebWorks() is a portfolio for me as a 
   - [Bugs](#bugs)
     - [Development Bugs](#development-bugs)
     - [Deployment Bugs](#deployment-bugs)
-  - [Local Installation](#local-installation)
+  - [Deployment](#deployment)
+    - [Local Installation](#local-installation)
+      - [Requirements](#requirements)
   - [Credits](#credits)
   - [Disclaimer](#disclaimer)
 
@@ -203,21 +205,38 @@ Another niggle was when I prevented the default behaviour of all buttons, only t
 
 Initially, there was great difficulty deploying the project to Heroku.  After viewing the project's Heroku log files, it was discovered that the **pkg-resources** package could not be located by Heroku for installation. Modifying the **requirements.txt** file by removing the **pkg-resources** dependancy before pushing to GitHub and subsequently Heroku fixed the bug and allowed succesfull installion of all dependancies.
 
-## Local Installation
+## Deployment
 
-If you want to download the project to view or modify the code locally on your machine, follow the following instructions. Please note that your local changes can't be pushed to the GitHub repository, and that the values of environment variables are not provided as they contain sensitive information.
+The project can be run either locally or deployed on Heroku.  Instructions for either option can be viewed below. The instructions provided are for installing on a Linux-based machine. Should your operating system be different, please note that some of the commands might be different.
 
-1. Ensure Git is installed on your local machine (installation instructions can be found [here](https://git-scm.com/downloads))
-2. Using your browser of choice, navigate to the [wondrousWebWorks repository](https://github.com/wondrousWebWorks/wondrousWebWorks) in GitHub
-3. Click on the green **Clone or download** button on the right of the screen (on personal computers) which will trigger a dropdown menu
-4. Copy the URL provided
-5. Using your terminal of choice, create or navigate to the directory or folder where you'd like to install the wondrousWebWorks project directory
-6. Enter the following command and paste the URL copied, or just copy the command from here, paste it in the terminal enter press Enter
-    1. `git clone https://github.com/wondrousWebWorks/wondrousWebWorks.git`
-7. Wait for the the repository to be cloned
-8. Open the newly cloned wondrousWebWorks folder in your favourite IDE or text editor
+### Local Installation
 
-Note that in step 4 above, a ZIP file can be downloaded instead of copying the provided URL. Should you choose to download the ZIP file, use whatever software is available on your computer to unzip the file and proceed to step 8 above.
+#### Requirements
+
+- An integrated development environment (IDE) - [VSCode](https://code.visualstudio.com/Download) is free and was used to create this site
+- An account on [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) - follow the instructions to create an account
+- [Git](https://git-scm.com/downloads) - includes installation instructions
+- [Python 3](https://www.python.org/downloads/) - installation instructions can be found [here](https://docs.python-guide.org/starting/install3/linux/)
+- [pip](https://pypi.org/project/pip/) - includes installation instructions
+- An email acount for which you can find server details - [Gmail](https://www.google.com/gmail/about/#) works very well for this
+
+1. Using your browser of choice, navigate to the [wondrousWebWorks repository](https://github.com/wondrousWebWorks/wondrousWebWorks) in GitHub
+2. Click on the green **Clone or download** button on the right of the screen (on personal computers) which will trigger a dropdown menu
+3. Copy the URL provided
+4. Using your terminal of choice, create or navigate to the directory or folder where you'd like to install the wondrousWebWorks project directory
+5. Enter the command `git clone` followed by the URL copied in step 3, or just copy the command from here, paste it in the terminal enter press Enter
+```git clone https://github.com/wondrousWebWorks/wondrousWebWorks.git```
+6. Wait for the the repository to be cloned
+
+   It considered good practice to contain each product in each own virtual environment as any dependancies for each project can be installed locally in each project's virtual environment. Several virtual environments exist and since Python 3.3, a subset of the popular [virtualenv](https://virtualenv.pypa.io/en/latest/) comes as standard with all Python 3 installations. This subset does not offer the full fetaure set of the full **virtualenv** package, and as such is recommended to install it using **pip**.
+
+7. Install the virtualenv package using pip by using the following command
+
+   ```pip3 install virtualenv```
+
+8. Once **virtualenv** is successfully installed, ensure that you are in the project's root directory and create a virtual environment named *venv* using the following command
+
+   ```virtualenv venv```
 
 ## Credits
 
