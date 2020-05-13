@@ -40,6 +40,9 @@ Thank you for viewing my project. wondrousWebWorks() is a portfolio for me as a 
     - [Local Installation](#local-installation)
       - [Requirements](#requirements)
       - [Installation Instructions](#installation-instructions)
+    - [Deploy to Heroku](#deploy-to-heroku)
+      - [Requirements](#requirements-1)
+      - [Deployment Instructions](#deployment-instructions)
   - [Credits](#credits)
   - [Disclaimer](#disclaimer)
 
@@ -275,6 +278,60 @@ It is assumed that the required database and collections have been created in yo
 14. If all the steps above have been completed successfully, you can launch the application with the following command and view the site at ```http://127.0.0.1:5000```
 
         python3 app.py
+
+### Deploy to Heroku
+
+#### Requirements
+
+- An account on [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) - follow the instructions to create an account
+- An email acount for which you can find server details - [Gmail](https://www.google.com/gmail/about/#) works very well for this
+
+#### Deployment Instructions
+
+NOTE: In order to deploy successfully to Heroku, both a *requirements.txt* file and *Procfile* are required. Both of these files are already included in the GitHub repository for this project for your convenience.
+
+1. On the [Heroku](https://www.heroku.com/) website, create a new account if you do not have one already
+2. Once logged in and on your Heroku dashboard, create a new app by clicking on the **New** button, followed by **Create new app** in the dropdown menu
+3. Enter a name for your app (it must be unique) and a region, such as Europe if you are located in Europe and click on **Create app**
+4. On your app page, click on **Settings** in the navigation bar
+5. Click on **Reveal Config Vars** in the *Convig Vars* section
+6. Set the following Config Vars as key:value pairs
+
+    +-------------------+---------------------------------------------------------------+
+    | KEY               | VALUE                                                         |
+    +-------------------+---------------------------------------------------------------+
+    | IP                | 0.0.0.0                                                       |
+    +-------------------+---------------------------------------------------------------+
+    | PORT              | 5000                                                          |
+    +-------------------+---------------------------------------------------------------+
+    | MONGO_URI         | <your MongoDB Atlas connection string>                        |
+    +-------------------+---------------------------------------------------------------+
+    | MONGO_DBNAME      | <your MongoDB Atlas database name>                            |
+    +-------------------+---------------------------------------------------------------+
+    | MAIL_SERVER       | <smtp.gmail.com>                                              |
+    +-------------------+---------------------------------------------------------------+
+    | MAIL_PORT         | 465                                                           |
+    +-------------------+---------------------------------------------------------------+
+    | MAIL_USERNAME     | <your Gmail email address>                                    |
+    +-------------------+---------------------------------------------------------------+
+    | MAIL_PASSWORD     | <your Gmail account's password>                               |
+    +-------------------+---------------------------------------------------------------+
+    | RECIPIENT_ADDRESS | <the email address to which you would like emails to be sent> |
+    +-------------------+---------------------------------------------------------------+
+    | SECRET_KEY        | <your secret key>                                             |
+    +-------------------+---------------------------------------------------------------+
+
+      NOTE: Wherever text is surrounded by <> (angle brackets), you will need to provide your own values without the angle brackets as determined by your MonogoDB account, mail server and secret key. Remember to change the *username*, *password* and *cluster_name* in your MongoDB Atlas connection string. This assumes you are using a Gmail account to send emails. If you wish to use a different mail server, use the appropriate values for MAIL_SERVER and MAIL_PORT instead. Please not that that the default Gmail settings do not allow third party apps to connect.  You will need to generate a unique password which will be the password for your MAIL_PASSWORD Convig Var in the table above. Information on getting the unique app password can be found [here](https://support.google.com/accounts/answer/185833?hl=en). Information on generating a good secret key can be found [here](https://blog.miguelgrinberg.com/post/the-new-way-to-generate-secure-tokens-in-python). Information on getting your**MongoDB Atlas connection string** can be found [here](https://docs.atlas.mongodb.com/tutorial/connect-to-your-cluster/).
+
+7. Click on **Deploy** in the navigation bar
+8. In **Deployment method**, click on GitHub
+9. Search for the **wondrousWebWorks** repository and confirm that it has been found. The search result should look similar to this:
+
+        wondrousWebWorks/wondrousWebWorks
+
+10. Click **Connect** and confirm a successful connection
+11. Scroll down to the **Manual deploy** section and click on **Deploy Branch**
+12. Provided that every step has been followed correctly, the app should be deployed and can be viewed by clicking on the **View** or **Open app** buttons
 
 ## Credits
 
