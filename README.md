@@ -439,34 +439,14 @@ NOTE: MongoDB automatically generates a unique ID for each document.  It is part
     <td>ObjectId</td>
   </tr>
   <tr>
-    <td>The name of the project</td>
-    <td>project_name</td>
+    <td>The email address for a particular user</td>
+    <td>email</td>
     <td>string</td>
   </tr>
   <tr>
-    <td>The URL of where the project is hosted or located</td>
-    <td>project_img_url</td>
+    <td>The hashed password for a particular user</td>
+    <td>password</td>
     <td>string</td>
-  </tr>
-  <tr>
-    <td>The GitHub URL of the project's repository</td>
-    <td>project_github_url</td>
-    <td>string</td>
-  </tr>
-  <tr>
-    <td>The URL of where the project is deployed</td>
-    <td>project_deployed_url</td>
-    <td>string</td>
-  </tr>
-  <tr>
-    <td>A list of all the technologies used in the project</td>
-    <td>project_technologies</td>
-    <td>Array</td>
-  </tr>
-  <tr>
-    <td>A list of all the paragraphs describing the project</td>
-    <td>project_description</td>
-    <td>Array</td>
   </tr>
 </tbody>
 </table>
