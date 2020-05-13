@@ -223,6 +223,8 @@ The project can be run either locally or deployed on Heroku.  Instructions for e
 
 #### Installation Instructions
 
+It is assumed that the required database and collections have been created in your MongoDB Atlas account. If not, please refer to the **Information Architecture** section and set up your database and collections as stipulated there.
+
 1. Using your browser of choice, navigate to the [wondrousWebWorks repository](https://github.com/wondrousWebWorks/wondrousWebWorks) in GitHub
 2. Click on the green **Clone or download** button on the right of the screen (on personal computers) which will trigger a dropdown menu
 3. Copy the URL provided
@@ -242,6 +244,37 @@ The project can be run either locally or deployed on Heroku.  Instructions for e
 8. Once **virtualenv** is successfully installed, ensure that you are in the project's root directory and create a virtual environment named *venv* using the following command
 
         virtualenv venv
+
+9. Ensure you are in the project directory and activate the *venv* environment with the folowing command. This will allow you to install project-dependant requirements in the next step
+
+        source venv/bin/activate
+
+10. Install the necessary requirements in your virtual environment with *pip* using the following command
+
+        pip3 install -r requirements.txt
+
+11. Open your IDE and open the project folder in it
+12. Create a file called *env.py* in the project's root directory
+13. In your *env.py* file, import the *os* module and set the following environment variables as follows.
+
+        import os
+        os.environ["IP"] = "0.0.0.0"
+        os.environ["PORT"] = "5000"
+        os.environ["MONGO_URI"] = "<your MongoDB Atlas connection string>"
+        os.environ["MONGO_DBNAME"] = "<your db name>"
+        os.environ["SECRET_KEY"] = "<your secret key>"
+        os.environ["MAIL_SERVER"] = "smtp.gmail.com"
+        os.environ["MAIL_PORT"] = "465"
+        os.environ["MAIL_USERNAME"] = "<your gmail address>"
+        os.environ["MAIL_PASSWORD"] = "<your gmail password>"
+        os.environ["RECIPIENT_ADDRESS"] = "<the email address where you would like the contact mail to be sent - it can be the same as your MAIL_USERNAME>"
+        os.environ["SECRET_KEY"] = "<your secret key>"
+
+    NOTE: Wherever text is surrounded by <> (angle brackets), you will need to provide your own values without the angle brackets as determined by your MonogoDB account, mail server and secret key. Remember to change the *username*, *password* and *cluster_name* in your MongoDB Atlas connection string. This assumes you are using a Gmail account to send emails. If you wish to use a different mail server, use the appropriate values for MAIL_SERVER and MAIL_PORT instead. Information on generating a good secret key can be found [here](https://blog.miguelgrinberg.com/post/the-new-way-to-generate-secure-tokens-in-python). Information on getting your **MongoDB Atlas connection string** can be found [here](https://docs.atlas.mongodb.com/tutorial/connect-to-your-cluster/).
+
+14. If all the steps above have been completed successfully, you can launch the application with the following command and view the site [here](http://127.0.0.1:5000)
+
+        python3 app.py
 
 ## Credits
 
