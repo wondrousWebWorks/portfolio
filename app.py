@@ -14,6 +14,7 @@ app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
 mongo = PyMongo(app)
+
 app.config['MAIL_SERVER']= os.environ.get('MAIL_SERVER')
 app.config['MAIL_PORT'] = os.environ.get('MAIL_PORT')
 app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
@@ -41,18 +42,23 @@ def home():
     projects = mongo.db.portfolio.find().limit(3)
     qualifications = mongo.db.qualifications.find()
     experience = mongo.db.work_experience.find()
-    return render_template('pages/index.html', 
-                            skills=skills, 
-                            projects=projects,
-                            qualifications=qualifications,
-                            experience=experience,
-                            image_height='full-screen')
+    return render_template(
+        'pages/index.html', 
+        skills=skills, 
+        projects=projects,
+        qualifications=qualifications,
+        experience=experience,
+        image_height='full-screen'
+    )
 
 
 @app.route('/about')
 def about():
     """Return a rendered template of the ABOUT page"""
-    return render_template('pages/about.html', view='about')
+    return render_template(
+        'pages/about.html', 
+        view='about'
+    )
 
 
 @app.route('/projects')
@@ -63,8 +69,11 @@ def projects():
     Return a rendered template of the PROJECTS page and pass data to it
     """
     projects = mongo.db.portfolio.find()
-    return render_template('pages/projects.html', projects=projects, 
-                                                  view='projects')
+    return render_template(
+        'pages/projects.html', 
+        projects=projects, 
+        view='projects'
+    )
 
 
 @app.route('/project/<project_id>')
@@ -77,8 +86,11 @@ def project(project_id):
     PROJECT PAGE and pass data to it 
     """
     project = mongo.db.portfolio.find_one({'_id': ObjectId(project_id)})
-    return render_template('pages/project.html', project=project, 
-                                                 view='project')
+    return render_template(
+        'pages/project.html', 
+        project=project, 
+        view='project'
+    )
 
 
 @app.route('/contact', methods=['GET', 'POST'])
@@ -105,8 +117,11 @@ def blogs():
     Return a rendered template of the BLOGS page and send data to it
     """
     blog_posts = mongo.db.blog_posts.find()
-    return render_template('pages/blogs.html', blog_posts=blog_posts, 
-                                               view='blogs')
+    return render_template(
+        'pages/blogs.html', 
+        blog_posts=blog_posts, 
+        view='blogs'
+    )
 
 
 @app.route('/blogs/<blog_id>')
@@ -119,8 +134,11 @@ def blog_entry(blog_id):
     rendered remplate of a specific BLOG POST PAGE and pass data to it 
     """
     blog_entry = mongo.db.blog_posts.find_one({'_id': ObjectId(blog_id)})
-    return render_template('pages/blog-entry.html', blog_entry=blog_entry, 
-                                                    view='blog post')
+    return render_template(
+        'pages/blog-entry.html', 
+        blog_entry=blog_entry, 
+        view='blog post'
+    )
 
 
 @app.route('/admin')
@@ -138,11 +156,14 @@ def admin():
     experience_count = mongo.db.work_experience.count()
     blog_posts_count = mongo.db.blog_posts.count()
 
-    return render_template('pages/admin/admin.html', skill_count=skill_count,
-                                                     project_count=project_count,
-                                                     qualification_count=qualification_count,
-                                                     experience_count=experience_count,
-                                                     blog_posts_count=blog_posts_count)
+    return render_template(
+        'pages/admin/admin.html', 
+        skill_count=skill_count,
+        project_count=project_count,
+        qualification_count=qualification_count,
+        experience_count=experience_count,
+        blog_posts_count=blog_posts_count
+    )
 
 
 @app.route('/admin/skills')
@@ -150,8 +171,11 @@ def admin():
 def manage_skills():
     """Return a rendered template of SKILLS page with all skills sent to it"""
     skills = mongo.db.skills.find()
-    return render_template('pages/admin/skills.html', skills=skills, 
-                                                      view='admin')
+    return render_template(
+        'pages/admin/skills.html', 
+        skills=skills, 
+        view='admin'
+    )
 
 
 @app.route('/admin/skills/add', methods=['POST'])
@@ -220,9 +244,12 @@ def manage_projects():
     projects = mongo.db.portfolio.find()
     technologies = mongo.db.technologies.find()
     technology_list = technologies[0]['technology_name']
-    return render_template('pages/admin/projects.html', projects=projects, 
-                                                        technology_list=technology_list,
-                                                        view='admin')
+    return render_template(
+        'pages/admin/projects.html', 
+        projects=projects, 
+        technology_list=technology_list,
+        view='admin'
+    )
 
 
 @app.route('/admin/projects/add', methods=['POST'])
@@ -287,8 +314,11 @@ def manage_qualifications():
     Pass retrieved data to a rendered template of the MANMAGE QUALIFICATIONS page.
     """
     qualifications = mongo.db.qualifications.find()
-    return render_template('pages/admin/qualifications.html', qualifications=qualifications,
-                                                              view='admin')
+    return render_template(
+        'pages/admin/qualifications.html', 
+        qualifications=qualifications,
+        view='admin'
+    )
 
 
 @app.route('/admin/qualifications/add', methods=['POST'])
@@ -357,8 +387,11 @@ def delete_qualification(qualification_id):
 def manage_blogs():
     """Return a rendered template of BLOGS page with all blog posts sent to it"""
     blog_posts = mongo.db.blog_posts.find()
-    return render_template('pages/admin/blogs.html', blog_posts=blog_posts,
-                                                     view='admin')
+    return render_template(
+        'pages/admin/blogs.html', 
+        blog_posts=blog_posts,
+        view='admin'
+    )
 
 
 @app.route('/admin/blogs/add', methods=['POST'])
@@ -426,8 +459,11 @@ def delete_blog_post(blog_post_id):
 def manage_experience():
     """Return a rendered template of EXPERIENCE page with all work experience sent to it"""
     experience = mongo.db.work_experience.find()
-    return render_template('pages/admin/experience.html', experience=experience,
-                                                          view='admin')
+    return render_template(
+        'pages/admin/experience.html', 
+        experience=experience,
+        view='admin'
+    )
 
 
 @app.route('/admin/experience/add', methods=['POST'])
@@ -508,7 +544,10 @@ def login():
             user = User(find_user['email'], find_user['password'])
             login_user(user)
             return redirect(url_for('admin'))
-    return render_template('pages/login.html', view='login')
+    return render_template(
+        'pages/login.html', 
+        view='login'
+    )
 
 
 @app.route("/logout")
@@ -518,6 +557,16 @@ def logout():
     logout_user()
     flash('You have been logged out.', 'info')
     return redirect(url_for('home'))
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    """Returns a rendered template of the 404.html page"""
+    return render_template(
+        'pages/404.html', 
+        image_height='full-screen',
+        view='404'
+    ), 404
 
 
 class User:
