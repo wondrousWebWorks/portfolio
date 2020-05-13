@@ -29,6 +29,10 @@
             {% elif view == 'login' %}
                 <h1>Log in to manage site content</h1>
                 <a class="call-to-action-btn btn btn-large sa-flag-red-bg off-white text-shadow-2px" href="#view">Log in now!</a>
+            {% elif view == '404' %}
+                <h1>Oops! The dreaded 404 message...</h1>
+                <h2 class="header-summary off-white">The page you're looking for couldn't be located</h2>
+                <a class="call-to-action-btn btn btn-large sa-flag-red-bg off-white text-shadow-2px" href="{{ url_for('home') }}">Go somewhere familiar</a>
             {% else %}
                 <h1>Hello there!</h1>
                 <h1>I'm Johann, a Full Stack developer</h1>
