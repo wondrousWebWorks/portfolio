@@ -297,29 +297,56 @@ NOTE: In order to deploy successfully to Heroku, both a *requirements.txt* file 
 5. Click on **Reveal Config Vars** in the *Convig Vars* section
 6. Set the following Config Vars as key:value pairs
 
-    +-------------------+---------------------------------------------------------------+
-    | KEY               | VALUE                                                         |
-    +-------------------+---------------------------------------------------------------+
-    | IP                | 0.0.0.0                                                       |
-    +-------------------+---------------------------------------------------------------+
-    | PORT              | 5000                                                          |
-    +-------------------+---------------------------------------------------------------+
-    | MONGO_URI         | <your MongoDB Atlas connection string>                        |
-    +-------------------+---------------------------------------------------------------+
-    | MONGO_DBNAME      | <your MongoDB Atlas database name>                            |
-    +-------------------+---------------------------------------------------------------+
-    | MAIL_SERVER       | <smtp.gmail.com>                                              |
-    +-------------------+---------------------------------------------------------------+
-    | MAIL_PORT         | 465                                                           |
-    +-------------------+---------------------------------------------------------------+
-    | MAIL_USERNAME     | <your Gmail email address>                                    |
-    +-------------------+---------------------------------------------------------------+
-    | MAIL_PASSWORD     | <your Gmail account's password>                               |
-    +-------------------+---------------------------------------------------------------+
-    | RECIPIENT_ADDRESS | <the email address to which you would like emails to be sent> |
-    +-------------------+---------------------------------------------------------------+
-    | SECRET_KEY        | <your secret key>                                             |
-    +-------------------+---------------------------------------------------------------+
+    <table>
+    <thead>
+      <tr>
+        <th>KEY</th>
+        <th>VALUE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>IP</td>
+        <td>0.0.0.0</td>
+      </tr>
+      <tr>
+        <td>PORT</td>
+        <td>5000</td>
+      </tr>
+      <tr>
+        <td>MONGO_URI</td>
+        <td>&lt;your MongoDB Atlas connection string&gt;</td>
+      </tr>
+      <tr>
+        <td>MONGO_DBNAME</td>
+        <td>&lt;your MongoDB Atlas database name&gt;</td>
+      </tr>
+      <tr>
+        <td>MAIL_SERVER</td>
+        <td>&lt;smtp.gmail.com&gt;</td>
+      </tr>
+      <tr>
+        <td>MAIL_PORT</td>
+        <td>465</td>
+      </tr>
+      <tr>
+        <td>MAIL_USERNAME</td>
+        <td>&lt;your Gmail email address&gt;</td>
+      </tr>
+      <tr>
+        <td>MAIL_PASSWORD</td>
+        <td>&lt;your Gmail account's password&gt;</td>
+      </tr>
+      <tr>
+        <td>RECIPIENT_ADDRESS</td>
+        <td>&lt;the email address to which you would like emails to be sent&gt;</td>
+      </tr>
+      <tr>
+        <td>SECRET_KEY</td>
+        <td>&lt;your secret key&gt;</td>
+      </tr>
+    </tbody>
+    </table>
 
       NOTE: Wherever text is surrounded by <> (angle brackets), you will need to provide your own values without the angle brackets as determined by your MonogoDB account, mail server and secret key. Remember to change the *username*, *password* and *cluster_name* in your MongoDB Atlas connection string. This assumes you are using a Gmail account to send emails. If you wish to use a different mail server, use the appropriate values for MAIL_SERVER and MAIL_PORT instead. Please not that that the default Gmail settings do not allow third party apps to connect.  You will need to generate a unique password which will be the password for your MAIL_PASSWORD Convig Var in the table above. Information on getting the unique app password can be found [here](https://support.google.com/accounts/answer/185833?hl=en). Information on generating a good secret key can be found [here](https://blog.miguelgrinberg.com/post/the-new-way-to-generate-secure-tokens-in-python). Information on getting your**MongoDB Atlas connection string** can be found [here](https://docs.atlas.mongodb.com/tutorial/connect-to-your-cluster/).
 
