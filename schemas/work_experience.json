@@ -1,0 +1,5 @@
+{
+    "_id": "<ObjectId>",
+    "job_title": "<string>",
+    "job_dates": "<string>"
+}

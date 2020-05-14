@@ -1,0 +1,20 @@
+{
+    "_id": "<ObjectId>",
+    "project_name": "<string>",
+    "project_img_url": "<string>",
+    "project_github_url": "<string>",
+    "project_deployed_url": "<string>",
+    "project_technologies": [
+        "<technology name - string>",
+        "<technology name - string>",
+        "<technology name - string>",
+        "<etc.>"
+    ],
+    "project_description": [
+        "<paragraph - string>",
+        "<paragraph - string>",
+        "<paragraph - string>",
+        "<paragraph - string>",
+        "<paragraph - string>"
+    ]
+}

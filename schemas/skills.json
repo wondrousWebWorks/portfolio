@@ -1,0 +1,5 @@
+{
+    "_id": "<ObjectId>",
+    "skill_name": "<string>",
+    "skill_level": "<string>"
+}

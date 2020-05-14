@@ -1,0 +1,19 @@
+{
+    "_id": "<ObjectId>",
+    "blog_title": "<string>",
+    "blog_img_url": "<string>",
+    "blog_summary": "<string>",
+    "blog_date": "<string>",
+    "blog_body": [
+        "<paragraph - string>",
+        "<paragraph - string>",
+        "<paragraph - string>",
+        "<paragraph - string>",
+        "<paragraph - string>",
+        "<paragraph - string>",
+        "<paragraph - string>",
+        "<paragraph - string>",
+        "<paragraph - string>",
+        "<paragraph - string>"
+    ]
+}

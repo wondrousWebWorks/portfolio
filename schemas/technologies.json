@@ -1,0 +1,11 @@
+{
+    "_id": "<ObjectId>",
+    "technology_name": [
+        "<name of technology - string>",
+        "<name of technology - string>",
+        "<name of technology - string>",
+        "<name of technology - string>",
+        "<name of technology - string>",
+        "<etc.>"
+    ]
+}

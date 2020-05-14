@@ -1,0 +1,9 @@
+
+{
+    "_id": "<ObjectId>",
+    "qualification_name": "<string>",
+    "qualification_from": "<string>",
+    "qualification_issue_date": "<string>",
+    "qualification_view_url": "<string>",
+    "qualification_info_url": "<string>"
+}
