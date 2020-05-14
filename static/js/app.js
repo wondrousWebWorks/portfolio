@@ -26,6 +26,7 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
         }, 800);
     }
 
+    
     /**
      * Sets a random height in percentage for
      * each skill bar and also sets an attribute
@@ -53,6 +54,7 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
         });
     }
 
+    
     /**
      * Loops through Skills and animates each skill bar
      * so that it does not exceed the set skill level
@@ -87,6 +89,7 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
         }, 40);
     }
 
+    
     /**
      * Upon hovering over a project,
      * enlarge the project card whilst
@@ -101,6 +104,7 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
         this.classList.add('project-scale-bigger');
     }
 
+    
     /**
      * Upon the mouse leaving a project,
      * restore project card to normal size
@@ -113,6 +117,7 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
         });
     }
 
+    
     /**
      * Toggles the side nav visibility on smaller screens
      */
@@ -121,6 +126,7 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
         sideNav.classList.toggle('nav-slide');
     }
 
+    
     /**
      * Redirects to a given Admin URL based on the redirect parameter
      * @param {string} redirect 
@@ -129,6 +135,7 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
         window.location.replace(`${window.origin}/admin/${redirect}`);
     }
 
+    
     /**
      * Reset any form to its original empty state
      * @param {string} formTarget 
@@ -193,6 +200,7 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
         });
     }
 
+    
     /**
      * Changes the button classes and text for any admin form
      * @param {string} type - add/update
@@ -236,8 +244,9 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
         }
     }
 
+    
     /**
-     * 
+     * Either POSTs or PUTs form data to a specified Admin URL to perfomr Create and Update operations
      * @param {string} urlTarget - skills/projects/qualifications/blogs/experience
      * @param {string} addOrUpdate - states whether a document is being added or updated (add/update)
      * @param {Object} requestBody - the request body
@@ -265,7 +274,8 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
             headers: new Headers({
                 'content-type': 'application/json'
             })
-        }).then(response => {
+        })
+        .then(response => {
             if (response.status !== 200) {
                 console.log(`Response status not 200: ${response.status}`);
                 location.reload();
@@ -275,9 +285,13 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
                 console.log(data);
                 location.reload();
             });
-        });   
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });  
     }
 
+    
     /**
      * POSTs Skill form data to backend
      */
@@ -290,6 +304,7 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
         sendData('skills', 'add', skillEntry);
     }
 
+    
     /**
      * POSTs Project form data to backend
      */
@@ -308,6 +323,7 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
         sendData('projects', 'add', projectEntry);
     }
 
+    
     /**
      * POSTs Qualification form data to backend
      */
@@ -323,6 +339,7 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
         sendData('qualifications', 'add', qualificationEntry);
     }
 
+    
     /**
      * POSTs Blog Post form data to backend
      */
@@ -343,6 +360,7 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
         sendData('blogs', 'add', blogPost);
     }
 
+    
     /**
      * POSTs Experience form data to backend
      */
@@ -355,6 +373,7 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
         sendData('experience', 'add', experienceEntry);
     }
 
+    
     /**
      * Fetches a specific Skill's data and populates 
      * the Skills form fields with it
@@ -366,19 +385,22 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
         changeFormButton('update', 'skills');
         
         fetch(`${window.origin}/admin/skills/update/${dataTarget}`)
-        .then(response => {
-            response.json()
-            .then(data => {
-                skillName.value = data.skill_name;
-                skillLevel.value = data.skill_level;
-            });
-            skillModalInstance.open();
-            Array.from(skillFormLabels).forEach(label => {
-                label.classList.add('active');
-            });
+        .then(response => response.json())
+        .then(data => {
+            skillName.value = data.skill_name;
+            skillLevel.value = data.skill_level;
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });  
+
+        skillModalInstance.open();
+        Array.from(skillFormLabels).forEach(label => {
+            label.classList.add('active');
         });
     }
 
+    
     /**
      * Fetches a specific Project's data and populates 
      * the Projects form fields with it
@@ -390,29 +412,32 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
         changeFormButton('update', 'projects');
         
         fetch(`${window.origin}/admin/projects/update/${dataTarget}`)
-        .then(response => {
-            response.json()
-            .then(data => {
-                projectName.value = data.project_name;
-                projectImgUrl.value = data.project_img_url;
-                projectGithubUrl.value = data.project_github_url;
-                projectDeployedUrl.value = data.project_deployed_url;
-                projectTechnologiesSelectOptions.forEach(selectOption => {
-                    if (data.project_technologies.includes(selectOption.getAttribute('value'))) {
-                        selectOption.setAttribute('selected', "");
-                    }
-                });
-                for (let i = 0; i < projectDescriptionParagraphs.length; i++) {
-                    projectDescriptionParagraphs[i].value = data.project_description[i];
+        .then(response => response.json())
+        .then(data => {
+            projectName.value = data.project_name;
+            projectImgUrl.value = data.project_img_url;
+            projectGithubUrl.value = data.project_github_url;
+            projectDeployedUrl.value = data.project_deployed_url;
+            projectTechnologiesSelectOptions.forEach(selectOption => {
+                if (data.project_technologies.includes(selectOption.getAttribute('value'))) {
+                    selectOption.setAttribute('selected', "");
                 }
             });
-            projectModalInstance.open();
-            Array.from(projectFormLabels).forEach(label => {
-                label.classList.add('active');
-            });
+            for (let i = 0; i < projectDescriptionParagraphs.length; i++) {
+                projectDescriptionParagraphs[i].value = data.project_description[i];
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });  
+        
+        projectModalInstance.open();
+        Array.from(projectFormLabels).forEach(label => {
+            label.classList.add('active');
         });
     }
 
+    
     /**
      * Fetches a specific Qualification's data and populates 
      * the Qualifications form fields with it
@@ -424,22 +449,25 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
         changeFormButton('update', 'qualifications');
         
         fetch(`${window.origin}/admin/qualifications/update/${dataTarget}`)
-        .then(response => {
-            response.json()
-            .then(data => {
-                qualificationName.value = data.qualification_name;
-                qualificationFrom.value = data.qualification_from;
-                qualificationIssueDate.value = data.qualification_issue_date;
-                qualificationViewUrl.value = data.qualification_view_url;
-                qualificationInfoUrl.value = data.qualification_info_url;
-            });
-            qualificationModalInstance.open();
-            Array.from(qualificationFormLabels).forEach(label => {
-                label.classList.add('active');
-            });
+        .then(response => response.json())
+        .then(data => {
+            qualificationName.value = data.qualification_name;
+            qualificationFrom.value = data.qualification_from;
+            qualificationIssueDate.value = data.qualification_issue_date;
+            qualificationViewUrl.value = data.qualification_view_url;
+            qualificationInfoUrl.value = data.qualification_info_url;
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });  
+
+        qualificationModalInstance.open();
+        Array.from(qualificationFormLabels).forEach(label => {
+            label.classList.add('active');
         });
     }
 
+    
     /**
      * Fetches a specific Blog Post's data and populates 
      * the Blogs form fields with it
@@ -451,25 +479,28 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
         changeFormButton('update', 'blogs');
         
         fetch(`${window.origin}/admin/blogs/update/${dataTarget}`)
-        .then(response => {
-            response.json()
-            .then(data => {
-                blogTitle.value = data.blog_title;
-                blogImgUrl.value = data.blog_img_url;
-                blogSummary.value = data.blog_summary;
-                blogDate.value = data.blog_date;
+        .then(response => response.json())
+        .then(data => {
+            blogTitle.value = data.blog_title;
+            blogImgUrl.value = data.blog_img_url;
+            blogSummary.value = data.blog_summary;
+            blogDate.value = data.blog_date;
 
-                for (i = 0; i < blogParagraphs.length; i++) {
-                    blogParagraphs[i].value = data.blog_body[i];
-                }
-            });
-            blogModalInstance.open();
-            Array.from(blogFormLabels).forEach(label => {
-                label.classList.add('active');
-            });
+            for (i = 0; i < blogParagraphs.length; i++) {
+                blogParagraphs[i].value = data.blog_body[i];
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });  
+        
+        blogModalInstance.open();
+        Array.from(blogFormLabels).forEach(label => {
+            label.classList.add('active');
         });
     }
 
+    
     /**
      * Fetches specific Experience data and populates 
      * the Experience form fields with it
@@ -481,19 +512,22 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
         changeFormButton('update', 'experience');
         
         fetch(`${window.origin}/admin/experience/update/${dataTarget}`)
-        .then(response => {
-            response.json()
-            .then(data => {
-                experienceJobTitle.value = data.job_title;
-                experienceJobDates.value = data.job_dates;
-            });
-            experienceModalInstance.open();
-            Array.from(experienceFormLabels).forEach(label => {
-                label.classList.add('active');
-            });
+        .then(response => response.json())
+        .then(data => {
+            experienceJobTitle.value = data.job_title;
+            experienceJobDates.value = data.job_dates;
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });  
+        
+        experienceModalInstance.open();
+        Array.from(experienceFormLabels).forEach(label => {
+            label.classList.add('active');
         });
     }
 
+    
     /**
      * Gets Skills form data and PUTs it to the backend. 
      */
@@ -507,6 +541,7 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
         sendData('skills', 'update', skillEntry, dataTarget);
     }
 
+    
     /**
      * Gets Projects form data and PUTs it to the backend. 
      */
@@ -530,6 +565,7 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
         sendData('projects', 'update', projectEntry, dataTarget);
     }
 
+    
     /**
      * Gets Qualifications form data and PUTs it to the backend. 
      */
@@ -546,6 +582,7 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
         sendData('qualifications', 'update', qualificationEntry, dataTarget);
     }
 
+    
     /**
      * Gets Blogs form data and PUTs it to the backend. 
      */
@@ -567,6 +604,7 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
         sendData('blogs', 'update', blogPost, dataTarget);
     }
 
+    
     /**
      * Gets Experience form data and PUTs it to the backend. 
      */
@@ -617,9 +655,13 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
                 console.log(data);
                 location.reload();
             });
-        });
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });  
     }
 
+    
     /**
      * Resets and toggles any of the Admin forms
      * @param {string} formTarget - skills/projects/qualifications/blogs/experience
@@ -649,6 +691,7 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
         }, 400); 
     }
 
+    
     /**
      * Calls either an Add op Update function for all Admin forms
      * @param {HTMLElement} target - The form submit button which was clicked
@@ -677,7 +720,8 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
         }
     }
 
-    /* EVENT LISTENERS */
+    
+    /* MAIN SITE AND SHARED EVENT LISTENERS */
     Array.from(projects).forEach(project => {
         project.addEventListener("mouseover", scaleProject);
         project.addEventListener("mouseout", restoreProjectCardSize);
@@ -691,6 +735,7 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
 
     toggleMenuIcon.addEventListener('click', toggleSideNav);
 
+    
     /* INITIALIZE MATERIALIZE COMPONENTS */
     const selectElems = document.querySelectorAll('select');
     const selectInstances = M.FormSelect.init(selectElems);
@@ -707,7 +752,14 @@ const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
         }
     });
 
+    
     /* FUNCTIONS CALLED ON PAGE LOAD */
-    animateCursor();
-    randomizeInitialSkillBarHeight();
-    animateSkillBars();
+    if (window.location.pathname == '/home' || window.location.pathname == '/' || (window.location.pathname == '/about')) {
+        animateCursor();
+    }
+
+
+    if (window.location.pathname == '/home' || window.location.pathname == '/') {
+        randomizeInitialSkillBarHeight();
+        animateSkillBars();
+    }
