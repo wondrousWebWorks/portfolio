@@ -184,6 +184,8 @@ NOTE: MongoDB automatically generates a unique ID for each document.  It is part
 
 ### Collection name:  blog_posts
 
+A JSON representation of the **blog_posts** collection can be found [here](https://github.com/wondrousWebWorks/wondrousWebWorks/blob/master/schemas/blog_posts.json)
+
 <table>
 <thead>
   <tr>
@@ -227,6 +229,8 @@ NOTE: MongoDB automatically generates a unique ID for each document.  It is part
 </table>
 
 ### Collection name:  portfolio
+
+A JSON representation of the **portfolio** collection can be found [here](https://github.com/wondrousWebWorks/wondrousWebWorks/blob/master/schemas/portfolio.json)
 
 <table>
 <thead>
@@ -277,6 +281,8 @@ NOTE: MongoDB automatically generates a unique ID for each document.  It is part
 
 ### Collection name: qualifications
 
+A JSON representation of the **qualifications** collection can be found [here](https://github.com/wondrousWebWorks/wondrousWebWorks/blob/master/schemas/qualifications.json)
+
 <table>
 <thead>
   <tr>
@@ -321,6 +327,8 @@ NOTE: MongoDB automatically generates a unique ID for each document.  It is part
 
 ### Collection name: skills
 
+A JSON representation of the **skills** collection can be found [here](https://github.com/wondrousWebWorks/wondrousWebWorks/blob/master/schemas/skills.json)
+
 <table>
 <thead>
   <tr>
@@ -350,6 +358,8 @@ NOTE: MongoDB automatically generates a unique ID for each document.  It is part
 
 ### Collection name: technologies
 
+A JSON representation of the **technologies** collection can be found [here](https://github.com/wondrousWebWorks/wondrousWebWorks/blob/master/schemas/technologies.json)
+
 <table>
 <thead>
   <tr>
@@ -373,6 +383,8 @@ NOTE: MongoDB automatically generates a unique ID for each document.  It is part
 </table>
 
 ### Collection name: users
+
+A JSON representation of the **users** collection can be found [here](https://github.com/wondrousWebWorks/wondrousWebWorks/blob/master/schemas/users.json)
 
 <table>
 <thead>
@@ -402,6 +414,8 @@ NOTE: MongoDB automatically generates a unique ID for each document.  It is part
 </table>
 
 ### Collection name:  work_experience
+
+A JSON representation of the **work_experience** collection can be found [here](https://github.com/wondrousWebWorks/wondrousWebWorks/blob/master/schemas/work_experience.json)
 
 <table>
 <thead>
@@ -490,7 +504,7 @@ The project can be run either locally or deployed on Heroku.  Instructions for e
 
 #### Installation Instructions
 
-It is assumed that the required database and collections have been created in your MongoDB Atlas account. If not, please refer to the **Information Architecture** section and set up your database and collections as stipulated there.
+It is assumed that the required database and collections have been created in your MongoDB Atlas account. If not, please refer to the [Information Architecture](#information-architecture) section and set up your database and collections as stipulated there.
 
 1. Using your browser of choice, navigate to the [wondrousWebWorks repository](https://github.com/wondrousWebWorks/wondrousWebWorks) in GitHub
 2. Click on the green **Clone or download** button on the right of the screen (on personal computers) which will trigger a dropdown menu
