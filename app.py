@@ -183,16 +183,20 @@ def manage_skills():
 def add_skill():
     """Insert a new document into skills collection"""
     if request.method == 'POST':
-        skills = mongo.db.skills
-        skill_to_insert_dict = request.get_json()
-        skills.insert_one(skill_to_insert_dict)
-        find_inserted_skill = skills.find_one({'skill_name': skill_to_insert_dict['skill_name']})
-        
-        if find_inserted_skill:
-            flash('Skill added successfully!', 'success')
-            response = make_response(jsonify({'message': 'success'}), 200)
-        else:
-            flash('Failed to add skill.', 'failure')
+        try:
+            skills = mongo.db.skills
+            skill_to_insert_dict = request.get_json()
+            skills.insert_one(skill_to_insert_dict)
+            find_inserted_skill = skills.find_one({'skill_name': skill_to_insert_dict['skill_name']})
+            
+            if find_inserted_skill:
+                flash('Skill added successfully!', 'success')
+                response = make_response(jsonify({'message': 'success'}), 200)
+            else:
+                flash('Failed to add skill.', 'failure')
+                response = make_response(jsonify({'message': 'failed'}), 503)
+        except:
+            flash('Oops, something seems to have gone wrong server side...', 'failure')
             response = make_response(jsonify({'message': 'failed'}), 500)
     return response
 
@@ -233,7 +237,7 @@ def delete_skill(skill_id):
             response = make_response(jsonify({'message': 'success'}), 200)
         else:
             flash('Failed to delete skill.', 'failure')
-            response = make_response(jsonify({'message': 'failure'}), 500)
+            response = make_response(jsonify({'message': 'failure'}), 503)
     return response
 
 
@@ -267,7 +271,7 @@ def add_project():
             response = make_response(jsonify({'message': 'success'}), 200)
         else:
             flash('Failed to add project.', 'failure')
-            response = make_response(jsonify({'message': 'failed'}), 500)
+            response = make_response(jsonify({'message': 'failed'}), 503)
     return response
 
 
@@ -301,7 +305,7 @@ def delete_project(project_id):
             response = make_response(jsonify({'message': 'success'}), 200)
         else:
             flash('Failed to delete project.', 'failure')
-            response = make_response(jsonify({'message': 'failure'}), 500)
+            response = make_response(jsonify({'message': 'failure'}), 503)
     return response
 
 
@@ -336,7 +340,7 @@ def add_qualification():
             response = make_response(jsonify({'message': 'success'}), 200)
         else:
             flash('Failed to delete qualification.', 'failure')
-            response = make_response(jsonify({'message': 'failed'}), 500)
+            response = make_response(jsonify({'message': 'failed'}), 503)
     return response
 
 
@@ -378,7 +382,7 @@ def delete_qualification(qualification_id):
             response = make_response(jsonify({'message': 'success'}), 200)
         else:
             flash('Failed to delete qualification.', 'failure')
-            response = make_response(jsonify({'message': 'failure'}), 500)
+            response = make_response(jsonify({'message': 'failure'}), 503)
     return response
 
 
@@ -409,7 +413,7 @@ def add_blog_post():
             response = make_response(jsonify({'message': 'success'}), 200)
         else:
             flash('Failed to add blog post', 'failure')
-            response = make_response(jsonify({'message': 'failed'}), 500)
+            response = make_response(jsonify({'message': 'failed'}), 503)
     return response
 
 
@@ -451,7 +455,7 @@ def delete_blog_post(blog_post_id):
             response = make_response(jsonify({'message': 'success'}), 200)
         else:
             flash('Failed to delete blog post', 'failure')
-            response = make_response(jsonify({'message': 'failure'}), 500)
+            response = make_response(jsonify({'message': 'failure'}), 503)
     return response
 
 @app.route('/admin/experience')
@@ -481,7 +485,7 @@ def add_experience():
             response = make_response(jsonify({'message': 'success'}), 200)
         else:
             flash('Failed to add experience.', 'failure')
-            response = make_response(jsonify({'message': 'failed'}), 500)
+            response = make_response(jsonify({'message': 'failed'}), 503)
     return response
 
 
@@ -520,12 +524,13 @@ def delete_experience(experience_id):
             response = make_response(jsonify({'message': 'success'}), 200)
         else:
             flash('Failed to delete experience', 'failure')
-            response = make_response(jsonify({'message': 'failure'}), 500)
+            response = make_response(jsonify({'message': 'failure'}), 503)
     return response
 
 
 @login_manager.user_loader
 def load_user(email):
+    """Gets information for a specific user from the database"""
     users = mongo.db.users
     user = users.find_one({'email': email})
     if not user:
@@ -544,6 +549,7 @@ def login():
             user = User(find_user['email'], find_user['password'])
             login_user(user)
             return redirect(url_for('admin'))
+        flash('The login details you provided are incorrect', 'info')
     return render_template(
         'pages/login.html', 
         view='login'
@@ -628,4 +634,4 @@ class User:
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=os.environ.get('PORT'),
-            debug=True)
+            debug=os.environ.get('DEBUG_VALUE'))
