@@ -541,6 +541,7 @@ It is assumed that the required database and collections have been created in yo
         import os
         os.environ["IP"] = "0.0.0.0"
         os.environ["PORT"] = "5000"
+        os.environ["DEBUG_VALUE"] = "True"
         os.environ["MONGO_URI"] = "<your MongoDB Atlas connection string>"
         os.environ["MONGO_DBNAME"] = "<your db name>"
         os.environ["SECRET_KEY"] = "<your secret key>"
@@ -590,6 +591,10 @@ NOTE: In order to deploy successfully to Heroku, both a *requirements.txt* file 
       <tr>
         <td>PORT</td>
         <td>5000</td>
+      </tr>
+      <tr>
+        <td>DEBUG_VALUE</td>
+        <td>LEAVE THIS FIELD EMPTY!!!</td>
       </tr>
       <tr>
         <td>MONGO_URI</td>
