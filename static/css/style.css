@@ -163,6 +163,50 @@ body::-webkit-scrollbar-thumb, .modal::-webkit-scrollbar-thumb, ul::-webkit-scro
     }
 }
 
+@media only screen 
+    and (min-width : 768px) 
+    and (max-width : 1024px) {
+    .section-heading {
+        font-size: 2rem;
+    }
+    
+    .tablet-style-container {
+        font-size: 1.4rem;
+    }
+    
+    .container {
+        margin: 1rem auto;
+        width: 90%;
+        min-height: 100%;
+    }
+    
+    .multi-paragraphs {
+        font-size: 1.2rem;
+    }
+}
+
+@media only screen 
+    and (min-width : 577px) 
+    and (max-width : 1024px) {
+        .section-heading {
+            font-size: 2rem;
+        }
+        
+        .tablet-style-container {
+            font-size: 1.4rem;
+        }
+        
+        .container {
+            margin: 1rem auto;
+            width: 90%;
+            min-height: 100%;
+        }
+        
+        .multi-paragraphs {
+            font-size: 1.2rem;
+        }
+    }
+
 @media only screen and (max-width: 576px) {
     .section-heading {
         font-size: 1.7rem;
@@ -401,28 +445,6 @@ nav i.fas {
     line-height: 8vh;
 }
 
-@media only screen and (max-width: 1200px) {
-    .nav-display-row {
-        margin-right: 0;
-    }
-
-    .nav-display-row  a {
-        margin: 0;
-    }
-
-    .menu-toggle-icon {
-        display: none;
-    }
-
-    a.horizontal-nav-item {
-        font-size: 1.3rem;
-    }
-
-    a.horizontal-nav-item i {
-        font-size: 1.3rem;
-    }
-}
-
 @media only screen and (max-width: 1100px) {
     .nav-display-row {
         display: none;
@@ -605,6 +627,27 @@ a.call-to-action-btn {
     }
 }
 
+@media only screen 
+    and (min-width : 577px) 
+    and (max-width : 1024px) {
+    .jumbotron {
+        margin-left: -40%;
+        width: 80%;
+    }
+
+    .jumbotron h1 {
+        font-size: 2.3rem;
+    }
+
+    .jumbotron h2 {
+        font-size: 2rem;
+    }
+
+    a.call-to-action-btn {
+        font-size: 1.7rem;
+    }
+}
+
 @media only screen and (max-width: 576px) {
     .header-image {
         background-size: auto 100%;
@@ -776,6 +819,14 @@ footer .copyright {
     }
 }
 
+@media only screen 
+    and (min-width : 577px) 
+    and (max-width : 1024px) {
+        .skill-wrapper {
+            width: 100%;
+        }
+    }
+
 @media only screen and (max-width: 576px) {
     .skill-wrapper {
         width: 90%;
@@ -853,20 +904,6 @@ a.all-projects-btn {
     transition: all .5s ease-in-out;
 }
 
-/* @media only screen and (max-width: 991px) {
-    .project-wrapper {
-        width: 95%;
-    }
-
-    .project-wrapper h3 {
-        font-size: 1.3rem;
-    }
-
-    .project-links-wrapper a {
-        font-size: 2rem;
-    }
-} */
-
 @media only screen 
     and (min-device-width : 768px) 
     and (max-device-width : 1024px) 
@@ -901,6 +938,40 @@ a.all-projects-btn {
     .project-links-wrapper a {
         font-size: 2.5rem;
     }
+}
+
+@media only screen 
+    and (min-width : 577px) 
+    and (max-width : 1024px) {
+        .project-wrapper {
+            width: 95%;
+            margin-bottom: 1rem;
+        }
+    
+        .project-wrapper h3 {
+            font-size: 1.5rem;
+        }
+    
+        .project-links-wrapper a {
+            font-size: 2.5rem;
+        }
+    }
+
+@media only screen 
+    and (min-width : 577px) 
+    and (max-width : 1024px) {
+        .project-wrapper {
+            width: 95%;
+            margin-bottom: 1rem;
+        }
+    
+        .project-wrapper h3 {
+            font-size: 1.5rem;
+        }
+    
+        .project-links-wrapper a {
+            font-size: 2.5rem;
+        }
 }
 
 @media only screen and (max-width: 576px) {
@@ -1029,6 +1100,18 @@ a.all-projects-btn {
     }  
 }
 
+@media only screen 
+    and (min-width : 577px) 
+    and (max-width : 1024px) {
+        .custom-collapsible-header {
+            font-size: 1.5rem;
+        }
+        
+        .qualification-btn {
+            font-size: 1.35rem;
+        }
+}
+
 @media only screen and (max-width: 576px) {
     .custom-collapsible {
         width: 100%;
@@ -1128,6 +1211,24 @@ a.all-projects-btn {
     and (orientation : landscape) {
     .experience-card {
         width: 85%;
+        margin: 0 auto 2rem;
+    }
+    
+    #experience .card h3 {
+        font-weight: bold;
+        font-size: 1.6rem;
+    }
+    
+    #experience .card p {
+        font-size: 1.2rem;
+    }
+}
+
+@media only screen 
+    and (min-width : 577px) 
+    and (max-width : 1024px) {
+    .experience-card {
+        width: 95%;
         margin: 0 auto 2rem;
     }
     
@@ -1269,6 +1370,19 @@ input:-webkit-autofill:active  {
     }
 }
 
+@media only screen 
+    and (min-width : 577px) 
+    and (max-width : 1024px) {
+    .technology-heading {
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+    
+    .technology {
+        font-size: 1.2rem;
+    }
+}
+
 @media only screen and (max-width: 576px) {
     .technology-heading {
         font-size: 1.5rem;
@@ -1405,6 +1519,14 @@ p.tablet-style-container, li.tablet-style-container  {
     and (min-device-width : 768px) 
     and (max-device-width : 1024px) 
     and (orientation : landscape) {
+    .blog-card-text-wrapper .blog-title {
+        font-size: 1.85rem;
+    }
+}
+
+@media only screen 
+    and (min-width : 577px) 
+    and (max-width : 1024px) {
     .blog-card-text-wrapper .blog-title {
         font-size: 1.85rem;
     }
@@ -1656,6 +1778,23 @@ li.admin-list-item {
     .admin-info {
         width: 80%;
         padding-top: 80%;
+    }
+
+    a.dashboard-btn {
+        font-size: 1.4rem;
+    }
+
+    a.update-btn, a.delete-btn {
+        font-size: 1.4rem;
+    }
+}
+
+@media only screen 
+    and (min-width : 577px) 
+    and (max-width : 1024px) {
+    .admin-info {
+        width: 90%;
+        padding-top: 90%;
     }
 
     a.dashboard-btn {
