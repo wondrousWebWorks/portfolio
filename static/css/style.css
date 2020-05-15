@@ -788,7 +788,7 @@ footer .copyright {
 .skill-bar {
     z-index: 3;
     content: "";
-    width: 6%;
+    width: 33.3%;
 }
 
 @media only screen and (max-width: 991px) {
