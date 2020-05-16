@@ -19,17 +19,13 @@ document.addEventListener('DOMContentLoaded', function () {
         toggleAddModal('skills');
     });
 
-    skillFormSubmitButton.addEventListener('click', function() {
-        addOrUpdateFormData(this);
-    });
+    skillFormSubmitButton.addEventListener('click', () => addOrUpdateFormData(skillFormSubmitButton));
 
     Array.from(skillUpdateButtons).forEach(updateButton => {
-        updateButton.addEventListener('click', getSkillData);
+        updateButton.addEventListener('click', () => getSkillData(updateButton));
     });
 
     Array.from(skillDeleteButtons).forEach(deleteButton => {
-        deleteButton.addEventListener('click', function() {
-            deleteDocument(this);
-        });
+        deleteButton.addEventListener('click', () => deleteDocument(deleteButton));
     });
 });
