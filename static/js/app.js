@@ -254,7 +254,6 @@ const changeFormButton = (type, formTarget) => {
 const sendData = (urlTarget, addOrUpdate, requestBody, docId = '1') => {
     let urlString;
     let requestMethod;
-    let flashAction;
     if (addOrUpdate === 'add') {
         urlString = `${window.origin}/admin/${urlTarget}/add`;
         requestMethod = 'POST';
@@ -295,12 +294,14 @@ const sendData = (urlTarget, addOrUpdate, requestBody, docId = '1') => {
  * POSTs Skill form data to backend
  */
 const addSkillData = () => {
-    const skillEntry = {
-        skill_name: skillName.value,
-        skill_level: skillLevel.value
-    };
-
-    sendData('skills', 'add', skillEntry);
+    if (skillName.checkValidity() && skillLevel.checkValidity()) {
+        const skillEntry = {
+            skill_name: skillName.value,
+            skill_level: skillLevel.value
+        };
+    
+        sendData('skills', 'add', skillEntry);
+    }
 };
 
 
@@ -342,7 +343,7 @@ const addQualificationData = () => {
 /**
  * POSTs Blog Post form data to backend
  */
-const addBlogPostData () => {
+const addBlogPostData = () => {
     const blogPostParagraphs = [];
     blogParagraphs.forEach(paragraph => {
         blogPostParagraphs.push(paragraph.value);
@@ -377,9 +378,9 @@ const addExperienceData = () => {
  * Fetches a specific Skill's data and populates 
  * the Skills form fields with it
  */
-const getSkillData = () => {
+const getSkillData = targetButton => {
     resetForm('skills');
-    dataTarget = this.getAttribute('data-id');
+     dataTarget = targetButton.getAttribute('data-id');
     skillFormDocId.setAttribute('data-id', dataTarget);
     changeFormButton('update', 'skills');
     
@@ -389,7 +390,7 @@ const getSkillData = () => {
         skillName.value = data.skill_name;
         skillLevel.value = data.skill_level;
     })
-    .catch((error) => {
+    .catch(error => {
         console.error('Error:', error);
     });  
 
@@ -695,26 +696,26 @@ const toggleAddModal = formTarget => {
  * Calls either an Add op Update function for all Admin forms
  * @param {HTMLElement} target - The form submit button which was clicked
  */
-const addOrUpdateFormData = target => {
-    if (target.classList.contains('skills-form-btn-add')) {
+const addOrUpdateFormData = targetButton => {
+    if (targetButton.classList.contains('skills-form-btn-add')) {
         addSkillData();
-    } else if (target.classList.contains('skills-form-btn-update')) {
+    } else if (targetButton.classList.contains('skills-form-btn-update')) {
         updateSkillData();
-    } else if (target.classList.contains('projects-form-btn-add')) {
+    } else if (targetButton.classList.contains('projects-form-btn-add')) {
         addProjectData();
-    } else if (target.classList.contains('projects-form-btn-update')) {
+    } else if (targetButton.classList.contains('projects-form-btn-update')) {
         updateProjectData();
-    } else if (target.classList.contains('qualifications-form-btn-add')) {
+    } else if (targetButton.classList.contains('qualifications-form-btn-add')) {
         addQualificationData();
-    } else if (target.classList.contains('qualifications-form-btn-update')) {
+    } else if (targetButton.classList.contains('qualifications-form-btn-update')) {
         updateQualificationData();
-    } else if (target.classList.contains('blogs-form-btn-add')) {
+    } else if (targetButton.classList.contains('blogs-form-btn-add')) {
         addBlogPostData();
-    } else if (target.classList.contains('blogs-form-btn-update')) {
+    } else if (targetButton.classList.contains('blogs-form-btn-update')) {
         updateBlogPostData();
-    } else if (target.classList.contains('experience-form-btn-add')) {
+    } else if (targetButton.classList.contains('experience-form-btn-add')) {
         addExperienceData();
-    } else if (target.classList.contains('experience-form-btn-update')) {
+    } else if (targetButton.classList.contains('experience-form-btn-update')) {
         updateExperienceData();
     }
 };
@@ -725,12 +726,6 @@ Array.from(projects).forEach(project => {
     project.addEventListener("mouseover", scaleProject);
     project.addEventListener("mouseout", restoreProjectCardSize);
     });
-
-Array.from(modalSubmitButtons).forEach(button => {
-    button.addEventListener('click', e => {
-        e.preventDefault();
-    });
-});
 
 toggleMenuIcon.addEventListener('click', toggleSideNav);
 
