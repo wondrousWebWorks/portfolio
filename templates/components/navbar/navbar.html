@@ -17,8 +17,6 @@
         {% if current_user.is_authenticated %}
           <li><a class="horizontal-nav-item" href="{{ url_for('admin') }}"><i class="fas fa-toolbox"></i>&nbsp;Admin</a></li>
           <li><a class="horizontal-nav-item" href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i>&nbsp;Log Out</a></li>
-        {% else %}
-          <li><a class="horizontal-nav-item" href="{{ url_for('login') }}"><i class="fas fa-sign-in-alt"></i>&nbsp;Log In</a></li>
         {% endif %}
       </ul>
       <div class="menu-toggle-icon-wrapper">
@@ -46,12 +44,12 @@
       </div>
       <ul class="nav-display-row">
         <li><a class="horizontal-nav-item" href="{{ url_for('admin') }}"><i class="fas fa-columns"></i>&nbsp;Dashboard</a></li>
-        <li><a class="horizontal-nav-item" href="{{ url_for('home') }}"><i class="fas fa-home"></i>&nbsp;Back To Site</a></li>
         <li><a class="horizontal-nav-item" href="{{ url_for('manage_skills') }}"><i class="fas fa-magic"></i>&nbsp;Skills</a></li>
         <li><a class="horizontal-nav-item" href="{{ url_for('manage_projects') }}"><i class="fas fa-code"></i>&nbsp;Projects</a></li>
         <li><a class="horizontal-nav-item" href="{{ url_for('manage_qualifications') }}"><i class="fas fa-graduation-cap"></i>&nbsp;Qualifications</a></li>
         <li><a class="horizontal-nav-item" href="{{ url_for('manage_blogs') }}"><i class="fas fa-blog"></i>&nbsp;Blogs</a></li>
         <li><a class="horizontal-nav-item" href="{{ url_for('manage_experience') }}"><i class="fas fa-chart-line"></i>&nbsp;Experience</a></li>
+        <li><a class="horizontal-nav-item" href="{{ url_for('home') }}"><i class="fas fa-home"></i>&nbsp;Back To Site</a></li>
         {% if current_user.is_authenticated %}
           <li><a class="horizontal-nav-item" href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i>&nbsp;Log Out</a></li>
         {% endif %}
@@ -61,12 +59,15 @@
       </div>
       <ul class="nav-display-col">
         <li class="nav-display-col-item"><a href="{{ url_for('admin') }}"><i class="fas fa-columns"></i>&nbsp;Dashboard</a></li><hr>
-        <li class="nav-display-col-item"><a href="{{ url_for('home') }}"><i class="fas fa-home"></i>&nbsp;Back To Site</a></li><hr>
         <li class="nav-display-col-item"><a href="{{ url_for('manage_skills') }}"><i class="fas fa-magic"></i>&nbsp;Skills</a></li><hr>
         <li class="nav-display-col-item"><a href="{{ url_for('manage_projects') }}"><i class="fas fa-code"></i>&nbsp;Projects</a></li><hr>
         <li class="nav-display-col-item"><a href="{{ url_for('manage_qualifications') }}"><i class="fas fa-graduation-cap"></i>&nbsp;Qualifications</a></li><hr>
         <li class="nav-display-col-item"><a href="{{ url_for('manage_blogs') }}"><i class="fas fa-blog"></i>&nbsp;Blogs</a></li><hr>
         <li class="nav-display-col-item"><a href="{{ url_for('manage_experience') }}"><i class="fas fa-chart-line"></i>&nbsp;Experience</a></li>
+        <li class="nav-display-col-item"><a href="{{ url_for('home') }}"><i class="fas fa-home"></i>&nbsp;Back To Site</a></li><hr>
+        {% if current_user.is_authenticated %}
+          <li><a class="nav-display-col-item" href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i>&nbsp;Log Out</a></li>
+        {% endif %}
       </ul>
     {% endif %}
   </nav>
