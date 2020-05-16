@@ -43,9 +43,6 @@ Thank you for viewing my project. wondrousWebWorks() is a portfolio for me as a 
   - [Wireframes](#wireframes)
     - [Differences Between Wireframes and Final Product](#differences-between-wireframes-and-final-product)
       - [Landing Page (Skills section)](#landing-page-skills-section)
-  - [Bugs](#bugs)
-    - [Development Bugs](#development-bugs)
-    - [Deployment Bugs](#deployment-bugs)
   - [Deployment](#deployment)
     - [Local Installation](#local-installation)
       - [Requirements](#requirements)
@@ -476,18 +473,6 @@ Some changes had to be made based on tester feedback to improve User Experience 
 #### Landing Page (Skills section)
 
 - On mobile devices in portrait orientation, two skills are displayed per row as opposed to a single skill as illustrated in the wireframe
-
-## Bugs
-
-### Development Bugs
-
-At one stage, I couldn't get flashed messages to display on my Admin page, and decided to replicate the same functionality in Javascript as best I could only to realise that I'd forgotten to add the flash messages functionality to both the base.html **and** admin-base.html files.  Upon discovery of this oversight, I implemented Flask's messaging system and removed the unnecessary JavaScript function which mimicked the same functionality.
-
-Another niggle was when I prevented the default behaviour of all buttons, only to realise that it affected my contact and login forms where the default behaviour was required.  Unfortunately, it took quite a bit of time to discover the issue.
-
-### Deployment Bugs
-
-Initially, there was great difficulty deploying the project to Heroku.  After viewing the project's Heroku log files, it was discovered that the **pkg-resources** package could not be located by Heroku for installation. Modifying the **requirements.txt** file by removing the **pkg-resources** dependancy before pushing to GitHub and subsequently Heroku fixed the bug and allowed succesfull installion of all dependancies.
 
 ## Deployment
 
