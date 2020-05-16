@@ -24,11 +24,11 @@ Thank you for viewing my project. wondrousWebWorks() is a portfolio for me as a 
       - [Images](#images)
       - [Colours](#colours)
         - [#1C1C1C (Eerie Black)](#1c1c1c-eerie-black)
-        - [#F7F7F7 (off-white)](#f7f7f7-off-white)
-        - [#007749 (sa-flag-green)](#007749-sa-flag-green)
         - [#E03C31 (sa-flag-red)](#e03c31-sa-flag-red)
-        - [#FFB81C (sa-flag-gold)](#ffb81c-sa-flag-gold)
+        - [#007749 (sa-flag-green)](#007749-sa-flag-green)
         - [#0080ff (sa-flag-blue)](#0080ff-sa-flag-blue)
+        - [#FFB81C (sa-flag-gold)](#ffb81c-sa-flag-gold)
+        - [#F7F7F7 (off-white)](#f7f7f7-off-white)
   - [Information Architecture](#information-architecture)
     - [Collection name:  blog_posts](#collection-name-blogposts)
     - [Collection name:  portfolio](#collection-name-portfolio)
@@ -118,7 +118,7 @@ The image for the **Hero** shot in the site header was taken from [PNGTREE](http
 
 #### Colours
 
-![alt text](https://res.cloudinary.com/wondrouswebworks/image/upload/v1589666508/wondrousWebWorks/wondrousWebWorks-color-palette.png "wondrousWebWorks() colour palette")
+![alt text](https://res.cloudinary.com/wondrouswebworks/image/upload/v1589667831/wondrousWebWorks/wondrousWebWorks-color-palette.png "wondrousWebWorks() colour palette")
 
  **Eerie black** (*#1c1c1c* in hex) was chosen as background colour for the site body as the site was designed to be displayed in "dark mode". In order to make text legible, **#f7f7f7** was chosen as text colour. All other colours were taken from the South African flag and named by me; a subtle homage to my origin. See below for more details.  All colours complement each other very well, and provide a good level of contrast to increase legibility and highlight various areas of the page.
 
@@ -126,9 +126,17 @@ The image for the **Hero** shot in the site header was taken from [PNGTREE](http
 
 - Background colour for main site body and admin body
 
-##### #F7F7F7 (off-white)
+##### #E03C31 (sa-flag-red)
 
-- Used for all text
+- Background colour of the *call-to-action* button in the page header
+- Colour of the *Contact* icon in the fixed navigation shortcuts on the left of the screen
+- Colour of the $ symbol in the **About** and **About Summary** sections
+- One of three background colours of bars in **Skills** displays
+- Background colour of the **All Projects** button on the home page
+- Colour of the *university* and *calendar* icons in the **Education** section
+- Colour of the left text border on the **Project** page
+- Colour of the left text border on the **Blog Post** page
+- Background colour of the *Delete* buttons on Admin management pages
 
 ##### #007749 (sa-flag-green)
 
@@ -145,17 +153,11 @@ The image for the **Hero** shot in the site header was taken from [PNGTREE](http
 - Background colour of the **Add** buttons on Admin management pages
 - Background colour of the form *submit* buttons in form modals
 
-##### #E03C31 (sa-flag-red)
+##### #0080ff (sa-flag-blue)
 
-- Background colour of the *call-to-action* button in the page header
-- Colour of the *Contact* icon in the fixed navigation shortcuts on the left of the screen
-- Colour of the $ symbol in the **About** and **About Summary** sections
-- One of three background colours of bars in **Skills** displays
-- Background colour of the **All Projects** button on the home page
-- Colour of the *university* and *calendar* icons in the **Education** section
-- Colour of the left text border on the **Project** page
-- Colour of the left text border on the **Blog Post** page
-- Background colour of the *Delete* buttons on Admin management pages
+- Background colour of the *more info* buttons in the **Education** section
+- Background-colour of all modal *close* buttons
+- Background colour of all **Manage** buttons on the Admin dashboard
 
 ##### #FFB81C (sa-flag-gold)
 
@@ -169,11 +171,9 @@ The image for the **Hero** shot in the site header was taken from [PNGTREE](http
 - Colour of odd-numbered *technologies* of the **Project** page
 - Colour of the *blog date* on the **Blog Post** page
 
-##### #0080ff (sa-flag-blue)
+##### #F7F7F7 (off-white)
 
-- Background colour of the *more info* buttons in the **Education** section
-- Background-colour of all modal *close* buttons
-- Background colour of all **Manage** buttons on the Admin dashboard
+- Used for all text
 
 ## Information Architecture
 
