@@ -476,11 +476,13 @@ Some changes had to be made based on tester feedback to improve User Experience 
 
 ## Deployment
 
-The project can be run either locally or deployed on Heroku.  Instructions for either option can be viewed below. The instructions provided are for installing on a Linux-based machine. Should your operating system be different, please note that some of the commands might be different.
+The project can be run either locally or deployed on Heroku.  Instructions for either option can be viewed below.
 
 ### Local Installation
 
 #### Requirements
+
+**NOTE: The instructions provided are for installing on a Debian-based Linux operating system. Should your operating system be different, please note that some of the commands might be different.**
 
 - An integrated development environment (IDE) - [VSCode](https://code.visualstudio.com/Download) is free and was used to create this site
 - An account on [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) - follow the instructions to create an account
@@ -503,7 +505,7 @@ It is assumed that the required database and collections have been created in yo
 
 6. Wait for the the repository to be cloned
 
-   It considered good practice to contain each product in each own virtual environment as any dependancies for each project can be installed locally in each project's virtual environment. Several virtual environments exist and since Python 3.3, a subset of the popular [virtualenv](https://virtualenv.pypa.io/en/latest/) comes as standard with all Python 3 installations. This subset does not offer the full fetaure set of the full **virtualenv** package, and as such is recommended to install it using **pip**.
+   It considered good practice to contain each product in each own virtual environment as any dependancies for each project can be installed locally in each project's virtual environment. Several virtual environments exist and since Python 3.3, a subset of the popular [virtualenv](https://virtualenv.pypa.io/en/latest/) comes as standard with all Python 3 installations. This subset does not offer the full fetaure set of the full **virtualenv** package, and as such is recommended to install **virtualenv** using **pip**.
 
 7. Install the virtualenv package using pip by using the following command
 
@@ -539,7 +541,15 @@ It is assumed that the required database and collections have been created in yo
         os.environ["RECIPIENT_ADDRESS"] = "<the email address where you would like the contact mail to be sent - it can be the same as your MAIL_USERNAME>"
         os.environ["SECRET_KEY"] = "<your secret key>"
 
-    NOTE: Wherever text is surrounded by <> (angle brackets), you will need to provide your own values without the angle brackets as determined by your MonogoDB account, mail server and secret key. Remember to change the *username*, *password* and *cluster_name* in your MongoDB Atlas connection string. This assumes you are using a Gmail account to send emails. If you wish to use a different mail server, use the appropriate values for MAIL_SERVER and MAIL_PORT instead. Information on generating a good secret key can be found [here](https://blog.miguelgrinberg.com/post/the-new-way-to-generate-secure-tokens-in-python). Information on getting your **MongoDB Atlas connection string** can be found [here](https://docs.atlas.mongodb.com/tutorial/connect-to-your-cluster/).
+    NOTE: Wherever text is surrounded by <> (angle brackets), you will need to provide your own values without the angle brackets as determined by your MonogoDB account, mail server and secret key.
+
+    NOTE: Remember to change the *username*, *password* and *cluster_name* in your MongoDB Atlas connection string.
+
+    NOTE: If you wish to use a mail service other than Gmail, use the appropriate values for MAIL_SERVER and MAIL_PORT instead.
+
+    NOTE: Information on generating a good secret key can be found [here](https://blog.miguelgrinberg.com/post/the-new-way-to-generate-secure-tokens-in-python).
+
+    NOTE: Information on getting your **MongoDB Atlas connection string** can be found [here](https://docs.atlas.mongodb.com/tutorial/connect-to-your-cluster/).
 
 14. If all the steps above have been completed successfully, you can launch the application with the following command and view the site at ```http://127.0.0.1:5000```
 
@@ -580,10 +590,6 @@ NOTE: In order to deploy successfully to Heroku, both a *requirements.txt* file 
         <td>5000</td>
       </tr>
       <tr>
-        <td>DEBUG_VALUE</td>
-        <td>LEAVE THIS FIELD EMPTY!!!</td>
-      </tr>
-      <tr>
         <td>MONGO_URI</td>
         <td>&lt;your MongoDB Atlas connection string&gt;</td>
       </tr>
@@ -618,7 +624,13 @@ NOTE: In order to deploy successfully to Heroku, both a *requirements.txt* file 
     </tbody>
     </table>
 
-      NOTE: Wherever text is surrounded by <> (angle brackets), you will need to provide your own values without the angle brackets as determined by your MonogoDB account, mail server and secret key. Remember to change the *username*, *password* and *cluster_name* in your MongoDB Atlas connection string. This assumes you are using a Gmail account to send emails. If you wish to use a different mail server, use the appropriate values for MAIL_SERVER and MAIL_PORT instead. Please not that that the default Gmail settings do not allow third party apps to connect.  You will need to generate a unique password which will be the password for your MAIL_PASSWORD Convig Var in the table above. Information on getting the unique app password can be found [here](https://support.google.com/accounts/answer/185833?hl=en). Information on generating a good secret key can be found [here](https://blog.miguelgrinberg.com/post/the-new-way-to-generate-secure-tokens-in-python). Information on getting your**MongoDB Atlas connection string** can be found [here](https://docs.atlas.mongodb.com/tutorial/connect-to-your-cluster/).
+      NOTE: Wherever text is surrounded by <> (angle brackets), you will need to provide your own values without the angle brackets as determined by your MonogoDB account, mail server and secret key. Remember to change the *username*, *password* and *cluster_name* in your MongoDB Atlas connection string.
+
+      NOTE: If you wish to use a mail service other than Gmail, use the appropriate values for MAIL_SERVER and MAIL_PORT instead. Please not that that the default Gmail settings do not allow third party apps to connect.  You will need to generate a unique password which will be the password for your MAIL_PASSWORD Convig Var in the table above. Information on getting the unique app password can be found [here](https://support.google.com/accounts/answer/185833?hl=en).
+
+      NOTE: Information on generating a good secret key can be found [here](https://blog.miguelgrinberg.com/post/the-new-way-to-generate-secure-tokens-in-python).
+
+      NOTE: Information on getting your**MongoDB Atlas connection string** can be found [here](https://docs.atlas.mongodb.com/tutorial/connect-to-your-cluster/).
 
 7. Click on **Deploy** in the navigation bar
 8. In **Deployment method**, click on GitHub
