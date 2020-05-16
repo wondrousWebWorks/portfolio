@@ -529,6 +529,10 @@ It is assumed that the required database and collections have been created in yo
 12. Create a file called *env.py* in the project's root directory
 13. In your *env.py* file, import the *os* module and set the following environment variables as follows.
 
+    NOTE: Wherever text is surrounded by <> (angle brackets), you will need to provide your own values without the angle brackets as determined by your **MongoDB account**, **mail server** and **secret key**.
+
+    NOTE: Remember to change the **username**, **password** and **cluster_name** in your MongoDB Atlas connection string. Information on getting your **MongoDB Atlas connection string** can be found [here](https://docs.atlas.mongodb.com/tutorial/connect-to-your-cluster/).
+
         import os
         os.environ["IP"] = "0.0.0.0"
         os.environ["PORT"] = "5000"
@@ -543,15 +547,9 @@ It is assumed that the required database and collections have been created in yo
         os.environ["RECIPIENT_ADDRESS"] = "<the email address where you would like the contact mail to be sent - it can be the same as your MAIL_USERNAME>"
         os.environ["SECRET_KEY"] = "<your secret key>"
 
-    NOTE: Wherever text is surrounded by <> (angle brackets), you will need to provide your own values without the angle brackets as determined by your MonogoDB account, mail server and secret key.
-
-    NOTE: Remember to change the *username*, *password* and *cluster_name* in your MongoDB Atlas connection string.
-
-    NOTE: If you wish to use a mail service other than Gmail, use the appropriate values for MAIL_SERVER and MAIL_PORT instead.
+    NOTE: If you wish to use a mail service other than Gmail, use the appropriate values for **MAIL_SERVER** and **MAIL_PORT** instead.
 
     NOTE: Information on generating a good secret key can be found [here](https://blog.miguelgrinberg.com/post/the-new-way-to-generate-secure-tokens-in-python).
-
-    NOTE: Information on getting your **MongoDB Atlas connection string** can be found [here](https://docs.atlas.mongodb.com/tutorial/connect-to-your-cluster/).
 
 14. If all the steps above have been completed successfully, you can launch the application with the following command and view the site at ```http://127.0.0.1:5000```
 
@@ -574,6 +572,8 @@ NOTE: In order to deploy successfully to Heroku, both a *requirements.txt* file 
 4. On your app page, click on **Settings** in the navigation bar
 5. Click on **Reveal Config Vars** in the *Convig Vars* section
 6. Set the following Config Vars as key:value pairs
+
+      NOTE: Wherever text is surrounded by <> (angle brackets), you will need to provide your own values without the angle brackets as determined by your MongoDB account, mail server and secret key. Remember to change the **username**, **password** and **cluster_name** in your MongoDB Atlas connection string. Information on getting your**MongoDB Atlas connection string** can be found [here](https://docs.atlas.mongodb.com/tutorial/connect-to-your-cluster/).
 
     <table>
     <thead>
@@ -626,13 +626,9 @@ NOTE: In order to deploy successfully to Heroku, both a *requirements.txt* file 
     </tbody>
     </table>
 
-      NOTE: Wherever text is surrounded by <> (angle brackets), you will need to provide your own values without the angle brackets as determined by your MonogoDB account, mail server and secret key. Remember to change the *username*, *password* and *cluster_name* in your MongoDB Atlas connection string.
-
-      NOTE: If you wish to use a mail service other than Gmail, use the appropriate values for MAIL_SERVER and MAIL_PORT instead. Please not that that the default Gmail settings do not allow third party apps to connect.  You will need to generate a unique password which will be the password for your MAIL_PASSWORD Convig Var in the table above. Information on getting the unique app password can be found [here](https://support.google.com/accounts/answer/185833?hl=en).
+      NOTE: If you wish to use a mail service other than Gmail, use the appropriate values for **MAIL_SERVER** and **MAIL_PORT** instead. Please not that that the default Gmail settings do not allow third party apps to connect.  You will need to generate a unique password which will be the password for your **MAIL_PASSWORD** Convig Var in the table above. Information on getting the unique app password can be found [here](https://support.google.com/accounts/answer/185833?hl=en).
 
       NOTE: Information on generating a good secret key can be found [here](https://blog.miguelgrinberg.com/post/the-new-way-to-generate-secure-tokens-in-python).
-
-      NOTE: Information on getting your**MongoDB Atlas connection string** can be found [here](https://docs.atlas.mongodb.com/tutorial/connect-to-your-cluster/).
 
 7. Click on **Deploy** in the navigation bar
 8. In **Deployment method**, click on GitHub
