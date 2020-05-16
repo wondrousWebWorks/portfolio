@@ -118,7 +118,7 @@ The image for the **Hero** shot in the site header was taken from [PNGTREE](http
 
 #### Colours
 
-![alt text](https://res.cloudinary.com/wondrouswebworks/image/upload/v1589667831/wondrousWebWorks/wondrousWebWorks-color-palette.png "wondrousWebWorks() colour palette")
+![alt text](https://res.cloudinary.com/wondrouswebworks/image/upload/v1589668312/wondrousWebWorks/wondrousWebWorks-color-palette.png "wondrousWebWorks() colour palette")
 
  **Eerie black** (*#1c1c1c* in hex) was chosen as background colour for the site body as the site was designed to be displayed in "dark mode". In order to make text legible, **#f7f7f7** was chosen as text colour. All other colours were taken from the South African flag and named by me; a subtle homage to my origin. See below for more details.  All colours complement each other very well, and provide a good level of contrast to increase legibility and highlight various areas of the page.
 
