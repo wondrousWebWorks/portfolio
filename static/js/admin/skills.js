@@ -15,9 +15,7 @@ const skillLevel = document.querySelector('#skill-level');
 const skillModalInstance = M.Modal.init(skillModal);
 
 document.addEventListener('DOMContentLoaded', function () {
-    skillAddModalTrigger.addEventListener('click', () => {
-        toggleAddModal('skills');
-    });
+    skillAddModalTrigger.addEventListener('click', () => toggleAddModal('skills'));
 
     skillFormSubmitButton.addEventListener('click', () => addOrUpdateFormData(skillFormSubmitButton));
 
