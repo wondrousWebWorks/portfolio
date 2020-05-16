@@ -449,20 +449,20 @@ A JSON representation of the **work_experience** collection can be found [here](
 
 ### Languages
 
-- HTML
-- CSS
-- JavaScript
-- Python
+- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
+- [CSS](https://developer.mozilla.org/en-US/docs/Glossary/CSS)
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Glossary/JavaScript)
+- [Python](https://www.python.org/about/)
 
 ### Libraries, Frameworks & Tools
 
-- Flask
-- MongoDB (Atlas Cloud)
-- Git
-- Materializecss
-- Font Awesome
-- Google Fonts
-- Cloudinary
+- [Flask](https://palletsprojects.com/p/flask/)
+- [MongoDB (Atlas Cloud)](https://www.mongodb.com/cloud/atlas)
+- [Git](https://git-scm.com/about)
+- [Materialize](https://materializecss.com/about.html)
+- [Font Awesome](https://fontawesome.com/)
+- [Google Fonts](https://fonts.google.com/)
+- [Cloudinary](https://cloudinary.com/about)
 
 ## Wireframes
 
