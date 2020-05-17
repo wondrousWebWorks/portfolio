@@ -10,13 +10,14 @@ from flask_login import LoginManager, login_user, logout_user, login_required
 from user import User
 
 APP = Flask(__name__)
-MONGO = PyMongo(APP)
+
 MAIL = Mail(APP)
 BCRYPT = Bcrypt(APP)
 LOGINMANAGER = LoginManager(APP)
 LOGINMANAGER.login_view = "login"
 APP.config['MONGO_DBNAME'] = os.environ.get('MONGO_DBNAME')
 APP.config['MONGO_URI'] = os.environ.get('MONGO_URI')
+MONGO = PyMongo(APP)
 APP.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 APP.config['MAIL_SERVER']= os.environ.get('MAIL_SERVER')
 APP.config['MAIL_PORT'] = os.environ.get('MAIL_PORT')
@@ -569,6 +570,8 @@ def page_not_found(e):
         image_height='full-screen',
         view='404'
     ), 404
+
+print(BCRYPT.generate_password_hash('M@ryH@d@L1ttl3L@mb').decode('utf-8'))
 
 
 if __name__ == '__main__':
