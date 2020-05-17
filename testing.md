@@ -21,6 +21,7 @@
         - [Qualifications](#qualifications)
         - [Experience](#experience)
       - [About Page (about.html)](#about-page-abouthtml)
+      - [Projects Page (projects.html)](#projects-page-projectshtml)
   - [Bugs](#bugs)
     - [Development Bugs](#development-bugs)
       - [Heroku Deployment Issue](#heroku-deployment-issue)
@@ -148,6 +149,15 @@ No obvious bugs were detected in any of the tested browsers. :heavy_check_mark:
 - Confirm that all **colours** display correctly :heavy_check_mark:
 - Verify that **cursor** animates as expected to resemble a **terminal cursor** :heavy_check_mark:
 - Verify that the **list** and **image** display *side-by-side on bigger screens*, but *below each other on smaller screens* :heavy_check_mark:
+
+#### Projects Page (projects.html)
+
+- Confirm that all projects are displayed :heavy_check_mark:
+- Verify that each project card has an **image**, and that if no image is supplied, alt text it displayed :heavy_check_mark:
+- Verify that each project card has the **project title** :heavy_check_mark:
+- Confirm that each project card has a clickable **icon** which opens the project's **GitHub repository** in a new tab :heavy_check_mark:
+- Confirn that each project card has a clickable **icon** which opens the **deployed project** in a new tab :heavy_check_mark:
+- Verify that hovering over a project card **scales** that project card to be bigger, while other project cards are scaled smaller and less opaque :heavy_check_mark:
 
 ## Bugs
 
