@@ -10,8 +10,9 @@
       - [Desired Result](#desired-result-1)
       - [Steps Taken to Ensure Result](#steps-taken-to-ensure-result-1)
       - [Verdict](#verdict-1)
-    - [Behaviour of site components](#behaviour-of-site-components)
+    - [Behaviour of Site Components](#behaviour-of-site-components)
       - [Navbar (Navigation Bar)](#navbar-navigation-bar)
+    - [Page Header and Call To Action](#page-header-and-call-to-action)
   - [Bugs](#bugs)
     - [Development Bugs](#development-bugs)
       - [Heroku Deployment Issue](#heroku-deployment-issue)
@@ -56,17 +57,17 @@ As Firefox does not support the WebKit browser rendering engine, steps were take
 
 Browsers tested include:
 
-- Chrome - desktop and mobile
-- Firefox - desktop and mobile
-- Opera - dekstop
-- Opera Mini - mobile
-- DuckDuckGo - mobile
+- [Chrome](https://www.google.com/chrome/) - desktop and mobile
+- [Firefox](https://www.mozilla.org/en-US/firefox/new/) - desktop and mobile
+- [Opera](https://www.opera.com/computer/opera) - dekstop
+- [Opera Mini](https://www.opera.com/mobile/mini) - mobile
+- [DuckDuckGo](https://duckduckgo.com/app) - mobile
 
 #### Verdict
 
 No obvious bugs were detected in any of the tested browsers. :heavy_check_mark:
 
-### Behaviour of site components
+### Behaviour of Site Components
 
 #### Navbar (Navigation Bar)
 
@@ -75,6 +76,15 @@ No obvious bugs were detected in any of the tested browsers. :heavy_check_mark:
 - Verify that the so-called **'burger'** menu icon displays on smaller screens :heavy_check_mark:
 - Verify that on clicking of the **'burger** icon triggers visibility of the vertical navigation menu for smaller screens :heavy_check_mark:
 - Verify that the the appropriate navigation bar is displayed for the **main** and **admin** sites respectively :heavy_check_mark:
+
+### Page Header and Call To Action
+
+- Verify that page header displays at full page height on the **index.html** and **404.html** pages :heavy_check_mark:
+- Verify that the page header displays at less than full page height on all other pages for the main site (excludes Admin pages) :heavy_check_mark:
+- Confirm that the **Call To Action** text (name jumbotron in the HTML and CSS for this project) is displayed dynamically for each page (excludes Admin pages) :heavy_check_mark:
+- Confirm that the **Call To Action** button text changes dynamically for each page (excludes Admin pages) :heavy_check_mark:
+- Verify that the **Call To Action** button allows for scrolling to the desired page content on all main site pages excluding **index.html** :heavy_check_mark:
+- Confirm that clicking the **Call To Action** button on the **index.html** page redirects to the Contact page :heavy_check_mark:
 
 ## Bugs
 
