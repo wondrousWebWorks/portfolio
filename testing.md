@@ -10,9 +10,15 @@
       - [Desired Result](#desired-result-1)
       - [Steps Taken to Ensure Result](#steps-taken-to-ensure-result-1)
       - [Verdict](#verdict-1)
-    - [Behaviour of Site Components](#behaviour-of-site-components)
+    - [Behaviour of Shared Site Components](#behaviour-of-shared-site-components)
       - [Navbar (Navigation Bar)](#navbar-navigation-bar)
-    - [Page Header and Call To Action](#page-header-and-call-to-action)
+      - [Page Header and Call To Action](#page-header-and-call-to-action)
+    - [Behaviour of Individual Pages](#behaviour-of-individual-pages)
+      - [Home Page (index.html)](#home-page-indexhtml)
+        - [About Summary](#about-summary)
+        - [Skills](#skills)
+        - [Projects](#projects)
+        - [Qualifications](#qualifications)
   - [Bugs](#bugs)
     - [Development Bugs](#development-bugs)
       - [Heroku Deployment Issue](#heroku-deployment-issue)
@@ -67,7 +73,7 @@ Browsers tested include:
 
 No obvious bugs were detected in any of the tested browsers. :heavy_check_mark:
 
-### Behaviour of Site Components
+### Behaviour of Shared Site Components
 
 #### Navbar (Navigation Bar)
 
@@ -77,7 +83,7 @@ No obvious bugs were detected in any of the tested browsers. :heavy_check_mark:
 - Verify that on clicking of the **'burger** icon triggers visibility of the vertical navigation menu for smaller screens :heavy_check_mark:
 - Verify that the the appropriate navigation bar is displayed for the **main** and **admin** sites respectively :heavy_check_mark:
 
-### Page Header and Call To Action
+#### Page Header and Call To Action
 
 - Verify that page header displays at full page height on the **index.html** and **404.html** pages :heavy_check_mark:
 - Verify that the page header displays at less than full page height on all other pages for the main site (excludes Admin pages) :heavy_check_mark:
@@ -85,6 +91,47 @@ No obvious bugs were detected in any of the tested browsers. :heavy_check_mark:
 - Confirm that the **Call To Action** button text changes dynamically for each page (excludes Admin pages) :heavy_check_mark:
 - Verify that the **Call To Action** button allows for scrolling to the desired page content on all main site pages excluding **index.html** :heavy_check_mark:
 - Confirm that clicking the **Call To Action** button on the **index.html** page redirects to the Contact page :heavy_check_mark:
+
+### Behaviour of Individual Pages
+
+#### Home Page (index.html)
+
+##### About Summary
+
+- Confirm that text is rendered to resemble a tablet :heavy_check_mark:
+- Confirm that all colours display correctly :heavy_check_mark:
+- Verify that cursor animates as expected to resemble a terminal cursor :heavy_check_mark:
+
+##### Skills
+
+- Confirm that all skills are displayed :heavy_check_mark:
+- Confirm that 3 skill bars are present and animated for each skill :heavy_check_mark:
+- Verify that each of the three skill bars per skill is a different colour as expected :heavy_check_mark:
+- Verify that no skill exceeds the 100% limit :heavy_check_mark:
+- Confirm that each skill's name and level is displayed correctly :heavy_check_mark:
+- Confirm that each skill's housing gives a 3D effect as intended :heavy_check_mark:
+- Verify that each skill's housing is circular in shape :heavy_check_mark:
+
+##### Projects
+
+- Confirm that a maximum of three projects are displayed :heavy_check_mark:
+- Verify that each project card has an image, and that if no image is supplied, alt text it displayed :heavy_check_mark:
+- Verify that each project card has the project title :heavy_check_mark:
+- Confirm that each project card has a clickable icon which opens the project's gitHub repository in a new tab :heavy_check_mark:
+- Confirn that each project card has a clickable icon which opens the deployed project in a new tab :heavy_check_mark:
+- Verify that hovering over a project card sclaes that project card to be bigger, while other project cards are scaled smaller and less opaque :heavy_check_mark:
+
+##### Qualifications
+
+- Confirm that all qualifications are listed :heavy_check_mark:
+- Verify that hovering over qualification name gives expected colour transitioning effect (lighter) :heavy_check_mark:
+- Verify that clicking on qualification name triggers the visibility of a qualification body to show additional information and set the qualification name (heading) background colour to a lighter shade of grey :heavy_check_mark:
+- Confirm that the qualification body contains the following components and behaviour:
+  - Confirm that the icon and information for the issuing Institute / Authority is listed :heavy_check_mark:
+  - Confirm that the icon and information for the issue date is listed :heavy_check_mark:
+  - Confirm that VIEW and MORE INFO buttons are present :heavy_check_mark:
+  - Verify that clicking on the VIEW and MORE INFO buttons redirects to the relevant information in a new browser tab :heavy_check_mark:
+- Verify that clicking on a qualification name once expanded hides the qualification body as expected and sets the qualification name's background to the default colour :heavy_check_mark:
 
 ## Bugs
 
