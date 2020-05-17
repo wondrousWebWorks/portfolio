@@ -19,6 +19,7 @@
         - [Skills](#skills)
         - [Projects](#projects)
         - [Qualifications](#qualifications)
+        - [Experience](#experience)
   - [Bugs](#bugs)
     - [Development Bugs](#development-bugs)
       - [Heroku Deployment Issue](#heroku-deployment-issue)
@@ -132,6 +133,13 @@ No obvious bugs were detected in any of the tested browsers. :heavy_check_mark:
   - Confirm that VIEW and MORE INFO buttons are present :heavy_check_mark:
   - Verify that clicking on the VIEW and MORE INFO buttons redirects to the relevant information in a new browser tab :heavy_check_mark:
 - Verify that clicking on a qualification name once expanded hides the qualification body as expected and sets the qualification name's background to the default colour :heavy_check_mark:
+
+##### Experience
+
+- Confirm that experience cards are present :heavy_check_mark:
+- Verify that each experience card shows a tag icon for the job title and the job title itself :heavy_check_mark:
+- Verify that each experiecne card shows a calendar icon for the job dates and the job dates themselves :heavy_check_mark:
+- Confirm that the card scale on hover :heavy_check_mark:
 
 ## Bugs
 
