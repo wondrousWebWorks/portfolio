@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2&family=Roboto+Slab&display=swap');
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     position: relative;
     font-size: 16px;
@@ -25,10 +29,56 @@ h1, h2, h3, h4, nav {
 
 .section-heading {
     display: inline-block;
-    margin: 2.5rem auto 1rem;
-    padding: 1.5rem .5rem .8rem;
+    margin: 2.5rem auto 2rem;
+    padding: .8rem 2.5rem;
     font-size: 3rem;
-    border-bottom: 3px solid #007749;
+    border-radius: .5rem;
+    animation: 8s linear infinite border-rotate;
+}
+
+@keyframes border-rotate {
+    0% {
+        border-top: 5px solid #007749;
+        border-right: 5px solid #FFB81C;
+        border-bottom: 5px solid #E03C31;
+        border-left: 5px solid #0080ff;
+        background-color: #1c1c1c;
+        box-shadow:  5px 5px 8px #0e0e0e,
+                    -5px -5px 8px #0e0e0e;
+    }
+
+    25% {
+        border-top: 5px solid #0080ff;
+        border-right: 5px solid #007749;
+        border-bottom: 5px solid #FFB81C;
+        border-left: 5px solid #E03C31;
+    }
+
+    50% {
+        border-top: 5px solid #E03C31;
+        border-right: 5px solid #0080ff;
+        border-bottom: 5px solid #007749;
+        border-left: 5px solid #FFB81C;
+        background-color: #111;
+        box-shadow:  10px 10px 15px #0e0e0e,
+                    -10px -10px 15px #0e0e0e;
+    }
+
+    75% {
+        border-top: 5px solid #FFB81C;  
+        border-right: 5px solid #E03C31;
+        border-bottom: 5px solid #0080ff;
+        border-left: 5px solid #007749;
+    }
+
+    100% {
+        border-top: 5px solid #007749;
+        border-right: 5px solid #FFB81C;
+        border-bottom: 5px solid #E03C31;
+        border-left: 5px solid #0080ff;
+        box-shadow:  5px 5px 8px #0e0e0e,
+                    -5px -5px 8px #0e0e0e;
+    }
 }
 
 .tablet-style-container {
@@ -788,7 +838,8 @@ footer .copyright {
 .skill-bar {
     z-index: 3;
     content: "";
-    width: 33.3%;
+    width: 31%;
+    border-radius: 5px;
 }
 
 @media only screen and (max-width: 991px) {
