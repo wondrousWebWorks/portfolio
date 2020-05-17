@@ -7,8 +7,9 @@ html {
 body {
     position: relative;
     font-size: 16px;
-    background-color: #1c1c1c;
+    background: url('https://res.cloudinary.com/wondrouswebworks/image/upload/v1587062545/wondrousWebWorks/grey-squares-background.png');
     background-repeat: repeat;
+    background-color: #1c1c1c;
     font-family: 'Roboto Slab', sans-serif;
     overflow-x: hidden;
     box-sizing: border-box;
@@ -142,32 +143,24 @@ h1, h2, h3, h4, nav {
     text-shadow: 1px 1px #101010;
 }
 
-body::-webkit-scrollbar, .modal::-webkit-scrollbar, ul::-webkit-scrollbar {
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #FFB81C #111;
+  }
+
+::-webkit-scrollbar {
     width: 1rem;
 }
    
-body::-webkit-scrollbar-track, .modal::-webkit-scrollbar-track, ul::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
-body::-webkit-scrollbar-thumb, .modal::-webkit-scrollbar-thumb, ul::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background: linear-gradient(to bottom, #007749, #FFB81C);
     outline: 1px solid slategrey;
     border-radius: 4px;
 }
-
-/* @media only screen and (max-width: 991px) {
-    .tablet-style-container {
-        padding: 1.5rem;
-        font-size: 1.5rem;
-
-    }
-
-    .section-heading {
-        margin: 2.5rem 0 1rem;
-        font-size: 2.2rem;
-    }
-} */
 
 @media only screen 
     and (min-device-width : 768px) 
@@ -261,7 +254,7 @@ body::-webkit-scrollbar-thumb, .modal::-webkit-scrollbar-thumb, ul::-webkit-scro
     .section-heading {
         font-size: 1.7rem;
         margin: 2rem 0 1rem;
-        padding: 0;
+        padding: 1rem 2rem;
     }
     
     .tablet-style-container {
@@ -912,7 +905,7 @@ footer .copyright {
 }
 
 .project-col {
-    transition: transform .7s ease-in-out, opacity .7s ease-in-out;
+    transition: all .5s ease-in-out;
     margin-bottom: 1rem;
 }
 
