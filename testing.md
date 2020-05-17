@@ -20,6 +20,7 @@
         - [Projects](#projects)
         - [Qualifications](#qualifications)
         - [Experience](#experience)
+      - [About Page (about.html)](#about-page-abouthtml)
   - [Bugs](#bugs)
     - [Development Bugs](#development-bugs)
       - [Heroku Deployment Issue](#heroku-deployment-issue)
@@ -109,37 +110,44 @@ No obvious bugs were detected in any of the tested browsers. :heavy_check_mark:
 - Confirm that 3 skill bars are present and animated for each skill :heavy_check_mark:
 - Verify that each of the three skill bars per skill is a different colour as expected :heavy_check_mark:
 - Verify that no skill exceeds the 100% limit :heavy_check_mark:
-- Confirm that each skill's name and level is displayed correctly :heavy_check_mark:
+- Confirm that each skill's **name** and **level** is displayed correctly :heavy_check_mark:
 - Confirm that each skill's housing gives a 3D effect as intended :heavy_check_mark:
 - Verify that each skill's housing is circular in shape :heavy_check_mark:
 
 ##### Projects
 
-- Confirm that a maximum of three projects are displayed :heavy_check_mark:
-- Verify that each project card has an image, and that if no image is supplied, alt text it displayed :heavy_check_mark:
-- Verify that each project card has the project title :heavy_check_mark:
-- Confirm that each project card has a clickable icon which opens the project's gitHub repository in a new tab :heavy_check_mark:
-- Confirn that each project card has a clickable icon which opens the deployed project in a new tab :heavy_check_mark:
-- Verify that hovering over a project card sclaes that project card to be bigger, while other project cards are scaled smaller and less opaque :heavy_check_mark:
+- Confirm that a maximum of **three** projects are displayed :heavy_check_mark:
+- Verify that each project card has an **image**, and that if no image is supplied, alt text it displayed :heavy_check_mark:
+- Verify that each project card has the **project title** :heavy_check_mark:
+- Confirm that each project card has a clickable **icon** which opens the project's **GitHub repository** in a new tab :heavy_check_mark:
+- Confirn that each project card has a clickable **icon** which opens the **deployed project** in a new tab :heavy_check_mark:
+- Verify that hovering over a project card **scales** that project card to be bigger, while other project cards are scaled smaller and less opaque :heavy_check_mark:
 
 ##### Qualifications
 
 - Confirm that all qualifications are listed :heavy_check_mark:
-- Verify that hovering over qualification name gives expected colour transitioning effect (lighter) :heavy_check_mark:
-- Verify that clicking on qualification name triggers the visibility of a qualification body to show additional information and set the qualification name (heading) background colour to a lighter shade of grey :heavy_check_mark:
+- Verify that **hovering** over qualification name gives expected **colour transitioning effect** (lighter) :heavy_check_mark:
+- Verify that **clicking** on **qualification name** triggers the visibility of a qualification body to show additional information and set the qualification name (heading) background colour to a lighter shade of grey :heavy_check_mark:
 - Confirm that the qualification body contains the following components and behaviour:
-  - Confirm that the icon and information for the issuing Institute / Authority is listed :heavy_check_mark:
-  - Confirm that the icon and information for the issue date is listed :heavy_check_mark:
-  - Confirm that VIEW and MORE INFO buttons are present :heavy_check_mark:
-  - Verify that clicking on the VIEW and MORE INFO buttons redirects to the relevant information in a new browser tab :heavy_check_mark:
-- Verify that clicking on a qualification name once expanded hides the qualification body as expected and sets the qualification name's background to the default colour :heavy_check_mark:
+  - Confirm that the **icon** and information for the **issuing Institute / Authority** is listed :heavy_check_mark:
+  - Confirm that the **icon** and information for the **issue date** is listed :heavy_check_mark:
+  - Confirm that **VIEW** and **MORE INFO** buttons are present :heavy_check_mark:
+  - Verify that **clicking** on the **VIEW** and **MORE INFO** buttons **redirects** to the relevant information in a new browser tab :heavy_check_mark:
+- Verify that **clicking** on a **qualification name** once expanded **hides** the qualification body as expected and sets the qualification name's background to the **default colour** :heavy_check_mark:
 
 ##### Experience
 
 - Confirm that experience cards are present :heavy_check_mark:
-- Verify that each experience card shows a tag icon for the job title and the job title itself :heavy_check_mark:
-- Verify that each experiecne card shows a calendar icon for the job dates and the job dates themselves :heavy_check_mark:
-- Confirm that the card scale on hover :heavy_check_mark:
+- Verify that each experience card shows a **tag icon** for the job title and the **job title** itself :heavy_check_mark:
+- Verify that each experiecne card shows a **calendar icon** for the job dates and the **job dates** themselves :heavy_check_mark:
+- Confirm that the cards scale on hover :heavy_check_mark:
+
+#### About Page (about.html)
+
+- Confirm that **About**inforation is rendered to resemble a tablet (similar to About Summary) :heavy_check_mark:
+- Confirm that all **colours** display correctly :heavy_check_mark:
+- Verify that **cursor** animates as expected to resemble a **terminal cursor** :heavy_check_mark:
+- Verify that the **list** and **image** display *side-by-side on bigger screens*, but *below each other on smaller screens* :heavy_check_mark:
 
 ## Bugs
 
