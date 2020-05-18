@@ -22,6 +22,8 @@
         - [Experience](#experience)
       - [About Page (about.html)](#about-page-abouthtml)
       - [Projects Page (projects.html)](#projects-page-projectshtml)
+      - [Project Page (project.html)](#project-page-projecthtml)
+      - [Blog (blogs.html)](#blog-blogshtml)
   - [Bugs](#bugs)
     - [Development Bugs](#development-bugs)
       - [Heroku Deployment Issue](#heroku-deployment-issue)
@@ -158,6 +160,24 @@ No obvious bugs were detected in any of the tested browsers. :heavy_check_mark:
 - Confirm that each project card has a clickable **icon** which opens the project's **GitHub repository** in a new tab :heavy_check_mark:
 - Confirn that each project card has a clickable **icon** which opens the **deployed project** in a new tab :heavy_check_mark:
 - Verify that hovering over a project card **scales** that project card to be bigger, while other project cards are scaled smaller and less opaque :heavy_check_mark:
+- Confirm that **clicking** on a project card image or heading opens the **project.html** page with the relevant information for the specific project :heavy_check_mark:
+
+#### Project Page (project.html)
+
+- Verify that the correct **project image** is displayed :heavy_check_mark:
+- Confirm that the full **technology list** for the project is displayed :heavy_check_mark:
+- Confirm that **all paragraphs** for the project is displayed correctly :heavy_check_mark:
+- Verify that the **project image** and **technology list** display *side-by-side o tablet devices* and *devices with bigger screens* :heavy_check_mark:
+- Confirm that the **project image** and **technology list** display *vertically* on *mobile devices in portrait mode* :heavy_check_mark:
+
+#### Blog (blogs.html)
+
+- Confirm that **cards** for **all blogs** are displayed :heavy_check_mark:
+- Confirm that each card has the correct **image as background** :heavy_check_mark:
+- Verify that the correct **blog title** is displayed on each card :heavy_check_mark:
+- Confirm that the **blog summary** is displayed on card *hover* :heavy_check_mark:
+- Confirm that the correct **published date** is displayed on each blog card :heavy_check_mark:
+- Verify that **clicking** on the **blog card text** opens the targeted *blog post in a new tab* :heavy_check_mark:
 
 ## Bugs
 
