@@ -121,7 +121,7 @@ def blogs():
     )
 
 
-@APP.route('/blogs/<blog_id>')
+@APP.route('/blogs/blog-post/<blog_id>')
 def blog_entry(blog_id):
     """Return a rendered template of a spefic BLOG POST based on Id
     
@@ -191,10 +191,10 @@ def add_skill():
                 response = make_response(jsonify({'message': 'success'}), 200)
             else:
                 flash('Failed to add skill.', 'failure')
-                response = make_response(jsonify({'message': 'failed'}), 503)
+                response = make_response(jsonify({'message': 'The requested service is not available at present. Please try again later.'}), 503)
         except:
             flash('Oops, something seems to have gone wrong server side...', 'failure')
-            response = make_response(jsonify({'message': 'failed'}), 500)
+            response = make_response(jsonify({'message': 'Something seems to have gone wrong server side. Please try again later.'}), 500)
     return response
 
 
@@ -203,20 +203,34 @@ def add_skill():
 def update_skill(skill_id):
     """Update a skill based on its Id"""
     skills = MONGO.db.skills
-    if request.method == 'GET':
-        skill_to_return = skills.find_one({'_id': ObjectId(skill_id)})
-        del skill_to_return['_id']
-        response = make_response(jsonify(skill_to_return), 200)
-    elif request.method == 'PUT':
-        skill_to_update_dict = request.get_json()
-        skills.update({'_id': ObjectId(skill_id)},
-        {
-            'skill_name': skill_to_update_dict['skill_name'],
-            'skill_level': skill_to_update_dict['skill_level']
-        })
 
-        flash('Skill updated successfully!', 'success')
-        response = make_response(jsonify({'message': 'success'}), 200)
+    if request.method == 'GET':
+        try:
+            skill_to_return = skills.find_one({'_id': ObjectId(skill_id)})
+
+            if skill_to_return:
+                del skill_to_return['_id']
+                response = make_response(jsonify(skill_to_return), 200)
+            else:
+                flash('Failed to get skill data.', 'failure')
+                response = make_response(jsonify({'message': 'The requested service is not available at present. Please try again later.'}), 503)
+        except:
+            flash('Oops, something seems to have gone wrong server side...', 'failure')
+            response = make_response(jsonify({'message': 'Something seems to have gone wrong server side. Please try again later.'}), 500)
+    elif request.method == 'PUT':
+        try:
+            skill_to_update_dict = request.get_json()
+            skills.update({'_id': ObjectId(skill_id)},
+            {
+                'skill_name': skill_to_update_dict['skill_name'],
+                'skill_level': skill_to_update_dict['skill_level']
+            })
+
+            flash('Skill updated successfully!', 'success')
+            response = make_response(jsonify({'message': 'success'}), 200)
+        except:
+            flash('Oops, something seems to have gone wrong server side...', 'failure')
+            response = make_response(jsonify({'message': 'Something seems to have gone wrong server side. Please try again later.'}), 500)
     return response
 
 
@@ -225,16 +239,20 @@ def update_skill(skill_id):
 def delete_skill(skill_id):
     """Remove a skill from skills collection based on Id"""
     if request.method == 'DELETE':
-        skills = MONGO.db.skills
-        skills.remove({'_id': ObjectId(skill_id)})
-        skill_to_confirm_deleted = skills.find_one({'_id': ObjectId(skill_id)})
+        try:
+            skills = MONGO.db.skills
+            skills.remove({'_id': ObjectId(skill_id)})
+            skill_to_confirm_deleted = skills.find_one({'_id': ObjectId(skill_id)})
 
-        if not skill_to_confirm_deleted:
-            flash('Skill deleted successfully!', 'success')
-            response = make_response(jsonify({'message': 'success'}), 200)
-        else:
-            flash('Failed to delete skill.', 'failure')
-            response = make_response(jsonify({'message': 'failure'}), 503)
+            if not skill_to_confirm_deleted:
+                flash('Skill deleted successfully!', 'success')
+                response = make_response(jsonify({'message': 'success'}), 200)
+            else:
+                flash('Failed to delete skill.', 'failure')
+                response = make_response(jsonify({'message': 'The requested service is not available at present. Please try again later.'}), 503)
+        except:
+            flash('Oops, something seems to have gone wrong server side...', 'failure')
+            response = make_response(jsonify({'message': 'Something seems to have gone wrong server side. Please try again later.'}), 500)
     return response
 
 
@@ -258,17 +276,21 @@ def manage_projects():
 def add_project():
     """Insert a new document into portfolio collection"""
     if request.method == 'POST':
-        projects = MONGO.db.portfolio
-        project_to_insert_dict = request.get_json()
-        projects.insert_one(project_to_insert_dict)
-        find_inserted_project = projects.find_one({'project_name': project_to_insert_dict['project_name']})
-        
-        if find_inserted_project:
-            flash('Project added successfully!', 'success')
-            response = make_response(jsonify({'message': 'success'}), 200)
-        else:
-            flash('Failed to add project.', 'failure')
-            response = make_response(jsonify({'message': 'failed'}), 503)
+        try:
+            projects = MONGO.db.portfolio
+            project_to_insert_dict = request.get_json()
+            projects.insert_one(project_to_insert_dict)
+            find_inserted_project = projects.find_one({'project_name': project_to_insert_dict['project_name']})
+            
+            if find_inserted_project:
+                flash('Project added successfully!', 'success')
+                response = make_response(jsonify({'message': 'success'}), 200)
+            else:
+                flash('Failed to add project.', 'failure')
+                response = make_response(jsonify({'message': 'The requested service is not available at present. Please try again later.'}), 503)
+        except:
+            flash('Oops, something seems to have gone wrong server side...', 'failure')
+            response = make_response(jsonify({'message': 'Something seems to have gone wrong server side. Please try again later.'}), 500)
     return response
 
 
@@ -276,15 +298,29 @@ def add_project():
 @login_required
 def update_project(project_id):
     portfolio = MONGO.db.portfolio
+
     if request.method == 'GET':
-        project_to_return = portfolio.find_one({'_id': ObjectId(project_id)})
-        del project_to_return['_id']
-        response = make_response(jsonify(project_to_return), 200)
+        try:
+            project_to_return = portfolio.find_one({'_id': ObjectId(project_id)})
+            
+            if project_to_return:
+                del project_to_return['_id']
+                response = make_response(jsonify(project_to_return), 200)
+            else:
+                flash('Failed to get project data.', 'failure')
+                response = make_response(jsonify({'message': 'The requested service is not available at present. Please try again later.'}), 503)
+        except:
+            flash('Oops, something seems to have gone wrong server side...', 'failure')
+            response = make_response(jsonify({'message': 'Something seems to have gone wrong server side. Please try again later.'}), 500)
     elif request.method == 'PUT':
-        project_to_update_dict = request.get_json()
-        portfolio.update({'_id': ObjectId(project_id)}, project_to_update_dict)
-        flash('Project updated successfully!', 'success')
-        response = make_response(jsonify({'message': 'success'}), 200)
+        try:
+            project_to_update_dict = request.get_json()
+            portfolio.update({'_id': ObjectId(project_id)}, project_to_update_dict)
+            flash('Project updated successfully!', 'success')
+            response = make_response(jsonify({'message': 'success'}), 200)
+        except:
+            flash('Oops, something seems to have gone wrong server side...', 'failure')
+            response = make_response(jsonify({'message': 'Something seems to have gone wrong server side. Please try again later.'}), 500)            
     return response
 
 
@@ -293,16 +329,20 @@ def update_project(project_id):
 def delete_project(project_id):
     """Remove a project from portfolio collection based on Id"""
     if request.method == 'DELETE':
-        projects = MONGO.db.portfolio
-        projects.remove({'_id': ObjectId(project_id)})
-        project_to_confirm_deleted = projects.find_one({'_id': ObjectId(project_id)})
+        try:
+            projects = MONGO.db.portfolio
+            projects.remove({'_id': ObjectId(project_id)})
+            project_to_confirm_deleted = projects.find_one({'_id': ObjectId(project_id)})
 
-        if not project_to_confirm_deleted:
-            flash('Project deleted successfully!', 'success')
-            response = make_response(jsonify({'message': 'success'}), 200)
-        else:
-            flash('Failed to delete project.', 'failure')
-            response = make_response(jsonify({'message': 'failure'}), 503)
+            if not project_to_confirm_deleted:
+                flash('Project deleted successfully!', 'success')
+                response = make_response(jsonify({'message': 'success'}), 200)
+            else:
+                flash('Failed to delete project.', 'failure')
+                response = make_response(jsonify({'message': 'failure'}), 503)
+        except:
+            flash('Oops, something seems to have gone wrong server side...', 'failure')
+            response = make_response(jsonify({'message': 'Something seems to have gone wrong server side. Please try again later.'}), 500)       
     return response
 
 
@@ -327,17 +367,21 @@ def manage_qualifications():
 def add_qualification():
     """Insert a new document into qualifications collection"""
     if request.method == 'POST':
-        qualifications = MONGO.db.qualifications
-        qualification_to_insert = request.get_json()
-        qualifications.insert_one(qualification_to_insert)
-        find_inserted_qualification = qualifications.find_one({'qualification_name': qualification_to_insert['qualification_name']})
-        
-        if find_inserted_qualification:
-            flash('Qualification added successfully!', 'success')
-            response = make_response(jsonify({'message': 'success'}), 200)
-        else:
-            flash('Failed to delete qualification.', 'failure')
-            response = make_response(jsonify({'message': 'failed'}), 503)
+        try:
+            qualifications = MONGO.db.qualifications
+            qualification_to_insert = request.get_json()
+            qualifications.insert_one(qualification_to_insert)
+            find_inserted_qualification = qualifications.find_one({'qualification_name': qualification_to_insert['qualification_name']})
+            
+            if find_inserted_qualification:
+                flash('Qualification added successfully!', 'success')
+                response = make_response(jsonify({'message': 'success'}), 200)
+            else:
+                flash('Failed to delete qualification.', 'failure')
+                response = make_response(jsonify({'message': 'failed'}), 503)
+        except:
+            flash('Oops, something seems to have gone wrong server side...', 'failure')
+            response = make_response(jsonify({'message': 'Something seems to have gone wrong server side. Please try again later.'}), 500)
     return response
 
 
@@ -346,22 +390,36 @@ def add_qualification():
 def update_qualification(qualification_id):
     """Update a qualification based on its Id"""
     qualifications = MONGO.db.qualifications
+
     if request.method == 'GET':
-        qualification_to_return = qualifications.find_one({'_id': ObjectId(qualification_id)})
-        del qualification_to_return['_id']
-        response = make_response(jsonify(qualification_to_return), 200)
+        try:
+            qualification_to_return = qualifications.find_one({'_id': ObjectId(qualification_id)})
+            
+            if qualification_to_return:
+                del qualification_to_return['_id']
+                response = make_response(jsonify(qualification_to_return), 200)
+            else:
+                flash('Failed to get qualification data.', 'failure')
+                response = make_response(jsonify({'message': 'The requested service is not available at present. Please try again later.'}), 503)
+        except:
+            flash('Oops, something seems to have gone wrong server side...', 'failure')
+            response = make_response(jsonify({'message': 'Something seems to have gone wrong server side. Please try again later.'}), 500)            
     elif request.method == 'PUT':
-        qualification_to_update_dict = request.get_json()
-        qualifications.update({'_id': ObjectId(qualification_id)},
-            {
-                'qualification_name': qualification_to_update_dict['qualification_name'],
-                'qualification_from': qualification_to_update_dict['qualification_from'],
-                'qualification_issue_date': qualification_to_update_dict['qualification_issue_date'],
-                'qualification_view_url': qualification_to_update_dict['qualification_view_url'],
-                'qualification_info_url': qualification_to_update_dict['qualification_info_url']
-            })
-        flash('Qualification updated successfully!', 'success')
-        response = make_response(jsonify({'message': 'success'}), 200)
+        try:
+            qualification_to_update_dict = request.get_json()
+            qualifications.update({'_id': ObjectId(qualification_id)},
+                {
+                    'qualification_name': qualification_to_update_dict['qualification_name'],
+                    'qualification_from': qualification_to_update_dict['qualification_from'],
+                    'qualification_issue_date': qualification_to_update_dict['qualification_issue_date'],
+                    'qualification_view_url': qualification_to_update_dict['qualification_view_url'],
+                    'qualification_info_url': qualification_to_update_dict['qualification_info_url']
+                })
+            flash('Qualification updated successfully!', 'success')
+            response = make_response(jsonify({'message': 'success'}), 200)
+        except:
+            flash('Oops, something seems to have gone wrong server side...', 'failure')
+            response = make_response(jsonify({'message': 'Something seems to have gone wrong server side. Please try again later.'}), 500) 
     return response
 
 
@@ -370,16 +428,20 @@ def update_qualification(qualification_id):
 def delete_qualification(qualification_id):
     """Remove a qualification from qualifications collection based on Id"""
     if request.method == 'DELETE':
-        qualifications = MONGO.db.qualifications
-        qualifications.remove({'_id': ObjectId(qualification_id)})
-        qualification_to_confirm_deleted = qualifications.find_one({'_id': ObjectId(qualification_id)})
+        try:
+            qualifications = MONGO.db.qualifications
+            qualifications.remove({'_id': ObjectId(qualification_id)})
+            qualification_to_confirm_deleted = qualifications.find_one({'_id': ObjectId(qualification_id)})
 
-        if not qualification_to_confirm_deleted:
-            flash('Qualification deleted successfully!', 'success')
-            response = make_response(jsonify({'message': 'success'}), 200)
-        else:
-            flash('Failed to delete qualification.', 'failure')
-            response = make_response(jsonify({'message': 'failure'}), 503)
+            if not qualification_to_confirm_deleted:
+                flash('Qualification deleted successfully!', 'success')
+                response = make_response(jsonify({'message': 'success'}), 200)
+            else:
+                flash('Failed to delete qualification.', 'failure')
+                response = make_response(jsonify({'message': 'failure'}), 503)
+        except:
+            flash('Oops, something seems to have gone wrong server side...', 'failure')
+            response = make_response(jsonify({'message': 'Something seems to have gone wrong server side. Please try again later.'}), 500)     
     return response
 
 
@@ -400,17 +462,21 @@ def manage_blogs():
 def add_blog_post():
     """Insert a new document into blog_posts collection"""
     if request.method == 'POST':
-        blog_posts = MONGO.db.blog_posts
-        blog_post_to_insert_dict = request.get_json()
-        blog_posts.insert_one(blog_post_to_insert_dict)
-        find_inserted_blog_post = blog_posts.find_one({'blog_title': blog_post_to_insert_dict['blog_title']})
-        
-        if find_inserted_blog_post:
-            flash('Blog post added successfully!', 'success')
-            response = make_response(jsonify({'message': 'success'}), 200)
-        else:
-            flash('Failed to add blog post', 'failure')
-            response = make_response(jsonify({'message': 'failed'}), 503)
+        try:
+            blog_posts = MONGO.db.blog_posts
+            blog_post_to_insert_dict = request.get_json()
+            blog_posts.insert_one(blog_post_to_insert_dict)
+            find_inserted_blog_post = blog_posts.find_one({'blog_title': blog_post_to_insert_dict['blog_title']})
+            
+            if find_inserted_blog_post:
+                flash('Blog post added successfully!', 'success')
+                response = make_response(jsonify({'message': 'success'}), 200)
+            else:
+                flash('Failed to add blog post', 'failure')
+                response = make_response(jsonify({'message': 'failed'}), 503)
+        except:
+            flash('Oops, something seems to have gone wrong server side...', 'failure')
+            response = make_response(jsonify({'message': 'Something seems to have gone wrong server side. Please try again later.'}), 500)
     return response
 
 
@@ -419,22 +485,36 @@ def add_blog_post():
 def update_blog_post(blog_post_id):
     """Update a blog post based on its Id"""
     blog_posts = MONGO.db.blog_posts
+
     if request.method == 'GET':
-        blog_post_to_return = blog_posts.find_one({'_id': ObjectId(blog_post_id)})
-        del blog_post_to_return['_id']
-        response = make_response(jsonify(blog_post_to_return), 200)
+        try:
+            blog_post_to_return = blog_posts.find_one({'_id': ObjectId(blog_post_id)})
+
+            if blog_post_to_return:
+                del blog_post_to_return['_id']
+                response = make_response(jsonify(blog_post_to_return), 200)
+            else:
+                flash('Failed to get blog post data.', 'failure')
+                response = make_response(jsonify({'message': 'The requested service is not available at present. Please try again later.'}), 503)
+        except:
+            flash('Oops, something seems to have gone wrong server side...', 'failure')
+            response = make_response(jsonify({'message': 'Something seems to have gone wrong server side. Please try again later.'}), 500)   
     elif request.method == 'PUT':
-        blog_post_to_update_dict = request.get_json()
-        blog_posts.update({'_id': ObjectId(blog_post_id)},
-            {
-                'blog_title': blog_post_to_update_dict['blog_title'],
-                'blog_img_url': blog_post_to_update_dict['blog_img_url'],
-                'blog_summary': blog_post_to_update_dict['blog_summary'],
-                'blog_date': blog_post_to_update_dict['blog_date'],
-                'blog_body': blog_post_to_update_dict['blog_body']
-            })
-        flash('Blog post successfully updated!', 'success')
-        response = make_response(jsonify({'message': 'success'}), 200)
+        try:
+            blog_post_to_update_dict = request.get_json()
+            blog_posts.update({'_id': ObjectId(blog_post_id)},
+                {
+                    'blog_title': blog_post_to_update_dict['blog_title'],
+                    'blog_img_url': blog_post_to_update_dict['blog_img_url'],
+                    'blog_summary': blog_post_to_update_dict['blog_summary'],
+                    'blog_date': blog_post_to_update_dict['blog_date'],
+                    'blog_body': blog_post_to_update_dict['blog_body']
+                })
+            flash('Blog post successfully updated!', 'success')
+            response = make_response(jsonify({'message': 'success'}), 200)
+        except:
+            flash('Oops, something seems to have gone wrong server side...', 'failure')
+            response = make_response(jsonify({'message': 'Something seems to have gone wrong server side. Please try again later.'}), 500)              
     return response
 
 
@@ -443,16 +523,20 @@ def update_blog_post(blog_post_id):
 def delete_blog_post(blog_post_id):
     """Remove a blog post from blog_posts collection based on Id"""
     if request.method == 'DELETE':
-        blog_posts = MONGO.db.blog_posts
-        blog_posts.remove({'_id': ObjectId(blog_post_id)})
-        blog_post_to_confirm_deleted = blog_posts.find_one({'_id': ObjectId(blog_post_id)})
+        try:
+            blog_posts = MONGO.db.blog_posts
+            blog_posts.remove({'_id': ObjectId(blog_post_id)})
+            blog_post_to_confirm_deleted = blog_posts.find_one({'_id': ObjectId(blog_post_id)})
 
-        if not blog_post_to_confirm_deleted:
-            flash('Blog post deleted successfully!', 'success')
-            response = make_response(jsonify({'message': 'success'}), 200)
-        else:
-            flash('Failed to delete blog post', 'failure')
-            response = make_response(jsonify({'message': 'failure'}), 503)
+            if not blog_post_to_confirm_deleted:
+                flash('Blog post deleted successfully!', 'success')
+                response = make_response(jsonify({'message': 'success'}), 200)
+            else:
+                flash('Failed to delete blog post', 'failure')
+                response = make_response(jsonify({'message': 'failure'}), 503)
+        except:
+            flash('Oops, something seems to have gone wrong server side...', 'failure')
+            response = make_response(jsonify({'message': 'Something seems to have gone wrong server side. Please try again later.'}), 500)     
     return response
 
 @APP.route('/admin/experience')
@@ -472,17 +556,21 @@ def manage_experience():
 def add_experience():
     """Insert a new document into experience collection"""
     if request.method == 'POST':
-        experience = MONGO.db.work_experience
-        experience_to_insert_dict = request.get_json()
-        experience.insert_one(experience_to_insert_dict)
-        find_inserted_experience = experience.find_one({'job_title': experience_to_insert_dict['job_title']})
-        
-        if find_inserted_experience:
-            flash('Experience added successfully!', 'success')
-            response = make_response(jsonify({'message': 'success'}), 200)
-        else:
-            flash('Failed to add experience.', 'failure')
-            response = make_response(jsonify({'message': 'failed'}), 503)
+        try:
+            experience = MONGO.db.work_experience
+            experience_to_insert_dict = request.get_json()
+            experience.insert_one(experience_to_insert_dict)
+            find_inserted_experience = experience.find_one({'job_title': experience_to_insert_dict['job_title']})
+            
+            if find_inserted_experience:
+                flash('Experience added successfully!', 'success')
+                response = make_response(jsonify({'message': 'success'}), 200)
+            else:
+                flash('Failed to add experience.', 'failure')
+                response = make_response(jsonify({'message': 'failed'}), 503)
+        except:
+            flash('Oops, something seems to have gone wrong server side...', 'failure')
+            response = make_response(jsonify({'message': 'Something seems to have gone wrong server side. Please try again later.'}), 500)
     return response
 
 
@@ -491,19 +579,32 @@ def add_experience():
 def update_experience(experience_id):
     """Update experience document based on its Id"""
     experience = MONGO.db.work_experience
+
     if request.method == 'GET':
-        experience_to_return = experience.find_one({'_id': ObjectId(experience_id)})
-        del experience_to_return['_id']
-        response = make_response(jsonify(experience_to_return), 200)
+        try:
+            experience_to_return = experience.find_one({'_id': ObjectId(experience_id)})
+            if experience_to_return:
+                del experience_to_return['_id']
+                response = make_response(jsonify(experience_to_return), 200)
+            else:
+                flash('Failed to get experience data.', 'failure')
+                response = make_response(jsonify({'message': 'The requested service is not available at present. Please try again later.'}), 503)
+        except:
+            flash('Oops, something seems to have gone wrong server side...', 'failure')
+            response = make_response(jsonify({'message': 'Something seems to have gone wrong server side. Please try again later.'}), 500)           
     elif request.method == 'PUT':
-        experience_to_update_dict = request.get_json()
-        experience.update({'_id': ObjectId(experience_id)},
-        {
-            'job_title': experience_to_update_dict['job_title'],
-            'job_dates': experience_to_update_dict['job_dates']
-        })
-        flash('Experience updated successfully!', 'success')
-        response = make_response(jsonify({'message': 'success'}), 200)
+        try:
+            experience_to_update_dict = request.get_json()
+            experience.update({'_id': ObjectId(experience_id)},
+            {
+                'job_title': experience_to_update_dict['job_title'],
+                'job_dates': experience_to_update_dict['job_dates']
+            })
+            flash('Experience updated successfully!', 'success')
+            response = make_response(jsonify({'message': 'success'}), 200)
+        except:
+            flash('Oops, something seems to have gone wrong server side...', 'failure')
+            response = make_response(jsonify({'message': 'Something seems to have gone wrong server side. Please try again later.'}), 500)   
     return response
 
 
@@ -512,16 +613,20 @@ def update_experience(experience_id):
 def delete_experience(experience_id):
     """Remove a work experience document from work_experience collection based on Id"""
     if request.method == 'DELETE':
-        experience = MONGO.db.work_experience
-        experience.remove({'_id': ObjectId(experience_id)})
-        experience_to_confirm_deleted = experience.find_one({'_id': ObjectId(experience_id)})
+        try:
+            experience = MONGO.db.work_experience
+            experience.remove({'_id': ObjectId(experience_id)})
+            experience_to_confirm_deleted = experience.find_one({'_id': ObjectId(experience_id)})
 
-        if not experience_to_confirm_deleted:
-            flash('Experience deleted successfully!', 'success')
-            response = make_response(jsonify({'message': 'success'}), 200)
-        else:
-            flash('Failed to delete experience', 'failure')
-            response = make_response(jsonify({'message': 'failure'}), 503)
+            if not experience_to_confirm_deleted:
+                flash('Experience deleted successfully!', 'success')
+                response = make_response(jsonify({'message': 'success'}), 200)
+            else:
+                flash('Failed to delete experience', 'failure')
+                response = make_response(jsonify({'message': 'failure'}), 503)
+        except:
+            flash('Oops, something seems to have gone wrong server side...', 'failure')
+            response = make_response(jsonify({'message': 'Something seems to have gone wrong server side. Please try again later.'}), 500)     
     return response
 
 
@@ -570,8 +675,6 @@ def page_not_found(e):
         image_height='full-screen',
         view='404'
     ), 404
-
-print(BCRYPT.generate_password_hash('M@ryH@d@L1ttl3L@mb').decode('utf-8'))
 
 
 if __name__ == '__main__':
