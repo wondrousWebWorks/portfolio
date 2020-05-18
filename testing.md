@@ -27,6 +27,7 @@
       - [Blog Post (blog-post.html)](#blog-post-blog-posthtml)
       - [Contact (contact.html)](#contact-contacthtml)
       - [Login (login.html)](#login-loginhtml)
+      - [Admin Dashboard (admin.html)](#admin-dashboard-adminhtml)
   - [Bugs](#bugs)
     - [Development Bugs](#development-bugs)
       - [Heroku Deployment Issue](#heroku-deployment-issue)
@@ -206,6 +207,15 @@ No obvious bugs were detected in any of the tested browsers. :heavy_check_mark:
   - A **password** is required in the *password* input field :heavy_check_mark:
   - The **password** input field has a type of *password* and does not display the password text on screen :heavy_check_mark:
   - With **valid** information entered, the user is logged in and *directed* to the **Admin** page :heavy_check_mark:
+
+#### Admin Dashboard (admin.html)
+
+- A user **must be logged** in to access to page :heavy_check_mark:
+- If a user tries the access the page *without being logged in*, they are redirected to the **Login** page :heavy_check_mark:
+- A *total document count* is displayed for *each database collection* (SKills, Projects, Qualifications, Blogs, Experience) :heavy_check_mark:
+- The counter display housing is circular :heavy_check_mark:
+- The *total document count text* for each collection has an animation that appears to *increase and decrease in brightness* :heavy_check_mark:
+- Below each document counter is a **button** with the text *MANAGE* which will direct the user to the *relevant Admin page* when clicked :heavy_check_mark:
 
 ## Bugs
 
