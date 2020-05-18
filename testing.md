@@ -26,6 +26,7 @@
       - [Blog (blogs.html)](#blog-blogshtml)
       - [Blog Post (blog-post.html)](#blog-post-blog-posthtml)
       - [Contact (contact.html)](#contact-contacthtml)
+      - [Login (login.html)](#login-loginhtml)
   - [Bugs](#bugs)
     - [Development Bugs](#development-bugs)
       - [Heroku Deployment Issue](#heroku-deployment-issue)
@@ -133,7 +134,7 @@ No obvious bugs were detected in any of the tested browsers. :heavy_check_mark:
 - All qualifications are listed :heavy_check_mark:
 - **Hovering** over qualification name gives expected **colour transitioning effect** (lighter) :heavy_check_mark:
 - **Clicking** on **qualification name** triggers the visibility of a qualification body to show additional information and set the qualification name (heading) background colour to a lighter shade of grey :heavy_check_mark:
-- The qualification body contains the following components and behaviour: :heavy_check_mark:
+- The qualification body contains the following components and behaviour :heavy_check_mark:
   - **Icon** and information for the **issuing Institute / Authority** are listed :heavy_check_mark:
   - **Icon** and information for the **issue date** are listed :heavy_check_mark:
   - **VIEW** and **MORE INFO** buttons are present :heavy_check_mark:
@@ -191,11 +192,20 @@ No obvious bugs were detected in any of the tested browsers. :heavy_check_mark:
 
 #### Contact (contact.html)
 
-- The **Contact** form is loaded with al input fields and labels rendered :heavy_check_mark:
+- The **Contact** form is loaded with all input fields and labels rendered :heavy_check_mark:
 - Form validation functions as expected :heavy_check_mark:
   - A **valid email address** is required in the *email* input field :heavy_check_mark:
   - A **subject** is required in the *subject* input field :heavy_check_mark:
   - A **query** is required in the *query* textarea input :heavy_check_mark:
+
+#### Login (login.html)
+
+- The **Login** form is loaded with all input fields and labels rendered :heavy_check_mark:
+- Form validation functions as expected :heavy_check_mark:
+  - A **valid email address** is required in the *email* input field :heavy_check_mark: :heavy_check_mark:
+  - A **password** is required in the *password* input field :heavy_check_mark:
+  - The **password** input field has a type of *password* and does not display the password text on screen :heavy_check_mark:
+  - With **valid** information entered, the user is logged in and *directed* to the **Admin** page :heavy_check_mark:
 
 ## Bugs
 
