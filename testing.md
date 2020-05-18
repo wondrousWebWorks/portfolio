@@ -31,6 +31,7 @@
       - [Manage Skills (/admin/skills.html)](#manage-skills-adminskillshtml)
       - [Manage Projects (/admin/projects.html)](#manage-projects-adminprojectshtml)
       - [Manage Qualifications (/admin/qualifications.html)](#manage-qualifications-adminqualificationshtml)
+      - [Manage Blogs (/admin/blogs.html)](#manage-blogs-adminblogshtml)
   - [Bugs](#bugs)
     - [Development Bugs](#development-bugs)
       - [Heroku Deployment Issue](#heroku-deployment-issue)
@@ -303,6 +304,34 @@ No obvious bugs were detected in any of the tested browsers. :heavy_check_mark:
   - **Deletes** the qualification from the *qualifications* collection :heavy_check_mark:
   - A *Success* or *Failure* message is flashed to the user *on page reload* :heavy_check_mark:
   - The *deleted qualification* is **no longer listed** with other qualifications retreived from the backend :heavy_check_mark:
+
+#### Manage Blogs (/admin/blogs.html)
+
+- A user **must be logged** in to access the page :heavy_check_mark:
+- The **ADD** button is displayed :heavy_check_mark:
+- **Clicking** on the **ADD** button
+  - Opens a modal with the *Blogs admin form* :heavy_check_mark:
+  - The input fields are empty :heavy_check_mark:
+  - A **blog title** is **required** in the *Blog Title* input field :heavy_check_mark:
+  - A **url** is **required** in the *Blog Image URL* input field :heavy_check_mark:
+  - A **blog summary** is **required** in the *Blog Summary* input field :heavy_check_mark:
+  - An **upload date** is **required** in the *Upload Date* input field :heavy_check_mark:
+  - At least **the first paragraph is required** for the *Blog Paragraph* textareas :heavy_check_mark:
+  - **Clicking** on the form **ADD button** creates a new document in the *blog_posts* collection :heavy_check_mark:
+  - A *Success* or *Failure* message is flashed to the user *on page reload* :heavy_check_mark:
+  - The *newly created blog post* is listed with other existing blog posts on the *Manage Blogs* page :heavy_check_mark:
+- **All blog posts** are listed with **Edit** and **Delete** buttons for each blog post :heavy_check_mark:
+- **Clicking** on a blog post's **Edit** button:
+  - *Opens a modal* with the **Blogs admin form** :heavy_check_mark:
+  - The input fields are *populated with data for that particular blog post* using data retrieved from the *blog_posts* collection :heavy_check_mark:
+  - The user can edit the data in the form so long as it does not violate the requirements for form validation :heavy_check_mark:
+  - **Clicking** on the form **Update button** sends the form data to the backend and updates the document in the *blog_posts* collection :heavy_check_mark:
+  - A *Success* or *Failure* message is flashed to the user *on page reload* :heavy_check_mark:
+  - The *updated blog post* is listed with other existing blog posts on the *Manage Blogs* page :heavy_check_mark:
+- **Clicking** on a blog post's **Delete** button:
+  - **Deletes** the blog post from the *blog_posts* collection :heavy_check_mark:
+  - A *Success* or *Failure* message is flashed to the user *on page reload* :heavy_check_mark:
+  - The *deleted blog post* is **no longer listed** with other blog posts retreived from the *blog_posts* collection :heavy_check_mark:
 
 ## Bugs
 
