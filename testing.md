@@ -28,6 +28,7 @@
       - [Contact (contact.html)](#contact-contacthtml)
       - [Login (login.html)](#login-loginhtml)
       - [Admin Dashboard (admin.html)](#admin-dashboard-adminhtml)
+      - [Manage Skills (/admin/skills.html)](#manage-skills-adminskillshtml)
   - [Bugs](#bugs)
     - [Development Bugs](#development-bugs)
       - [Heroku Deployment Issue](#heroku-deployment-issue)
@@ -193,7 +194,7 @@ No obvious bugs were detected in any of the tested browsers. :heavy_check_mark:
 
 #### Contact (contact.html)
 
-- The **Contact** form is loaded with all input fields and labels rendered :heavy_check_mark:
+- The **Contact** form is loaded with *all input fields and labels rendered* :heavy_check_mark:
 - Form validation functions as expected :heavy_check_mark:
   - A **valid email address** is required in the *email* input field :heavy_check_mark:
   - A **subject** is required in the *subject* input field :heavy_check_mark:
@@ -216,6 +217,31 @@ No obvious bugs were detected in any of the tested browsers. :heavy_check_mark:
 - The counter display housing is circular :heavy_check_mark:
 - The *total document count text* for each collection has an animation that appears to *increase and decrease in brightness* :heavy_check_mark:
 - Below each document counter is a **button** with the text *MANAGE* which will direct the user to the *relevant Admin page* when clicked :heavy_check_mark:
+
+#### Manage Skills (/admin/skills.html)
+
+- The **ADD** button is displayed :heavy_check_mark:
+- **Clicking** on the **ADD** button
+  - Opens a modal with the Skills admin form :heavy_check_mark:
+  - The input fields are empty :heavy_check_mark:
+  - A **name** is **required** in the *Skill Name* input field :heavy_check_mark:
+  - A **number** is **required** in the *Skill Level* input field :heavy_check_mark:
+  - The *Skill Level* input has a **minimum** value of 0 and a **maximum** value of **100** :heavy_check_mark:
+  - **Clicking** on the form **ADD button** creates a new document in the *Skills* collection :heavy_check_mark:
+  - A *Success* or *Failure* message is flashed to the user *on page reload* :heavy_check_mark:
+  - The *newly created skill* is listed with other existing skills on the *Manage Skills* page :heavy_check_mark:
+- **All skills** are listed with **Edit** and **Delete** buttons for each skill :heavy_check_mark:
+- **Clicking** on a skill's **Edit** button:
+  - *Opens a modal* with the **Skills admin form** :heavy_check_mark:
+  - The input fields are *populated with data for that particular skill* using data retrieved from the back end :heavy_check_mark:
+  - The user can edit the data in the form so long as it does not violate the requirements for form validation :heavy_check_mark:
+  - **Clicking** on the form **Update button** sends the form data to the backend and updates the relevant skill :heavy_check_mark:
+  - A *Success* or *Failure* message is flashed to the user *on page reload* :heavy_check_mark:
+  - The *updated skill* is listed with other existing skills on the *Manage Skills* page :heavy_check_mark:
+- **Clicking** on a skill's **Delete** button:
+  - **Deletes** the skill from the Skills collection in the database :heavy_check_mark:
+  - A *Success* or *Failure* message is flashed to the user *on page reload* :heavy_check_mark:
+  - The *deleted skill* is **no longer listed** with other skills retreived from the backend :heavy_check_mark:
 
 ## Bugs
 
