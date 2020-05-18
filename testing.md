@@ -25,6 +25,7 @@
       - [Project Page (project.html)](#project-page-projecthtml)
       - [Blog (blogs.html)](#blog-blogshtml)
       - [Blog Post (blog-post.html)](#blog-post-blog-posthtml)
+      - [Contact (contact.html)](#contact-contacthtml)
   - [Bugs](#bugs)
     - [Development Bugs](#development-bugs)
       - [Heroku Deployment Issue](#heroku-deployment-issue)
@@ -132,7 +133,7 @@ No obvious bugs were detected in any of the tested browsers. :heavy_check_mark:
 - All qualifications are listed :heavy_check_mark:
 - **Hovering** over qualification name gives expected **colour transitioning effect** (lighter) :heavy_check_mark:
 - **Clicking** on **qualification name** triggers the visibility of a qualification body to show additional information and set the qualification name (heading) background colour to a lighter shade of grey :heavy_check_mark:
-- The qualification body contains the following components and behaviour:
+- The qualification body contains the following components and behaviour: :heavy_check_mark:
   - **Icon** and information for the **issuing Institute / Authority** are listed :heavy_check_mark:
   - **Icon** and information for the **issue date** are listed :heavy_check_mark:
   - **VIEW** and **MORE INFO** buttons are present :heavy_check_mark:
@@ -187,6 +188,14 @@ No obvious bugs were detected in any of the tested browsers. :heavy_check_mark:
 - The blog post's **image** displays **above** the blog text on *mobile devices in portrait orientation* :heavy_check_mark:
 - The correct date displays for each blog post :heavy_check_mark:
 - All paragraphs are displayed for each blog post :heavy_check_mark:
+
+#### Contact (contact.html)
+
+- The **Contact** form is loaded with al input fields and labels rendered :heavy_check_mark:
+- Form validation functions as expected :heavy_check_mark:
+  - A **valid email address** is required in the *email* input field :heavy_check_mark:
+  - A **subject** is required in the *subject* input field :heavy_check_mark:
+  - A **query** is required in the *query* textarea input :heavy_check_mark:
 
 ## Bugs
 
