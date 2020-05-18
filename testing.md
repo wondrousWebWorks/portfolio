@@ -36,6 +36,9 @@
   - [Bugs](#bugs)
     - [Development Bugs](#development-bugs)
       - [Heroku Deployment Issue](#heroku-deployment-issue)
+      - [Navigation Bar (navbar) alignment](#navigation-bar-navbar-alignment)
+      - [Skills display on the landing page](#skills-display-on-the-landing-page)
+      - [Non-URL values accepted as input in Projects and Blog forms](#non-url-values-accepted-as-input-in-projects-and-blog-forms)
 
 ## Testing
 
@@ -378,3 +381,45 @@ As with many a project, I encountered a few bugs during development which requir
 - **Verdict**
 
     Successfully deployed to Heroku with all dependancies installed.
+
+#### Navigation Bar (navbar) alignment
+
+- **Bug**
+
+  Once I decided to stop using the Materialize navbar due to spacing issues, ran into an issue with my own custom navbar as well.  Despite setting teh navbar's display to flex and the direction to row with spacing set between, the logo and nanigation links did not display at both ends of the navbar as expected. Instead, the navigation links displayed near the center of the navbar, which was not the expected behaviour
+
+- **Fix**
+
+  I forgot to set the width of the wrapper containing the navigation links. A such, CSS did not enough information to affect the desired spacing as required. As a result, I set the width of both the logo wrapper and the navigation links wrapper explicitly.
+
+- **Verdict**
+
+  Navbar conmponents spaced as desired.
+
+#### Skills display on the landing page
+
+- **Bug**
+
+  A logged-in user was able to enter a skill level of more than 100 on the Admin page. As such, the spacing and behaviour of skill bars were negatively affected and ruined the desired animation effect.
+
+- **Fix**
+
+  Added form validation and a maximum limit of 100 in the Skills Admin form.
+
+- **Verdict**
+
+  Users cannot enter a skill level of more than 100 as the form won't be submitted until all fields are validated.
+
+#### Non-URL values accepted as input in Projects and Blog forms
+
+- **Bug**
+
+  A logged-in user could enter any non-URL string in input fields where a URL was expected.  As such, the desired functionality allowing a user to click on certain links to be redirected to a desired site or to load a required image from a URL was broken.
+
+- **Fix**
+
+  Added a **type** of **url** to all input fields in forms (Projects and Blogs) where a URL is expected.
+
+- **Verdict**
+
+  Users cannot sumbit a these forms unless URLs are proved in the input fiels with a **type** of **url**.
