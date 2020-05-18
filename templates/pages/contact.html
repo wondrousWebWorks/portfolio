@@ -7,32 +7,34 @@
 {% endwith %}
 
 <div class="row">
-    <form action="{{ url_for('contact') }}" method="POST" class="col s12">
-        <div class="row">
-            <div class="input-field col s12">
-                <input id="email" name="email" type="email" class="validate">
-                <label for="email">Email</label>
+    <div class="col s12">
+        <form action="{{ url_for('contact') }}" method="POST" class="non-modal-form form-shadow">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="email" name="email" type="email" class="validate" required>
+                    <label for="email">Email</label>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <input id="subject" name="subject" type="text" class="validate">
-                <label for="subject">Subject</label>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="subject" name="subject" type="text" class="validate" required>
+                    <label for="subject">Subject</label>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <textarea id="query" name="query" class="materialize-textarea"></textarea>
-                <label for="query">Query</label>
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea id="query" name="query" class="materialize-textarea" required></textarea>
+                    <label for="query">Query</label>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="co s12">
-                <button class="btn sa-flag-blue-bg off-white waves-effect waves-light" type="submit">Reach out and touch faith&nbsp;
-                    <i class="fas fa-paper-plane"></i>
-                </button>
+            <div class="row">
+                <div class="co s12">
+                    <button class="btn sa-flag-blue-bg off-white waves-effect waves-light" type="submit">Reach out and touch faith&nbsp;
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
 {% endblock %}
