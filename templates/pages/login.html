@@ -7,22 +7,24 @@
 {% endwith %}
 
 <div class="row">
-    <form class="col s12" method="POST" action="{{ url_for('login') }}">
-        <div class="row">
-            <div class="input-field col s12">
-                <input id="email" type="email" name="email" class="validate">
-                <label for="email">Email</label>
+    <div class="col s12">
+        <form class="non-modal-form form-shadow" method="POST" action="{{ url_for('login') }}">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="email" type="email" name="email" class="validate" required>
+                    <label for="email">Email</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="password" type="password" name="password" class="validate" required>
+                    <label for="password">Password</label>
+                </div>
             </div>
-            <div class="input-field col s12">
-                <input id="password" type="password" name="password" class="validate">
-                <label for="password">Password</label>
+            <div class="row">
+                <div class="co s12">
+                    <button id="login-btn" class="btn sa-flag-blue-bg off-white waves-effect waves-light"><i class="fas fa-sign-in-alt"></i>&nbsp;Log In</button>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="co s12">
-                <button id="login-btn" class="btn sa-flag-blue-bg off-white waves-effect waves-light"><i class="fas fa-sign-in-alt"></i>&nbsp;Sign In</button>
-            </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>    
 {% endblock %}
