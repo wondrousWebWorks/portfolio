@@ -30,6 +30,7 @@
       - [Admin Dashboard (admin.html)](#admin-dashboard-adminhtml)
       - [Manage Skills (/admin/skills.html)](#manage-skills-adminskillshtml)
       - [Manage Projects (/admin/projects.html)](#manage-projects-adminprojectshtml)
+      - [Manage Qualifications (/admin/qualifications.html)](#manage-qualifications-adminqualificationshtml)
   - [Bugs](#bugs)
     - [Development Bugs](#development-bugs)
       - [Heroku Deployment Issue](#heroku-deployment-issue)
@@ -212,7 +213,7 @@ No obvious bugs were detected in any of the tested browsers. :heavy_check_mark:
 
 #### Admin Dashboard (admin.html)
 
-- A user **must be logged** in to access to page :heavy_check_mark:
+- A user **must be logged** in to access the page :heavy_check_mark:
 - If a user tries the access the page *without being logged in*, they are redirected to the **Login** page :heavy_check_mark:
 - A *total document count* is displayed for *each database collection* (SKills, Projects, Qualifications, Blogs, Experience) :heavy_check_mark:
 - The counter display housing is circular :heavy_check_mark:
@@ -221,6 +222,7 @@ No obvious bugs were detected in any of the tested browsers. :heavy_check_mark:
 
 #### Manage Skills (/admin/skills.html)
 
+- A user **must be logged** in to access the page :heavy_check_mark:
 - The **ADD** button is displayed :heavy_check_mark:
 - **Clicking** on the **ADD** button
   - Opens a modal with the *Skills admin form* :heavy_check_mark:
@@ -228,24 +230,25 @@ No obvious bugs were detected in any of the tested browsers. :heavy_check_mark:
   - A **name** is **required** in the *Skill Name* input field :heavy_check_mark:
   - A **number** is **required** in the *Skill Level* input field :heavy_check_mark:
   - The *Skill Level* input has a **minimum** value of 0 and a **maximum** value of **100** :heavy_check_mark:
-  - **Clicking** on the form **ADD button** creates a new document in the relevant collection in the database :heavy_check_mark:
+  - **Clicking** on the form **ADD button** creates a new document in the *skills* collection in the database :heavy_check_mark:
   - A *Success* or *Failure* message is flashed to the user *on page reload* :heavy_check_mark:
   - The *newly created skill* is listed with other existing skills on the *Manage Skills* page :heavy_check_mark:
 - **All skills** are listed with **Edit** and **Delete** buttons for each skill :heavy_check_mark:
 - **Clicking** on a skill's **Edit** button:
   - *Opens a modal* with the **Skills admin form** :heavy_check_mark:
-  - The input fields are *populated with data for that particular skill* using data retrieved from the back end :heavy_check_mark:
+  - The input fields are *populated with data for that particular skill* using data retrieved from the *skills* collection :heavy_check_mark:
   - The user can edit the data in the form so long as it does not violate the requirements for form validation :heavy_check_mark:
-  - **Clicking** on the form **Update button** sends the form data to the backend and updates the relevant skill :heavy_check_mark:
+  - **Clicking** on the form **Update button** sends the form data to the backend and updates the document in the *skills* collection :heavy_check_mark:
   - A *Success* or *Failure* message is flashed to the user *on page reload* :heavy_check_mark:
   - The *updated skill* is listed with other existing skills on the *Manage Skills* page :heavy_check_mark:
 - **Clicking** on a skill's **Delete** button:
-  - **Deletes** the skill from the database :heavy_check_mark:
+  - **Deletes** the skill from the *skills* collection :heavy_check_mark:
   - A *Success* or *Failure* message is flashed to the user *on page reload* :heavy_check_mark:
   - The *deleted skill* is **no longer listed** with other skills retreived from the backend :heavy_check_mark:
 
 #### Manage Projects (/admin/projects.html)
 
+- A user **must be logged** in to access the page :heavy_check_mark:
 - The **ADD** button is displayed :heavy_check_mark:
 - **Clicking** on the **ADD** button
   - Opens a modal with the *Projects admin form* :heavy_check_mark:
@@ -255,23 +258,51 @@ No obvious bugs were detected in any of the tested browsers. :heavy_check_mark:
   - A **url** is **required** in the *Project GitHub URL* input field :heavy_check_mark:
   - A **url** is **required** in the *Project Live URL* input field :heavy_check_mark:
   - A **list of technologies** to choose from is displayed in the *Technologies* select input :heavy_check_mark:
-  - **Choosing a technology** from the *Technologies* select input is required :heavy_check_mark:
+  - **Choosing a technology** from the *Technologies* select input is **required** :heavy_check_mark:
   - At least **the first paragraph is required** for the *Project Description Paragraph* textareas :heavy_check_mark:
-  - **Clicking** on the form **ADD button** creates a new document in the ewlwvant collection :heavy_check_mark:
+  - **Clicking** on the form **ADD button** creates a new document in the *portfolio* collection :heavy_check_mark:
   - A *Success* or *Failure* message is flashed to the user *on page reload* :heavy_check_mark:
   - The *newly created project* is listed with other existing projects on the *Manage Projects* page :heavy_check_mark:
 - **All projects** are listed with **Edit** and **Delete** buttons for each project :heavy_check_mark:
 - **Clicking** on a project's **Edit** button:
   - *Opens a modal* with the **Projects admin form** :heavy_check_mark:
-  - The input fields are *populated with data for that particular project* using data retrieved from the back end :heavy_check_mark:
+  - The input fields are *populated with data for that particular project* using data retrieved from the *portfolio* collection :heavy_check_mark:
   - The user can edit the data in the form so long as it does not violate the requirements for form validation :heavy_check_mark:
-  - **Clicking** on the form **Update button** sends the form data to the backend and updates the relevant project :heavy_check_mark:
+  - **Clicking** on the form **Update button** sends the form data to the backend and updates the document in the *projects* collection :heavy_check_mark:
   - A *Success* or *Failure* message is flashed to the user *on page reload* :heavy_check_mark:
   - The *updated project* is listed with other existing projects on the *Manage Projects* page :heavy_check_mark:
 - **Clicking** on a project's **Delete** button:
-  - **Deletes** the project from the database :heavy_check_mark:
+  - **Deletes** the project from the *portfolio* collection :heavy_check_mark:
   - A *Success* or *Failure* message is flashed to the user *on page reload* :heavy_check_mark:
   - The *deleted project* is **no longer listed** with other projects retreived from the backend :heavy_check_mark:
+
+#### Manage Qualifications (/admin/qualifications.html)
+
+- A user **must be logged** in to access the page :heavy_check_mark:
+- The **ADD** button is displayed :heavy_check_mark:
+- **Clicking** on the **ADD** button
+  - Opens a modal with the *Qualifications admin form* :heavy_check_mark:
+  - The input fields are empty :heavy_check_mark:
+  - A **qualification name** is **required** in the *Qualification Name* input field :heavy_check_mark:
+  - A name is **required** for the **issuing authority** in the *Qualification Issued By* input field :heavy_check_mark:
+  - A **qualification issue date** is **required** in the *Date Obtained* input field :heavy_check_mark:
+  - A **url** is **required** in the *Qualification View URL* input field :heavy_check_mark:
+  - A **url** is **required** in the *Qualification Info URL* input field :heavy_check_mark:
+  - **Clicking** on the form **ADD button** creates a new document in the *qualifications* collection :heavy_check_mark:
+  - A *Success* or *Failure* message is flashed to the user *on page reload* :heavy_check_mark:
+  - The *newly created qualification* is listed with other existing qualifications on the *Manage Qualifications* page :heavy_check_mark:
+- **All qualifications** are listed with **Edit** and **Delete** buttons for each qualification :heavy_check_mark:
+- **Clicking** on a qualification's **Edit** button:
+  - *Opens a modal* with the **Qualifications admin form** :heavy_check_mark:
+  - The input fields are *populated with data for that particular qualification* using data retrieved from the *qualifications* collection :heavy_check_mark:
+  - The user can edit the data in the form so long as it does not violate the requirements for form validation :heavy_check_mark:
+  - **Clicking** on the form **Update button** sends the form data to the backend and updates the document in the *qualifications* collection :heavy_check_mark:
+  - A *Success* or *Failure* message is flashed to the user *on page reload* :heavy_check_mark:
+  - The *updated qualification* is listed with other existing qualifications on the *Manage Qualifications* page :heavy_check_mark:
+- **Clicking** on a qualification's **Delete** button:
+  - **Deletes** the qualification from the *qualifications* collection :heavy_check_mark:
+  - A *Success* or *Failure* message is flashed to the user *on page reload* :heavy_check_mark:
+  - The *deleted qualification* is **no longer listed** with other qualifications retreived from the backend :heavy_check_mark:
 
 ## Bugs
 
