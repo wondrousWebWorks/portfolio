@@ -32,6 +32,7 @@
       - [Manage Projects (/admin/projects.html)](#manage-projects-adminprojectshtml)
       - [Manage Qualifications (/admin/qualifications.html)](#manage-qualifications-adminqualificationshtml)
       - [Manage Blogs (/admin/blogs.html)](#manage-blogs-adminblogshtml)
+      - [Manage Experience (/admin/experience.html)](#manage-experience-adminexperiencehtml)
   - [Bugs](#bugs)
     - [Development Bugs](#development-bugs)
       - [Heroku Deployment Issue](#heroku-deployment-issue)
@@ -226,7 +227,7 @@ No obvious bugs were detected in any of the tested browsers. :heavy_check_mark:
 - A user **must be logged** in to access the page :heavy_check_mark:
 - The **ADD** button is displayed :heavy_check_mark:
 - **Clicking** on the **ADD** button
-  - Opens a modal with the *Skills admin form* :heavy_check_mark:
+  - Opens a modal with the **Skills admin form** :heavy_check_mark:
   - The input fields are empty :heavy_check_mark:
   - A **name** is **required** in the *Skill Name* input field :heavy_check_mark:
   - A **number** is **required** in the *Skill Level* input field :heavy_check_mark:
@@ -252,7 +253,7 @@ No obvious bugs were detected in any of the tested browsers. :heavy_check_mark:
 - A user **must be logged** in to access the page :heavy_check_mark:
 - The **ADD** button is displayed :heavy_check_mark:
 - **Clicking** on the **ADD** button
-  - Opens a modal with the *Projects admin form* :heavy_check_mark:
+  - Opens a modal with the **Projects admin form** :heavy_check_mark:
   - The input fields are empty :heavy_check_mark:
   - A **project name** is **required** in the *Project Name* input field :heavy_check_mark:
   - A **url** is **required** in the *Project Image URL* input field :heavy_check_mark:
@@ -282,7 +283,7 @@ No obvious bugs were detected in any of the tested browsers. :heavy_check_mark:
 - A user **must be logged** in to access the page :heavy_check_mark:
 - The **ADD** button is displayed :heavy_check_mark:
 - **Clicking** on the **ADD** button
-  - Opens a modal with the *Qualifications admin form* :heavy_check_mark:
+  - Opens a modal with the **Qualifications admin form** :heavy_check_mark:
   - The input fields are empty :heavy_check_mark:
   - A **qualification name** is **required** in the *Qualification Name* input field :heavy_check_mark:
   - A name is **required** for the **issuing authority** in the *Qualification Issued By* input field :heavy_check_mark:
@@ -310,7 +311,7 @@ No obvious bugs were detected in any of the tested browsers. :heavy_check_mark:
 - A user **must be logged** in to access the page :heavy_check_mark:
 - The **ADD** button is displayed :heavy_check_mark:
 - **Clicking** on the **ADD** button
-  - Opens a modal with the *Blogs admin form* :heavy_check_mark:
+  - Opens a modal with the **Blogs admin form** :heavy_check_mark:
   - The input fields are empty :heavy_check_mark:
   - A **blog title** is **required** in the *Blog Title* input field :heavy_check_mark:
   - A **url** is **required** in the *Blog Image URL* input field :heavy_check_mark:
@@ -332,6 +333,31 @@ No obvious bugs were detected in any of the tested browsers. :heavy_check_mark:
   - **Deletes** the blog post from the *blog_posts* collection :heavy_check_mark:
   - A *Success* or *Failure* message is flashed to the user *on page reload* :heavy_check_mark:
   - The *deleted blog post* is **no longer listed** with other blog posts retreived from the *blog_posts* collection :heavy_check_mark:
+
+#### Manage Experience (/admin/experience.html)
+
+- A user **must be logged** in to access the page :heavy_check_mark:
+- The **ADD** button is displayed :heavy_check_mark:
+- **Clicking** on the **ADD** button
+  - Opens a modal with the **Experience admin form** :heavy_check_mark:
+  - The input fields are empty :heavy_check_mark:
+  - A **job title** is **required** in the *Job Title* input field :heavy_check_mark:
+  - **Job dates** are **required** in the *Job Dates* input field :heavy_check_mark:
+  - **Clicking** on the form **ADD button** creates a new document in the *work_experience* collection in the database :heavy_check_mark:
+  - A *Success* or *Failure* message is flashed to the user *on page reload* :heavy_check_mark:
+  - The *newly created experience* is listed with other existing experience on the *Manage Experience* page :heavy_check_mark:
+- **All experience** is listed with **Edit** and **Delete** buttons for each job :heavy_check_mark:
+- **Clicking** on an experience's **Edit** button:
+  - *Opens a modal* with the **Experience admin form** :heavy_check_mark:
+  - The input fields are *populated with data for that particular experience* using data retrieved from the *work_experience* collection :heavy_check_mark:
+  - The user can edit the data in the form so long as it does not violate the requirements for form validation :heavy_check_mark:
+  - **Clicking** on the form **Update button** sends the form data to the backend and updates the document in the *work_experience* collection :heavy_check_mark:
+  - A *Success* or *Failure* message is flashed to the user *on page reload* :heavy_check_mark:
+  - The *updated experience* is listed with other existing experience on the *Manage Experience* page :heavy_check_mark:
+- **Clicking** on an experience's **Delete** button:
+  - **Deletes** the experience from the *work_experience* collection :heavy_check_mark:
+  - A *Success* or *Failure* message is flashed to the user *on page reload* :heavy_check_mark:
+  - The *deleted experience* is **no longer listed** with other experience retreived from the backend :heavy_check_mark:
 
 ## Bugs
 
