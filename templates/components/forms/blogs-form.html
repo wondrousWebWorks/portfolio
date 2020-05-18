@@ -5,31 +5,36 @@
             <input id="blogs-form-doc-id" type="hidden">
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="blog-title" name="blog-title" type="text" class="validate">
+                    <input id="blog-title" name="blog-title" type="text" class="validate" required>
                     <label for="blog-title" class="blogs-form-label">Blog Title</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="blog-img-url" name="blog-img-url" type="text" class="validate">
+                    <input id="blog-img-url" name="blog-img-url" type="url" class="validate" required>
                     <label for="blog-img-url" class="blogs-form-label">Blog Image URL</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="blog-summary" name="blog-summary" type="text" class="validate">
+                    <input id="blog-summary" name="blog-summary" type="text" class="validate" required>
                     <label for="blog-summary" class="blogs-form-label">Blog Summary</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="blog-date" name="blog-date" type="text" class="validate">
+                    <input id="blog-date" name="blog-date" type="text" class="validate" required>
                     <label for="blog-date" class="blogs-form-label">Upload Date</label>
                 </div>
             </div>
             {% for blog_paragraph_id in range(1, 11) %}
                 <div class="row">
                     <div class="input-field col s12">
+                        {% if loop.index == 1 %}
+                            <textarea id="blog-paragraph-{{ blog_paragraph_id }}" name="blog-body" class="blog-paragraph materialize-textarea" required></textarea>
+                        {% else %}
+                            <textarea id="blog-paragraph-{{ blog_paragraph_id }}" name="blog-body" class="blog-paragraph materialize-textarea"></textarea>
+                        {% endif %}
                         <textarea id="blog-paragraph-{{ blog_paragraph_id }}" name="blog-body" class="blog-paragraph materialize-textarea"></textarea>
                         <label for="blog-paragraph-{{ blog_paragraph_id }}" class="blogs-form-label">Blog Paragraph {{ blog_paragraph_id }}</label>
                     </div>
@@ -37,7 +42,7 @@
             {% endfor %}
             <div class="row">
                 <div class="col s12">
-                    <button id="blogs-form-submit-btn" class="modal-submit-btn modal-close btn sa-flag-blue-bg off-white waves-effect waves-light"><i
+                    <button id="blogs-form-submit-btn" class="modal-submit-btn btn sa-flag-blue-bg off-white waves-effect waves-light"><i
                         class="fas fa-plus-square" type="submit"></i>&nbsp;<span id="blogs-form-submit-btn-text">Add</span>
                     </button>
                 </div>
