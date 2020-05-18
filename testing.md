@@ -408,7 +408,7 @@ As with many a project, I encountered a few bugs during development which requir
 
 - **Verdict**
 
-  Users cannot enter a skill level of more than 100 as the form won't be submitted until all fields are validated.
+  Users cannot enter a skill level of more than 100 as the form will not be submitted until all fields are validated.
 
 #### Non-URL values accepted as input in Projects and Blog forms
 
@@ -422,4 +422,4 @@ As with many a project, I encountered a few bugs during development which requir
 
 - **Verdict**
 
-  Users cannot sumbit a these forms unless URLs are proved in the input fiels with a **type** of **url**.
+  Users cannot submit a these forms unless URLs are proved in the input fiels with a **type** of **url**.
