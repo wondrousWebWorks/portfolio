@@ -18,21 +18,15 @@ const qualificationInfoUrl = document.querySelector('#qualification-info-url');
 const qualificationModalInstance = M.Modal.init(qualificationModal);
 
 document.addEventListener('DOMContentLoaded', function () {
-    qualificationAddModalTrigger.addEventListener('click', () => {
-        toggleAddModal('qualifications');
-    });
+    qualificationAddModalTrigger.addEventListener('click', () => toggleAddModal('qualifications'));
 
-    qualificationFormSubmitButton.addEventListener('click', function() {
-        addOrUpdateFormData(this);
-    });
+    qualificationFormSubmitButton.addEventListener('click', () => addOrUpdateFormData(qualificationFormSubmitButton));
 
     Array.from(qualificationUpdateButtons).forEach(updateButton => {
-        updateButton.addEventListener('click', getQualificationData);
+        updateButton.addEventListener('click', () => getQualificationData(updateButton));
     });
 
     Array.from(qualificationDeleteButtons).forEach(deleteButton => {
-        deleteButton.addEventListener('click', function() {
-            deleteDocument(this);
-        });
+        deleteButton.addEventListener('click', () => deleteDocument(deleteButton));
     });
 });
