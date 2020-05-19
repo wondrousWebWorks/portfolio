@@ -63,7 +63,7 @@
         <li class="nav-display-col-item"><a href="{{ url_for('manage_projects') }}"><i class="fas fa-code"></i>&nbsp;Projects</a></li><hr>
         <li class="nav-display-col-item"><a href="{{ url_for('manage_qualifications') }}"><i class="fas fa-graduation-cap"></i>&nbsp;Qualifications</a></li><hr>
         <li class="nav-display-col-item"><a href="{{ url_for('manage_blogs') }}"><i class="fas fa-blog"></i>&nbsp;Blogs</a></li><hr>
-        <li class="nav-display-col-item"><a href="{{ url_for('manage_experience') }}"><i class="fas fa-chart-line"></i>&nbsp;Experience</a></li>
+        <li class="nav-display-col-item"><a href="{{ url_for('manage_experience') }}"><i class="fas fa-chart-line"></i>&nbsp;Experience</a></li><hr>
         <li class="nav-display-col-item"><a href="{{ url_for('home') }}"><i class="fas fa-home"></i>&nbsp;Back To Site</a></li><hr>
         {% if current_user.is_authenticated %}
           <li><a class="nav-display-col-item" href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i>&nbsp;Log Out</a></li>
