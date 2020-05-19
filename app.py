@@ -10,7 +10,6 @@ from flask_login import LoginManager, login_user, logout_user, login_required
 from user import User
 
 APP = Flask(__name__)
-
 MAIL = Mail(APP)
 BCRYPT = Bcrypt(APP)
 LOGINMANAGER = LoginManager(APP)
@@ -29,11 +28,11 @@ APP.config['MAIL_USE_SSL'] = True
 
 @APP.route('/')
 def home():
-    """Return a rendered template of the HOME page with data passed to page
-
-    Retrieve data from skills, projects (limited in number), qualifications 
+    """
+    Retrieve data from skills, projects (limited to 3), qualifications, blog posts 
     and experience collections from MongoDB Atlas.  Return a rendered template 
-    of the home page and pass the retrieved data to it
+    of the home page and pass the retrieved data to it, as well as a parameter to
+    set the header image to full screen height.
     """
     skills = MONGO.db.skills.find()
     projects = MONGO.db.portfolio.find().limit(3)
@@ -51,7 +50,11 @@ def home():
 
 @APP.route('/about')
 def about():
-    """Return a rendered template of the ABOUT page"""
+    """
+    Return a rendered template of the ABOUT page and sends a
+    view parameter to affect the Call To Action text and button text
+    for the ABOUT page specifically.
+    """
     return render_template(
         'pages/about.html', 
         view='about'
@@ -60,10 +63,11 @@ def about():
 
 @APP.route('/projects')
 def projects():
-    """Return a rendered template of the PROJECTS page with data passed to page
-    
+    """
     Retrieve all projects from the PORTFOLIO collection from MongoDB Atlas.
-    Return a rendered template of the PROJECTS page and pass data to it
+    Return a rendered template of the PROJECTS page and pass data to it. Also
+    send a view parameter to affect the Call To Action text and button text for
+    the PROJECTS page specifically.
     """
     projects = MONGO.db.portfolio.find()
     return render_template(
@@ -75,12 +79,13 @@ def projects():
 
 @APP.route('/project/<project_id>')
 def project(project_id):
-    """Return a rendered template of a specific PROJECT PAGE based on Id
-
-    Convert the Id passed here from url_for in a PROJECT CARD into bson
-    format.  Use the converted Id value to retrieve data for a specific 
-    project from MongoDB Atlas.  Return a rendered remplate of a specific
-    PROJECT PAGE and pass data to it 
+    """
+    Convert the ID passed here from url_for in a PROJECT CARD into BSON
+    format.  Use the converted ID value to retrieve data for a specific 
+    project from the portfolio collection.  Return a rendered remplate of 
+    a specific PROJECT PAGE and pass the retrieved data to it as well as
+    a view parameter to affect the Call To Action text and button text for
+    the PROJECT page specifically.
     """
     project = MONGO.db.portfolio.find_one({'_id': ObjectId(project_id)})
     return render_template(
@@ -92,7 +97,14 @@ def project(project_id):
 
 @APP.route('/contact', methods=['GET', 'POST'])
 def contact():
-    """Return a rendered template of the CONTACT page or send eMAIL"""
+    """
+    When receiving a GET request, return a rendered template of the CONTACT page
+    and send a view parameter to affect the Call To Action text and button text for
+    the CONTACT page specifically.
+
+    When receiving a POST request, construct a message from the request form data
+    and send an email. Return a redirect to the HOME page once completed.
+    """
     if request.method == 'GET':
         return render_template('pages/contact.html', view='contact')
     elif request.method == 'POST':
@@ -108,10 +120,11 @@ def contact():
 
 @APP.route('/blogs')
 def blogs():
-    """Return a rendered template with all blog data of the BLOGS page
-    
-    Retrieve all blog posts from MongoDB altas blog_posts collection.
-    Return a rendered template of the BLOGS page and send data to it
+    """    
+    Retrieve all blog posts from the blog_posts collection.
+    Return a rendered template of the BLOGS page and send retrieved
+    blog posts to it as well as a view parameter to affect the 
+    Call To Action text and button text for the BLOGS page specifically.
     """
     blog_posts = MONGO.db.blog_posts.find()
     return render_template(
@@ -123,12 +136,13 @@ def blogs():
 
 @APP.route('/blogs/blog-post/<blog_id>')
 def blog_entry(blog_id):
-    """Return a rendered template of a spefic BLOG POST based on Id
-    
-    Convert the Id passed here from url_for in a BLOG POST CARD into bson
-    format.  Use the converted Id value to retrieve data for a specific 
-    blog entry from the blog_posts collection in MongoDB Atlas.  Return a 
-    rendered remplate of a specific BLOG POST PAGE and pass data to it 
+    """    
+    Convert the ID passed here from url_for in a BLOG POST CARD into BSON
+    format.  Use the converted ID value to retrieve data for a specific 
+    blog entry from the blog_posts collection.  Return a rendered remplate 
+    of a specific BLOG POST PAGE and pass the retrieved data to it as well 
+    as a view parameter to affect the Call To Action text and button text 
+    for the BLOG ENTRY page specifically.
     """
     blog_entry = MONGO.db.blog_posts.find_one({'_id': ObjectId(blog_id)})
     return render_template(
@@ -138,14 +152,63 @@ def blog_entry(blog_id):
     )
 
 
+@LOGINMANAGER.user_loader
+def load_user(email):
+    """
+    Gets information for a specific user from the users collection
+    and returns a User instance created with the specific user data.
+    If the user cannot be found, return nothing.
+    
+    """
+    users = MONGO.db.users
+    user = users.find_one({'email': email})
+    if not user:
+        return None
+    else:
+        return User(email=user['email'], password=user['password'])
+
+
+@APP.route('/login', methods=['GET', 'POST'])
+def login():
+    """
+    When the request method is POST, try to find the user in the users collection
+    using the email in the request form.  If the user is found, hash the password
+    provided in the request form and compare it to the hashed password retrieved
+    from the users collection. If the passwords match, log the user in and redirect
+    to the Admin page. If the login details are incorrect, flash a message informing
+    user and reload the login page. Pass a view parameter that will set the header
+    image to less than 100% screen height.
+    """
+    if request.method == 'POST':
+        users = MONGO.db.users
+        find_user = users.find_one({'email': request.form['email']})
+        if find_user and BCRYPT.check_password_hash(find_user['password'], request.form['password']):
+            user = User(find_user['email'], find_user['password'])
+            login_user(user)
+            return redirect(url_for('admin'))
+        flash('The login details you provided are incorrect', 'info')
+    return render_template(
+        'pages/login.html', 
+        view='login'
+    )
+
+
+@APP.route("/logout")
+@login_required
+def logout():
+    """Logs a user out and destroys session data"""
+    logout_user()
+    flash('You have been logged out.', 'info')
+    return redirect(url_for('home'))
+
+
 @APP.route('/admin')
 @login_required
 def admin():
-    """Return a rendered template of the ADMIN page and pass data to it
-    
+    """    
     Retrieve all documents from the skills, portfolio, qualifications,
-    work_experience and blog_posts collections. Return a rendered template
-    of the ADMIN page and pass all retrieved data to it
+    work_experience and blog_posts collections and count them separately. 
+    Return a rendered template of the ADMIN page and pass all counts to it
     """
     skill_count = MONGO.db.skills.count()
     project_count = MONGO.db.portfolio.count()
@@ -166,7 +229,11 @@ def admin():
 @APP.route('/admin/skills')
 @login_required
 def manage_skills():
-    """Return a rendered template of SKILLS page with all skills sent to it"""
+    """
+    Retrieve all skills from the skills collection. Return a rendered 
+    template of 'pages/admin/skills.html' and send retrieved skills to it 
+    as well as a view parameter to set the top margin of the page heading.
+    """
     skills = MONGO.db.skills.find()
     return render_template(
         'pages/admin/skills.html', 
@@ -178,7 +245,20 @@ def manage_skills():
 @APP.route('/admin/skills/add', methods=['POST'])
 @login_required
 def add_skill():
-    """Insert a new document into skills collection"""
+    """
+    When receiving a POST request, try to construct a dictionary
+    from the POST request and insert it into the skills collection.
+    Try to verify that the skill has been inserted into the skills
+    collection and flash a SUCCESS or FAILURE message as well as
+    creating a reponse with a message and an appropriate HTTP status
+    code. 
+
+    If the above fails, flash a message informing the user that an error
+    occured on the server side and create a response to send to the front
+    end with the correct HTTPS status code.
+
+    Return the created response.
+    """
     if request.method == 'POST':
         try:
             skills = MONGO.db.skills
@@ -201,7 +281,21 @@ def add_skill():
 @APP.route('/admin/skills/update/<skill_id>', methods=['GET', 'PUT'])
 @login_required
 def update_skill(skill_id):
-    """Update a skill based on its Id"""
+    """
+    When receiving a GET request, try to convert the skill ID to BSON format
+    and find the skill in the skills collection. If the skill is found, create a
+    response containing the skill as JSON (minus its ID), otherwise flash a FAILURE message
+    and create a reponse with an HTTP status code of 503. Should this attempt fail,
+    flash a FAILURE message and return a response with an HTTP status code of 500.
+
+    When receiving a PUT request, try to construct a dictionary from the request body
+    and update the skill in the skills collection based on its ID (converted to BSON).
+    Flash a SUCCESS message and create a response with an HTTP status code of 200. Should
+    the update fail, flash a FAILURE message and create a response with an HTTP status code
+    of 500.
+
+    Return the created response.
+    """
     skills = MONGO.db.skills
 
     if request.method == 'GET':
@@ -237,7 +331,19 @@ def update_skill(skill_id):
 @APP.route('/admin/skills/delete/<skill_id>', methods=['DELETE'])
 @login_required
 def delete_skill(skill_id):
-    """Remove a skill from skills collection based on Id"""
+    """
+    When the request method is DELETE, try to remove the particular skill
+    from the skills collection using its ID (converted to BSON). Following the
+    deletion attempt, attempt to locate the skill in the skills collection.
+    If the skill cannot be found, flash a SUCCESS message and create a response
+    with an HTTPS status code of 200, otherwise flash a FAILURE message and create
+    a response with an HTTP status code of 503.
+
+    Should the above attempt fail, flash a FAILURE message and create a response
+    with a status code of 500.
+
+    Return the response.
+    """
     if request.method == 'DELETE':
         try:
             skills = MONGO.db.skills
@@ -259,7 +365,11 @@ def delete_skill(skill_id):
 @APP.route('/admin/projects')
 @login_required
 def manage_projects():
-    """Return a rendered template of PROJECTS page with all projects sent to it"""
+    """
+    Retrieve all projects from the portfolio collection. Return a rendered 
+    template of 'pages/admin/projects.html' and send retrieved skills to it 
+    as well as a view parameter to set the top margin of the page heading.
+    """
     projects = MONGO.db.portfolio.find()
     technologies = MONGO.db.technologies.find()
     technology_list = technologies[0]['technology_name']
@@ -274,7 +384,20 @@ def manage_projects():
 @APP.route('/admin/projects/add', methods=['POST'])
 @login_required
 def add_project():
-    """Insert a new document into portfolio collection"""
+    """
+    When receiving a POST request, try to construct a dictionary
+    from the POST request and insert it into the portfolio collection.
+    Try to verify that the project has been inserted into the portfolio
+    collection and flash a SUCCESS or FAILURE message as well as
+    creating a reponse with a message and an appropriate HTTP status
+    code. 
+
+    If the above fails, flash a message informing the user that an error
+    occured on the server side and create a response to send to the front
+    end with the correct HTTPS status code.
+
+    Return the created response.
+    """
     if request.method == 'POST':
         try:
             projects = MONGO.db.portfolio
@@ -297,6 +420,21 @@ def add_project():
 @APP.route('/admin/projects/update/<project_id>', methods=['GET', 'PUT'])
 @login_required
 def update_project(project_id):
+    """
+    When receiving a GET request, try to convert the project ID to BSON format
+    and find the project in the portfolio collection. If the project is found, create a
+    response containing the project as JSON (minus its ID), otherwise flash a FAILURE message
+    and create a reponse with an HTTP status code of 503. Should this attempt fail,
+    flash a FAILURE message and return a response with an HTTP status code of 500.
+
+    When receiving a PUT request, try to construct a dictionary from the request body
+    and update the project in the portfolio collection based on its ID (converted to BSON).
+    Flash a SUCCESS message and create a response with an HTTP status code of 200. Should
+    the update fail, flash a FAILURE message and create a response with an HTTP status code
+    of 500.
+
+    Return the created response.
+    """
     portfolio = MONGO.db.portfolio
 
     if request.method == 'GET':
@@ -327,7 +465,19 @@ def update_project(project_id):
 @APP.route('/admin/projects/delete/<project_id>', methods=['DELETE'])
 @login_required
 def delete_project(project_id):
-    """Remove a project from portfolio collection based on Id"""
+    """
+    When the request method is DELETE, try to remove the particular project
+    from the portfolio collection using its ID (converted to BSON). Following the
+    deletion attempt, attempt to locate the project in the portfolio collection.
+    If the project cannot be found, flash a SUCCESS message and create a response
+    with an HTTPS status code of 200, otherwise flash a FAILURE message and create
+    a response with an HTTP status code of 503.
+
+    Should the above attempt fail, flash a FAILURE message and create a response
+    with a status code of 500.
+
+    Return the response.
+    """
     if request.method == 'DELETE':
         try:
             projects = MONGO.db.portfolio
@@ -349,10 +499,10 @@ def delete_project(project_id):
 @APP.route('/admin/qualifications')
 @login_required
 def manage_qualifications():
-    """Return a rendered template of MANAGE QUALIFICATIONS page
-    
-    Retrieve all qualification documents from the qualifications collection.  
-    Pass retrieved data to a rendered template of the MANMAGE QUALIFICATIONS page.
+    """
+    Retrieve all qualifications from the qualifications collection. Return a rendered 
+    template of 'pages/admin/qualifications.html' and send retrieved qualifications to it 
+    as well as a view parameter to set the top margin of the page heading.
     """
     qualifications = MONGO.db.qualifications.find()
     return render_template(
@@ -365,7 +515,20 @@ def manage_qualifications():
 @APP.route('/admin/qualifications/add', methods=['POST'])
 @login_required
 def add_qualification():
-    """Insert a new document into qualifications collection"""
+    """
+    When receiving a POST request, try to construct a dictionary
+    from the POST request and insert it into the qualifications collection.
+    Try to verify that the qualification has been inserted into the qualifications
+    collection and flash a SUCCESS or FAILURE message as well as
+    creating a reponse with a message and an appropriate HTTP status
+    code. 
+
+    If the above fails, flash a message informing the user that an error
+    occured on the server side and create a response to send to the front
+    end with the correct HTTPS status code.
+
+    Return the created response.
+    """
     if request.method == 'POST':
         try:
             qualifications = MONGO.db.qualifications
@@ -388,7 +551,21 @@ def add_qualification():
 @APP.route('/admin/qualifications/update/<qualification_id>', methods=['GET', 'PUT'])
 @login_required
 def update_qualification(qualification_id):
-    """Update a qualification based on its Id"""
+    """
+    When receiving a GET request, try to convert the qualification ID to BSON format
+    and find the qualification in the qualifications collection. If the qualification is found, create a
+    response containing the skill as JSON (minus its ID), otherwise flash a FAILURE message
+    and create a reponse with an HTTP status code of 503. Should this attempt fail,
+    flash a FAILURE message and return a response with an HTTP status code of 500.
+
+    When receiving a PUT request, try to construct a dictionary from the request body
+    and update the qualification in the qualifications collection based on its ID (converted to BSON).
+    Flash a SUCCESS message and create a response with an HTTP status code of 200. Should
+    the update fail, flash a FAILURE message and create a response with an HTTP status code
+    of 500.
+
+    Return the created response.
+    """
     qualifications = MONGO.db.qualifications
 
     if request.method == 'GET':
@@ -426,7 +603,19 @@ def update_qualification(qualification_id):
 @APP.route('/admin/qualifications/delete/<qualification_id>', methods=['DELETE'])
 @login_required
 def delete_qualification(qualification_id):
-    """Remove a qualification from qualifications collection based on Id"""
+    """
+    When the request method is DELETE, try to remove the particular qualification
+    from the qualifications collection using its ID (converted to BSON). Following the
+    deletion attempt, attempt to locate the qualification in the qualifications collection.
+    If the qualification cannot be found, flash a SUCCESS message and create a response
+    with an HTTPS status code of 200, otherwise flash a FAILURE message and create
+    a response with an HTTP status code of 503.
+
+    Should the above attempt fail, flash a FAILURE message and create a response
+    with a status code of 500.
+
+    Return the response.
+    """
     if request.method == 'DELETE':
         try:
             qualifications = MONGO.db.qualifications
@@ -448,7 +637,11 @@ def delete_qualification(qualification_id):
 @APP.route('/admin/blogs')
 @login_required
 def manage_blogs():
-    """Return a rendered template of BLOGS page with all blog posts sent to it"""
+    """
+    Retrieve all blog posts from the blog_posts collection. Return a rendered 
+    template of 'pages/admin/blogs.html' and send retrieved blog posts to it 
+    as well as a view parameter to set the top margin of the page heading.
+    """
     blog_posts = MONGO.db.blog_posts.find()
     return render_template(
         'pages/admin/blogs.html', 
@@ -460,7 +653,20 @@ def manage_blogs():
 @APP.route('/admin/blogs/add', methods=['POST'])
 @login_required
 def add_blog_post():
-    """Insert a new document into blog_posts collection"""
+    """
+    When receiving a POST request, try to construct a dictionary
+    from the POST request and insert it into the blog_posts collection.
+    Try to verify that the blog post has been inserted into the blog_post
+    collection and flash a SUCCESS or FAILURE message as well as
+    creating a reponse with a message and an appropriate HTTP status
+    code. 
+
+    If the above fails, flash a message informing the user that an error
+    occured on the server side and create a response to send to the front
+    end with the correct HTTPS status code.
+
+    Return the created response.
+    """
     if request.method == 'POST':
         try:
             blog_posts = MONGO.db.blog_posts
@@ -483,7 +689,21 @@ def add_blog_post():
 @APP.route('/admin/blogs/update/<blog_post_id>', methods=['GET','PUT'])
 @login_required
 def update_blog_post(blog_post_id):
-    """Update a blog post based on its Id"""
+    """
+    When receiving a GET request, try to convert the blog post ID to BSON format
+    and find the blog post in the blog_posts collection. If the blog post is found, create a
+    response containing the blog post as JSON (minus its ID), otherwise flash a FAILURE message
+    and create a reponse with an HTTP status code of 503. Should this attempt fail,
+    flash a FAILURE message and return a response with an HTTP status code of 500.
+
+    When receiving a PUT request, try to construct a dictionary from the request body
+    and update the blog post in the blog_posts collection based on its ID (converted to BSON).
+    Flash a SUCCESS message and create a response with an HTTP status code of 200. Should
+    the update fail, flash a FAILURE message and create a response with an HTTP status code
+    of 500.
+
+    Return the created response.
+    """
     blog_posts = MONGO.db.blog_posts
 
     if request.method == 'GET':
@@ -521,7 +741,19 @@ def update_blog_post(blog_post_id):
 @APP.route('/admin/blogs/delete/<blog_post_id>', methods=['DELETE'])
 @login_required
 def delete_blog_post(blog_post_id):
-    """Remove a blog post from blog_posts collection based on Id"""
+    """
+    When the request method is DELETE, try to remove the particular blog post
+    from the blog_posts collection using its ID (converted to BSON). Following the
+    deletion attempt, attempt to locate the blog post in the blog_posts collection.
+    If the blog post cannot be found, flash a SUCCESS message and create a response
+    with an HTTPS status code of 200, otherwise flash a FAILURE message and create
+    a response with an HTTP status code of 503.
+
+    Should the above attempt fail, flash a FAILURE message and create a response
+    with a status code of 500.
+
+    Return the response.
+    """
     if request.method == 'DELETE':
         try:
             blog_posts = MONGO.db.blog_posts
@@ -542,7 +774,11 @@ def delete_blog_post(blog_post_id):
 @APP.route('/admin/experience')
 @login_required
 def manage_experience():
-    """Return a rendered template of EXPERIENCE page with all work experience sent to it"""
+    """
+    Retrieve all work experience from the work_experience collection. Return a rendered 
+    template of 'pages/admin/experience.html' and send retrieved work experience to it 
+    as well as a view parameter to set the top margin of the page heading.
+    """
     experience = MONGO.db.work_experience.find()
     return render_template(
         'pages/admin/experience.html', 
@@ -554,7 +790,20 @@ def manage_experience():
 @APP.route('/admin/experience/add', methods=['POST'])
 @login_required
 def add_experience():
-    """Insert a new document into experience collection"""
+    """
+    When receiving a POST request, try to construct a dictionary
+    from the POST request and insert it into the work_experience collection.
+    Try to verify that the work experience has been inserted into the work_experience
+    collection and flash a SUCCESS or FAILURE message as well as
+    creating a reponse with a message and an appropriate HTTP status
+    code.
+
+    If the above fails, flash a message informing the user that an error
+    occured on the server side and create a response to send to the front
+    end with the correct HTTPS status code.
+
+    Return the created response.
+    """
     if request.method == 'POST':
         try:
             experience = MONGO.db.work_experience
@@ -577,7 +826,21 @@ def add_experience():
 @APP.route('/admin/experience/update/<experience_id>', methods=['GET','PUT'])
 @login_required
 def update_experience(experience_id):
-    """Update experience document based on its Id"""
+    """
+    When receiving a GET request, try to convert the experience ID to BSON format
+    and find the experience in the work_experience collection. If the experience is found, create a
+    response containing the experience as JSON (minus its ID), otherwise flash a FAILURE message
+    and create a reponse with an HTTP status code of 503. Should this attempt fail,
+    flash a FAILURE message and return a response with an HTTP status code of 500.
+
+    When receiving a PUT request, try to construct a dictionary from the request body
+    and update the experience in the work_experience collection based on its ID (converted to BSON).
+    Flash a SUCCESS message and create a response with an HTTP status code of 200. Should
+    the update fail, flash a FAILURE message and create a response with an HTTP status code
+    of 500.
+
+    Return the created response.
+    """
     experience = MONGO.db.work_experience
 
     if request.method == 'GET':
@@ -611,7 +874,19 @@ def update_experience(experience_id):
 @APP.route('/admin/experience/delete/<experience_id>', methods=['DELETE'])
 @login_required
 def delete_experience(experience_id):
-    """Remove a work experience document from work_experience collection based on Id"""
+    """
+    When the request method is DELETE, try to remove the particular experience
+    from the work_experience collection using its ID (converted to BSON). Following the
+    deletion attempt, attempt to locate the experience in the work_experience collection.
+    If the experience cannot be found, flash a SUCCESS message and create a response
+    with an HTTPS status code of 200, otherwise flash a FAILURE message and create
+    a response with an HTTP status code of 503.
+
+    Should the above attempt fail, flash a FAILURE message and create a response
+    with a status code of 500.
+
+    Return the response.
+    """
     if request.method == 'DELETE':
         try:
             experience = MONGO.db.work_experience
@@ -628,43 +903,6 @@ def delete_experience(experience_id):
             flash('Oops, something seems to have gone wrong server side...', 'failure')
             response = make_response(jsonify({'message': 'Something seems to have gone wrong server side. Please try again later.'}), 500)     
     return response
-
-
-@LOGINMANAGER.user_loader
-def load_user(email):
-    """Gets information for a specific user from the database"""
-    users = MONGO.db.users
-    user = users.find_one({'email': email})
-    if not user:
-        return None
-    else:
-        return User(email=user['email'], password=user['password'])
-
-
-@APP.route('/login', methods=['GET', 'POST'])
-def login():
-    """Verifies login form information and logs a user in if valid ceredntials are provided"""
-    if request.method == 'POST':
-        users = MONGO.db.users
-        find_user = users.find_one({'email': request.form['email']})
-        if find_user and BCRYPT.check_password_hash(find_user['password'], request.form['password']):
-            user = User(find_user['email'], find_user['password'])
-            login_user(user)
-            return redirect(url_for('admin'))
-        flash('The login details you provided are incorrect', 'info')
-    return render_template(
-        'pages/login.html', 
-        view='login'
-    )
-
-
-@APP.route("/logout")
-@login_required
-def logout():
-    """Logs a user out and destroys session data"""
-    logout_user()
-    flash('You have been logged out.', 'info')
-    return redirect(url_for('home'))
 
 
 @APP.errorhandler(404)
