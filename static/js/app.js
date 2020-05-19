@@ -8,6 +8,7 @@ const projects = document.querySelectorAll('.project-col');
 /* NAVBAR */
 const toggleMenuIcon = document.querySelector('.menu-toggle-icon');
 const sideNav = document.querySelector('.nav-display-col');
+let sideNavTriggered = false;
 
 /* ADMIN SHARED */
 const modalSubmitButtons = document.querySelectorAll('.modal-submit-btn');
@@ -41,7 +42,7 @@ const randomizeInitialSkillBarHeight = () => {
             if (skillLevel == 0) {
                 continue;
             } else {
-                const skillBarRandomHeight = Math.floor(Math.random() * (skillLevel - 3) + 3);
+                const skillBarRandomHeight = Math.floor(Math.random() * 100);
                 skillBars[i].style.height = `${skillBarRandomHeight}%`;
                 const skillBarRisingOrFalling = Math.random();
                 if (skillBarRisingOrFalling < 0.5) {
@@ -95,12 +96,12 @@ const animateSkillBars = () => {
  * shrinking and increasing the opacity
  * of other projects
  */
-const scaleProject = () => {
+const scaleProject = project => {
     projects.forEach(project => {
         project.classList.add('project-scale-smaller-and-opage');
     });
-    this.classList.remove('project-scale-smaller-and-opage');
-    this.classList.add('project-scale-bigger');
+    project.classList.remove('project-scale-smaller-and-opage');
+    project.classList.add('project-scale-bigger');
 };
 
 
@@ -118,11 +119,33 @@ const restoreProjectCardSize = () => {
 
 
 /**
- * Toggles the side nav visibility on smaller screens
+ * Toggles the visibility of the vertical menu on smaller screen sizes
+ * @param {HTMLElement} toggleMenuIcon 
  */
-const toggleSideNav = () => {
-    this.classList.toggle('menu-toggle-icon-expand');
-    sideNav.classList.toggle('nav-slide');
+const toggleSideNav = toggleMenuIcon => {
+    if (sideNav.classList.contains('nav-slide')) {
+        sideNavTriggered = false;
+        toggleMenuIcon.classList.remove('menu-toggle-icon-expand');
+        sideNav.classList.remove('nav-slide');
+    } else {
+        toggleMenuIcon.classList.add('menu-toggle-icon-expand');
+        sideNav.classList.add('nav-slide');
+
+        setTimeout(() => {
+            sideNavTriggered = true;
+        }, 600);
+    }
+};
+
+
+/**
+ * Hides the vertical menu on smaller screens if the user
+ * clicks/taps anywhere on the screen while the menu is visible
+ */
+const hideVerticalMenuIfToggled = () => {
+    if (sideNavTriggered == true) {
+        toggleSideNav(toggleMenuIcon);
+    }
 };
 
 
@@ -276,7 +299,6 @@ const sendData = (urlTarget, addOrUpdate, requestBody, docId = '1') => {
     .then(response => {
         if (response.status !== 200) {
             console.log(`Response status not 200: ${response.status}`);
-            location.reload();
             return;
         }
         response.json().then(data => {
@@ -294,7 +316,7 @@ const sendData = (urlTarget, addOrUpdate, requestBody, docId = '1') => {
  * POSTs Skill form data to backend
  */
 const addSkillData = () => {
-    if (skillName.checkValidity() && skillLevel.checkValidity()) {
+    if (skillForm.checkValidity()) {
         const skillEntry = {
             skill_name: skillName.value,
             skill_level: skillLevel.value
@@ -309,18 +331,20 @@ const addSkillData = () => {
  * POSTs Project form data to backend
  */
 const addProjectData = () => {
-    const projectTechnologiesValues = M.FormSelect.getInstance(projectTechnologies);
-    const projectDescription = Array.from(projectDescriptionParagraphs).map(paragraph => paragraph.value);
-    const projectEntry = {
-        project_name: projectName.value,
-        project_img_url: projectImgUrl.value,
-        project_github_url: projectGithubUrl.value,
-        project_deployed_url: projectDeployedUrl.value,
-        project_technologies: projectTechnologiesValues.getSelectedValues(),
-        project_description: projectDescription
-    };
-
-    sendData('projects', 'add', projectEntry);
+    if (projectForm.checkValidity()) {
+        const projectTechnologiesValues = M.FormSelect.getInstance(projectTechnologies);
+        const projectDescription = Array.from(projectDescriptionParagraphs).map(paragraph => paragraph.value);
+        const projectEntry = {
+            project_name: projectName.value,
+            project_img_url: projectImgUrl.value,
+            project_github_url: projectGithubUrl.value,
+            project_deployed_url: projectDeployedUrl.value,
+            project_technologies: projectTechnologiesValues.getSelectedValues(),
+            project_description: projectDescription
+        };
+    
+        sendData('projects', 'add', projectEntry);
+    }
 };
 
 
@@ -328,15 +352,17 @@ const addProjectData = () => {
  * POSTs Qualification form data to backend
  */
 const addQualificationData = () => {
-    const qualificationEntry = {
-        qualification_name: qualificationName.value,
-        qualification_from: qualificationFrom.value,
-        qualification_issue_date: qualificationIssueDate.value,
-        qualification_view_url: qualificationViewUrl.value,
-        qualification_info_url: qualificationInfoUrl.value
-    };
-
-    sendData('qualifications', 'add', qualificationEntry);
+    if (qualificationForm.checkValidity()) {
+        const qualificationEntry = {
+            qualification_name: qualificationName.value,
+            qualification_from: qualificationFrom.value,
+            qualification_issue_date: qualificationIssueDate.value,
+            qualification_view_url: qualificationViewUrl.value,
+            qualification_info_url: qualificationInfoUrl.value
+        };
+    
+        sendData('qualifications', 'add', qualificationEntry);
+    }
 };
 
 
@@ -344,20 +370,22 @@ const addQualificationData = () => {
  * POSTs Blog Post form data to backend
  */
 const addBlogPostData = () => {
-    const blogPostParagraphs = [];
-    blogParagraphs.forEach(paragraph => {
-        blogPostParagraphs.push(paragraph.value);
-    });
-
-    const blogPost = {
-        blog_title: blogTitle.value,
-        blog_img_url: blogImgUrl.value,
-        blog_summary: blogSummary.value,
-        blog_date: blogDate.value,
-        blog_body: blogPostParagraphs
-    };
-
-    sendData('blogs', 'add', blogPost);
+    if (blogForm.checkValidity()) {
+        const blogPostParagraphs = [];
+        blogParagraphs.forEach(paragraph => {
+            blogPostParagraphs.push(paragraph.value);
+        });
+    
+        const blogPost = {
+            blog_title: blogTitle.value,
+            blog_img_url: blogImgUrl.value,
+            blog_summary: blogSummary.value,
+            blog_date: blogDate.value,
+            blog_body: blogPostParagraphs
+        };
+    
+        sendData('blogs', 'add', blogPost);
+    }
 };
 
 
@@ -723,11 +751,13 @@ const addOrUpdateFormData = targetButton => {
 
 /* MAIN SITE AND SHARED EVENT LISTENERS */
 Array.from(projects).forEach(project => {
-    project.addEventListener("mouseover", scaleProject);
-    project.addEventListener("mouseout", restoreProjectCardSize);
+    project.addEventListener("mouseover", () => scaleProject(project));
+    project.addEventListener("mouseout", () => restoreProjectCardSize(project));
     });
 
-toggleMenuIcon.addEventListener('click', toggleSideNav);
+toggleMenuIcon.addEventListener('click', () => toggleSideNav(toggleMenuIcon));
+
+document.addEventListener('click', hideVerticalMenuIfToggled);
 
 
 /* INITIALIZE MATERIALIZE COMPONENTS */
