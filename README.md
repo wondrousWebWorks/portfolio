@@ -31,6 +31,8 @@ Thank you for viewing my project. wondrousWebWorks() is a portfolio for me as a 
         - [#0080ff (sa-flag-blue)](#0080ff-sa-flag-blue)
         - [#FFB81C (sa-flag-gold)](#ffb81c-sa-flag-gold)
         - [#F7F7F7 (off-white)](#f7f7f7-off-white)
+  - [Using the Admin Site](#using-the-admin-site)
+    - [Login Procedure](#login-procedure)
   - [Information Architecture](#information-architecture)
     - [Collection name:  blog_posts](#collection-name-blogposts)
     - [Collection name:  portfolio](#collection-name-portfolio)
@@ -97,7 +99,7 @@ wondrousWebWorks() is created to be a profile for me as a developer.  It serves 
 - Deliver on User Stories as far as possible
 - Gain the interest of prospective employers or customers
 - Create an ADMIN page which allows carrying out CRUD (Create, Read, Update, Delete) operations)
-- Create a site that is future proof and allows for the addition of additional skills, projects, blog posts and education
+- Create a site that is future proof and allows for the addition of additional skills, projects, blog posts, education and work experience
 
 ### Design Choices
 
@@ -175,7 +177,23 @@ The image for the **Hero** shot in the site header was taken from [PNGTREE](http
 
 ##### #F7F7F7 (off-white)
 
-- Used for all text
+- Used for all text, except blog post dates
+
+## Using the Admin Site
+
+For the sake of testing, users can test the functionality of the Admin page by logging in with a guest account.  As the site does not require users to register or create accounts, the login details are provided here instead.
+
+**NOTE** Trying to access any Admin page by typing the URL into the browser's search bar will redirect the user to the **Login** page automatically and inform them of the need to be logged in to access that particular resource.
+
+### Login Procedure
+
+1. Navigate to either the [**Admin**](https://wondrouswebworks.herokuapp.com/admin) or [**Login**](https://wondrouswebworks.herokuapp.com/login) page
+2. Enter the following login details in the form input fields:
+   - Email: guest@test.com
+   - Password: M@ryH@d@L1ttl3L@mb
+3. Click on the **login** button
+
+If the above steps are followed, the user should be logged in and redirected to the Admin Dashboard. A new link will appear in the navbar, **Log out**. Clicking on this will log the user out and login will be required if access to the Admin page is required again.
 
 ## Information Architecture
 
