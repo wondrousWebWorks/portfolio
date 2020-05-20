@@ -45,8 +45,35 @@ Thank you for viewing my project. wondrousWebWorks() is a portfolio for me as a 
     - [Languages](#languages)
     - [Libraries, Frameworks & Tools](#libraries-frameworks--tools)
   - [Wireframes](#wireframes)
-    - [Differences Between Wireframes and Final Product](#differences-between-wireframes-and-final-product)
-      - [Landing Page (Skills section)](#landing-page-skills-section)
+    - [Changes for Both Landscape and Portrait Orientation](#changes-for-both-landscape-and-portrait-orientation)
+      - [Landing Page (Projects section) - landscape and portrait](#landing-page-projects-section---landscape-and-portrait)
+      - [Landing Page (Experience section) - landscape and portrait](#landing-page-experience-section---landscape-and-portrait)
+      - [Admin Management Changes - landscape and portrait](#admin-management-changes---landscape-and-portrait)
+      - [Admin Skills - landscape and portrait](#admin-skills---landscape-and-portrait)
+      - [Admin Projects - landscape and portrait](#admin-projects---landscape-and-portrait)
+    - [Devices in Landscape Orientation](#devices-in-landscape-orientation)
+      - [About Page - landscape](#about-page---landscape)
+      - [Portfolio Page - landscape](#portfolio-page---landscape)
+      - [Contact Page - landscape](#contact-page---landscape)
+      - [Blogs Page - landscape](#blogs-page---landscape)
+      - [Blog Post Page - landscape](#blog-post-page---landscape)
+      - [Login Page - landscape](#login-page---landscape)
+      - [Admin Dashboard - landscape](#admin-dashboard---landscape)
+    - [Devices in Portrait Orientation](#devices-in-portrait-orientation)
+      - [Landing Page (Skills Section) - portrait](#landing-page-skills-section---portrait)
+        - [Tablet Devices - portrait](#tablet-devices---portrait)
+        - [Mobile Devices - portrait](#mobile-devices---portrait)
+      - [About Page - portrait](#about-page---portrait)
+      - [Portfolio Page - portrait](#portfolio-page---portrait)
+      - [Project Page - portrait](#project-page---portrait)
+      - [Contact Page - portrait](#contact-page---portrait)
+      - [Blogs Page - portrait](#blogs-page---portrait)
+        - [Tablet Devices - portrait](#tablet-devices---portrait-1)
+      - [Blog Post Page - portrait](#blog-post-page---portrait)
+        - [Tablet Devices - portrait](#tablet-devices---portrait-2)
+        - [Mobile Devices - portrait](#mobile-devices---portrait-1)
+      - [Login Page - portrait](#login-page---portrait)
+      - [Admin Dashboard - portrait](#admin-dashboard---portrait)
   - [Deployment](#deployment)
     - [Local Installation](#local-installation)
       - [Requirements](#requirements)
@@ -486,15 +513,131 @@ A JSON representation of the **work_experience** collection can be found [here](
 
 ## Wireframes
 
-[Balsamiq Mockups 3](https://balsamiq.com/) was used to design all mockups. Wireframes for desktop, mobile and tablet can be viewed [here](https://github.com/wondrousWebWorks/wondrousWebWorks/tree/master/wireframes). There were some minor differences between the wireframes and the end product due to user feedback following testing.  These changes are highlighted below.
+[Balsamiq Mockups 3](https://balsamiq.com/) was used to design all mockups. Wireframes for desktop, mobile and tablet can be viewed [here](https://github.com/wondrousWebWorks/wondrousWebWorks/tree/master/wireframes). There are some differences between the wireframes and the end product due to user feedback during testing to improve the UX (User Experience).  These changes are highlighted below.
 
-### Differences Between Wireframes and Final Product
+The text in the **page header** and the **page header button** changes dynamically depending on which page is loaded. Other changes are listed below.
 
-Some changes had to be made based on tester feedback to improve User Experience (UX).  These changes are listed below.
+### Changes for Both Landscape and Portrait Orientation
 
-#### Landing Page (Skills section)
+#### Landing Page (Projects section) - landscape and portrait
 
-- On mobile devices in portrait orientation, two skills are displayed per row as opposed to a single skill as illustrated in the wireframe
+- Instead of using square buttons with text for the links to project **GitHub reposities** and **Deployed Sites**, the icons only were used without any text. A tooltip does provide more information on hover of the icons, though.
+
+#### Landing Page (Experience section) - landscape and portrait
+
+- A timeline was used to display work experience instead of the card system.  This makes it easier to read while reflecting more modern design convention.
+
+#### Admin Management Changes - landscape and portrait
+
+- An **Add* button is displayed below the page heading
+- Documents are not listed in a collapsible structure, but simply with the **Edit** and **Delete** buttons listed on the same row as each document
+- Instead of loading separate pages for **adding** or **updating** documents, a form modal is triggered when clicking on either the **Add** or **Edit** buttons
+- The submit button text is **Update** instead of **Confirm Edit** in forms for **editing** documents
+
+#### Admin Skills - landscape and portrait
+
+- The **Add Skill** form no longer has an input field for *Skill Image URL* as it was too difficult to find consitent images for all skills used
+- The **Edit Skill** form no longer has an input field for *Skill Image URL*
+
+#### Admin Projects - landscape and portrait
+
+- **Five** textarea inputs are provided for **Project Description** paragraphs **instead of seven**
+
+### Devices in Landscape Orientation
+
+#### About Page - landscape
+
+- The image is displayed below the opening paragraph text and to the right of the screen
+- On the left of the image is a list with the developer's main qualities and characteristics
+
+#### Portfolio Page - landscape
+
+- The same changes as were made for the **Project** cards in the **Projects** section on the **Landing Page**
+
+#### Contact Page - landscape
+
+- The **Name** and **Last Name** fields were removed
+- A **Subject** input field was added
+
+#### Blogs Page - landscape
+
+- The **Blog Title**, **Blog Date** and **Blog Summary** are now displayed on the Blog Post's background image
+- The **Read** button was removed while clicking on the **card text** will now direct the user to the appropriate blog post
+
+#### Blog Post Page - landscape
+
+- The **image** for the **Blog Post** is now on the right of the screen
+
+#### Login Page - landscape
+
+- The **navbar** for the portfolio site **is displayed** at the top at the screen
+- The *page heading* is **Log In** instead of **Sign In**
+- The **footer** contains the same links as other pages for the **portfolio** site
+
+#### Admin Dashboard - landscape
+
+- **Horizontal navbar** used at the top of the page *instead of a side navigation bar*
+- The new **navbar** does not have links to **Add** or **Manage** any of the collections
+- Instead of displaying the **collections** in a 2 x 1 x 2 arrangement, three collections (Skills, Projects, Qualifications) are listed in one row, while two collections (Blogs, Experience) are listed on another row
+- Instead of having an **Add** button below each collection count, a **Manage** button is displayed which will direct the the user to the appropriate management page
+
+### Devices in Portrait Orientation
+
+#### Landing Page (Skills Section) - portrait
+
+##### Tablet Devices - portrait
+
+- **Four** Skills are listed per row **instead of three**
+
+##### Mobile Devices - portrait
+
+- **Two** Skills are listed per row **instead of three**
+
+#### About Page - portrait
+
+- Below the opening paragraph text is a list with the developer's main qualities and characteristics
+- The image is displayed below the list with the developer's main qualities and characteristics
+
+#### Portfolio Page - portrait
+
+- The same changes as were made for the **Project** cards in the **Projects** section on the **Landing Page**
+
+#### Project Page - portrait
+
+- The **project image** and **technology list** are not displayed side-by-side
+- The **project image** is displayed first
+- The **technology list** is displayed below the **project image**
+
+#### Contact Page - portrait
+
+- The same changes as were made for the **Contact** page in devices in *landscape orientation*
+
+#### Blogs Page - portrait
+
+- The same changes as for **Blog Post** cards on devices with a landscape orientation
+
+##### Tablet Devices - portrait
+
+- **Two** Blog Post cards are displayed per row instead of **one**
+
+#### Blog Post Page - portrait
+
+##### Tablet Devices - portrait
+
+- The same layout as for devices in landscape orientation
+
+##### Mobile Devices - portrait
+
+- The **blog image** is displayed below the **blog title** and **blog date**
+
+#### Login Page - portrait
+
+- The same as for devices in landscape orientation
+
+#### Admin Dashboard - portrait
+
+- The same as for devices in landscape orientation with the following exception:
+  - The navbar is vertical and animates the same as the **Portfolio** site's
 
 ## Deployment
 
@@ -666,7 +809,7 @@ NOTE: In order to deploy successfully to Heroku, both a *requirements.txt* file 
 - Hero Shot image on in header was taken from [PNGTREE](https://pngtree.com/)
 - Blog images were taken from [Pexels](https://www.pexels.com/)
 - Project images were generated using [mockDrop](https://mockdrop.io/)
-- README.md tables were created using [Tables Generator](https://www.tablesgenerator.com/)
+- README.md tables in Information Architecture were created using [Tables Generator](https://www.tablesgenerator.com/)
 
 ## Disclaimer
 
