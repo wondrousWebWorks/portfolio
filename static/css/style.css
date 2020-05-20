@@ -1229,7 +1229,7 @@ a.all-projects-btn {
 
 /* EXPERIENCE */
 #experience-wrapper {
-    width: 80%;
+    width: 60%;
     margin:auto;
     padding: 1.5rem .5rem;
     background: linear-gradient(to bottom right, #1f1f1f, #111);
@@ -1238,14 +1238,14 @@ a.all-projects-btn {
                 -5px -5px 10px #111111;
 }
 
-#experience-wrapper .experience {
+.experience {
     position: relative;
     margin-left: 1.5rem;
     border-left: 2px solid #FFB81C;
     padding: 1.5rem 0;
 }
 
-#experience-wrapper .experience:before {
+.experience::before {
     content: attr(data-dates);
     position: absolute;
     color: #FFB81C;
@@ -1257,7 +1257,7 @@ a.all-projects-btn {
     margin: 0;
 }
 
-#experience-wrapper .experience:after {
+.experience::after {
     width: 1rem;
     height: 1rem;
     display: block;
@@ -1267,46 +1267,46 @@ a.all-projects-btn {
     border-radius: 50%;
     content: "";
     background-color: #007749;
+    transition: all .3s ease-in-out;
+}
+
+.experience:hover::after {
+    width: 1.5rem;
+    height: 1.5rem;
+    left: -.85rem;
+    top:.55rem;
+    background-color: #E03C31;
+    box-shadow: 3px 3px 3px #111,
+                -3px -3px 3px #111;
+}
+
+.experience:hover h3.card-title i {
+    color: #007749;
+    transform: rotateZ(135deg);
+}
+
+.experience:hover h3.card-title {
+    transform: translateX(1.5rem);
 }
 
 h3.card-title {
     margin: 0;
     font-size: 1.6rem;
     padding: .5rem 1rem 0;
+    transition: all .3s ease-in-out;
 }
 
 h3.card-title i {
     font-size: 1.6rem;
-}
-
-.experience-card {
-    background-color: #1f1f1f;
-    padding: 0 1rem;
-    box-shadow:  5px 5px 10px #111111,
-                -5px -5px 10px #111111;
-    border-radius: 4px;
-    transition: transform .35s ease-in-out;
-}
-
-.experience-card:hover {
-    transform: scale(1.08);
-}
-
-.experience-card .card-action {
-    border-top: 1px solid #111;
-}
-
-#experience .card p {
-    font-size: 1.5rem;
+    transition: all .3s ease-in-out;
 }
 
 @media only screen 
     and (min-device-width : 768px) 
     and (max-device-width : 1024px) 
     and (orientation : portrait) {
-    .experience-card {
-        width: 95%;
-        margin: 0 auto 2rem;
+    #experience-wrapper {
+        width: 70%;
     }
     
     #experience .card h3 {
@@ -1323,10 +1323,15 @@ h3.card-title i {
     and (min-device-width : 768px) 
     and (max-device-width : 1024px) 
     and (orientation : landscape) {
-    .experience-card {
-        width: 85%;
-        margin: 0 auto 2rem;
-    }
+    /* #experience-wrapper {
+        width: 60%;
+        margin:auto;
+        padding: 1.5rem .5rem;
+        background: linear-gradient(to bottom right, #1f1f1f, #111);
+        border-radius: .5rem;
+        box-shadow:  5px 5px 10px #111111,
+                    -5px -5px 10px #111111;
+    } */
     
     #experience .card h3 {
         font-weight: bold;
@@ -1341,9 +1346,8 @@ h3.card-title i {
 @media only screen 
     and (min-width : 577px) 
     and (max-width : 1024px) {
-    .experience-card {
-        width: 95%;
-        margin: 0 auto 2rem;
+    #experience-wrapper {
+        width: 70%;
     }
     
     #experience .card h3 {
@@ -1356,8 +1360,20 @@ h3.card-title i {
     }
 }
 
-@media only screen and (max-width: 576px) {    
-    #experience .card h3 {
+@media only screen and (max-width: 576px) {  
+    #experience-wrapper {
+        width: 100%;
+    }
+
+    .experience::before {
+        font-size: .8rem;
+    }
+
+    .experience::after {
+        top:.6rem;
+    }
+
+    h3.card-title {
         font-size: 1.2rem;
     }
 
