@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <div class="row skills-row">
     {% for skill in skills %}
-    <div class="col s6 m3">
-        <div class="skill-wrapper center-align">
-            <div class="skill-bars-wrapper" data-skill-level="{{skill.skill_level}}">
-                <div class="skill-bar sa-flag-red-bg"></div>
-                <div class="skill-bar sa-flag-green-bg"></div>
-                <div class="skill-bar sa-flag-blue-bg"></div>
+    {% if loop.length %3 != 0  and (loop.index == loop.length - 1) %}
+        <div class="col s6 offset-m2 m4 l3">
+    {% else %}
+        <div class="col s6 m4 l3">
+    {% endif %}
+        <div class="skill-wrapper-outer">
+            <div class="skill-wrapper-inner center-align">
+                <div class="skill-bars-wrapper" data-skill-level="{{skill.skill_level}}">
+                    <div class="skill-bar sa-flag-red-bg"></div>
+                    <div class="skill-bar sa-flag-green-bg"></div>
+                    <div class="skill-bar sa-flag-blue-bg"></div>
+                </div>
+                <h3 class="skill-level off-white text-shadow-1px">{{ skill.skill_level }}%</h3>  
             </div>
-            
+            <h3 class="skill-name off-white center-align">{{ skill.skill_name }}</h3> 
         </div>
-        <h3 class=" skill-name center-align off-white">{{ skill.skill_name }} ({{ skill.skill_level }}%)</h3>
     </div>
     {% endfor %}
 </div>
