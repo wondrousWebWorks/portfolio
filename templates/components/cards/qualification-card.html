@@ -6,8 +6,8 @@
             <li>
                 <div class="collapsible-header custom-collapsible-header off-white"><i class="fas fa-chevron-down sa-flag-gold"></i>  {{ qualification.qualification_name}}</div>
                 <div class="collapsible-body custom-collapsible-body">
-                    <p><i class="fas fa-university sa-flag-red off-white"></i>&nbsp;&nbsp;Institution: {{ qualification.qualification_from }}</p>
-                    <p><i class="fas fa-calendar-alt sa-flag-red off-white"></i>&nbsp;&nbsp;Issued: {{ qualification.qualification_issue_date }}</p>
+                    <p class="off-white"><i class="fas fa-university sa-flag-red"></i>&nbsp;&nbsp;Institution: {{ qualification.qualification_from }}</p>
+                    <p class="off-white"><i class="fas fa-calendar-alt sa-flag-red"></i>&nbsp;&nbsp;Issued: {{ qualification.qualification_issue_date }}</p>
                     <div class="qualification-btn-wrapper">
                         <a href="{{ qualification.qualification_link }}" target="_blank" class="btn tooltipped qualification-btn off-white sa-flag-green-bg" data-position="bottom" data-tooltip="View Qualification">View</a>
                         <a href="{{ qualification.qualification_info }}" target="_blank" class="btn tooltipped qualification-btn off-white sa-flag-blue-bg" data-position="bottom" data-tooltip="More Information About Qualification">More Info</a>
