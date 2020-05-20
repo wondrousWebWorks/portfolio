@@ -1,17 +1,12 @@
 <!DOCTYPE html>
 <div id="experience" class="row">
-  {% for job in experience %}
-    {% if loop.last and loop.length %2 != 0 %}
-      <div class="col s12 m6  offset-m3 xl4">
-    {% else %}
-      <div class="col s12 m6 xl4">
-    {% endif %}
-    <div class="card experience-card">
-      <div class="card-content off-white">
-        <h3 class="card-title"><i class="fas fa-tag sa-flag-gold"></i>&nbsp;{{ job.job_title }}</h3>
-        <p><i class="fas fa-calendar-alt sa-flag-green"></i>&nbsp;&nbsp;{{ job.job_dates }}</p>
-      </div>
+  <div class="col s12">
+    <div id="experience-wrapper">
+      {% for job in experience %}
+        <div class="experience" data-dates="{{ job.job_dates }}">
+          <h3 class="card-title off-white"><i class="fas fa-tag sa-flag-blue"></i>&nbsp;&nbsp;{{ job.job_title }}</h3>
+        </div>
+      {% endfor %}   
     </div>
   </div>
-  {% endfor %}
 </div>
