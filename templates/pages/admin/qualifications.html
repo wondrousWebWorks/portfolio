@@ -12,9 +12,9 @@
         <ul class="admin-list eerie-black-bg">
             {% for qualification in qualifications %}
             <li class="admin-list-item off-white">
-                <div class="admin-list-item-text">
+                <h3 class="admin-list-item-text">
                     {{ qualification.qualification_name}}
-                </div>
+                </h3>
                 <div class="admin-list-item-btn-wrapper">
                     <a class="update-qualification-btn update-btn btn waves-effect waves-light sa-flag-blue-bg off-white text-shadow-1px" data-id="{{ qualification._id }}"><i
                         class="fas fa-edit"></i> Edit</a>

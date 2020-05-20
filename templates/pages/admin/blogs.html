@@ -12,9 +12,9 @@
         <ul class="admin-list eerie-black-bg">
             {% for blog_post in blog_posts %}
             <li class="admin-list-item off-white">
-                <div class="admin-list-item-text">
+                <h3 class="admin-list-item-text">
                     {{ blog_post.blog_title}}
-                </div>
+                </h3>
                 <div class="admin-list-item-btn-wrapper">
                     <a class="update-blog-post-btn update-btn btn waves-effect waves-light sa-flag-blue-bg off-white text-shadow-1px" data-id="{{ blog_post._id }}"><i
                         class="fas fa-edit"></i> Edit</a>

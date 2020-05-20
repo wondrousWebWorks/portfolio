@@ -12,9 +12,9 @@
         <ul class="admin-list eerie-black-bg">
             {% for skill in skills %}
             <li class="admin-list-item off-white">
-                <div class="admin-list-item-text">
+                <h3 class="admin-list-item-text">
                     {{ skill.skill_name}}
-                </div>
+                </h3>
                 <div class="admin-list-item-btn-wrapper">
                     <a class="update-skill-btn update-btn btn waves-effect waves-light sa-flag-blue-bg off-white text-shadow-1px" data-id="{{ skill._id }}"><i
                         class="fas fa-edit"></i> Edit</a>

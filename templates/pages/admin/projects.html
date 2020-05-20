@@ -12,9 +12,9 @@
         <ul class="admin-list eerie-black-bg">
             {% for project in projects %}
             <li class="admin-list-item off-white">
-                <div class="admin-list-item-text">
+                <h3 class="admin-list-item-text">
                     {{ project.project_name}}
-                </div>
+                </h3>
                 <div class="admin-list-item-btn-wrapper">
                     <a class="update-project-btn update-btn btn waves-effect waves-light sa-flag-blue-bg off-white text-shadow-1px" data-id="{{ project._id }}"><i class="fas fa-edit"></i> Edit</a>
                     <a class="delete-project-btn delete-btn btn waves-effect waves-light sa-flag-red-bg off-white text-shadow-1px" data-id="{{ project._id }}"><i class="fas fa-trash-alt"></i> Delete</a>
