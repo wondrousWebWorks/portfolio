@@ -776,6 +776,9 @@ const collapsibleInstances = M.Collapsible.init(collapsibleElems, {
     }
 });
 
+const tooltipElems = document.querySelectorAll('.tooltipped');
+const tooltipInstances = M.Tooltip.init(tooltipElems);
+
 
 /* FUNCTIONS CALLED ON PAGE LOAD */
 if (window.location.pathname == '/' || window.location.pathname == '/about') {
