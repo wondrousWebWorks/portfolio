@@ -245,7 +245,7 @@ Some features of the site can be viewed below.  It is by no means a list of all 
 
 ## Using the Admin Site
 
-For the sake of testing, users can test the functionality of the Admin page by logging in with a guest account.  As the site does not require users to register or create accounts, the login details for trhe deployed testing site are provided here instead. 
+For the sake of testing, users can test the functionality of the Admin page by logging in with a guest account.  As the site does not require users to register or create accounts, the login details for trhe deployed testing site are provided here instead.
 
 **NOTE Should you wish to deploy the site with your own data, use your login details instead.**
 
