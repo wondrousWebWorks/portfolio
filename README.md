@@ -2,6 +2,8 @@
 
 [Live Site](https://wondrouswebworks.herokuapp.com/)
 
+Information on using the Admin site can be found [here](#using-the-admin-site)
+
 ![alt text](https://res.cloudinary.com/wondrouswebworks/image/upload/v1589826600/wondrousWebWorks/wondrouswebworks-responsive-layout.png "wondrousWebWorks() responsive layout for landing page")
 
 Thank you for viewing my project. wondrousWebWorks() is a portfolio for me as a full stack developer, including some information about me, my skills, experience, a contact section, a blog and project information. It also includes an admin page, where the site owner can manage the site and perform CRUD (Create, Read, Update and Delete) operations.
@@ -223,6 +225,8 @@ For the sake of testing, users can test the functionality of the Admin page by l
 If the above steps are followed, the user should be logged in and redirected to the Admin Dashboard. A new link will appear in the navbar, **Log out**. Clicking on this will log the user out and login will be required if access to the Admin page is required again.
 
 ## Information Architecture
+
+Information on using the Admin site can be found [here](#using-the-admin-site)
 
 For this project, it was required to use a NoSQL database. MongoDB Atlas was chosen as it provides free datbase hosting in the cloud for minimal traffic and has hardly any downtime at all.
 
@@ -643,6 +647,8 @@ The text in the **page header** and the **page header button** changes dynamical
 
 The project can be run either locally or deployed on Heroku.  Instructions for either option can be viewed below.
 
+Information on using the Admin site can be found [here](#using-the-admin-site)
+
 ### Local Installation
 
 #### Requirements
@@ -719,6 +725,7 @@ It is assumed that the required database and collections have been created in yo
         python3 app.py
 
 ### Deploy to Heroku
+
 
 #### Requirements
 
@@ -802,6 +809,8 @@ NOTE: In order to deploy successfully to Heroku, both a *requirements.txt* file 
 10. Click **Connect** and confirm a successful connection
 11. Scroll down to the **Manual deploy** section and click on **Deploy Branch**
 12. Provided that every step has been followed correctly, the app should be deployed and can be viewed by clicking on the **View** or **Open app** buttons
+
+Information on using the Admin site can be found [here](#using-the-admin-site)
 
 ## Credits
 
