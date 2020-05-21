@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <div class="row skills-row">
     {% for skill in skills %}
-    {% if loop.length %3 != 0  and (loop.index == loop.length - 1) %}
-        <div class="col s6 offset-m2 m4 l3">
-    {% else %}
-        <div class="col s6 m4 l3">
-    {% endif %}
+        {% if loop.length %3 != 0  and (loop.index == loop.length - 1) %}
+            <div class="col s6 offset-m2 m4 l3">
+        {% else %}
+            <div class="col s6 m4 l3">
+        {% endif %}
         <div class="skill-wrapper-outer">
             <div class="skill-wrapper-inner center-align">
                 <div class="skill-bars-wrapper" data-skill-level="{{skill.skill_level}}">
