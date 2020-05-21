@@ -408,7 +408,7 @@ const addExperienceData = () => {
  */
 const getSkillData = targetButton => {
     resetForm('skills');
-     dataTarget = targetButton.getAttribute('data-id');
+    dataTarget = targetButton.getAttribute('data-id');
     skillFormDocId.setAttribute('data-id', dataTarget);
     changeFormButton('update', 'skills');
     
@@ -560,13 +560,15 @@ const getExperienceData = () => {
  * Gets Skills form data and PUTs it to the backend. 
  */
 const updateSkillData = () => {
-    dataTarget = skillFormDocId.getAttribute('data-id');
-    const skillEntry = {
-        skill_name: skillName.value,
-        skill_level: skillLevel.value
-    };
+    if (skillForm.checkValidity()) {
+        dataTarget = skillFormDocId.getAttribute('data-id');
+        const skillEntry = {
+            skill_name: skillName.value,
+            skill_level: skillLevel.value
+        };
 
-    sendData('skills', 'update', skillEntry, dataTarget);
+        sendData('skills', 'update', skillEntry, dataTarget);
+}
 };
 
 
@@ -574,23 +576,25 @@ const updateSkillData = () => {
  * Gets Projects form data and PUTs it to the backend. 
  */
 const updateProjectData = () => {
-    dataTarget = projectFormDocId.getAttribute('data-id');
-    const projectTechnologiesValues = M.FormSelect.getInstance(projectTechnologies);
-    const projectDescription = [];
-    projectDescriptionParagraphs.forEach(paragraph => {
-        projectDescription.push(paragraph.value);
-    });
+    if (projectForm.checkValidity()) {
+        dataTarget = projectFormDocId.getAttribute('data-id');
+        const projectTechnologiesValues = M.FormSelect.getInstance(projectTechnologies);
+        const projectDescription = [];
+        projectDescriptionParagraphs.forEach(paragraph => {
+            projectDescription.push(paragraph.value);
+        });
 
-    const projectEntry = {
-        project_name: projectName.value,
-        project_img_url: projectImgUrl.value,
-        project_github_url: projectGithubUrl.value,
-        project_deployed_url: projectDeployedUrl.value,
-        project_technologies: projectTechnologiesValues.getSelectedValues(),
-        project_description: projectDescription
-    };
+        const projectEntry = {
+            project_name: projectName.value,
+            project_img_url: projectImgUrl.value,
+            project_github_url: projectGithubUrl.value,
+            project_deployed_url: projectDeployedUrl.value,
+            project_technologies: projectTechnologiesValues.getSelectedValues(),
+            project_description: projectDescription
+        };
 
-    sendData('projects', 'update', projectEntry, dataTarget);
+        sendData('projects', 'update', projectEntry, dataTarget);
+    }
 };
 
 
@@ -598,16 +602,18 @@ const updateProjectData = () => {
  * Gets Qualifications form data and PUTs it to the backend. 
  */
 const updateQualificationData = () => {
-    dataTarget = qualificationFormDocId.getAttribute('data-id');
-    const qualificationEntry = {
-        qualification_name: qualificationName.value,
-        qualification_from: qualificationFrom.value,
-        qualification_issue_date: qualificationIssueDate.value,
-        qualification_view_url: qualificationViewUrl.value,
-        qualification_info_url: qualificationInfoUrl.value
-    };
+    if (qualificationForm.checkValidity()) {
+        dataTarget = qualificationFormDocId.getAttribute('data-id');
+        const qualificationEntry = {
+            qualification_name: qualificationName.value,
+            qualification_from: qualificationFrom.value,
+            qualification_issue_date: qualificationIssueDate.value,
+            qualification_view_url: qualificationViewUrl.value,
+            qualification_info_url: qualificationInfoUrl.value
+        };
 
-    sendData('qualifications', 'update', qualificationEntry, dataTarget);
+        sendData('qualifications', 'update', qualificationEntry, dataTarget);
+    }
 };
 
 
@@ -615,21 +621,23 @@ const updateQualificationData = () => {
  * Gets Blogs form data and PUTs it to the backend. 
  */
 const updateBlogPostData = () => {
-    dataTarget = blogFormDocId.getAttribute('data-id');
-    const blogPostParagraphs = [];
-    blogParagraphs.forEach(paragraph => {
-        blogPostParagraphs.push(paragraph.value);
-    });
+    if (blogForm.checkValidity()) {
+        dataTarget = blogFormDocId.getAttribute('data-id');
+        const blogPostParagraphs = [];
+        blogParagraphs.forEach(paragraph => {
+            blogPostParagraphs.push(paragraph.value);
+        });
 
-    const blogPost = {
-        blog_title: blogTitle.value,
-        blog_img_url: blogImgUrl.value,
-        blog_summary: blogSummary.value,
-        blog_date: blogDate.value,
-        blog_body: blogPostParagraphs
-    };
+        const blogPost = {
+            blog_title: blogTitle.value,
+            blog_img_url: blogImgUrl.value,
+            blog_summary: blogSummary.value,
+            blog_date: blogDate.value,
+            blog_body: blogPostParagraphs
+        };
 
-    sendData('blogs', 'update', blogPost, dataTarget);
+        sendData('blogs', 'update', blogPost, dataTarget);
+    }
 };
 
 
