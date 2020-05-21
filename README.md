@@ -245,13 +245,17 @@ Some features of the site can be viewed below.  It is by no means a list of all 
 
 ## Using the Admin Site
 
-For the sake of testing, users can test the functionality of the Admin page by logging in with a guest account.  As the site does not require users to register or create accounts, the login details are provided here instead.
+For the sake of testing, users can test the functionality of the Admin page by logging in with a guest account.  As the site does not require users to register or create accounts, the login details for trhe deployed testing site are provided here instead. 
+
+**NOTE Should you wish to deploy the site with your own data, use your login details instead.**
 
 **NOTE** Trying to access any Admin page by typing the URL into the browser's search bar will redirect the user to the **Login** page automatically and inform them of the need to be logged in to access that particular resource.
 
 ### Login Procedure
 
-1. Navigate to either the [**Admin**](https://wondrouswebworks.herokuapp.com/admin) or [**Login**](https://wondrouswebworks.herokuapp.com/login) page
+1. Navigate to either the **admin** or **login** page. 
+    - On the example deployed site they can be found [**here for Admin**](https://wondrouswebworks.herokuapp.com/admin) and [**here for Login**](https://wondrouswebworks.herokuapp.com/login) page
+    - If you wish to access it locally or where you have deployed the site, navigate to the **Home** page by clicking **Home** link in the navbar at the top of the page. Add either of the following to the end of the URL in the browser `/admin` or `/login`
 2. Enter the following login details in the form input fields:
    - Email: guest@test.com
    - Password: M@ryH@d@L1ttl3L@mb
