@@ -34,15 +34,17 @@ Thank you for viewing my project. wondrousWebWorks() is a portfolio for me as a 
         - [#FFB81C (sa-flag-gold)](#ffb81c-sa-flag-gold)
         - [#F7F7F7 (off-white)](#f7f7f7-off-white)
   - [Features](#features)
-    - [Animated Headings](#animated-headings)
-    - [Tablet-style Container](#tablet-style-container)
-    - [Animated Skills Listings](#animated-skills-listings)
-    - [Project Card Animation and Tooltips](#project-card-animation-and-tooltips)
-    - [Collapsible Qualifications](#collapsible-qualifications)
-    - [Animated Experience Section](#animated-experience-section)
-    - [Animation Navigation Icons](#animation-navigation-icons)
-    - [Blog Post Card Text Reveal Effect](#blog-post-card-text-reveal-effect)
-    - [User Friendly Admin Interface](#user-friendly-admin-interface)
+    - [Existing Features](#existing-features)
+      - [Animated Headings](#animated-headings)
+      - [Tablet-style Container](#tablet-style-container)
+      - [Animated Skills Listings](#animated-skills-listings)
+      - [Project Card Animation and Tooltips](#project-card-animation-and-tooltips)
+      - [Collapsible Qualifications](#collapsible-qualifications)
+      - [Animated Experience Section](#animated-experience-section)
+      - [Animation Navigation Icons](#animation-navigation-icons)
+      - [Blog Post Card Text Reveal Effect](#blog-post-card-text-reveal-effect)
+      - [User Friendly Admin Interface](#user-friendly-admin-interface)
+    - [Features to Implement in Future](#features-to-implement-in-future)
   - [Using the Admin Site](#using-the-admin-site)
     - [Login Procedure](#login-procedure)
   - [Information Architecture](#information-architecture)
@@ -222,41 +224,50 @@ The image for the **Hero** shot in the site header was taken from [PNGTREE](http
 
 Some features of the site can be viewed below.  It is by no means a list of all features, but only those I deem noteworthy.
 
-### Animated Headings
+### Existing Features
+
+#### Animated Headings
 
 ![alt text](https://res.cloudinary.com/wondrouswebworks/image/upload/v1590047223/wondrousWebWorks/gifs/wondrouswebworks-heading_ehcnvn.gif "gif of animated heading")
 
-### Tablet-style Container
+#### Tablet-style Container
 
 ![alt text](https://res.cloudinary.com/wondrouswebworks/image/upload/v1590047223/wondrousWebWorks/gifs/wondrouswebworks-tablet-style-animation_aa3a1c.gif "gif of tablet-style container with flashing cursor")
 
-### Animated Skills Listings
+#### Animated Skills Listings
 
 ![alt text](https://res.cloudinary.com/wondrouswebworks/image/upload/v1590047223/wondrousWebWorks/gifs/wondrouswebworks-skills-animation_ve6pxr.gif "gif of animated skill listing")
 
-### Project Card Animation and Tooltips
+#### Project Card Animation and Tooltips
 
 ![alt text](https://res.cloudinary.com/wondrouswebworks/image/upload/v1590047223/wondrousWebWorks/gifs/wondrouswebworks-projects-animation_h9m8mi.gif "gif of project card animation and tooltips")
 
-### Collapsible Qualifications
+#### Collapsible Qualifications
 
 ![alt text](https://res.cloudinary.com/wondrouswebworks/image/upload/v1590047223/wondrousWebWorks/gifs/wondrouswebworks-qualifications-animation_tzuf5u.gif "gif of collapsible qualifications")
 
-### Animated Experience Section
+#### Animated Experience Section
 
 ![alt text](https://res.cloudinary.com/wondrouswebworks/image/upload/v1590047223/wondrousWebWorks/gifs/wondrouswebworks-experience-animation_thjtsf.gif "gif of animated work experience")
 
-### Animation Navigation Icons
+#### Animation Navigation Icons
 
 ![alt text](https://res.cloudinary.com/wondrouswebworks/image/upload/v1590050696/wondrousWebWorks/gifs/wondrouswebworks-fixed-nav-links-animation_xdrwam.gif "gif of animated navigation icons")
 
-### Blog Post Card Text Reveal Effect
+#### Blog Post Card Text Reveal Effect
 
 ![alt text](https://res.cloudinary.com/wondrouswebworks/image/upload/v1590050814/wondrousWebWorks/gifs/wondrouswebworks-blog-post-card-animation_viprlu.gif "gif of blog post card text reveal effect")
 
-### User Friendly Admin Interface
+#### User Friendly Admin Interface
 
 ![alt text](https://res.cloudinary.com/wondrouswebworks/image/upload/v1590052380/wondrousWebWorks/gifs/wondrouswebworks-admin-animation_wjmvfu.gif "gif of user friendly admin interface")
+
+### Features to Implement in Future
+
+- The ability for the user to customize the **About** sections from the **Admin** page
+- This is not really a feature, but I would like to redo the **style.css** page using [SASS](https://sass-lang.com/)
+- Convert the site to use [Bootstrap](https://getbootstrap.com/) instead of [Materialize](https://materializecss.com/)
+- The ability to switch between **light** and **dark** modes
 
 ## Using the Admin Site
 
