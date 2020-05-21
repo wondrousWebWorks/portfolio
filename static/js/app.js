@@ -306,7 +306,7 @@ const sendData = (urlTarget, addOrUpdate, requestBody, docId = '1') => {
             location.reload();
         });
     })
-    .catch((error) => {
+    .catch(error => {
         console.error('Error:', error);
     });  
 };
@@ -455,7 +455,7 @@ const getProjectData = () => {
             projectDescriptionParagraphs[i].value = data.project_description[i];
         }
     })
-    .catch((error) => {
+    .catch(error => {
         console.error('Error:', error);
     });  
     
@@ -485,7 +485,7 @@ const getQualificationData = () => {
         qualificationViewUrl.value = data.qualification_view_url;
         qualificationInfoUrl.value = data.qualification_info_url;
     })
-    .catch((error) => {
+    .catch(error => {
         console.error('Error:', error);
     });  
 
@@ -518,7 +518,7 @@ const getBlogPostData = () => {
             blogParagraphs[i].value = data.blog_body[i];
         }
     })
-    .catch((error) => {
+    .catch(error => {
         console.error('Error:', error);
     });  
     
@@ -545,7 +545,7 @@ const getExperienceData = () => {
         experienceJobTitle.value = data.job_title;
         experienceJobDates.value = data.job_dates;
     })
-    .catch((error) => {
+    .catch(error => {
         console.error('Error:', error);
     });  
     
@@ -684,7 +684,7 @@ const deleteDocument = target => {
             location.reload();
         });
     })
-    .catch((error) => {
+    .catch(error => {
         console.error('Error:', error);
     });  
 };
@@ -784,7 +784,6 @@ const tooltipInstances = M.Tooltip.init(tooltipElems);
 if (window.location.pathname == '/' || window.location.pathname == '/about') {
     animateCursor();
 }
-
 
 if (window.location.pathname == '/home' || window.location.pathname == '/') {
     randomizeInitialSkillBarHeight();
