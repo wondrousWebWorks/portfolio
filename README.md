@@ -102,7 +102,7 @@ Thank you for viewing my project. wondrousWebWorks() is a portfolio for me as a 
 
 ### Project Goals
 
-wondrousWebWorks() is created to be a profile for me as a developer.  It serves to showcase my skills as a developer while allowing visitors to view my ever-expanding portfolio. The site provides some information about me and allows visitors to contact me for any queries or to request work should they so desire. wondrousWebworks() is created to be future proof, and as such featues an admin panel which allows the site admin to manipulate the site by performing CRUD (Create, Read, Update and Delete) operations to change the MongoDB collection and subsequebtly the site as desired. The site showcases current design trends in 2020, and is designed to be visually appealing and intuitive to use.
+wondrousWebWorks() is created to be a profile for me as a developer.  It serves to showcase my skills as a developer while allowing visitors to view my ever-expanding portfolio. The site provides some information about me and allows visitors to contact me for any queries or to request work should they so desire. wondrousWebworks() is created to be future proof, and as such featues an admin panel which allows the site admin to manipulate the site by performing CRUD (Create, Read, Update and Delete) operations to change the MongoDB collection and subsequently the site as desired. The site is designed to be visually appealing and intuitive to use.
 
 #### User Goals
 
@@ -125,7 +125,7 @@ wondrousWebWorks() is created to be a profile for me as a developer.  It serves 
 
 ##### User Story C
 
-*"As an interest party, I want to be able to naviagte to the developer's GitHub repositories and LinkedIn profile so I can get more detailed information about them."*
+*"As an interest party, I want to be able to navigate to the developer's GitHub repositories and LinkedIn profile so I can get more detailed information about them."*
 
 ##### User Story D
 
@@ -133,39 +133,39 @@ wondrousWebWorks() is created to be a profile for me as a developer.  It serves 
 
 ##### User Story E
 
-*"As a prospective customer, I want to be able to contact the developer so that I can discuss them working on a project for me."*
+*"As a prospective customer, I want to be able to contact the developer so that I can discuss them working on a project for/with me."*
 
 #### Site Owner Goals
 
 - Deliver on User Stories as far as possible
 - Gain the interest of prospective employers or customers
-- Create an ADMIN page which allows carrying out CRUD (Create, Read, Update, Delete) operations)
-- Create a site that is future proof and allows for the addition of additional skills, projects, blog posts, education and work experience
+- Create an ADMIN page which allows carrying out CRUD (Create, Read, Update, Delete) operations
+- Create a site that is future proof and allows for the addition of additional skills, projects, blog posts, qualifications and work experience
 
 ### Design Choices
 
-I decided on using a dark theme with a selection of bright colours to provide good contrast and reduce eye strain for users and the site admin. The design is simple with good spacing so that the various sections of the portfolio would stand out and be visualy striking in itself where required.
+I decided to use a dark theme with a selection of bright colours to provide good contrast and reduce eye strain for users and the site admin. The design is simple with good spacing so that the various sections of the portfolio would stand out and be visually striking in itself where required.
 
 #### Fonts
 
-In order to fit the fantasy nature of the game, unconventional fonts were selected from **Google Fonts**.  The selected fonts have to be slighty quirky and more cartoony in design, while still being legible. Sample phrases featured in the game were entered in **Google Fonts** to see how they were displayed. Ultimately, the fonts below were selected to be used in clearly defined areas in the game.
+The following fonts were taken from [Google Fonts](https://fonts.google.com/) and are reported to used together frequently.
 
-- [Baloo 2](https://fonts.google.com/specimen/Baloo+2?query=Baloo+2) - used for all headings as well as links in the navbar
+- [Baloo 2](https://fonts.google.com/specimen/Baloo+2?query=Baloo+2) - used for all headings as well as links in the navigation bar (navbar)
 - [Roboto Slab](https://fonts.google.com/specimen/Roboto+Slab?query=roboto+slab) - used for all text which is not a heading or a link in the navbar
 
 #### Icons
 
-At first an effort was made to use Materialize icons only, but it soon became apparent that they were too limited to meet design expectations. As such, all icons were taken from either [Materialize](https://materializecss.com/) or [Font Awesome](https://fontawesome.com/).
+At first an effort was made to use Materialize icons only, but it soon became apparent that they were too limited to meet design expectations. As such, all icons were taken from [Font Awesome](https://fontawesome.com/).
 
 #### Images
 
-The image for the **Hero** shot in the site header was taken from [PNGTREE](https://pngtree.com/) and chosen because it complements the site's chosen colour scheme.  Images for **Blog** entries were taken from [Pexels](https://www.pexels.com/) and selected to portray the general topic of each blog. Project images were taken from [Am I Responsive?](http://ami.responsivedesign.is/) to show a responsive layout for each project. The **wondrousWebWorks()** logo was created by me.
+The image for the **Hero** shot in the site header was taken from [PNGTREE](https://pngtree.com/) and chosen because it complements the site's chosen colour scheme.  Images for **Blog** entries were taken from [Pexels](https://www.pexels.com/) and selected to portray the general topic of each blog. Project images were generated using [mockDrop](https://mockdrop.io/). The **wondrousWebWorks()** logo was created by me.
 
 #### Colours
 
 ![alt text](https://res.cloudinary.com/wondrouswebworks/image/upload/v1589668312/wondrousWebWorks/wondrousWebWorks-color-palette.png "wondrousWebWorks() colour palette")
 
- **Eerie black** (*#1c1c1c* in hex) was chosen as background colour for the site body as the site was designed to be displayed in "dark mode". In order to make text legible, **#f7f7f7** was chosen as text colour. All other colours were taken from the South African flag and named by me; a subtle homage to my origin. See below for more details.  All colours complement each other very well, and provide a good level of contrast to increase legibility and highlight various areas of the page.
+ **Eerie black** (*#1C1C1C* in hex) was chosen as background colour for the site body as the site was designed to be displayed in "dark mode". In order to make text legible, **#F7F7F7** was chosen as text colour. All other colours were taken from the South African flag and named by me; a subtle homage to my origin. See below for more details.  All colours complement each other very well, and provide a good level of contrast to increase legibility and highlight various areas of the page.
 
 ##### #1C1C1C (Eerie Black)
 
@@ -197,17 +197,17 @@ The image for the **Hero** shot in the site header was taken from [PNGTREE](http
 - Background colour of the *blog summary* on **Blog cards**
 - Background colour of the **Add** buttons on Admin management pages
 - Background colour of the form *submit* buttons in form modals
+- Background colour of all **Manage** buttons on the Admin dashboard
 
 ##### #0080ff (sa-flag-blue)
 
 - Background colour of the *more info* buttons in the **Education** section
 - Background-colour of all modal *close* buttons
-- Background colour of all **Manage** buttons on the Admin dashboard
 
 ##### #FFB81C (sa-flag-gold)
 
 - Colour of the *GitHub* icon in the fixed navigation shortcuts on the left of the screen
-- Colour of the ;present working directory' in the **About** and **About Summary** sections
+- Colour of the 'present working directory' in the **About** and **About Summary** sections
 - Colour of the flashing rectangular icon in the **About** and **About Summary** sections
 - One of three background colours of bars in **Skills** displays
 - Colour of the *GitHub* icon in **Project cards**
@@ -579,6 +579,8 @@ A JSON representation of the **work_experience** collection can be found [here](
 - [Font Awesome](https://fontawesome.com/)
 - [Google Fonts](https://fonts.google.com/)
 - [Cloudinary](https://cloudinary.com/about)
+- [CSS Minifier](https://cssminifier.com/)
+- [mockDrop](https://mockdrop.io/)
 
 ## Wireframes
 
