@@ -995,7 +995,7 @@ a.add-modal-trigger {
 /* ALERT MESSAGES */
 .alert-wrapper {
     width: 80%;
-    margin: 15vh auto -4vh;
+    margin: 15vh auto -10vh;
     border-radius: 4px;
 }
 
@@ -1389,6 +1389,7 @@ a.add-modal-trigger {
     /* ALERTS */
     .alert-wrapper {
         width: 100%;
+        margin: 15vh auto -4vh;
     }
 }
 
