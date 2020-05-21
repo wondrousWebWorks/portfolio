@@ -33,6 +33,8 @@ Thank you for viewing my project. wondrousWebWorks() is a portfolio for me as a 
         - [#0080ff (sa-flag-blue)](#0080ff-sa-flag-blue)
         - [#FFB81C (sa-flag-gold)](#ffb81c-sa-flag-gold)
         - [#F7F7F7 (off-white)](#f7f7f7-off-white)
+  - [Features](#features)
+    - [Animated Headings](#animated-headings)
   - [Using the Admin Site](#using-the-admin-site)
     - [Login Procedure](#login-procedure)
   - [Information Architecture](#information-architecture)
@@ -207,6 +209,14 @@ The image for the **Hero** shot in the site header was taken from [PNGTREE](http
 ##### #F7F7F7 (off-white)
 
 - Used for all text, except blog post dates
+
+## Features
+
+Some features of the site can be viewed below.  It is by no means a list of all features, but only those I deem noteworthy.
+
+### Animated Headings
+
+![alt text](https://res.cloudinary.com/wondrouswebworks/image/upload/v1590047223/wondrousWebWorks/gifs/wondrouswebworks-heading_ehcnvn.gif "gif of animated heading")
 
 ## Using the Admin Site
 
