@@ -40,6 +40,9 @@ Thank you for viewing my project. wondrousWebWorks() is a portfolio for me as a 
     - [Project Card Animation and Tooltips](#project-card-animation-and-tooltips)
     - [Collapsible Qualifications](#collapsible-qualifications)
     - [Animated Experience Section](#animated-experience-section)
+    - [Animation Navigation Icons](#animation-navigation-icons)
+    - [Blog Post Card Text Reveal Effect](#blog-post-card-text-reveal-effect)
+    - [User Friendly Admin Interface](#user-friendly-admin-interface)
   - [Using the Admin Site](#using-the-admin-site)
     - [Login Procedure](#login-procedure)
   - [Information Architecture](#information-architecture)
@@ -242,6 +245,18 @@ Some features of the site can be viewed below.  It is by no means a list of all 
 ### Animated Experience Section
 
 ![alt text](https://res.cloudinary.com/wondrouswebworks/image/upload/v1590047223/wondrousWebWorks/gifs/wondrouswebworks-experience-animation_thjtsf.gif "gif of animated work experience")
+
+### Animation Navigation Icons
+
+![alt text](https://res.cloudinary.com/wondrouswebworks/image/upload/v1590050696/wondrousWebWorks/gifs/wondrouswebworks-fixed-nav-links-animation_xdrwam.gif "gif of animated navigation icons")
+
+### Blog Post Card Text Reveal Effect
+
+![alt text](https://res.cloudinary.com/wondrouswebworks/image/upload/v1590050814/wondrousWebWorks/gifs/wondrouswebworks-blog-post-card-animation_viprlu.gif "gif of blog post card text reveal effect")
+
+### User Friendly Admin Interface
+
+![alt text](https://res.cloudinary.com/wondrouswebworks/image/upload/v1590052380/wondrousWebWorks/gifs/wondrouswebworks-admin-animation_wjmvfu.gif "gif of user friendly admin interface")
 
 ## Using the Admin Site
 
