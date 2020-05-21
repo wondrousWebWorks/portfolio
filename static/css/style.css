@@ -890,7 +890,7 @@ h4.admin-info-category {
 
 .admin-list {
     width: 80%;
-    margin: auto;
+    margin: 0 auto 5rem;
     margin-top: 2.5rem;
     border-radius: .5rem;
     box-shadow:  7px 7px 10px #0E0E0E,
@@ -1337,6 +1337,10 @@ a.add-modal-trigger {
 
     .admin-list {
         width: 100%;
+    }
+
+    .admin-heading-margin {
+        margin-top: 10vh;
     }
 
     a.dashboard-btn, a.dashboard-btn i {
